@@ -1,0 +1,64 @@
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Registrar Lote</h1>
+              </div>
+              <form class="user">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user" name="numeroLote"
+                      [(ngModel)]="lote.numeroLote" placeholder="Número de Lote">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" name="variedad"
+                      [(ngModel)]="lote.variedad" placeholder="Variedad">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="sistemaRenovacion"
+                    [(ngModel)]="lote.sistemaRenovacion" placeholder="Sistema de Renovación">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user" name="fechaSiembra"
+                      [(ngModel)]="lote.fechaSiembra" placeholder="Fecha de Siembra">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control form-control-user" name="distanciaSiembra"
+                      [(ngModel)]="lote.distanciaSiembra" placeholder="Distancia de Siembra">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user" name="epocaCosecha"
+                      [(ngModel)]="lote.epocaCosecha" placeholder="Época de Cosecha">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control form-control-user" name="epocaFloracion"
+                      [(ngModel)]="lote.epocaFloracion" placeholder="Época de Floración">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user" name="estimadoCosecha"
+                      [(ngModel)]="lote.estimadoCosecha" placeholder="Cantidad estimada de cosecha">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" name="tipoEstimado"
+                      [(ngModel)]="lote.tipoEstimado" placeholder="Tipo estimado Tons/Kg">
+                  </div>
+                </div>
+                <br>
+                <a (click)=registrar() class="btn btn-primary btn-user btn-block">
+                  Registrar Lote
+                </a>
+                <hr>
