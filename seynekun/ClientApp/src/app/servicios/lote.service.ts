@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HandleHttpErrorService } from './handle-http-error.service';
+import { HandleHttpErrorService } from './@base/handle-http-error.service';
 import { Observable, from } from 'rxjs';
-import { Lote } from '../seynekun/models/lote';
 import { tap, catchError } from 'rxjs/operators';
+import { Lote } from '../seynekun/models/modelo-lote/lote';
 
 @Injectable({
   providedIn: 'root'

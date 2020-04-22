@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -12,7 +13,10 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoteRegistroComponent } from './seynekun/lote/lote-registro/lote-registro.component';
 import { LoteConsultaComponent } from './seynekun/lote/lote-consulta/lote-consulta.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LoteService } from './servicios/lote.service';
+import { LoteService } from './servicios/servicio-de-lote/lote.service';
+import { ProductorRegistroComponent } from './seynekun/productor/productor-registro/productor-registro.component';
+import { ProductorConsultaComponent } from './seynekun/productor/productor-consulta/productor-consulta.component';
+
 
 @NgModule({
   declarations: [
@@ -22,20 +26,29 @@ import { LoteService } from './servicios/lote.service';
     CounterComponent,
     FetchDataComponent,
     LoteRegistroComponent,
-    LoteConsultaComponent,    
+    LoteConsultaComponent,
+    ProductorRegistroComponent,
+    ProductorConsultaComponent,
+    ProductorRegistroComponent,
+    ProductorConsultaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'RegistrarProductor', component: ProductorRegistroComponent },
+      { path: 'ConsultarProductor', component: ProductorConsultaComponent },
     ]),
     AppRoutingModule
   ],
   providers: [LoteService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

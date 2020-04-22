@@ -1,0 +1,138 @@
+<div class="page-top">
+  <div class="content">
+    <section id="datosGenerales">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-registrar-productor-imagen"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registrar Productor</h1>
+                </div>
+                <form class="user" [formGroup]="formGroup">
+                  <div class="form-group">
+                    <input type="number" class="form-control form-control-user" name="cedulaProductor"
+                      autocomplete="off" placeholder="Número de cédula" formControlName="cedulaProductor"
+                      [ngClass]="{'is-invalid':control.cedulaProductor.errors && control.cedulaProductor.touched}">
+                    <div *ngIf="control.cedulaProductor.errors && control.cedulaProductor.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.cedulaProductor.errors.required">Proporcione su
+                        número de cédula
+                      </div>
+                      <div class="validacion-texto" *ngIf="control.cedulaProductor.errors.minlength">Proporcione un
+                        número de cédula válido
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="nombreProductor"
+                        placeholder="Nombre del Productor" formControlName="nombreProductor"
+                        [ngClass]="{'is-invalid':control.nombreProductor.errors && control.nombreProductor.touched}">
+                      <div *ngIf=" control.nombreProductor.errors && control.nombreProductor.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.nombreProductor.errors.required">Ingrese su nombre
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-user" name="apellidoProductor"
+                        placeholder="Apellido del Productor" formControlName="apellidoProductor"
+                        [ngClass]="{'is-invalid':control.apellidoProductor.errors && control.apellidoProductor.touched}">
+                      <div *ngIf="control.apellidoProductor.errors && control.apellidoProductor.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.apellidoProductor.errors.required">Ingrese su
+                          apellido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="nombrePredio"
+                      placeholder="Nombre del predio" formControlName="nombrePredio"
+                      [ngClass]="{'is-invalid':control.nombrePredio.errors && control.nombrePredio.touched}">
+                    <div *ngIf="control.nombrePredio.errors && control.nombrePredio.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.nombrePredio.errors.required">Proporcione el nombre
+                        del predio
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-user" name="municipio"
+                          placeholder="Municipio" id="municipio" formControlName="municipio">
+                        <div class="input-group-append">
+                          <select class="btn dropdown-toggle btn-verde" name="municipio">
+                            <option [value]="municipio" *ngFor="let municipio of municipios">{{municipio}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <select class="btn dropdown-toggle btn-verde" name="vereda">
+                        <option [value]="vereda" formControlName="vereda" *ngFor="let vereda of veredas">{{vereda}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="cultivo" placeholder="Cultivo"
+                      formControlName="cultivo">
+                  </div>
+                  <div class="form-group row">
+                    <div class="input-group">
+                      <div class="input-group-prepend col-sm-6 mb-3 mb-sm-0" id="fechaCosecha">
+                        <input class="form-control form-control-user" placeholder="Fecha de Cosecha" name="dpCosecha"
+                          ngbDatepicker #dCosecha="ngbDatepicker" formControlName="fechaCosecha">
+                        <div class="input-group-icon" (click)="dCosecha.toggle()">
+                          <i class="far fa-calendar"></i>
+                        </div>
+                      </div>
+                      <div class="input-group-prepend col-sm-6" id="fechaFloracion">
+                        <input class="form-control form-control-user" placeholder="Fecha de Floración"
+                          name="dpFloracion" ngbDatepicker #dFloracion="ngbDatepicker" formControlName="fechaFloracion">
+                        <div class="input-group-icon" id="fechaFloracion" (click)="dFloracion.toggle()">
+                          <i class="far fa-calendar" id="fechaFloracion"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="number" class="form-control form-control-user" name="estimadoCosecha"
+                        placeholder="Cantidad estimada de cosecha" formControlName="estimadoCosecha">
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-user" name="tipoEstimado"
+                          placeholder="Tipo estimado de cosecha" id="tipoEstimado" formControlName="tipoEstimado">
+                        <div class="input-group-append">
+                          <select class="btn dropdown-toggle btn-verde" name="TipoEstimado">
+                            <option>Kg</option>
+                            <option>Unidad</option>
+                          </select>
+                          <div class="dropdown-menu">
+                            <a (click)="colocarKg()" class="dropdown-item" type="button">Kg</a>
+                            <a (click)="colocarUnidad()" class="dropdown-item" type="button">Unidad</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <a href="RegistrarLote" class="btn btn-verde btn-user btn-block js-scroll-trigger">
+                    Registrar Productor
+                  </a>
+                  <hr>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

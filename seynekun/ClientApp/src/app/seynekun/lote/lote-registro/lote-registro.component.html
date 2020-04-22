@@ -1,69 +1,105 @@
-<body class="bg-gradient-primary">
-
-  <div class="container">
-
-    <div class="card o-hidden">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
-        <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-          <div class="col-lg-7">
-            <div class="p-5">
-              <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Registrar Lote</h1>
+  <div class="page-top">
+    <div class="content">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-registrar-lote-imagen"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registrar Lote</h1>
+                </div>
+                <form class="user" [formGroup]="formGroup">
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="number" class="form-control form-control-user" name="numeroLote"
+                        placeholder="Número de Lote" formControlName="numeroLote"
+                        [ngClass]="{'is-invalid':control.numeroLote.errors && control.numeroLote.touched}">
+                      <div *ngIf="control.numeroLote.errors && control.numeroLote.touched" class="invalid-feedback">
+                        <div *ngIf="control.numeroLote.errors.required">Falta el número del lote</div>
+                        <div *ngIf="control.numeroLote.errors.minlength">Número de lote demasiado corto</div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-user" name="variedad" placeholder="Variedad"
+                        formControlName="variedad">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="sistemaRenovacion"
+                      placeholder="Sistema de Renovación" formControlName="sistemaRenovacion">
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <div class="input-group-prepend" id="fechaSiembra">
+                        <input class="form-control form-control-user" placeholder="Fecha de Siembra" name="dpSiembra"
+                          ngbDatepicker #dSiembra="ngbDatepicker" formControlName="fechaSiembra">
+                        <div class="input-group-icon" (click)="dSiembra.toggle()">
+                          <i class="far fa-calendar"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control form-control-user" name="distanciaSiembra"
+                        placeholder="Distancia de Siembra (Km)" formControlName="distanciaSiembra">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="cultivo" placeholder="Cultivo"
+                      formControlName="cultivo">
+                  </div>
+                  <div class="form-group row">
+                    <div class="input-group">
+                      <div class="input-group-prepend col-sm-6 mb-3 mb-sm-0" id="fechaCosecha">
+                        <input class="form-control form-control-user" placeholder="Fecha de Cosecha" name="dpCosecha"
+                          ngbDatepicker #dCosecha="ngbDatepicker" formControlName="fechaCosecha">
+                        <div class="input-group-icon" (click)="dCosecha.toggle()">
+                          <i class="far fa-calendar"></i>
+                        </div>
+                      </div>
+                      <div class="input-group-prepend col-sm-6" id="fechaFloracion">
+                        <input class="form-control form-control-user" placeholder="Fecha de Floración"
+                          name="dpFloracion" ngbDatepicker #dFloracion="ngbDatepicker" formControlName="fechaFloracion">
+                        <div class="input-group-icon" id="fechaFloracion" (click)="dFloracion.toggle()">
+                          <i class="far fa-calendar" id="fechaFloracion"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="number" class="form-control form-control-user" name="estimadoCosecha"
+                        placeholder="Cantidad estimada de cosecha" formControlName="estimadoCosecha">
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-user" name="tipoEstimado"
+                          placeholder="Tipo estimado de cosecha" id="tipoEstimado"
+                          formControlName="tipoEstimado">
+                        <div class="input-group-append">
+                          <select class="btn dropdown-toggle btn-verde" name="TipoEstimado">
+                            <option>Kg</option>
+                            <option>Unidad</option>
+                          </select>
+                          <div class="dropdown-menu">
+                            <a (click)="colocarKg()" class="dropdown-item" type="button">Kg</a>
+                            <a (click)="colocarUnidad()" class="dropdown-item" type="button">Unidad</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <a (click)=validar() class="btn btn-verde btn-user btn-block">
+                    Registrar Lote
+                  </a>
+                  <hr>
+                </form>
               </div>
-              <form class="user">
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="number" class="form-control form-control-user" name="numeroLote"
-                      [(ngModel)]="lote.numeroLote" placeholder="Número de Lote">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" name="variedad"
-                      [(ngModel)]="lote.variedad" placeholder="Variedad">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" name="sistemaRenovacion"
-                    [(ngModel)]="lote.sistemaRenovacion" placeholder="Sistema de Renovación">
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="number" class="form-control form-control-user" name="fechaSiembra"
-                      [(ngModel)]="lote.fechaSiembra" placeholder="Fecha de Siembra">
-                  </div>    
-                              
-                  <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user" name="distanciaSiembra"
-                      [(ngModel)]="lote.distanciaSiembra" placeholder="Distancia de Siembra">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" name="cultivo"
-                    [(ngModel)]="lote.cultivo" placeholder="Cultivo">
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="number" class="form-control form-control-user" name="epocaCosecha"
-                      [(ngModel)]="lote.epocaCosecha" placeholder="Época de Cosecha">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user" name="epocaFloracion"
-                      [(ngModel)]="lote.epocaFloracion" placeholder="Época de Floración">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="number" class="form-control form-control-user" name="estimadoCosecha"
-                      [(ngModel)]="lote.estimadoCosecha" placeholder="Cantidad estimada de cosecha">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" name="tipoEstimado"
-                      [(ngModel)]="lote.tipoEstimado" placeholder="Tipo estimado Tons/Kg">
-                  </div>
-                </div>
-                <br>
-                <a (click)=registrar() class="btn btn-primary btn-user btn-block">
-                  Registrar Lote
-                </a>
-                <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

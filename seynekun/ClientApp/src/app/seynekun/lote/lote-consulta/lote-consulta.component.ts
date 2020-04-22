@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Lote } from '../../models/lote';
-import { LoteService } from 'src/app/servicios/lote.service';
+import { Lote } from '../../models/modelo-lote/lote';
+import { LoteService } from 'src/app/servicios/servicio-de-lote/lote.service';
 
 @Component({
   selector: 'app-lote-consulta',
