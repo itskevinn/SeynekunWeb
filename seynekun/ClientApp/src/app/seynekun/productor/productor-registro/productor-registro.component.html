@@ -143,6 +143,10 @@
                     id="registrarBtn">
                     Registrar Productor
                   </a>
+                  <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn"
+                    (click)="resetearBoton()">
+                    Limpiar
+                  </button>
                   <hr>
                   <div *ngIf="formGroup.invalid && botonPresionado">
                     <div class="text-center">

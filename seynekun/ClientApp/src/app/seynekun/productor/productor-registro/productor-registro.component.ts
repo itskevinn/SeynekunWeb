@@ -14,6 +14,7 @@ export class ProductorRegistroComponent implements OnInit {
   veredas: string[] = ["Jewrwa", "Jwidedy", "Morotrwa", "Seyumake", "Kankanachama", "Kurinha", "Zikuta", "Guacamayal", "Casco Urbano", "Cuesta Plata", "Los Antiguos", "La Florida", "Nabusimake", "Mañakan", "Kochokwa", "Windiwa", "Morotrwa", "Businchama", "Sombrero Cava", "Alto Cicarare", "La Libertad", "Wabini", "Berlin 1", "Gamake", "El Hondo", "Simonorwa", "Marquetalia", "Rincon", "Tranquilidad"];
   formGroup: FormGroup;
   botonPresionado: Boolean = false;
+  esValido: Boolean = false;
   constructor(private ProductorService: ProductorService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -66,7 +67,11 @@ export class ProductorRegistroComponent implements OnInit {
       validaNumeroCedula: true, mensajeNumero: 'Número cédula no válido'
     }
   }
-
+  private resetearBoton() {
+    let seReseteó;
+    this.botonPresionado = false;
+    return seReseteó = true;
+  }
 
 
   private validarNumeroTelefono(control: AbstractControl) {
@@ -114,17 +119,24 @@ export class ProductorRegistroComponent implements OnInit {
       return null;
     }
     this.registrar();
-    alert("registrado");
   }
+  cambiarDatosValidos() {
+    if (this.esValido === true) {
+      this.esValido = false;
+      return true;
+    }
+    return false;
+  }
+
   get control() {
     return this.formGroup.controls;
   }
   registrar() {
     this.productor = this.formGroup.value;
-    this.ProductorService.post(this.productor).subscribe(l => {
-      if (l != null) {
-        alert('Productor registrado exitosamente');
-        this.productor = l;
+    this.esValido = true;
+    this.ProductorService.post(this.productor).subscribe(p => {
+      if (p != null) {
+        this.productor = p;
       }
     });
   }

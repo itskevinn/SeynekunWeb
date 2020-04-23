@@ -6965,6 +6965,10 @@ button.bg-dark:focus {
 
 
 
+.titulo-azul{
+  font-weight: bold;
+  color: rgb(90, 100, 250)
+}
 .titulo-rojo{
   font-weight: bold;
   color: rgb(250, 98, 98)
