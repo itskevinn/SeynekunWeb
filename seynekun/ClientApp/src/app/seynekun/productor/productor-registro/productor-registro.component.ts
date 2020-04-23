@@ -55,7 +55,7 @@ export class ProductorRegistroComponent implements OnInit {
     }
   }
   private validarNumero(numero) {
-    var esNumero;
+    var esNumero = false;
     try {
       Number(numero);
       esNumero = true;
