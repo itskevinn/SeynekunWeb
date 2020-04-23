@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ProductorService } from 'src/app/servicios/servicio-de-productor/productor.service';
 import { Productor } from '../../models/modelo-productor/productor';
 
@@ -34,16 +34,66 @@ export class ProductorRegistroComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       nombreProductor: [this.productor.nombreProductor, Validators.required],
       apellidoProductor: [this.productor.apellidoProductor, Validators.required],
-      cedulaProductor: [this.productor.cedulaProductor, Validators.required],
+      cedulaProductor: [this.productor.cedulaProductor, [Validators.required, Validators.minLength(6), Validators.maxLength(11), this.validarNumeroCedula]],
       cedulaCafetera: [this.productor.cedulaCafetera, Validators.required],
       nombrePredio: [this.productor.nombrePredio, Validators.required],
       codigoFinca: [this.productor.codigoFinca, Validators.required],
       codigoSica: [this.productor.codigoSica, Validators.required],
       municipio: [this.productor.municipio, Validators.required],
       vereda: [this.productor.vereda, Validators.required],
-      numeroTelefono: [this.productor.numeroTelefono, Validators.required],
+      numeroTelefono: [this.productor.numeroTelefono, [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.validarNumeroTelefono]],
       afiliacionSalud: [this.productor.afiliacionSalud, Validators.required]
     });
+  }
+
+  private validarNumeroCedula(control: AbstractControl) {
+    const numero = control.value;
+    if (this.validarNumero(numero)) {
+      return null;
+    } else return {
+      validaNumeroCedula: true, mensajeNumero: 'Número cédula no válido'
+    }
+  }
+  private validarNumero(numero) {
+    var esNumero;
+    try {
+      Number(numero);
+      esNumero = true;
+    } catch (error) {
+      esNumero = false;
+    }
+    return esNumero;
+  }
+  private validarNumeroTelefono(control: AbstractControl) {
+    const numero = control.value;
+    var numeroString;
+    var numeroChar = [];
+    numeroString = String(numero);
+    numeroChar = numeroString.split('');
+    console.log(numeroChar[0]);
+    if (numeroChar.length != 0) {
+      if (this.validarNumero(numeroString)) {
+        if (numeroChar[0] != '3') {
+          return {
+            validaNumeroTelefono: true, mensajeNumero: 'Número teléfono no válido'
+          };
+        }
+        return null;
+      }
+      return {
+        validaNumeroTelefono: true, mensajeNumero: 'Número teléfono no válido'
+      };
+    }
+  }
+  cambiarMunicipio(e) {
+    this.control.municipio.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+  cambiarVereda(e) {
+    this.control.vereda.setValue(e.target.value, {
+      onlySelf: true
+    })
   }
   validar() {
     if (!this.formGroup.invalid) {

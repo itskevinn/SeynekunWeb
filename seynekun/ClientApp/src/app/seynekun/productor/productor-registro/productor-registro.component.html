@@ -13,27 +13,30 @@
                 </div>
                 <form class="user" [formGroup]="formGroup">
                   <div class="form-group">
-                    <input type="number" class="form-control form-control-user" name="cedulaProductor"
-                      autocomplete="off" placeholder="Número de cédula" formControlName="cedulaProductor"
+                    <input type="text" class="form-control form-control-user" name="cedulaProductor"
+                      placeholder="Número de cédula" formControlName="cedulaProductor"
                       [ngClass]="{'is-invalid':control.cedulaProductor.errors && control.cedulaProductor.touched}">
                     <div *ngIf="control.cedulaProductor.errors && control.cedulaProductor.touched"
                       class="invalid-feedback">
                       <div class="validacion-texto" *ngIf="control.cedulaProductor.errors.required">Proporcione su
                         número de cédula
                       </div>
-                      <div class="validacion-texto" *ngIf="control.cedulaProductor.errors.minlength">Proporcione un
+                      <div class="validacion-texto"
+                        *ngIf="control.cedulaProductor.errors.minlength  || control.cedulaProductor.errors.maxlength || control.cedulaProductor.errors.validarNumeroCedula">
+                        Proporcione un
                         número de cédula válido
                       </div>
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <div class=" form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <input type="text" class="form-control form-control-user" name="nombreProductor"
                         placeholder="Nombre del Productor" formControlName="nombreProductor"
                         [ngClass]="{'is-invalid':control.nombreProductor.errors && control.nombreProductor.touched}">
                       <div *ngIf=" control.nombreProductor.errors && control.nombreProductor.touched"
                         class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.nombreProductor.errors.required">Ingrese su nombre
+                        <div class="validacion-texto" *ngIf="control.nombreProductor.errors.required">Ingrese su
+                          nombre
                         </div>
                       </div>
                     </div>
@@ -54,71 +57,73 @@
                       placeholder="Nombre del predio" formControlName="nombrePredio"
                       [ngClass]="{'is-invalid':control.nombrePredio.errors && control.nombrePredio.touched}">
                     <div *ngIf="control.nombrePredio.errors && control.nombrePredio.touched" class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.nombrePredio.errors.required">Proporcione el nombre
+                      <div class="validacion-texto" *ngIf="control.nombrePredio.errors.required">Proporcione el
+                        nombre
                         del predio
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <div class="input-group">
-                        <input type="text" class="form-control form-control-user" name="municipio"
-                          placeholder="Municipio" id="municipio" formControlName="municipio">
-                        <div class="input-group-append">
-                          <select class="btn dropdown-toggle btn-verde" name="municipio">
-                            <option [value]="municipio" *ngFor="let municipio of municipios">{{municipio}}</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <select class="btn dropdown-toggle btn-verde" name="vereda">
-                        <option [value]="vereda" formControlName="vereda" *ngFor="let vereda of veredas">{{vereda}}
-                        </option>
+                      <select class="form-dropdown border-verde " name="municipio" (change)="cambiarMunicipio($event)">
+                        <option [ngValue]="null" disabled> Municipio </option>
+                        <option [ngValue]="municipio" *ngFor="let municipio of municipios">{{municipio}}</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-user" name="cultivo" placeholder="Cultivo"
-                      formControlName="cultivo">
-                  </div>
-                  <div class="form-group row">
-                    <div class="input-group">
-                      <div class="input-group-prepend col-sm-6 mb-3 mb-sm-0" id="fechaCosecha">
-                        <input class="form-control form-control-user" placeholder="Fecha de Cosecha" name="dpCosecha"
-                          ngbDatepicker #dCosecha="ngbDatepicker" formControlName="fechaCosecha">
-                        <div class="input-group-icon" (click)="dCosecha.toggle()">
-                          <i class="far fa-calendar"></i>
-                        </div>
-                      </div>
-                      <div class="input-group-prepend col-sm-6" id="fechaFloracion">
-                        <input class="form-control form-control-user" placeholder="Fecha de Floración"
-                          name="dpFloracion" ngbDatepicker #dFloracion="ngbDatepicker" formControlName="fechaFloracion">
-                        <div class="input-group-icon" id="fechaFloracion" (click)="dFloracion.toggle()">
-                          <i class="far fa-calendar" id="fechaFloracion"></i>
-                        </div>
-                      </div>
+                    <div class="col-sm-6">
+                      <select class="form-dropdown border-verde " name="vereda" (change)="cambiarVereda($event)">
+                        <option [ngValue]="null" disabled> Vereda </option>
+                        <option [ngValue]="vereda" *ngFor="let vereda of veredas">{{vereda}}</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="number" class="form-control form-control-user" name="estimadoCosecha"
-                        placeholder="Cantidad estimada de cosecha" formControlName="estimadoCosecha">
+                      <input type="text" class="form-control form-control-user" name="codigoFinca"
+                        placeholder="Código Finca" formControlName="codigoFinca"
+                        [ngClass]="{'is-invalid':control.codigoFinca.errors && control.codigoFinca.touched}">
+                      <div *ngIf=" control.codigoFinca.errors && control.codigoFinca.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.codigoFinca.errors.required">Ingrese el código
+                          de
+                          su finca
+                        </div>
+                      </div>
                     </div>
                     <div class="col-sm-6">
-                      <div class="input-group">
-                        <input type="text" class="form-control form-control-user" name="tipoEstimado"
-                          placeholder="Tipo estimado de cosecha" id="tipoEstimado" formControlName="tipoEstimado">
-                        <div class="input-group-append">
-                          <select class="btn dropdown-toggle btn-verde" name="TipoEstimado">
-                            <option>Kg</option>
-                            <option>Unidad</option>
-                          </select>
-                          <div class="dropdown-menu">
-                            <a (click)="colocarKg()" class="dropdown-item" type="button">Kg</a>
-                            <a (click)="colocarUnidad()" class="dropdown-item" type="button">Unidad</a>
-                          </div>
+                      <input type="text" class="form-control form-control-user" name="codigoSica"
+                        placeholder="Código SICA" formControlName="codigoSica"
+                        [ngClass]="{'is-invalid':control.codigoSica.errors && control.codigoSica.touched}">
+                      <div *ngIf="control.codigoSica.errors && control.codigoSica.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.codigoSica.errors.required">Ingrese su
+                          código SICA
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="numeroTelefono"
+                      placeholder="Número de teléfono" formControlName="numeroTelefono"
+                      [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
+                    <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.numeroTelefono.errors.required">Proporcione su
+                        número de teléfono
+                      </div>
+                      <div class="validacion-texto"
+                        *ngIf="control.numeroTelefono.errors.minlength || control.numeroTelefono.errors.maxlength || control.numeroTelefono.errors.validarNumeroTelefono">
+                        Ingrese un número de
+                        teléfono válido
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="afiliacionSalud"
+                      placeholder="Alifiación de Salud" formControlName="afiliacionSalud"
+                      [ngClass]="{'is-invalid':control.afiliacionSalud.errors && control.afiliacionSalud.touched}">
+                    <div *ngIf="control.afiliacionSalud.errors && control.afiliacionSalud.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.afiliacionSalud.errors.required">Proporcione su
+                        afiliación de salud
                       </div>
                     </div>
                   </div>
