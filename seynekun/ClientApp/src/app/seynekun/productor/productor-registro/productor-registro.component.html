@@ -11,10 +11,10 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Registrar Productor</h1>
                 </div>
-                <form class="user" [formGroup]="formGroup">
+                <form class="user" [formGroup]="formGroup" (change)="resetearBoton()">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" name="cedulaProductor"
-                      placeholder="Número de cédula" formControlName="cedulaProductor"
+                      placeholder="Cédula Ciudadanía" formControlName="cedulaProductor"
                       [ngClass]="{'is-invalid':control.cedulaProductor.errors && control.cedulaProductor.touched}">
                     <div *ngIf="control.cedulaProductor.errors && control.cedulaProductor.touched"
                       class="invalid-feedback">
@@ -49,6 +49,17 @@
                         <div class="validacion-texto" *ngIf="control.apellidoProductor.errors.required">Ingrese su
                           apellido
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="cedulaCafetera"
+                      placeholder="Cédula Cafetera" formControlName="cedulaCafetera"
+                      [ngClass]="{'is-invalid':control.cedulaCafetera.errors && control.cedulaCafetera.touched}">
+                    <div *ngIf="control.cedulaCafetera.errors && control.cedulaCafetera.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.cedulaCafetera.errors.required">Proporcione su cédula
+                        cafetra
                       </div>
                     </div>
                   </div>
@@ -128,8 +139,8 @@
                     </div>
                   </div>
                   <br>
-                  <a (click)="onSubmit()" (click)="validarMensaje()"
-                    class="btn btn-verde btn-user btn-block js-scroll-trigger" id="registrarBtn">
+                  <a (click)="onSubmit()" (click)="validarMensaje()" class="btn btn-verde btn-user btn-block"
+                    id="registrarBtn">
                     Registrar Productor
                   </a>
                   <hr>
@@ -147,13 +158,15 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="formGroup.valid && botonPresionado">
-                    <div class="text-center">
-                      <span>
-                        <i class="fas fa-fw fa-check"></i>
-                      </span>
-                      <div>
-                        <p class="titulo-verde"> <strong>Productor Registrado</strong></p>
+                  <div *ngIf="botonPresionado">
+                    <div *ngIf="formGroup.valid && botonPresionado">
+                      <div class="text-center">
+                        <span>
+                          <i class="fas fa-fw fa-check titulo-verde"></i>
+                        </span>
+                        <div>
+                          <p class="titulo-verde"> <strong>Productor Registrado</strong></p>
+                        </div>
                       </div>
                     </div>
                   </div>
