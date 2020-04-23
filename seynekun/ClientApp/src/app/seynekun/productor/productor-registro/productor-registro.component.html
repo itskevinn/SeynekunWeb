@@ -128,10 +128,35 @@
                     </div>
                   </div>
                   <br>
-                  <a href="RegistrarLote" class="btn btn-verde btn-user btn-block js-scroll-trigger">
+                  <a (click)="onSubmit()" (click)="validarMensaje()"
+                    class="btn btn-verde btn-user btn-block js-scroll-trigger" id="registrarBtn">
                     Registrar Productor
                   </a>
                   <hr>
+                  <div *ngIf="formGroup.invalid && botonPresionado">
+                    <div class="text-center">
+                      <span>
+                        <i class="fas fa-fw fa-times titulo-rojo"></i>
+                      </span>
+                      <div>
+                        <p class="titulo-rojo"> <strong>Información inválida</strong> </p>
+                        <ul>
+                          <li> Puede que haya algún campo vacío</li>
+                          <li> Puede que algún número no sea válido</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="formGroup.valid && botonPresionado">
+                    <div class="text-center">
+                      <span>
+                        <i class="fas fa-fw fa-check"></i>
+                      </span>
+                      <div>
+                        <p class="titulo-verde"> <strong>Productor Registrado</strong></p>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

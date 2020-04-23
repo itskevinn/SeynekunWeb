@@ -6956,11 +6956,23 @@ button.bg-dark:focus {
 .border-primary {
   border-color: #4e73df !important;
 }
-.border-verde {  
+
+.border-verde {
   border-radius: 10rem;
-  padding: 1.5rem 1rem;  
+  padding: 1.5rem 1rem;
 }
 
+
+
+
+.titulo-rojo{
+  font-weight: bold;
+  color: rgb(250, 98, 98)
+}
+.titulo-verde{
+  font-weight: bold;
+  color: rgb(98, 250, 106)
+}
 .form-dropdown {
   display: block;
   width: 100%;
@@ -6972,8 +6984,8 @@ button.bg-dark:focus {
   color: #6e707e;
   border: 1px solid #d1d3e2;
   background-color: #fff;
-  background-clip: padding-box;  
-  border-radius: 10rem;   
+  background-clip: padding-box;
+  border-radius: 10rem;
 }
 
 .border-secondary {
