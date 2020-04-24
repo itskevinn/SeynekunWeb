@@ -5,9 +5,15 @@
       <div id="dataTable_wrapper" class=" dt-bootstrap4">
         <div class="row">
           <div class="col-sm-12 col-md-6">
-            <div id="dataTable_filter" class="dataTables_filter"><label>Buscar:<input type="search"
-                  class="form-control form-control-sm" placeholder="" (ngModel)="textoABuscar"
-                  aria-controls="dataTable"></label></div>
+            <div id="dataTable_filter" class="dataTables_filter"><input type="search"
+                class="form-control form-control-sm" (ngModel)="textoABuscar" aria-controls="dataTable"
+                placeholder="Buscar"></div>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <div class="text-right separarAbajo">
+              <button [routerLink]="['/RegistrarProductor']" type="button" class="btn btn-labeled btn-success">
+                <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Productor</button>
+            </div>
           </div>
           <hr>
         </div>
@@ -30,7 +36,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="odd" *ngIf="listaVacia">
+                <tr class="odd text-center" *ngIf="listaVacia">
                   <td valign="top" colspan="10" class="dataTables_empty"> <strong>No se encontraron datos</strong> </td>
                 </tr>
                 <tr *ngFor="let productor of productores|filtroProductor:textoABuscar; index as i ">
