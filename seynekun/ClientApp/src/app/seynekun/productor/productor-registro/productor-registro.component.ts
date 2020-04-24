@@ -77,6 +77,7 @@ export class ProductorRegistroComponent implements OnInit {
     const numero = control.value;
     var numeroString;
     var numeroChar = [];
+    var esNumero = false;
     numeroString = String(numero);
     var esNumero = false;
     var number;
@@ -88,6 +89,12 @@ export class ProductorRegistroComponent implements OnInit {
     }
     numeroChar = numeroString.split('');
     console.log(numeroChar[0]);
+    try {
+      Number(numero);
+      esNumero = true;
+    } catch (error) {
+      esNumero = false;
+    }
     if (numeroChar.length != 0) {
       if (esNumero) {
         if (numeroChar[0] != '3') {

@@ -18,13 +18,13 @@ import { ProductorRegistroComponent } from './seynekun/productor/productor-regis
 import { ProductorConsultaComponent } from './seynekun/productor/productor-consulta/productor-consulta.component';
 import { LoginComponent } from './login/login/login.component';
 import { FiltroProductorPipe } from './filtro/filtro-productor.pipe';
-import { ClienteRegistroComponent } from './cliente/cliente-registro/cliente-registro.component';
-import { ClienteConsultaComponent } from './cliente/cliente-consulta/cliente-consulta.component';
-import { EmpleadoConsultaComponent } from './empleado/empleado-consulta/empleado-consulta.component';
-import { EmpleadoRegistroComponent } from './empleado/empleado-registro/empleado-registro.component';
+import { ClienteRegistroComponent } from './seynekun/cliente/cliente-registro/cliente-registro.component';
+import { ClienteConsultaComponent } from './seynekun/cliente/cliente-consulta/cliente-consulta.component';
+import { EmpleadoConsultaComponent } from './seynekun/empleado/empleado-consulta/empleado-consulta.component';
+import { EmpleadoRegistroComponent } from './seynekun/empleado/empleado-registro/empleado-registro.component';
 
-import { EmpleadoEdicionComponent } from './empleado/empleado-edicion/empleado-edicion.component';
-import { ClienteEdicionComponent } from './cliente/cliente-edicion/cliente-edicion.component';
+import { EmpleadoEdicionComponent } from './seynekun/empleado/empleado-edicion/empleado-edicion.component';
+import { ClienteEdicionComponent } from './seynekun/cliente/cliente-edicion/cliente-edicion.component';
 import { ProductorEdicionComponent } from './seynekun/productor/productor-edicion/productor-edicion.component';
 
 
@@ -59,15 +59,6 @@ import { ProductorEdicionComponent } from './seynekun/productor/productor-edicio
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'RegistrarProductor', component: ProductorRegistroComponent },
-      { path: 'Productores', component: ProductorConsultaComponent },
-      { path: 'EditarProductor', component: ProductorEdicionComponent },
-      { path: 'Empleados', component: EmpleadoConsultaComponent },
-      { path: 'RegistrarEmpleado', component: EmpleadoRegistroComponent },
-      { path: 'EditarEmpleado', component: EmpleadoEdicionComponent },
-      { path: 'Clientes', component: ClienteConsultaComponent },
-      { path: 'RegistrarCliente', component: ClienteConsultaComponent },
-      { path: 'EditarCliente', component: ClienteEdicionComponent },
     ]),
     AppRoutingModule
   ],
