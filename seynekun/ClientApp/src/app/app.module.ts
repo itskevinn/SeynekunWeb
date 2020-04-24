@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoteService } from './servicios/servicio-de-lote/lote.service';
 import { ProductorRegistroComponent } from './seynekun/productor/productor-registro/productor-registro.component';
 import { ProductorConsultaComponent } from './seynekun/productor/productor-consulta/productor-consulta.component';
+import { LoginComponent } from './login/login/login.component';
+import { FiltroProductorPipe } from './filtro/filtro-productor.pipe';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ProductorConsultaComponent } from './seynekun/productor/productor-consu
     ProductorRegistroComponent,
     ProductorConsultaComponent,
     ProductorRegistroComponent,
-    ProductorConsultaComponent
+    ProductorConsultaComponent,
+    LoginComponent,
+    FiltroProductorPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

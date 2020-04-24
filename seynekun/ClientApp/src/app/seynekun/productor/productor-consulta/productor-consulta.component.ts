@@ -9,6 +9,8 @@ import { Productor } from '../../models/modelo-productor/productor';
 })
 export class ProductorConsultaComponent implements OnInit {
   productores: Productor[];
+  productor: Productor;
+  listaVacia: Boolean = true;
   cantidadProductores: Number;
   constructor(private productorService: ProductorService) { }
 
@@ -16,6 +18,12 @@ export class ProductorConsultaComponent implements OnInit {
     this.productorService.gets().subscribe(result => {
       this.productores = result;
     });
+  }
+  validarTamañoLista() {
+    if (this.productores.length == 0) {
+      this.listaVacia == true;
+    }
+    else this.listaVacia == false;
   }
   contarProductores() {
     this.cantidadProductores = this.productores.length;

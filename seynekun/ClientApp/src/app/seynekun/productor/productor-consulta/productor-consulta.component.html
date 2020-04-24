@@ -1,23 +1,22 @@
+<h1 class="h3 mb-2 text-gray-800">Productores</h1>
 <div class="card shadow mb-4">
-  <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold titulo-verde">Productores</h6>
-  </div>
   <div class="card-body">
     <div class="table-responsive">
-      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+      <div id="dataTable_wrapper" class=" dt-bootstrap4">
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <div id="dataTable_filter" class="dataTables_filter"><label>Buscar:<input type="search"
-                  class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
+                  class="form-control form-control-sm" placeholder="" (ngModel)="textoABuscar"
+                  aria-controls="dataTable"></label></div>
           </div>
+          <hr>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
               aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr>
-                  <th scope="col"># </th>
                   <th>CC</th>
                   <th>Nombre </th>
                   <th>Apellido </th>
@@ -31,7 +30,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let productor of productores; index as i ">
+                <tr class="odd" *ngIf="listaVacia">
+                  <td valign="top" colspan="10" class="dataTables_empty"> <strong>No se encontraron datos</strong> </td>
+                </tr>
+                <tr *ngFor="let productor of productores|filtroProductor:textoABuscar; index as i ">
                   <td>{{ productor.cedulaProductor}}  </td>
                   <td>{{ productor.nombreProductor}}</td>
                   <td> {{productor.apellidoProductor}} </td>

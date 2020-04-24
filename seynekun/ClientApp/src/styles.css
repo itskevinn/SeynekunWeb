@@ -593,7 +593,7 @@ pre code {
   padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
-  height: 80%;
+  height: 80%;  
 }
 
 @media (min-width: 576px) {
@@ -4882,8 +4882,8 @@ input[type="button"].btn-block {
 }
 
 .card-footer {
-  padding: 0.75rem 1.25rem;
-  background-color: #f8f9fc;
+  padding: 0.75rem 1.25rem;  
+  background-color: transparent;
   border-top: 1px solid #e3e6f0;
 }
 
