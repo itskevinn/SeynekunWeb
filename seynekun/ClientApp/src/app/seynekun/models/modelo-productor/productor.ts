@@ -1,13 +1,13 @@
 export class Productor {
     nombreProductor: string;
     apellidoProductor: string;
-    cedulaProductor: number;
+    cedulaProductor: string;
     cedulaCafetera: string;
     nombrePredio: string;
     codigoFinca: string;
     codigoSica: string;
     municipio: string;
     vereda: string;
-    numeroTelefono: number;
+    numeroTelefono: string;
     afiliacionSalud: string;
 }

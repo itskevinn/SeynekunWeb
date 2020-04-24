@@ -5104,14 +5104,14 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #4e73df;
+  color: rgba(128, 189, 92, 1);
   background-color: #fff;
   border: 1px solid #dddfeb;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #224abe;
+  color: rgb(105, 148, 80);
   text-decoration: none;
   background-color: #eaecf4;
   border-color: #dddfeb;
@@ -5120,7 +5120,7 @@ input[type="button"].btn-block {
 .page-link:focus {
   z-index: 2;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(78, 223, 90, 0.25);
 }
 
 .page-item:first-child .page-link {
@@ -5137,8 +5137,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: rgba(128, 189, 92, 1);
+  border-color: rgba(128, 189, 92, 1);
 }
 
 .page-item.disabled .page-link {
@@ -6965,18 +6965,21 @@ button.bg-dark:focus {
 
 
 
-.titulo-azul{
+.titulo-azul {
   font-weight: bold;
   color: rgb(90, 100, 250)
 }
-.titulo-rojo{
+
+.titulo-rojo {
   font-weight: bold;
   color: rgb(250, 98, 98)
 }
-.titulo-verde{
+
+.titulo-verde {
   font-weight: bold;
-  color: rgb(98, 250, 106)
+  color: #4edf86;
 }
+
 .form-dropdown {
   display: block;
   width: 100%;

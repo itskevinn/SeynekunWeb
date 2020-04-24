@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductorService } from 'src/app/servicios/servicio-de-productor/productor.service';
+import { Productor } from '../../models/modelo-productor/productor';
 
 @Component({
   selector: 'app-productor-consulta',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productor-consulta.component.css']
 })
 export class ProductorConsultaComponent implements OnInit {
+  productores: Productor[];
+  cantidadProductores: Number;
+  constructor(private productorService: ProductorService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    this.productorService.gets().subscribe(result => {
+      this.productores = result;
+    });
   }
-
+  contarProductores() {
+    this.cantidadProductores = this.productores.length;
+  }
 }
