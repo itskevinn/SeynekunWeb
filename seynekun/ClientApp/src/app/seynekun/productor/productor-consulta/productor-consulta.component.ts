@@ -10,12 +10,12 @@ import { Productor } from '../../models/modelo-productor/productor';
 export class ProductorConsultaComponent implements OnInit {
   productores: Productor[];
   productor: Productor;
-  listaVacia: Boolean = true;
+  tieneDatos: Boolean = false;
   cantidadProductores: Number;
   textoABuscar: String;
   constructor(private productorService: ProductorService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {        
     this.productorService.gets().subscribe(result => {
       this.productores = result;
       this.productores = [{
@@ -44,16 +44,16 @@ export class ProductorConsultaComponent implements OnInit {
         municipio: "Pueblo Bello",
         vereda: "Casco Urbano"
       }]
-    });
+    });    
   }
   alDigitar(event: any) {
-    this.textoABuscar = event.target.value;
+    this.validarTamañoLista();
     }
   validarTamañoLista() {
     if (this.productores.length == 0) {
-      this.listaVacia == true;
+      this.tieneDatos = false;
     }
-    else this.listaVacia == false;
+    else this.tieneDatos = true;
   }
   contarProductores() {
     this.cantidadProductores = this.productores.length;

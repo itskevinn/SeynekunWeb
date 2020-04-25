@@ -1,12 +1,11 @@
 <h1 class="h3 mb-2 text-gray-800">Productores</h1>
 <div class="card shadow mb-4">
   <div class="card-body">
-    <div class="table-responsive">
-      <div id="dataTable_wrapper" class=" dt-bootstrap4">
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
-            <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar"
-              aria-controls="dataTable" placeholder="Buscar">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar" ng-change="validarTamañoLista()">
         </div>
         <div class="col-sm-12 col-md-6">
           <div class="text-right separarAbajo">
@@ -18,35 +17,36 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <table class="table table-bordered" width="100%" cellspacing="0" aria-describedby="dataTable_info"
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
             style="width: 100%;">
             <thead>
               <tr>
                 <th>CC</th>
-                <th>Nombre </th>
-                <th>Apellido </th>
-                <th>Cédula Cafetera </th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cédula Cafetera</th>
+                <th>Nombre Predio</th>
                 <th>Código Finca</th>
-                <th>Código SICA </th>
-                <th>Municipio </th>
-                <th>Vereda </th>
-                <th>Número Teléfono </th>
-                <th>Afiliación Salud </th>
+                <th>Código SICA</th>
+                <th>Municipio</th>
+                <th>Vereda</th>
+                <th>Numero Teléfono</th>
+                <th>Afiliación Salud</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let productor of productores|filtroProductor:textoABuscar; index as i ">
-                <td>{{ productor.cedulaProductor}}  </td>
+                <td>{{ productor.cedulaProductor}}</td>
                 <td>{{ productor.nombreProductor}}</td>
-                <td> {{productor.apellidoProductor}} </td>
-                <td> {{productor.cedulaCafetera}} </td>
-                <td> {{productor.nombrePredio}} </td>
-                <td> {{productor.codigoFinca}} </td>
-                <td> {{productor.codigoSica}} </td>
-                <td> {{productor.municipio}} </td>
-                <td> {{productor.vereda}} </td> 
-                <td> {{productor.numeroTelefono}} </td> 
-                <td> {{productor.afiliacionSalud}} </td> 
+                <td>{{productor.apellidoProductor}}</td>
+                <td>{{productor.cedulaCafetera}}</td>
+                <td>{{productor.nombrePredio}}</td>
+                <td>{{productor.codigoFinca}}</td>
+                <td>{{productor.codigoSica}}</td>
+                <td>{{productor.municipio}} </td>
+                <td>{{productor.vereda}}</td>
+                <td>{{productor.numeroTelefono}}</td>
+                <td>{{productor.afiliacionSalud}}</td>
               </tr>
             </tbody>
           </table>
@@ -54,5 +54,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>
