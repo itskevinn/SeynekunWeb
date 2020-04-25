@@ -66,7 +66,7 @@ export class ProductorRegistroComponent implements OnInit {
       validaNumeroCedula: true, mensajeNumero: 'Número cédula no válido'
     }
   }
-  private resetearBoton() {
+   resetearBoton() {
     let seReseteó;
     this.botonPresionado = false;
     return seReseteó = true;

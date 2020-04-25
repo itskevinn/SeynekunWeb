@@ -4,7 +4,7 @@ import { Productor } from '../../models/modelo-productor/productor';
 
 @Component({
   selector: 'app-productor-consulta',
-  templateUrl: './productor-consulta.component.html',
+  templateUrl: './productor-consulta.component.html',  
   styleUrls: ['./productor-consulta.component.css']
 })
 export class ProductorConsultaComponent implements OnInit {
@@ -12,6 +12,7 @@ export class ProductorConsultaComponent implements OnInit {
   productor: Productor;
   listaVacia: Boolean = true;
   cantidadProductores: Number;
+  textoABuscar : String;  
   constructor(private productorService: ProductorService) { }
 
   ngOnInit(): void {
