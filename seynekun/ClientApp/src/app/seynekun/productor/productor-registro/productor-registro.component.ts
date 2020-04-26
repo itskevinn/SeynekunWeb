@@ -26,7 +26,7 @@ export class ProductorRegistroComponent implements OnInit {
   crearFormulario() {
     this.productor.nombreProductor = "";
     this.productor.apellidoProductor = "";
-    this.productor.cedulaProductor = null;
+    this.productor.cedulaProductor = "";
     this.productor.nombrePredio = "";
     this.productor.codigoFinca = "";
     this.productor.codigoSica = "";
@@ -38,7 +38,7 @@ export class ProductorRegistroComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       nombreProductor: [this.productor.nombreProductor, Validators.required],
       apellidoProductor: [this.productor.apellidoProductor, Validators.required],
-      cedulaProductor: [this.productor.cedulaProductor, [Validators.required, Validators.minLength(6), Validators.maxLength(11), this.validarNumeroCedula]],
+      cedulaProductor: [this.productor.cedulaProductor, [Validators.required, Validators.minLength(6), Validators.maxLength(11)]],
       cedulaCafetera: [this.productor.cedulaCafetera, Validators.required],
       nombrePredio: [this.productor.nombrePredio, Validators.required],
       codigoFinca: [this.productor.codigoFinca, Validators.required],
@@ -50,22 +50,7 @@ export class ProductorRegistroComponent implements OnInit {
     });
   }
 
-  private validarNumeroCedula(control: AbstractControl) {
-    const numero = control.value;
-    var esNumero = false;
-    var number;
-    try {
-      number = parseInt(numero);
-      esNumero = true;
-    } catch (error) {
-      esNumero = false;
-    }
-    if (esNumero) {
-      return null;
-    } else return {
-      validaNumeroCedula: true, mensajeNumero: 'Número cédula no válido'
-    }
-  }
+
   private resetearBoton() {
     let seReseteó;
     this.botonPresionado = false;
@@ -124,7 +109,7 @@ export class ProductorRegistroComponent implements OnInit {
     if (this.formGroup.invalid) {
       return null;
     }
-    this.registrar();    
+    this.registrar();
   }
   get control() {
     return this.formGroup.controls;

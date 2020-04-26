@@ -30,4 +30,11 @@ export class ClienteService {
         catchError(this.handleErrorService.handleError<Cliente>("Registro del cliente", null))
       );
   }
+  get(identificacion: string): Observable<Cliente> {
+    return this.http.get<Cliente>(this.urlBase + 'api/Cliente')
+      .pipe(
+        tap(_ => this.handleErrorService.log('Datos enviados al y traídos del backend')),
+        catchError(this.handleErrorService.handleError<Cliente>("Consulta del cliente por id", null))
+      );
+  }
 }

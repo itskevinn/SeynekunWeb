@@ -28,6 +28,9 @@ import { ProductorEdicionComponent } from './seynekun/productor/productor-edicio
 import { FiltroEmpleadoPipe } from './filtro/filtro-empleado/filtro-empleado.pipe';
 import { FiltroClientePipe } from './filtro/filtro-cliente/filtro-cliente.pipe';
 import { FiltroProductorPipe } from './filtro/filtro-productor/filtro-productor.pipe';
+import { EmpleadoVistaComponent } from './seynekun/empleado/empleado-vista/empleado-vista.component';
+import { ClienteVistaComponent } from './seynekun/cliente/cliente-vista/cliente-vista.component';
+import { ProductorVistaComponent } from './seynekun/productor/productor-vista/productor-vista.component';
 
 
 @NgModule({
@@ -51,7 +54,10 @@ import { FiltroProductorPipe } from './filtro/filtro-productor/filtro-productor.
     EmpleadoRegistroComponent,
     EmpleadoEdicionComponent,
     FiltroEmpleadoPipe,
-    FiltroClientePipe
+    FiltroClientePipe,
+    EmpleadoVistaComponent,
+    ClienteVistaComponent,
+    ProductorVistaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

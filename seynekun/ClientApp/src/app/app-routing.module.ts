@@ -12,6 +12,9 @@ import { EmpleadoEdicionComponent } from './seynekun/empleado/empleado-edicion/e
 import { ClienteConsultaComponent } from './seynekun/cliente/cliente-consulta/cliente-consulta.component';
 import { ClienteEdicionComponent } from './seynekun/cliente/cliente-edicion/cliente-edicion.component';
 import { ClienteRegistroComponent } from './seynekun/cliente/cliente-registro/cliente-registro.component';
+import { EmpleadoVistaComponent } from './seynekun/empleado/empleado-vista/empleado-vista.component';
+import { ClienteVistaComponent } from './seynekun/cliente/cliente-vista/cliente-vista.component';
+import { ProductorVistaComponent } from './seynekun/productor/productor-vista/productor-vista.component';
 
 const routes: Routes = [
   {
@@ -24,13 +27,16 @@ const routes: Routes = [
   },
   { path: 'RegistrarProductor', component: ProductorRegistroComponent },
   { path: 'Productores', component: ProductorConsultaComponent },
-  { path: 'EditarProductor', component: ProductorEdicionComponent },
+  { path: 'EditarProductor/:id', component: ProductorEdicionComponent },
+  { path: 'Productor/:id', component: ProductorVistaComponent },
   { path: 'Empleados', component: EmpleadoConsultaComponent },
   { path: 'RegistrarEmpleado', component: EmpleadoRegistroComponent },
-  { path: 'EditarEmpleado', component: EmpleadoEdicionComponent },
+  { path: 'EditarEmpleado/:id', component: EmpleadoEdicionComponent },
+  { path: 'Empleado/:id', component: EmpleadoVistaComponent },
   { path: 'Clientes', component: ClienteConsultaComponent },
   { path: 'RegistrarCliente', component: ClienteRegistroComponent },
-  { path: 'EditarCliente', component: ClienteEdicionComponent },
+  { path: 'EditarCliente/:id', component: ClienteEdicionComponent },
+  { path: 'Cliente/:id', component: ClienteVistaComponent },
 ]
 
 @NgModule({
