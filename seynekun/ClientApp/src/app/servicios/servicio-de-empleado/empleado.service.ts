@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
 import { Observable, from } from 'rxjs';
@@ -6,12 +5,10 @@ import { tap, catchError } from 'rxjs/operators';
 import { Empleado } from 'src/app/seynekun/models/modelo-empleado/empleado';
 import { Injectable, Inject } from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class EmpleadoService {
-
   urlBase: string;
   constructor(
     private http: HttpClient,

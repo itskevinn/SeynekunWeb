@@ -11900,7 +11900,11 @@ a:focus {
   background-position: center;
   background-size: cover;
 }
-
+.bg-registrar-cliente-imagen {
+  background: url("../src/assets/img/5108.jpg");
+  background-position: center;
+  background-size: cover;
+}
 .bg-registrar-empleado-imagen {
   background: url("../src/assets/img/440046-PEIY8D-989.jpg");
   background-position: center;

@@ -1,1 +1,45 @@
-<p>cliente-consulta works!</p>
+<h1 class="h3 mb-2 text-gray-800">Clientes</h1>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar" ng-change="validarTamañoLista()">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo">
+            <button [routerLink]="['/RegistrarCliente']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Cliente</button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+            aria-describedby="dataTable_info" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>Tipo Identificación</th>
+                <th>Número de Identificación</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Número Telefónico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes|filtroEmpleado:textoABuscar; index as i ">            
+                <td>{{cliente.tipoIdentificacion}}</td>
+                <td>{{cliente.identificacion}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>                
+                <td>{{cliente.numeroTelefono}}</td>                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

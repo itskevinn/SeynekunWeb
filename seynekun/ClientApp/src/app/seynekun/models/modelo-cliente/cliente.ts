@@ -6,7 +6,7 @@ export class Cliente {
     direccion: string;
     departamento: string;
     municipio: string;
-    codigoPostal: string;
+    barrio: string;
     email: string;
     numeroTelefono: string;
     numeroTelefono2: string;    
