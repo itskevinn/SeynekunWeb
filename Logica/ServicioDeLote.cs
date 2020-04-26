@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Datos;
-
 using Entity;
 
 namespace Logica
