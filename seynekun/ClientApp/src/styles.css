@@ -11900,6 +11900,10 @@ a:focus {
   background-position: center;
   background-size: cover;
 }
+.bg-nav{
+  background: url("../src/assets/img/20180423_064028.jpg");
+  background-size: cover;
+}
 .bg-registrar-cliente-imagen {
   background: url("../src/assets/img/5108.jpg");
   background-position: center;

@@ -29,12 +29,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let cliente of clientes|filtroEmpleado:textoABuscar; index as i ">            
+              <tr *ngFor="let cliente of clientes|filtroEmpleado:textoABuscar; index as i ">
                 <td>{{cliente.tipoIdentificacion}}</td>
                 <td>{{cliente.identificacion}}</td>
                 <td>{{cliente.nombre}}</td>
-                <td>{{cliente.apellido}}</td>                
-                <td>{{cliente.numeroTelefono}}</td>                
+                <td>{{cliente.apellido}}</td>
+                <td>{{cliente.numeroTelefono}}</td>
               </tr>
             </tbody>
           </table>
