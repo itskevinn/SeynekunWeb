@@ -11,7 +11,7 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Registrar Productor</h1>
                 </div>
-                <form class="user" [formGroup]="formGroup" (change)="resetearBoton()">
+                <form class="user" [formGroup]="formGroup">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" name="cedulaProductor"
                       placeholder="Cédula Ciudadanía" formControlName="cedulaProductor"
@@ -77,15 +77,25 @@
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <select class="form-dropdown border-verde " name="municipio" (change)="cambiarMunicipio($event)">
-                        <option [ngValue]="null" disabled> Municipio </option>
+                        <option [ngValue]="null"> Municipio </option>
                         <option [ngValue]="municipio" *ngFor="let municipio of municipios">{{municipio}}</option>
                       </select>
+                      <div *ngIf=" control.municipio.errors && control.municipio.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.municipio.errors.required">Seleccione un municipio
+                          de la lista
+                        </div>
+                      </div>
                     </div>
                     <div class="col-sm-6">
                       <select class="form-dropdown border-verde " name="vereda" (change)="cambiarVereda($event)">
-                        <option [ngValue]="null" disabled> Vereda </option>
+                        <option [ngValue]="null"> Vereda </option>
                         <option [ngValue]="vereda" *ngFor="let vereda of veredas">{{vereda}}</option>
                       </select>
+                      <div *ngIf=" control.vereda.errors && control.vereda.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.vereda.errors.required">Seleccione una vereda
+                          de la lista
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -143,12 +153,11 @@
                     id="registrarBtn">
                     Registrar Productor
                   </a>
-                  <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn"
-                    (click)="resetearBoton()">
+                  <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn">
                     Limpiar
                   </button>
                   <hr>
-                  <div *ngIf="formGroup.invalid && botonPresionado">
+                  <div *ngIf=" formGroup.invalid && botonPresionado">
                     <div class="text-center">
                       <span>
                         <i class="fas fa-fw fa-times titulo-rojo"></i>

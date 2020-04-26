@@ -2569,6 +2569,10 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
+.separarArriba {
+  padding-top: 0.5em;
+}
+
 .separarAbajo {
   padding-bottom: 1em;
 }
@@ -6983,6 +6987,15 @@ button.bg-dark:focus {
   font-weight: bold;
   color: #4edf86;
 }
+
+.required:after {
+  content: "*";
+}
+
+.letra-verde {
+  color: #4edf86;
+}
+
 
 .form-dropdown {
   display: block;
@@ -11884,6 +11897,12 @@ a:focus {
 
 .bg-registrar-lote-imagen {
   background: url("../src/assets/img/2380973.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-registrar-empleado-imagen {
+  background: url("../src/assets/img/440046-PEIY8D-989.jpg");
   background-position: center;
   background-size: cover;
 }

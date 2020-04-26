@@ -14,7 +14,7 @@ export class ProductorRegistroComponent implements OnInit {
   veredas: string[] = ["Jewrwa", "Jwidedy", "Morotrwa", "Seyumake", "Kankanachama", "Kurinha", "Zikuta", "Guacamayal", "Casco Urbano", "Cuesta Plata", "Los Antiguos", "La Florida", "Nabusimake", "Mañakan", "Kochokwa", "Windiwa", "Morotrwa", "Businchama", "Sombrero Cava", "Alto Cicarare", "La Libertad", "Wabini", "Berlin 1", "Gamake", "El Hondo", "Simonorwa", "Marquetalia", "Rincon", "Tranquilidad"];
   formGroup: FormGroup;
   botonPresionado: Boolean = false;
-  constructor(private ProductorService: ProductorService, private formBuilder: FormBuilder) { }
+  constructor(private productorService: ProductorService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.productor = new Productor();
@@ -66,7 +66,7 @@ export class ProductorRegistroComponent implements OnInit {
       validaNumeroCedula: true, mensajeNumero: 'Número cédula no válido'
     }
   }
-   resetearBoton() {
+  private resetearBoton() {
     let seReseteó;
     this.botonPresionado = false;
     return seReseteó = true;
@@ -131,7 +131,7 @@ export class ProductorRegistroComponent implements OnInit {
   }
   registrar() {
     this.productor = this.formGroup.value;
-    this.ProductorService.post(this.productor).subscribe(p => {
+    this.productorService.post(this.productor).subscribe(p => {
       if (p != null) {
         this.productor = p;
       }
