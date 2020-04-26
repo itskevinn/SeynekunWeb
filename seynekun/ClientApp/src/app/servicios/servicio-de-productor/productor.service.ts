@@ -16,7 +16,7 @@ export class ProductorService {
     private handleErrorService: HandleHttpErrorService) {
     this.baseUrl = baseUrl;
   }
-  get(): Observable<Productor[]> {
+  gets(): Observable<Productor[]> {
     return this.http.get<Productor[]>(this.baseUrl + 'api/Productor')
       .pipe(
         tap(_ => this.handleErrorService.log('Datos traídos')),
@@ -29,5 +29,5 @@ export class ProductorService {
         tap(_ => this.handleErrorService.log('Datos enviados')),
         catchError(this.handleErrorService.handleError<Productor>("Registro del prodcutor", null))
       );
-  }
+  }  
 } 

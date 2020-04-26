@@ -13,11 +13,15 @@ export class ProductorRegistroComponent implements OnInit {
   municipios: string[] = ["Pueblo Bello", "Codazzi"];
   veredas: string[] = ["Jewrwa", "Jwidedy", "Morotrwa", "Seyumake", "Kankanachama", "Kurinha", "Zikuta", "Guacamayal", "Casco Urbano", "Cuesta Plata", "Los Antiguos", "La Florida", "Nabusimake", "Mañakan", "Kochokwa", "Windiwa", "Morotrwa", "Businchama", "Sombrero Cava", "Alto Cicarare", "La Libertad", "Wabini", "Berlin 1", "Gamake", "El Hondo", "Simonorwa", "Marquetalia", "Rincon", "Tranquilidad"];
   formGroup: FormGroup;
-  constructor(private ProductorService: ProductorService, private formBuilder: FormBuilder) { }
+  botonPresionado: Boolean = false;
+  constructor(private productorService: ProductorService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.productor = new Productor();
     this.crearFormulario();
+  }
+  validarMensaje() {
+    this.botonPresionado = true;
   }
   crearFormulario() {
     this.productor.nombreProductor = "";
@@ -42,37 +46,57 @@ export class ProductorRegistroComponent implements OnInit {
       municipio: [this.productor.municipio, Validators.required],
       vereda: [this.productor.vereda, Validators.required],
       numeroTelefono: [this.productor.numeroTelefono, [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.validarNumeroTelefono]],
-      afiliacionSalud: [this.productor.afiliacionSalud, Validators.required]
+      afiliacionSalud: [this.productor.afiliacionSalud, Validators.required],
     });
   }
 
   private validarNumeroCedula(control: AbstractControl) {
     const numero = control.value;
-    if (this.validarNumero(numero)) {
+    var esNumero = false;
+    var number;
+    try {
+      number = parseInt(numero);
+      esNumero = true;
+    } catch (error) {
+      esNumero = false;
+    }
+    if (esNumero) {
       return null;
     } else return {
       validaNumeroCedula: true, mensajeNumero: 'Número cédula no válido'
     }
   }
-  private validarNumero(numero) {
+  private resetearBoton() {
+    let seReseteó;
+    this.botonPresionado = false;
+    return seReseteó = true;
+  }
+
+
+  private validarNumeroTelefono(control: AbstractControl) {
+    const numero = control.value;
+    var numeroString;
+    var numeroChar = [];
     var esNumero = false;
+    numeroString = String(numero);
+    var esNumero = false;
+    var number;
+    try {
+      number = Number(numero);
+      esNumero = true;
+    } catch (error) {
+      esNumero = false;
+    }
+    numeroChar = numeroString.split('');
+    console.log(numeroChar[0]);
     try {
       Number(numero);
       esNumero = true;
     } catch (error) {
       esNumero = false;
     }
-    return esNumero;
-  }
-  private validarNumeroTelefono(control: AbstractControl) {
-    const numero = control.value;
-    var numeroString;
-    var numeroChar = [];
-    numeroString = String(numero);
-    numeroChar = numeroString.split('');
-    console.log(numeroChar[0]);
     if (numeroChar.length != 0) {
-      if (this.validarNumero(numeroString)) {
+      if (esNumero) {
         if (numeroChar[0] != '3') {
           return {
             validaNumeroTelefono: true, mensajeNumero: 'Número teléfono no válido'
@@ -89,26 +113,27 @@ export class ProductorRegistroComponent implements OnInit {
     this.control.municipio.setValue(e.target.value, {
       onlySelf: true
     })
+    console.log(this.control.municipio.value);
   }
   cambiarVereda(e) {
     this.control.vereda.setValue(e.target.value, {
       onlySelf: true
     })
   }
-  validar() {
-    if (!this.formGroup.invalid) {
-      this.registrar();
+  onSubmit() {
+    if (this.formGroup.invalid) {
+      return null;
     }
+    this.registrar();    
   }
   get control() {
     return this.formGroup.controls;
   }
   registrar() {
     this.productor = this.formGroup.value;
-    this.ProductorService.post(this.productor).subscribe(l => {
-      if (l != null) {
-        alert('Productor registrado exitosamente');
-        this.productor = l;
+    this.productorService.post(this.productor).subscribe(p => {
+      if (p != null) {
+        this.productor = p;
       }
     });
   }

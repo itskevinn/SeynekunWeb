@@ -16,6 +16,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoteService } from './servicios/servicio-de-lote/lote.service';
 import { ProductorRegistroComponent } from './seynekun/productor/productor-registro/productor-registro.component';
 import { ProductorConsultaComponent } from './seynekun/productor/productor-consulta/productor-consulta.component';
+import { LoginComponent } from './login/login/login.component';
+import { ClienteRegistroComponent } from './seynekun/cliente/cliente-registro/cliente-registro.component';
+import { ClienteConsultaComponent } from './seynekun/cliente/cliente-consulta/cliente-consulta.component';
+import { EmpleadoConsultaComponent } from './seynekun/empleado/empleado-consulta/empleado-consulta.component';
+import { EmpleadoRegistroComponent } from './seynekun/empleado/empleado-registro/empleado-registro.component';
+
+import { EmpleadoEdicionComponent } from './seynekun/empleado/empleado-edicion/empleado-edicion.component';
+import { ClienteEdicionComponent } from './seynekun/cliente/cliente-edicion/cliente-edicion.component';
+import { ProductorEdicionComponent } from './seynekun/productor/productor-edicion/productor-edicion.component';
+import { FiltroEmpleadoPipe } from './filtro/filtro-empleado/filtro-empleado.pipe';
+import { FiltroClientePipe } from './filtro/filtro-cliente/filtro-cliente.pipe';
+import { FiltroProductorPipe } from './filtro/filtro-productor/filtro-productor.pipe';
 
 
 @NgModule({
@@ -29,8 +41,17 @@ import { ProductorConsultaComponent } from './seynekun/productor/productor-consu
     LoteConsultaComponent,
     ProductorRegistroComponent,
     ProductorConsultaComponent,
-    ProductorRegistroComponent,
-    ProductorConsultaComponent
+    ProductorEdicionComponent,
+    LoginComponent,
+    FiltroProductorPipe,
+    ClienteRegistroComponent,
+    ClienteConsultaComponent,
+    ClienteEdicionComponent,
+    EmpleadoConsultaComponent,
+    EmpleadoRegistroComponent,
+    EmpleadoEdicionComponent,
+    FiltroEmpleadoPipe,
+    FiltroClientePipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,8 +63,6 @@ import { ProductorConsultaComponent } from './seynekun/productor/productor-consu
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'RegistrarProductor', component: ProductorRegistroComponent },
-      { path: 'ConsultarProductor', component: ProductorConsultaComponent },
     ]),
     AppRoutingModule
   ],

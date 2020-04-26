@@ -6,3 +6,11 @@ C:\Users\Kevin\Documents\ProgramaciónWeb\Seynekun\Entity\obj\Debug\netstandard2
 C:\Users\Kevin\Documents\ProgramaciónWeb\Seynekun\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfo.cs
 C:\Users\Kevin\Documents\ProgramaciónWeb\Seynekun\Entity\obj\Debug\netstandard2.0\Entity.dll
 C:\Users\Kevin\Documents\ProgramaciónWeb\Seynekun\Entity\obj\Debug\netstandard2.0\Entity.pdb
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\bin\Debug\netstandard2.0\Entity.deps.json
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\obj\Debug\netstandard2.0\Entity.csprojAssemblyReference.cache
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfoInputs.cache
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfo.cs
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\obj\Debug\netstandard2.0\Entity.dll
+C:\Users\Kevin\Documents\GitHub\SeynekunWeb\Entity\obj\Debug\netstandard2.0\Entity.pdb

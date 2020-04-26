@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kevin\\Documents\\ProgramaciónWeb\\Seynekun\\Entity\\Entity.csproj",
+      "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
       "projectName": "Entity",
-      "projectPath": "C:\\Users\\Kevin\\Documents\\ProgramaciónWeb\\Seynekun\\Entity\\Entity.csproj",
+      "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
       "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kevin\\Documents\\ProgramaciónWeb\\Seynekun\\Entity\\obj\\",
+      "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunWeb\\Entity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",

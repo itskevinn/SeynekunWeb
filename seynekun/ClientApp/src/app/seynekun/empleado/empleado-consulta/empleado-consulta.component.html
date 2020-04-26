@@ -1,0 +1,49 @@
+<h1 class="h3 mb-2 text-gray-800">Empleados</h1>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar" ng-change="validarTamañoLista()">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo">
+            <button [routerLink]="['/RegistrarEmpleado']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Empleado</button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+            aria-describedby="dataTable_info" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>CC</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>Número Telefónico</th>
+                <th>Correo Electrónico</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let empleado of empleados|filtroEmpleado:textoABuscar; index as i ">
+                <td>{{empleado.cedula}}</td>
+                <td>{{empleado.nombre}}</td>
+                <td>{{empleado.apellido}}</td>
+                <td>{{empleado.cargo}}</td>
+                <td>{{empleado.numeroTelefono}}</td>
+                <td>{{empleado.email}}</td>
+                <td>{{empleado.estado}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
