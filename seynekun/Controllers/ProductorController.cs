@@ -25,7 +25,7 @@ namespace seynekun.Controllers
             servicioProductor = new ServicioProductor(cadenaDeConexión);
         }
 
-        // POST: api/Lote
+        // POST: api/Productor
         [HttpPost]
         public ActionResult<ProductorViewModel> Post(ProductorInputModel productorInputModel)
         {

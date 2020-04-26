@@ -24,9 +24,9 @@ export class ProductorRegistroComponent implements OnInit {
     this.botonPresionado = true;
   }
   crearFormulario() {
-    this.productor.nombreProductor = "";
-    this.productor.apellidoProductor = "";
-    this.productor.cedulaProductor = "";
+    this.productor.nombre = "";
+    this.productor.apellido = "";
+    this.productor.cedula = "";
     this.productor.nombrePredio = "";
     this.productor.codigoFinca = "";
     this.productor.codigoSica = "";
@@ -36,9 +36,9 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor.afiliacionSalud = "";
     this.productor.cedulaCafetera = "";
     this.formGroup = this.formBuilder.group({
-      nombreProductor: [this.productor.nombreProductor, Validators.required],
-      apellidoProductor: [this.productor.apellidoProductor, Validators.required],
-      cedulaProductor: [this.productor.cedulaProductor, [Validators.required, Validators.minLength(6), Validators.maxLength(11)]],
+      nombre: [this.productor.nombre, Validators.required],
+      apellido: [this.productor.apellido, Validators.required],
+      cedula: [this.productor.cedula, [Validators.required, Validators.minLength(6), Validators.maxLength(11)]],
       cedulaCafetera: [this.productor.cedulaCafetera, Validators.required],
       nombrePredio: [this.productor.nombrePredio, Validators.required],
       codigoFinca: [this.productor.codigoFinca, Validators.required],

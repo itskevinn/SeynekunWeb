@@ -1,7 +1,7 @@
 export class Productor {
-    nombreProductor: string;
-    apellidoProductor: string;
-    cedulaProductor: string;
+    nombre: string;
+    apellido: string;
+    cedula: string;
     cedulaCafetera: string;
     nombrePredio: string;
     codigoFinca: string;

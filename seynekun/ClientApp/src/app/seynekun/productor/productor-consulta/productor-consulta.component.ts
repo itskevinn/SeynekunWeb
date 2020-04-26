@@ -19,12 +19,12 @@ export class ProductorConsultaComponent implements OnInit {
     this.productorService.gets().subscribe(result => {
       this.productores = result;
       this.productores = [{
-        nombreProductor: "Kevin",
+        nombre: "Kevin",
         nombrePredio: "La Camita",
-        apellidoProductor: "Pontón",
+        apellido: "Pontón",
         numeroTelefono: "3213213214",
         cedulaCafetera: "1AB3",
-        cedulaProductor: "119322",
+        cedula: "119322",
         afiliacionSalud: "Sisben",
         codigoFinca: "K01P",
         codigoSica: "123Pnnt",
@@ -32,12 +32,12 @@ export class ProductorConsultaComponent implements OnInit {
         vereda: "Mareigua"
       },
       {
-        nombreProductor: "Juan",
+        nombre: "Juan",
         nombrePredio: "La Casita",
-        apellidoProductor: "Ortiz",
+        apellido: "Ortiz",
         numeroTelefono: "3222222222",
         cedulaCafetera: "1JO3",
-        cedulaProductor: "Juank",
+        cedula: "Juank",
         afiliacionSalud: "Salud",
         codigoFinca: "J01O",
         codigoSica: "123Orrt",
