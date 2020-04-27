@@ -58,9 +58,5 @@ values (@NumLot,@Varr,@NumArb,@SisRen,@FechSiem,@Cult,@EpCos,@EpFlo,@EstCos,@Est
             lote.TipoEstimado = (string) lectorDeDatos["EstTip"];                     
             return lote;
         }
-
-        public void hola(){
-            
-        }
     }
 }

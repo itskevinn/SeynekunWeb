@@ -29,6 +29,21 @@ namespace Logica
                 return new GuardarResponse(e.Message);
             }
         }
+
+        public ConsultarResponse Consultar()
+        {
+            try
+            {
+                _conexión.Abrir();
+                List<Productor> productores = repositorioProductor.Consultar();
+                _conexión.Cerrar();
+                return new ConsultarResponse(productores);
+            }
+            catch (Exception e)
+            {
+                return new ConsultarResponse(e.Message);
+            }
+        }
     }
 
     public class GuardarResponse
@@ -44,6 +59,25 @@ namespace Logica
         }
 
         public GuardarResponse(string mensaje)
+        {
+            Error = true;
+            Mensaje = mensaje;
+        }
+    }
+
+    public class ConsultarResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public List<Productor> productores;
+
+        public ConsultarResponse(List<Productor> productores)
+        {
+            Error = false;
+            this.productores = productores;
+        }
+
+        public ConsultarResponse(string mensaje)
         {
             Error = true;
             Mensaje = mensaje;

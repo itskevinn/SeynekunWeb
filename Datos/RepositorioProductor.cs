@@ -35,5 +35,40 @@ namespace Datos
             }
         }
 
+        public List<Productor> Consultar()
+        {
+            List<Productor> productores = new List<Productor>();
+            using (var comando = _conexión.CreateCommand())
+            {
+                comando.CommandText = "Select * from Productores";
+                var datos = comando.ExecuteReader();
+                if(datos.HasRows)
+                {
+                    while (datos.Read())
+                    {
+                        productores.Add(MapToProductor(datos));
+                    }
+                }
+            }
+            return productores;
+        }
+
+        private Productor MapToProductor(SqlDataReader datos)
+        {
+            if(!datos.HasRows) return null;
+            Productor productor = new Productor();
+            productor.Cedula = (string) datos["Cedula"];
+            productor.Nombre = (string) datos["Nombre"];
+            productor.Apellido = (string) datos["Apellido"];
+            productor.CedulaCafetera = (string) datos["CedulaCafetera"];
+            productor.NombrePredio = (string) datos["NombrePredio"];
+            productor.CodigoFinca = (string) datos["CodigoFinca"];
+            productor.CodigoSica = (string) datos["CodigoSica"];
+            productor.Municipio = (string) datos["Municipio"];
+            productor.Vereda = (string) datos["Vereda"];
+            productor.NumeroTelefono = (string) datos["NumeroTelefono"];
+            productor.AfiliacionSalud = (string) datos["AfiliacionSalud"];
+            return productor;
+        }
     }
 }
