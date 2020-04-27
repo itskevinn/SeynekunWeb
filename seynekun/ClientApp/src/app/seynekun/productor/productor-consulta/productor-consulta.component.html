@@ -1,4 +1,4 @@
-<h1 class="h3 mb-2 text-gray-800">Productores</h1>
+<h1 class="h3 mb-2 text-gray-800"> Productores</h1>
 <div class="card shadow mb-4">
   <div class="card-body">
     <div id="dataTable_wrapper">
@@ -26,28 +26,26 @@
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Cédula Cafetera</th>
-                  <th>Nombre Predio</th>
-                  <th>Código Finca</th>
-                  <th>Código SICA</th>
-                  <th>Municipio</th>
-                  <th>Vereda</th>
-                  <th>Numero Telefónico</th>
-                  <th>Afiliación Salud</th>
+                  <th>Nombre Predio</th>                  
+                  <th>Código SICA</th>                  
+                  <th>Vereda</th>       
+                  <th>Acción</th>                             
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let productor of productores|filtroProductor:textoABuscar; index as i ">
-                  <td>{{ productor.cedula}}</td>
-                  <td>{{ productor.nombre}}</td>
+                  <td>{{productor.cedula}}</td>
+                  <td>{{productor.nombre}}</td>
                   <td>{{productor.apellido}}</td>
                   <td>{{productor.cedulaCafetera}}</td>
-                  <td>{{productor.nombrePredio}}</td>
-                  <td>{{productor.codigoFinca}}</td>
-                  <td>{{productor.codigoSica}}</td>
-                  <td>{{productor.municipio}} </td>
+                  <td>{{productor.nombrePredio}}</td>                  
+                  <td>{{productor.codigoSica}}</td>                
                   <td>{{productor.vereda}}</td>
-                  <td>{{productor.numeroTelefono}}</td>
-                  <td>{{productor.afiliacionSalud}}</td>
+                  <td>
+                    <a routerLink='/Productor/{{productor.identificacion}}'>Ver</a>
+                    <a> / </a>
+                    <a routerLink='/EditarProductor/{{productor.identificacion}}'>Editar</a>
+                  </td>                              
                 </tr>
               </tbody>
             </table>

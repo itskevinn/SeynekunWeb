@@ -27,8 +27,8 @@
                   <th>Apellido</th>
                   <th>Cargo</th>
                   <th>Estado</th>
-                  <th>Número Telefónico</th>
-                  <th>Correo Electrónico</th>
+                  <th>Número Telefónico</th>                  
+                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,8 +38,12 @@
                   <td>{{empleado.apellido}}</td>
                   <td>{{empleado.cargo}}</td>
                   <td>{{empleado.estado}}</td>
-                  <td>{{empleado.numeroTelefono}}</td>
-                  <td>{{empleado.email}}</td>
+                  <td>{{empleado.numeroTelefono}}</td>                  
+                  <td>
+                    <a routerLink='/Empleado/{{empleado.identificacion}}'>Ver</a>
+                    <a> / </a>
+                    <a routerLink='/EditarEmpleado/{{empleado.identificacion}}'>Editar</a>
+                  </td>
                 </tr>
               </tbody>
             </table>

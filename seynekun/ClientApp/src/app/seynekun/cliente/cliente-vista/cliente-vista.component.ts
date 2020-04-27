@@ -11,27 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 export class ClienteVistaComponent implements OnInit {
   cliente: Cliente;
   textoABuscar: string;
-  seEncontro : Boolean;
+  seEncontro: Boolean;
   constructor(private clienteService: ClienteService, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const identificacion = this.rutaActiva.snapshot.params.identificacion;
-      this.clienteService.get(identificacion).subscribe(result => {
-        this.cliente = result;
-        this.cliente !=null ? this.seEncontro = true : this.seEncontro = false;
-        this.cliente = {
-          nombre: "Kevin",
-          apellido: "Pontón",
-          numeroTelefono: "3213213214",
-          identificacion: "119322",
-          tipoIdentificacion: "CC",
-          email: "keviinpn2@gmail.com",
-          direccion: "Calle San Jorge",
-          barrio: "Mareigua",
-          departamento: "Cesar",
-          municipio: "Valledupar",
-          numeroTelefono2: "",
-        }
-      });
+    const identificacion = this.rutaActiva.snapshot.params.id;
+    this.clienteService.get(identificacion).subscribe(result => {
+      this.cliente = result;
+      this.cliente != null ? this.seEncontro = true : this.seEncontro = false;
+    });
   }
 }

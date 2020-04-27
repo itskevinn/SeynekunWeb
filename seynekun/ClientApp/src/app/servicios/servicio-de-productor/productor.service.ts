@@ -29,5 +29,12 @@ export class ProductorService {
         tap(_ => this.handleErrorService.log('Datos enviados')),
         catchError(this.handleErrorService.handleError<Productor>("Registro del prodcutor", null))
       );
-  }  
+  }
+  get(identificacion: string): Observable<Productor> {
+    return this.http.get<Productor>(this.baseUrl + 'api/Productor')
+      .pipe(
+        tap(_ => this.handleErrorService.log('Datos enviados y recibidos')),
+        catchError(this.handleErrorService.handleError<Productor>("Consulta x id", null))
+      );
+  }
 } 

@@ -1,7 +1,9 @@
+<button [routerLink]="['/Productores']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div class="page-top">
   <div class="content">
     <section id="datosGenerales">
-      <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card o-hidden border-0 shadow-lg my-1">
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
@@ -16,8 +18,7 @@
                     <input type="text" class="form-control form-control-user" name="cedula"
                       placeholder="Cédula Ciudadanía" formControlName="cedula"
                       [ngClass]="{'is-invalid':control.cedula.errors && control.cedula.touched}">
-                    <div *ngIf="control.cedula.errors && control.cedula.touched"
-                      class="invalid-feedback">
+                    <div *ngIf="control.cedula.errors && control.cedula.touched" class="invalid-feedback">
                       <div class="validacion-texto" *ngIf="control.cedula.errors.required">Proporcione su
                         número de cédula
                       </div>
@@ -33,8 +34,7 @@
                       <input type="text" class="form-control form-control-user" name="nombre"
                         placeholder="Nombre del Productor" formControlName="nombre"
                         [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
-                      <div *ngIf=" control.nombre.errors && control.nombre.touched"
-                        class="invalid-feedback">
+                      <div *ngIf=" control.nombre.errors && control.nombre.touched" class="invalid-feedback">
                         <div class="validacion-texto" *ngIf="control.nombre.errors.required">Ingrese su
                           nombre
                         </div>
@@ -44,8 +44,7 @@
                       <input type="text" class="form-control form-control-user" name="apellido"
                         placeholder="Apellido del Productor" formControlName="apellido"
                         [ngClass]="{'is-invalid':control.apellido.errors && control.apellido.touched}">
-                      <div *ngIf="control.apellido.errors && control.apellido.touched"
-                        class="invalid-feedback">
+                      <div *ngIf="control.apellido.errors && control.apellido.touched" class="invalid-feedback">
                         <div class="validacion-texto" *ngIf="control.apellido.errors.required">Ingrese su
                           apellido
                         </div>

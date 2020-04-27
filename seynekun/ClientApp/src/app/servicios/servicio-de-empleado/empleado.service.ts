@@ -30,4 +30,11 @@ export class EmpleadoService {
         catchError(this.handleErrorService.handleError<Empleado>("Registro del empleado", null))
       );
   }
+  get(identificacion: string): Observable<Empleado> {
+    return this.http.get<Empleado>(this.urlBase + 'api/Empleado')
+      .pipe(
+        tap(_ => this.handleErrorService.log('Identifiación enviada y empleado recibido')),
+        catchError(this.handleErrorService.handleError<Empleado>("Consulta x id", null))
+      );
+  }
 }
