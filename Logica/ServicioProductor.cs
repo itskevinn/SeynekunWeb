@@ -44,6 +44,20 @@ namespace Logica
                 return new ConsultarResponse(e.Message);
             }
         }
+        public BuscarxIdResponse BuscarxId(string identificacion)
+    {
+         try
+            {
+                _conexión.Abrir();
+                Productor productor = repositorioProductor.BuscarxId(identificacion);
+                _conexión.Cerrar();
+                return new BuscarxIdResponse(productor);
+            }
+            catch (Exception e)
+            {
+                return new BuscarxIdResponse(e.Message);
+            }
+    }
     }
 
     public class GuardarResponse
@@ -82,5 +96,24 @@ namespace Logica
             Error = true;
             Mensaje = mensaje;
         }
+    }    
+    public class BuscarxIdResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Productor Productor;
+
+        public BuscarxIdResponse(Productor productor)
+        {
+            Error = false;
+            this.Productor = productor;
+        }
+
+        public BuscarxIdResponse(string mensaje)
+        {
+            Error = true;
+            Mensaje = mensaje;
+        }
+
     }
 }

@@ -31,10 +31,17 @@ export class EmpleadoService {
       );
   }
   get(identificacion: string): Observable<Empleado> {
-    return this.http.get<Empleado>(this.urlBase + 'api/Empleado')
+    return this.http.get<Empleado>(this.urlBase + 'api/Empleado/'+identificacion)
       .pipe(
         tap(_ => this.handleErrorService.log('Identifiación enviada y empleado recibido')),
         catchError(this.handleErrorService.handleError<Empleado>("Consulta x id", null))
+      );
+  }
+  put(identificacion: string, empleado: Empleado): Observable<Empleado> {
+    return this.http.put<Empleado>(this.urlBase + 'api/Empleado/' + identificacion, empleado)
+    .pipe(
+        tap(_ => this.handleErrorService.log('Identifiación enviada y empleado actualizado')),
+        catchError(this.handleErrorService.handleError<Empleado>("Actualizar", null))
       );
   }
 }

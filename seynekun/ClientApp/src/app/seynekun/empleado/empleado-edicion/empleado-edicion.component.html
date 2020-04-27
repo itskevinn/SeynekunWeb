@@ -1,186 +1,185 @@
 <button [routerLink]="['/Empleados']" type="button" class="btn btn-labeled btn-light">
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
-<div class="page-top">
-  <div class="content">
-    <section id="datosGenerales">
-      <div class="card o-hidden border-0 shadow-lg my-1">
-        <div class="card-body p-0">
-          <!-- Nested Row within Card Body -->
-          <div class="row">
-            <div class="col-lg-5">
-              <div class="p-5">
-                <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Información Actual</h1>
-                  </div>
-                <div class="card border-left-primary mb-4">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
-                        <div class="h2 mb-0 font-weight-bold text-gray-800">{{empleado.cedula}}</div>
-                        <div class="h5 mb-0 font-weight-normal text-gray-800">{{empleado.nombre}}</div>
-                        <div class="h4 mb-0 font-weight-normal text-gray-800">{{empleado.apellido}}</div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-id-card fa-2x text-gray-300"></i>
-                      </div>
+<div class="content">
+  <section id="datosGenerales">
+    <div class="card o-hidden border-0 shadow-lg my-1">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Información Actual</h1>
+              </div>
+              <div class="card border-left-primary mb-4">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{empleado.cedula}}</div>
+                      <div class="h6 mb-0 font-weight-normal text-gray-800">{{empleado.nombre}}</div>
+                      <div class="h6 mb-0 font-weight-normal text-gray-800">{{empleado.apellido}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-id-card fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
-                <div class="card border-left-success mb-4">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Información de Empleo
-                        </div>
-                        <div class="h3 mb-0 font-weight-light text-gray-800">{{empleado.cargo}}</div>
-                        <div class="h4 mb-0 font-weight-bold text-gray-800">{{empleado.estado}}</div>
+              </div>
+              <div class="card border-left-success mb-4">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Información de Empleo
                       </div>
-                      <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                      </div>
+                      <div class="h3 mb-0 font-weight-light text-gray-800">{{empleado.cargo}}</div>
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{empleado.estado}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
-                <div class="card border-left-info mb-4">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Información de Contacto
-                        </div>
-                        <a class="h2 mb-0 font-weight-bold text-gray-800"> {{empleado.numeroTelefono}}</a>
-                        <div class="h5 mb-0 font-weight-normal text-gray-800">{{empleado.email}}</div>
+              </div>
+              <div class="card border-left-info mb-4">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Información de Contacto
                       </div>
-                      <div class="col-auto">
-                        <i class="fas fa-phone fa-2x text-gray-300"></i>
-                      </div>
+                      <a class="h4 mb-0 font-weight-bold text-gray-800"> {{empleado.numeroTelefono}}</a>
+                      <div class="h6 mb-0 font-weight-lighter text-gray-800">{{empleado.email}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-phone fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-7">
-              <div class="p-5">
-                <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Editar Empleado</h1>
+          </div>
+          <div class="col-lg-6">
+            <div class="p-edicion">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Editar Empleado</h1>
+              </div>
+              <br>
+              <form class="user" [formGroup]="formGroup">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user required" name="cedula"
+                    placeholder="Cédula Ciudadanía" formControlName="cedula"
+                    [ngClass]="{'is-invalid':control.cedula.errors && control.cedula.touched}">
+                  <div *ngIf="control.cedula.errors && control.cedula.touched" class="invalid-feedback">
+                    <div class="validacion-texto" *ngIf="control.cedula.errors.required">Proporcione su
+                      número de cédula
+                    </div>
+                    <div class="validacion-texto"
+                      *ngIf="control.cedula.errors.minlength  || control.cedula.errors.maxlength || control.cedula.errors.validarNumeroCedula">
+                      Proporcione un
+                      número de cédula válido
+                    </div>
+                  </div>
                 </div>
-                <form class="user" [formGroup]="formGroup">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-user required" name="cedula"
-                      placeholder="Cédula Ciudadanía" formControlName="cedula"
-                      [ngClass]="{'is-invalid':control.cedula.errors && control.cedula.touched}">
-                    <div *ngIf="control.cedula.errors && control.cedula.touched" class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.cedula.errors.required">Proporcione su
-                        número de cédula
+                <div class=" form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user required" name="nombre"
+                      placeholder="Nombre del Empleado" formControlName="nombre" 
+                      [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
+                    <div *ngIf=" control.nombre.errors && control.nombre.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.nombre.errors.required">Ingrese su
+                        nombre
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" name="apellido"
+                      placeholder="Apellido del Empleado" formControlName="apellido" 
+                      [ngClass]="{'is-invalid':control.apellido.errors && control.apellido.touched}">
+                    <div *ngIf="control.apellido.errors && control.apellido.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.apellido.errors.required">Ingrese su
+                        apellido
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class=" form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" name="numeroTelefono"
+                      placeholder="Número de teléfono" formControlName="numeroTelefono"
+                      [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
+                    <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.numeroTelefono.errors.required">Proporcione un
+                        número de teléfono
                       </div>
                       <div class="validacion-texto"
-                        *ngIf="control.cedula.errors.minlength  || control.cedula.errors.maxlength || control.cedula.errors.validarNumeroCedula">
-                        Proporcione un
-                        número de cédula válido
+                        *ngIf="control.numeroTelefono.errors.minlength || control.numeroTelefono.errors.maxlength || control.numeroTelefono.errors.validarNumeroTelefono">
+                        Ingrese un número de
+                        teléfono válido
                       </div>
                     </div>
                   </div>
-                  <div class=" form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" class="form-control form-control-user required" name="nombre"
-                        placeholder="Nombre del Empleado" formControlName="nombre"
-                        [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
-                      <div *ngIf=" control.nombre.errors && control.nombre.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.nombre.errors.required">Ingrese su
-                          nombre
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control form-control-user" name="apellido"
-                        placeholder="Apellido del Empleado" formControlName="apellido"
-                        [ngClass]="{'is-invalid':control.apellido.errors && control.apellido.touched}">
-                      <div *ngIf="control.apellido.errors && control.apellido.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.apellido.errors.required">Ingrese su
-                          apellido
-                        </div>
+                  <div class="col-sm-6 separarArriba">
+                    <select class="form-dropdown border-verde " name="cargo" (change)="cambiarCargo($event)">
+                      <option [ngValue]="empleado.cargo">{{empleado.cargo}} </option>
+                      <option [ngValue]="cargo" *ngFor="let cargo of cargos">{{cargo}}</option>
+                    </select>
+                    <div *ngIf="control.cargo.errors && control.cargo.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.cargo.errors.required">Seleccione un cargo
+                        de la lista
                       </div>
                     </div>
                   </div>
-                  <div class=" form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" class="form-control form-control-user" name="numeroTelefono"
-                        placeholder="Número de teléfono" formControlName="numeroTelefono"
-                        [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
-                      <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
-                        class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.numeroTelefono.errors.required">Proporcione un
-                          número de teléfono
-                        </div>
-                        <div class="validacion-texto"
-                          *ngIf="control.numeroTelefono.errors.minlength || control.numeroTelefono.errors.maxlength || control.numeroTelefono.errors.validarNumeroTelefono">
-                          Ingrese un número de
-                          teléfono válido
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 separarArriba">
-                      <select class="form-dropdown border-verde " name="cargo" (change)="cambiarCargo($event)">
-                        <option [ngValue]="null"> Cargo </option>
-                        <option [ngValue]="cargo" *ngFor="let cargo of cargos">{{cargo}}</option>
-                      </select>
-                      <div *ngIf="control.cargo.errors && control.cargo.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.cargo.errors.required">Seleccione un cargo
-                          de la lista
-                        </div>
-                      </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user" name="email"
+                    placeholder="Email del Empleado" formControlName="email"
+                    [ngClass]="{'is-invalid':control.email.errors && control.email.touched}">
+                  <div *ngIf="control.email.errors && control.apellido.touched" class="invalid-feedback">
+                    <div class="validacion-texto" *ngIf="control.email.errors.email">Ingrese un correo válido
                     </div>
                   </div>
-                  <div class="form-group">
-                    <input type="email" class="form-control form-control-user" name="email"
-                      placeholder="Email del Empleado" formControlName="email"
-                      [ngClass]="{'is-invalid':control.email.errors && control.email.touched}">
-                    <div *ngIf="control.email.errors && control.apellido.touched" class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.email.errors.email">Ingrese un correo válido
-                      </div>
+                </div>
+                <hr>
+                <a (click)="onSubmit()" (click)="validarMensaje()" class="btn btn-verde btn-user btn-block"
+                  id="registrarBtn">
+                  Editar Empleado
+                </a>
+                <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn">
+                  Limpiar
+                </button>
+                <hr>
+                <div *ngIf=" formGroup.invalid && botonPresionado">
+                  <div class="text-center">
+                    <span>
+                      <i class="fas fa-fw fa-times titulo-rojo"></i>
+                    </span>
+                    <div>
+                      <p class="titulo-rojo"> <strong>Información inválida</strong> </p>
+                      <ul>
+                        <li> Puede que haya algún campo vacío</li>
+                        <li> Puede que algún número no sea válido</li>
+                      </ul>
                     </div>
                   </div>
-                  <hr>
-                  <a (click)="onSubmit()" (click)="validarMensaje()" class="btn btn-verde btn-user btn-block"
-                    id="registrarBtn">
-                    Editar Empleado
-                  </a>
-                  <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn">
-                    Limpiar
-                  </button>
-                  <hr>
-                  <div *ngIf=" formGroup.invalid && botonPresionado">
+                </div>
+                <div *ngIf="botonPresionado">
+                  <div *ngIf="formGroup.valid && botonPresionado">
                     <div class="text-center">
                       <span>
-                        <i class="fas fa-fw fa-times titulo-rojo"></i>
+                        <i class="fas fa-fw fa-check titulo-verde"></i>
                       </span>
                       <div>
-                        <p class="titulo-rojo"> <strong>Información inválida</strong> </p>
-                        <ul>
-                          <li> Puede que haya algún campo vacío</li>
-                          <li> Puede que algún número no sea válido</li>
-                        </ul>
+                        <p class="titulo-verde"> <strong>Empleado Editado</strong></p>
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="botonPresionado">
-                    <div *ngIf="formGroup.valid && botonPresionado">
-                      <div class="text-center">
-                        <span>
-                          <i class="fas fa-fw fa-check titulo-verde"></i>
-                        </span>
-                        <div>
-                          <p class="titulo-verde"> <strong>Empleado Registrado</strong></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </div>

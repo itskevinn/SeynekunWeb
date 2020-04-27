@@ -11,10 +11,12 @@ using Logica;
 
 namespace seynekun.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ProductorController : ControllerBase
     {
+
         private readonly ServicioProductor servicioProductor;
         public IConfiguration configuration { get; }
 
@@ -63,5 +65,14 @@ namespace seynekun.Controllers
             var response = servicioProductor.Consultar().productores.Select(p=> new ProductorViewModel(p));
             return response;
         }
+
+        [HttpGet("{identificacion}")]
+        public ActionResult<ProductorViewModel> Get(string identificacion){
+            var productor = servicioProductor.BuscarxId(identificacion).Productor;
+            if(productor==null) return NotFound();
+            var productorViewModel = new ProductorViewModel(productor);
+            return productorViewModel;
+        }
+
     }
 }

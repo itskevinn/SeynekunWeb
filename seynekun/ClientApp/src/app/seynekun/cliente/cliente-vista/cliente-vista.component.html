@@ -2,10 +2,8 @@
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div *ngIf="seEncontro; else noEncontrado">
   <div class="row">
-    <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-primary shadow h-100 py-2">
-
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -65,6 +63,6 @@
 </div>
 <ng-template #noEncontrado>
   <div class="text-center font-weight-bold text-danger">
-Cliente no encontrado
+    Cliente no encontrado
   </div>
 </ng-template>

@@ -19,6 +19,7 @@ export class ProductorVistaComponent implements OnInit {
     this.productorService.get(identificacion).subscribe(result => {
       this.productor = result;
       this.productor != null ? this.seEncontro = true : this.seEncontro = false;
+      alert(this.productor.cedula);
     });
   }
 }

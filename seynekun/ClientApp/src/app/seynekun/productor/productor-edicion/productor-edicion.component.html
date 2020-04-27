@@ -1,1 +1,269 @@
-<p>productor-edicion works!</p>
+<button [routerLink]="['/Productores']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="page-top">
+  <div class="content">
+    <section id="datosGenerales">
+      <div class="card o-hidden border-0 my-1">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-primary shadow h-100 py-2">
+                    <div *ngIf="seEncontro">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General
+                            </div>
+                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{productor.cedula}}</div>
+                            <div class="h5 mb-0 font-weight-normal text-gray-800">{{productor.nombre}}</div>
+                            <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.apellido}}</div>
+                            <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.cedulaCafetera}}</div>
+                          </div>
+                          <div class="col-auto">
+                            <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información del Predio
+                          </div>
+                          <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.nombrePredio}}</a>
+                          <div class="h4 mb-0 font-weight-ligth text-gray-800">{{productor.municipio}}</div>
+                          <div class="h3 mb-0 font-weight-normal text-gray-800">{{productor.vereda}}</div>
+                          <div class="h4 mb-0 font-weight-light text-gray-800">{{productor.codigoFinca}}</div>
+                          <div class="h4 mb-0 font-weight-light text-gray-800">{{productor.codigoSica}}</div>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-map fa-2x text-gray-300"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Información de Contacto
+                          </div>
+                          <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.numeroTelefono}}</a>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-phone fa-2x text-gray-300"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Información de Salud
+                          </div>
+                          <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.afiliacionSalud}}</a>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-first-aid fa-2x text-gray-300"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Editar Productor</h1>
+                </div>
+                <form class="user" [formGroup]="formGroup">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="cedula"
+                      placeholder="Cédula Ciudadanía" formControlName="cedula"
+                      [ngClass]="{'is-invalid':control.cedula.errors && control.cedula.touched}">
+                    <div *ngIf="control.cedula.errors && control.cedula.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.cedula.errors.required">Proporcione su
+                        número de cédula
+                      </div>
+                      <div class="validacion-texto"
+                        *ngIf="control.cedula.errors.minlength  || control.cedula.errors.maxlength">
+                        Proporcione un
+                        número de cédula válido
+                      </div>
+                    </div>
+                  </div>
+                  <div class=" form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="nombre"
+                        placeholder="Nombre del Productor" formControlName="nombre"
+                        [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
+                      <div *ngIf=" control.nombre.errors && control.nombre.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.nombre.errors.required">Ingrese su
+                          nombre
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-user" name="apellido"
+                        placeholder="Apellido del Productor" formControlName="apellido"
+                        [ngClass]="{'is-invalid':control.apellido.errors && control.apellido.touched}">
+                      <div *ngIf="control.apellido.errors && control.apellido.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.apellido.errors.required">Ingrese su
+                          apellido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="cedulaCafetera"
+                      placeholder="Cédula Cafetera" formControlName="cedulaCafetera"
+                      [ngClass]="{'is-invalid':control.cedulaCafetera.errors && control.cedulaCafetera.touched}">
+                    <div *ngIf="control.cedulaCafetera.errors && control.cedulaCafetera.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.cedulaCafetera.errors.required">Proporcione su cédula
+                        cafetra
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="nombrePredio"
+                      placeholder="Nombre del predio" formControlName="nombrePredio"
+                      [ngClass]="{'is-invalid':control.nombrePredio.errors && control.nombrePredio.touched}">
+                    <div *ngIf="control.nombrePredio.errors && control.nombrePredio.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.nombrePredio.errors.required">Proporcione el
+                        nombre
+                        del predio
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <select class="form-dropdown border-verde " name="municipio" (change)="cambiarMunicipio($event)">
+                        <option [ngValue]="null"> Municipio </option>
+                        <option [ngValue]="municipio" *ngFor="let municipio of municipios">{{municipio}}</option>
+                      </select>
+                      <div *ngIf=" control.municipio.errors && control.municipio.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.municipio.errors.required">Seleccione un municipio
+                          de la lista
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <select class="form-dropdown border-verde " name="vereda" (change)="cambiarVereda($event)">
+                        <option [ngValue]="null"> Vereda </option>
+                        <option [ngValue]="vereda" *ngFor="let vereda of veredas">{{vereda}}</option>
+                      </select>
+                      <div *ngIf=" control.vereda.errors && control.vereda.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.vereda.errors.required">Seleccione una vereda
+                          de la lista
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="codigoFinca"
+                        placeholder="Código Finca" formControlName="codigoFinca"
+                        [ngClass]="{'is-invalid':control.codigoFinca.errors && control.codigoFinca.touched}">
+                      <div *ngIf=" control.codigoFinca.errors && control.codigoFinca.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.codigoFinca.errors.required">Ingrese el código
+                          de
+                          su finca
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-user" name="codigoSica"
+                        placeholder="Código SICA" formControlName="codigoSica"
+                        [ngClass]="{'is-invalid':control.codigoSica.errors && control.codigoSica.touched}">
+                      <div *ngIf="control.codigoSica.errors && control.codigoSica.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.codigoSica.errors.required">Ingrese su
+                          código SICA
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="numeroTelefono"
+                      placeholder="Número de teléfono" formControlName="numeroTelefono"
+                      [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
+                    <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.numeroTelefono.errors.required">Proporcione su
+                        número de teléfono
+                      </div>
+                      <div class="validacion-texto"
+                        *ngIf="control.numeroTelefono.errors.minlength || control.numeroTelefono.errors.maxlength || control.numeroTelefono.errors.validarNumeroTelefono">
+                        Ingrese un número de
+                        teléfono válido
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="afiliacionSalud"
+                      placeholder="Alifiación de Salud" formControlName="afiliacionSalud"
+                      [ngClass]="{'is-invalid':control.afiliacionSalud.errors && control.afiliacionSalud.touched}">
+                    <div *ngIf="control.afiliacionSalud.errors && control.afiliacionSalud.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.afiliacionSalud.errors.required">Proporcione su
+                        afiliación de salud
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <a (click)="onSubmit()" (click)="validarMensaje()" class="btn btn-verde btn-user btn-block"
+                    id="registrarBtn">
+                    Editar Productor
+                  </a>
+                  <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn">
+                    Limpiar
+                  </button>
+                  <hr>
+                  <div *ngIf=" formGroup.invalid && botonPresionado">
+                    <div class="text-center">
+                      <span>
+                        <i class="fas fa-fw fa-times titulo-rojo"></i>
+                      </span>
+                      <div>
+                        <p class="titulo-rojo"> <strong>Información inválida</strong> </p>
+                        <ul>
+                          <li> Puede que haya algún campo vacío</li>
+                          <li> Puede que algún número no sea válido</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="botonPresionado">
+                    <div *ngIf="formGroup.valid && botonPresionado">
+                      <div class="text-center">
+                        <span>
+                          <i class="fas fa-fw fa-check titulo-verde"></i>
+                        </span>
+                        <div>
+                          <p class="titulo-verde"> <strong>Productor Registrado</strong></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

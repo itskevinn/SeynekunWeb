@@ -30,7 +30,7 @@ export class ClienteConsultaComponent implements OnInit {
         barrio: "Mareigua",
         departamento: "Cesar",
         municipio: "Valledupar",
-        numeroTelefono2:"",
+        numeroTelefono2: "",
       },
       {
         nombre: "Juan",
@@ -43,7 +43,7 @@ export class ClienteConsultaComponent implements OnInit {
         barrio: "Los Cortijos",
         departamento: "Guajira",
         municipio: "San Diego",
-        numeroTelefono2:"399223818",
+        numeroTelefono2: "399223818",
       }]
     });
   }

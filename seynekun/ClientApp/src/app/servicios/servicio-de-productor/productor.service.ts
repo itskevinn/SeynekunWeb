@@ -1,10 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
 import { Observable, from } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Productor } from 'src/app/seynekun/models/modelo-productor/productor';
-
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +33,8 @@ export class ProductorService {
       );
   }
   get(identificacion: string): Observable<Productor> {
-    return this.http.get<Productor>(this.baseUrl + 'api/Productor')
+    const url = `${this.baseUrl + 'api/Productor'}/${identificacion}`;
+      return this.http.get<Productor>(url,httpOptions)
       .pipe(
         tap(_ => this.handleErrorService.log('Datos enviados y recibidos')),
         catchError(this.handleErrorService.handleError<Productor>("Consulta x id", null))
