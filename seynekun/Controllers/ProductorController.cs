@@ -55,5 +55,13 @@ namespace seynekun.Controllers
             };
             return productor;
         }
+
+        // GET: api/Productor
+        [HttpGet]
+        public IEnumerable<ProductorViewModel> Gets()
+        {
+            var response = servicioProductor.Consultar().productores.Select(p=> new ProductorViewModel(p));
+            return response;
+        }
     }
 }
