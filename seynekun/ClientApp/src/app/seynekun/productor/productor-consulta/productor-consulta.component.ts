@@ -10,7 +10,7 @@ import { Productor } from '../../models/modelo-productor/productor';
 export class ProductorConsultaComponent implements OnInit {
   productores: Productor[];
   productor: Productor;
-  tieneDatos: Boolean = false;
+  tieneDatos: boolean = false;
   cantidadProductores: Number;
   textoABuscar: String;
   constructor(private productorService: ProductorService) { }
