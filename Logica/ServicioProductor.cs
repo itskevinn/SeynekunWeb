@@ -58,6 +58,24 @@ namespace Logica
                 return new BuscarxIdResponse(e.Message);
             }
     }
+    public ModificarResponse Modificar(string identificacion, Productor productorNuevo)
+    {
+         try
+            {
+                _conexión.Abrir();
+                var productorAntiguo = repositorioProductor.BuscarxId(identificacion);
+                if(productorAntiguo!=null){
+                    repositorioProductor.Modificar(productorAntiguo, productorNuevo);
+                    return $"El productor {productorAntiguo.nombre} {productorAntiguo.apellido} se ha modificado exitosamente.";
+                }                
+                _conexión.Cerrar();
+                return $"El productor {productorAntiguo.cedula} no está registrado.";
+            }
+            catch (Exception e)
+            {
+                return $"Error de la aplicación: {e.Message} ";
+            }
+    }
     }
 
     public class GuardarResponse
@@ -114,6 +132,5 @@ namespace Logica
             Error = true;
             Mensaje = mensaje;
         }
-
-    }
+    }    
 }

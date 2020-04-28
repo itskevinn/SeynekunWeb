@@ -53,6 +53,41 @@ namespace Datos
             return productores;
         }
 
+public Productor BuscarxId(string identificacion)
+        {            
+            SqlDataReader datos;
+            Productor productor = new Productor();
+            using (var comando = _conexión.CreateCommand())
+            {
+                comando.CommandText = "Select * from Productores where Cedula=@Identificacion";
+                comando.Parameters.AddWithValue("@Identificacion", identificacion);
+                datos = comando.ExecuteReader();
+                datos.Read();
+                return MapToProductor(datos);
+
+            }
+            return productor;
+        }
+        public void Modificar(Productor productorAntiguo, Productor productorNuevo){
+            using (var comando = _conexión.CreateCommand())
+            {
+                comando.CommandText = "update Productores set Cedula = @Cedula, Nombre = @Nombre, Apellido = @Apellido, CedulaCafetera = @CedulaCafetera, NombrePredio = @NombrePredio, CodigoFinca = @CodigoFinca, CodigoSica = @CodigoSica, Municipio = @Municipio, Vereda = @Vereda , NumeroTelefono = @NumeroTelefono, AfiliacionSalud = @AfiliacionSalud where Cedula = @CedulaAntigua";
+                comando.Parameters.AddWithValue("@Cedula", productor.Cedula);
+                comando.Parameters.AddWithValue("@Nombre", productor.Nombre);
+                comando.Parameters.AddWithValue("@Apellido", productor.Apellido);
+                comando.Parameters.AddWithValue("@CedulaCafetera", productor.CedulaCafetera);
+                comando.Parameters.AddWithValue("@NombrePredio", productor.NombrePredio);
+                comando.Parameters.AddWithValue("@CodigoFinca", productor.CodigoFinca);
+                comando.Parameters.AddWithValue("@CodigoSica", productor.CodigoSica);
+                comando.Parameters.AddWithValue("@Municipio", productor.Municipio);
+                comando.Parameters.AddWithValue("@Vereda", productor.Vereda);
+                comando.Parameters.AddWithValue("@NumeroTelefono", productor.NumeroTelefono);
+                comando.Parameters.AddWithValue("@AfiliacionSalud", productor.AfiliacionSalud);
+                comando.Parameters.AddWithValue("@CedulaAntigua", productorAntiguo.Cedula);
+                comando.ExecuteNonQuery();                                
+            }
+        }
+
         private Productor MapToProductor(SqlDataReader datos)
         {
             if(!datos.HasRows) return null;

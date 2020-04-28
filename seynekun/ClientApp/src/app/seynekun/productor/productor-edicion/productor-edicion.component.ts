@@ -23,34 +23,49 @@ export class ProductorEdicionComponent implements OnInit {
     this.productor = new Productor();
     this.crearFormulario();
     this.buscar();
-    this.formGroup.setValue(this.productor);
+    this.asignarValores();
   }
   buscar() {
     this.productorService.get(this.identificacion).subscribe(result => {
       this.productor = result;
-      this.productor != null ? this.seEncontro = true : this.seEncontro = false;      
-    }); 
+      this.productor != null ? this.seEncontro = true : this.seEncontro = false;
+    });
+    return this.productor;
   }
   validarMensaje() {
     this.botonPresionado = true;
   }
   crearFormulario() {
+    var productor = new Productor();
+    productor.nombre = this.productor.nombre;
+    productor.apellido = this.productor.apellido;
+    productor.cedula = this.productor.cedula;
+    productor.cedulaCafetera = this.productor.cedulaCafetera;
+    productor.codigoFinca = this.productor.codigoFinca;
+    productor.codigoSica = this.productor.codigoSica;
+    productor.numeroTelefono = this.productor.numeroTelefono;
+    productor.municipio = this.productor.municipio;
+    productor.vereda = this.productor.vereda;
+    productor.afiliacionSalud = this.productor.afiliacionSalud;
+    productor.nombrePredio = this.productor.nombrePredio;
     this.formGroup = this.formBuilder.group({
-      nombre: [this.productor.nombre, Validators.required],
-      apellido: [this.productor.apellido, Validators.required],
-      cedula: [this.productor.cedula, [Validators.required, Validators.minLength(6), Validators.maxLength(11)]],
-      cedulaCafetera: [this.productor.cedulaCafetera, Validators.required],
-      nombrePredio: [this.productor.nombrePredio, Validators.required],
-      codigoFinca: [this.productor.codigoFinca, Validators.required],
-      codigoSica: [this.productor.codigoSica, Validators.required],
-      municipio: [this.productor.municipio, Validators.required],
-      vereda: [this.productor.vereda, Validators.required],
-      numeroTelefono: [this.productor.numeroTelefono, [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.validarNumeroTelefono]],
-      afiliacionSalud: [this.productor.afiliacionSalud, Validators.required],
+      nombre: [productor.nombre, Validators.required],
+      apellido: [productor.apellido, Validators.required],
+      cedula: [productor.cedula, [Validators.required, Validators.minLength(6), Validators.maxLength(11)]],
+      cedulaCafetera: [productor.cedulaCafetera, Validators.required],
+      nombrePredio: [productor.nombrePredio, Validators.required],
+      codigoFinca: [productor.codigoFinca, Validators.required],
+      codigoSica: [productor.codigoSica, Validators.required],
+      municipio: [productor.municipio, Validators.required],
+      vereda: [productor.vereda, Validators.required],
+      numeroTelefono: [productor.numeroTelefono, [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.validarNumeroTelefono]],
+      afiliacionSalud: [productor.afiliacionSalud, Validators.required],
     });
   }
 
-
+  asignarValores() {
+    this.formGroup.setValue(this.buscar());
+  }
   private resetearBoton() {
     let seReseteó;
     this.botonPresionado = false;
@@ -116,10 +131,10 @@ export class ProductorEdicionComponent implements OnInit {
   }
   actualizar() {
     this.productor = this.formGroup.value;
-    //this.productorService.put(this.identificacion, this.productor).subscribe(p => {
-    // if (p != null) {
-    // this.productor = p;
-    //}
-    //});
+    this.productorService.put(this.identificacion, this.productor).subscribe(p => {
+      if (p != null) {
+        this.productor = p;
+      }
+    });
   }
 }

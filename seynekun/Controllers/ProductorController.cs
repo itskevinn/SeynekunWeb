@@ -73,6 +73,18 @@ namespace seynekun.Controllers
             var productorViewModel = new ProductorViewModel(productor);
             return productorViewModel;
         }
+[HttpPut("{identificacion}")]
+ public ActionResult<string> Put(Productor productor, string identificacion)
+        {
+            var id= servicioProductor.BuscarxId(identificacion);
+            if(id==null){
+                return BadRequest("Productor no econtrado");
+            }else
+            {
+            var mensaje = servicioProductor.Modificar(identificacion,productor);
+            return Ok(mensaje);
+            }                       
+        }
 
     }
 }

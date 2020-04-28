@@ -9,79 +9,70 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="p-5">
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-primary shadow h-100 py-2">
-                    <div *ngIf="seEncontro">
-                      <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General
-                            </div>
-                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{productor.cedula}}</div>
-                            <div class="h5 mb-0 font-weight-normal text-gray-800">{{productor.nombre}}</div>
-                            <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.apellido}}</div>
-                            <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.cedulaCafetera}}</div>
-                          </div>
-                          <div class="col-auto">
-                            <i class="fas fa-id-card fa-2x text-gray-300"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-success shadow h-100 py-2">
+                <div class="card border-left-primary mb-4">                  
                     <div class="card-body">
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información del Predio
+                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General
                           </div>
-                          <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.nombrePredio}}</a>
-                          <div class="h4 mb-0 font-weight-ligth text-gray-800">{{productor.municipio}}</div>
-                          <div class="h3 mb-0 font-weight-normal text-gray-800">{{productor.vereda}}</div>
-                          <div class="h4 mb-0 font-weight-light text-gray-800">{{productor.codigoFinca}}</div>
-                          <div class="h4 mb-0 font-weight-light text-gray-800">{{productor.codigoSica}}</div>
+                          <div class="h2 mb-0 font-weight-bold text-gray-800">{{productor.cedula}}</div>
+                          <div class="h5 mb-0 font-weight-normal text-gray-800">{{productor.nombre}}</div>
+                          <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.apellido}}</div>
+                          <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.cedulaCafetera}}</div>
                         </div>
                         <div class="col-auto">
-                          <i class="fas fa-map fa-2x text-gray-300"></i>
+                          <i class="fas fa-id-card fa-2x text-gray-300"></i>
                         </div>
+                      </div>
+                    </div>                  
+                </div>
+                <div class="card border-left-success mb-4">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Información del Predio
+                        </div>
+                        <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.nombrePredio}}</a>
+                        <div class="h4 mb-0 font-weight-ligth text-gray-800">{{productor.municipio}}</div>
+                        <div class="h3 mb-0 font-weight-normal text-gray-800">{{productor.vereda}}</div>
+                        <div class="h4 mb-0 font-weight-light text-gray-800">{{productor.codigoFinca}}</div>
+                        <div class="h4 mb-0 font-weight-light text-gray-800">{{productor.codigoSica}}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-map fa-2x text-gray-300"></i>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Información de Contacto
-                          </div>
-                          <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.numeroTelefono}}</a>
+                <div class="card border-left-info mb-4">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Información de Contacto
                         </div>
-                        <div class="col-auto">
-                          <i class="fas fa-phone fa-2x text-gray-300"></i>
-                        </div>
+                        <a class="h4 mb-0 font-weight-bold text-gray-800"> {{productor.numeroTelefono}}</a>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-phone fa-2x text-gray-300"></i>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-                  <div class="card border-left-danger shadow h-100 py-2">
-                    <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Información de Salud
-                          </div>
-                          <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.afiliacionSalud}}</a>
+                <div class="card border-left-danger mb-4">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Información de Salud
                         </div>
-                        <div class="col-auto">
-                          <i class="fas fa-first-aid fa-2x text-gray-300"></i>
-                        </div>
+                        <a class="h2 mb-0 font-weight-bold text-gray-800"> {{productor.afiliacionSalud}}</a>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-first-aid fa-2x text-gray-300"></i>
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
             <div class="col-lg-6">
@@ -253,7 +244,7 @@
                           <i class="fas fa-fw fa-check titulo-verde"></i>
                         </span>
                         <div>
-                          <p class="titulo-verde"> <strong>Productor Registrado</strong></p>
+                          <p class="titulo-verde"> <strong>Productor Editado</strong></p>
                         </div>
                       </div>
                     </div>

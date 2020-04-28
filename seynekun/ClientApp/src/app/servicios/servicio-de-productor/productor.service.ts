@@ -40,4 +40,12 @@ export class ProductorService {
         catchError(this.handleErrorService.handleError<Productor>("Consulta x id", null))
       );
   }
+  put(identificacion: string, productor: Productor): Observable<Productor> {
+    const url = `${this.baseUrl} + api/Productor/${identificacion}`;
+      return this.http.put<Productor>(url,productor)
+      .pipe(
+        tap(_ => this.handleErrorService.log('Datos enviados y recibidos')),
+        catchError(this.handleErrorService.handleError<Productor>("Actualizar", null))
+      );
+  }
 } 
