@@ -64,7 +64,6 @@ public Productor BuscarxId(string identificacion)
                 datos = comando.ExecuteReader();
                 datos.Read();
                 return MapToProductor(datos);
-
             }
             return productor;
         }
@@ -72,17 +71,17 @@ public Productor BuscarxId(string identificacion)
             using (var comando = _conexión.CreateCommand())
             {
                 comando.CommandText = "update Productores set Cedula = @Cedula, Nombre = @Nombre, Apellido = @Apellido, CedulaCafetera = @CedulaCafetera, NombrePredio = @NombrePredio, CodigoFinca = @CodigoFinca, CodigoSica = @CodigoSica, Municipio = @Municipio, Vereda = @Vereda , NumeroTelefono = @NumeroTelefono, AfiliacionSalud = @AfiliacionSalud where Cedula = @CedulaAntigua";
-                comando.Parameters.AddWithValue("@Cedula", productor.Cedula);
-                comando.Parameters.AddWithValue("@Nombre", productor.Nombre);
-                comando.Parameters.AddWithValue("@Apellido", productor.Apellido);
-                comando.Parameters.AddWithValue("@CedulaCafetera", productor.CedulaCafetera);
-                comando.Parameters.AddWithValue("@NombrePredio", productor.NombrePredio);
-                comando.Parameters.AddWithValue("@CodigoFinca", productor.CodigoFinca);
-                comando.Parameters.AddWithValue("@CodigoSica", productor.CodigoSica);
-                comando.Parameters.AddWithValue("@Municipio", productor.Municipio);
-                comando.Parameters.AddWithValue("@Vereda", productor.Vereda);
-                comando.Parameters.AddWithValue("@NumeroTelefono", productor.NumeroTelefono);
-                comando.Parameters.AddWithValue("@AfiliacionSalud", productor.AfiliacionSalud);
+                comando.Parameters.AddWithValue("@Cedula", productorNuevo.Cedula);
+                comando.Parameters.AddWithValue("@Nombre", productorNuevo.Nombre);
+                comando.Parameters.AddWithValue("@Apellido", productorNuevo.Apellido);
+                comando.Parameters.AddWithValue("@CedulaCafetera", productorNuevo.CedulaCafetera);
+                comando.Parameters.AddWithValue("@NombrePredio", productorNuevo.NombrePredio);
+                comando.Parameters.AddWithValue("@CodigoFinca", productorNuevo.CodigoFinca);
+                comando.Parameters.AddWithValue("@CodigoSica", productorNuevo.CodigoSica);
+                comando.Parameters.AddWithValue("@Municipio", productorNuevo.Municipio);
+                comando.Parameters.AddWithValue("@Vereda", productorNuevo.Vereda);
+                comando.Parameters.AddWithValue("@NumeroTelefono", productorNuevo.NumeroTelefono);
+                comando.Parameters.AddWithValue("@AfiliacionSalud", productorNuevo.AfiliacionSalud);
                 comando.Parameters.AddWithValue("@CedulaAntigua", productorAntiguo.Cedula);
                 comando.ExecuteNonQuery();                                
             }

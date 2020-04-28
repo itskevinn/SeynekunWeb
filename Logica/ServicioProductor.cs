@@ -58,18 +58,18 @@ namespace Logica
                 return new BuscarxIdResponse(e.Message);
             }
     }
-    public ModificarResponse Modificar(string identificacion, Productor productorNuevo)
+    public string Modificar(string identificacion, Productor productorNuevo)
     {
          try
             {
                 _conexión.Abrir();
-                var productorAntiguo = repositorioProductor.BuscarxId(identificacion);
+                Productor productorAntiguo = repositorioProductor.BuscarxId(identificacion);
                 if(productorAntiguo!=null){
                     repositorioProductor.Modificar(productorAntiguo, productorNuevo);
-                    return $"El productor {productorAntiguo.nombre} {productorAntiguo.apellido} se ha modificado exitosamente.";
+                    return $"El productor {productorAntiguo.Nombre} {productorAntiguo.Apellido} se ha modificado exitosamente.";
                 }                
                 _conexión.Cerrar();
-                return $"El productor {productorAntiguo.cedula} no está registrado.";
+                return $"El productor {productorAntiguo.Cedula} no está registrado.";
             }
             catch (Exception e)
             {
