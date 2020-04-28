@@ -18,8 +18,7 @@ export class ProductorVistaComponent implements OnInit {
     const identificacion = this.rutaActiva.snapshot.params.id;
     this.productorService.get(identificacion).subscribe(result => {
       this.productor = result;
-      this.productor != null ? this.seEncontro = true : this.seEncontro = false;
-      alert(this.productor.cedula);
+      this.productor != null ? this.seEncontro = true : this.seEncontro = false;      
     });
   }
 }
