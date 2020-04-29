@@ -20,3 +20,8 @@ C:\Users\Kevin\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.0\datos
 C:\Users\Kevin\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.0\datos.csproj.CopyComplete
 C:\Users\Kevin\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.0\datos.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.0\datos.pdb
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.csprojAssemblyReference.cache
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.AssemblyInfoInputs.cache
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.AssemblyInfo.cs
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.dll
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.pdb

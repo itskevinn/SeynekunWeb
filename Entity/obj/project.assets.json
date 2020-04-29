@@ -185,21 +185,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+      "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj",
       "projectName": "Entity",
-      "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+      "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj",
       "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunWeb\\Entity\\obj\\",
+      "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

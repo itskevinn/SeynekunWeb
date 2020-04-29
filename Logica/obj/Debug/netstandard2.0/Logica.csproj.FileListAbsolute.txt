@@ -24,3 +24,5 @@ C:\Users\Kevin\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.0\Logi
 C:\Users\Kevin\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.0\Logica.csproj.CopyComplete
 C:\Users\Kevin\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.0\Logica.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.0\Logica.pdb
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Logica.dll
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Logica.pdb
