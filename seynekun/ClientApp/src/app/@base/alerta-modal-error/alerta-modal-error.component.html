@@ -1,0 +1,28 @@
+<div class="modal fade show" id="informeOk" tabindex="-1" role="dialog" aria-labelledby="acciónRealizada"
+  aria-modal="true" style="padding-right: 17px; display: block;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="text-center separarArriba2">
+        <button class="close" type="button" (click)="activeModal.close('Close click')" data-dismiss="modal"
+        aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+        <span>
+          <i class="fas fa-fw fa-times titulo-rojo"></i>
+        </span>
+        <div>
+          <p class="titulo-rojo"> <strong>Ha ocurrido un error</strong> </p>
+        </div>    
+        <hr>    
+      </div>                 
+      <div class="modal-body text-center">
+        <span [innerHTML]="mensaje"></span>
+      </div>      
+      <div class="separarAbajo text-center">
+        <hr>
+        <button class="btn btn-light" type="button" (click)="activeModal.close('Close click')"
+          data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

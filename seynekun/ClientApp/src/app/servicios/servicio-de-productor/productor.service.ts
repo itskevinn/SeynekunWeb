@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HandleHttpErrorService } from '../@base/handle-http-error.service';
+import { HandleHttpErrorService } from '../../@base/handle-http-error.service';
 import { Observable, from } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Productor } from 'src/app/seynekun/models/modelo-productor/productor';

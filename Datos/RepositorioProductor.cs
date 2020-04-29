@@ -65,7 +65,6 @@ public Productor BuscarxId(string identificacion)
                 datos.Read();
                 return MapToProductor(datos);
             }
-            return productor;
         }
         public void Modificar(Productor productorAntiguo, Productor productorNuevo){
             using (var comando = _conexión.CreateCommand())

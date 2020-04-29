@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Lote } from '../../models/modelo-lote/lote';
-import { LoteService } from 'src/app/servicios/servicio-de-lote/lote.service';
+
 
 @Component({
   selector: 'app-lote-consulta',
@@ -9,12 +9,11 @@ import { LoteService } from 'src/app/servicios/servicio-de-lote/lote.service';
 })
 export class LoteConsultaComponent implements OnInit {
   lotes: Lote[];
-  constructor(private loteService: LoteService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.loteService.get().subscribe(result => {
+  /*  this.loteService.get().subscribe(result => {
       this.lotes = result;
-    });
+    });*/
   }
-
 }
