@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Lote } from '../../models/modelo-lote/lote';
-import { LoteService } from 'src/app/servicios/servicio-de-lote/lote.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
@@ -13,7 +12,7 @@ export class LoteRegistroComponent implements OnInit {
   lote: Lote;
   formGroup: FormGroup;
   fechaFloracion = new Date();
-  constructor(private loteService: LoteService, private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.lote = new Lote();
@@ -47,13 +46,13 @@ export class LoteRegistroComponent implements OnInit {
   }
   validar(){
     if(!this.formGroup.invalid){
-      this.registrar();
+     // this.registrar();
     }
   }
   get control() {
     return this.formGroup.controls;
   }
-  registrar() {
+  /*registrar() {
     this.lote=this.formGroup.value;
     this.loteService.post(this.lote).subscribe(l => {
       if (l != null) {
@@ -61,5 +60,5 @@ export class LoteRegistroComponent implements OnInit {
         this.lote = l;
       }
     });
-  }
+  }*/
 }

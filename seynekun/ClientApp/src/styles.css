@@ -2572,7 +2572,9 @@ fieldset:disabled a.btn {
 .separarArriba {
   padding-top: 0.5em;
 }
-
+.separarArriba2 {
+  padding-top: 1em;
+}
 .separarAbajo {
   padding-bottom: 1em;
 }
@@ -5559,7 +5561,7 @@ a.badge-dark.focus {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #4e73df;
+  background-color: #0f6848;
   transition: width 0.6s ease;
 }
 
@@ -6127,12 +6129,11 @@ a.close.disabled {
 
 .modal-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center !important;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #e3e6f0;
-  border-top-left-radius: 0.3rem;
-  border-top-right-radius: 0.3rem;
+  border-bottom: 1px solid #e3e6f0; 
 }
 
 .modal-header .close {
