@@ -15,11 +15,6 @@ namespace seynekun.Models
 
     public class ProductorViewModel : ProductorInputModel
     {
-        public ProductorViewModel()
-        {
-            
-        }
-
         public ProductorViewModel(Productor productor)
         {
             Cedula = productor.Cedula;

@@ -19,24 +19,6 @@ export class EmpleadoConsultaComponent implements OnInit {
   ngOnInit(): void {
     this.empleadoService.gets().subscribe(result => {
       this.empleados = result;
-      this.empleados = [{
-        nombre: "Kevin",
-        apellido: "Pontón",
-        numeroTelefono: "3213213214",
-        cedula: "119322",
-        email: "keviinpn2@gmail.com",
-        estado: "Activo",
-        cargo: "Auxiliar de Planta"
-      },
-      {
-        nombre: "Moises",
-        apellido: "Villadiegos",
-        numeroTelefono: "3223213214",
-        cedula: "0999",
-        email: "moises@gmail.com",
-        estado: "Inhabilitado",
-        cargo: "Secretario"
-      }]
     });
   }
   validarTamañoLista() {
@@ -48,5 +30,4 @@ export class EmpleadoConsultaComponent implements OnInit {
   contarEmpleados() {
     this.cantidadEmpleados = this.empleados.length;
   }
-
 }

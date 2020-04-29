@@ -53,20 +53,19 @@ namespace Datos
             return productores;
         }
 
-public Productor BuscarxId(string identificacion)
-        {            
-            SqlDataReader datos;
+        public Productor BuscarxId(string identificacion)
+        {
             Productor productor = new Productor();
             using (var comando = _conexión.CreateCommand())
             {
                 comando.CommandText = "Select * from Productores where Cedula=@Identificacion";
                 comando.Parameters.AddWithValue("@Identificacion", identificacion);
-                datos = comando.ExecuteReader();
+                var datos = comando.ExecuteReader();
                 datos.Read();
                 return MapToProductor(datos);
             }
-            return productor;
         }
+        
         public void Modificar(Productor productorAntiguo, Productor productorNuevo){
             using (var comando = _conexión.CreateCommand())
             {

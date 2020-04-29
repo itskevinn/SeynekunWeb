@@ -37,7 +37,7 @@ namespace seynekun.Controllers
             {
                 return BadRequest(response.Mensaje);
             }
-            return Ok(response.productor);
+            return Ok(response.objeto);
         }
 
         private Productor MapToProductor(ProductorInputModel productorInputModel)
@@ -62,7 +62,7 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<ProductorViewModel> Gets()
         {
-            var response = servicioProductor.Consultar().productores.Select(p=> new ProductorViewModel(p));
+            var response = servicioProductor.Consultar().objetos.Select(p=> new ProductorViewModel(p));
             return response;
         }
 

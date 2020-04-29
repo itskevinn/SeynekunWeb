@@ -9,6 +9,7 @@ namespace Logica
     {
         private readonly GestionadorDeConexión _conexión;
         private readonly RepositorioProductor repositorioProductor;
+
         public ServicioProductor(string cadenaDeConexión)
         {
             _conexión = new GestionadorDeConexión(cadenaDeConexión);
@@ -44,9 +45,10 @@ namespace Logica
                 return new ConsultarResponse(e.Message);
             }
         }
+
         public BuscarxIdResponse BuscarxId(string identificacion)
-    {
-         try
+        {
+            try
             {
                 _conexión.Abrir();
                 Productor productor = repositorioProductor.BuscarxId(identificacion);
@@ -57,17 +59,18 @@ namespace Logica
             {
                 return new BuscarxIdResponse(e.Message);
             }
-    }
-    public string Modificar(string identificacion, Productor productorNuevo)
-    {
-         try
+        }
+
+        public string Modificar(string identificacion, Productor productorNuevo)
+        {
+            try
             {
                 _conexión.Abrir();
                 Productor productorAntiguo = repositorioProductor.BuscarxId(identificacion);
-                if(productorAntiguo!=null){
-                    repositorioProductor.Modificar(productorAntiguo, productorNuevo);
-                    return $"El productor {productorAntiguo.Nombre} {productorAntiguo.Apellido} se ha modificado exitosamente.";
-                }                
+                    if(productorAntiguo!=null){
+                        repositorioProductor.Modificar(productorAntiguo, productorNuevo);
+                        return $"El productor {productorAntiguo.Nombre} {productorAntiguo.Apellido} se ha modificado exitosamente.";
+                    }                
                 _conexión.Cerrar();
                 return $"El productor {productorAntiguo.Cedula} no está registrado.";
             }
@@ -75,19 +78,19 @@ namespace Logica
             {
                 return $"Error de la aplicación: {e.Message} ";
             }
-    }
+        }
     }
 
     public class GuardarResponse
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public Productor productor { get; set; }
-
-        public GuardarResponse(Productor productor)
+        public Object objeto { get; set; }
+        
+        public GuardarResponse(Object objeto)
         {
             Error = false;
-            this.productor = productor;
+            this.objeto = objeto;
         }
 
         public GuardarResponse(string mensaje)
@@ -101,12 +104,13 @@ namespace Logica
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public List<Productor> productores;
+        public List<Productor> objetos;
 
-        public ConsultarResponse(List<Productor> productores)
+        public ConsultarResponse(List<Productor> objetos)
         {
             Error = false;
-            this.productores = productores;
+            this.objetos = objetos;
+            
         }
 
         public ConsultarResponse(string mensaje)
@@ -114,7 +118,8 @@ namespace Logica
             Error = true;
             Mensaje = mensaje;
         }
-    }    
+    }
+    
     public class BuscarxIdResponse
     {
         public bool Error { get; set; }
