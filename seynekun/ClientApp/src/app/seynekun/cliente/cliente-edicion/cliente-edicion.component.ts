@@ -155,6 +155,7 @@ export class ClienteEdicionComponent implements OnInit {
     return this.formGroup.controls
   }
   actualizar() {
+
     this.cliente = this.formGroup.value
     this.clienteService
       .put(this.identificacion, this.cliente)
@@ -163,6 +164,7 @@ export class ClienteEdicionComponent implements OnInit {
           const messageBox = this.modalService.open(AlertaModalOkComponent)
           messageBox.componentInstance.titulo = 'Cliente Editado'
           this.cliente = c
+          this.formGroup.reset();
         } else {
           const messageBox = this.modalService.open(AlertaModalErrorComponent)
           messageBox.componentInstance.titulo = 'Ha ocurrido un error'

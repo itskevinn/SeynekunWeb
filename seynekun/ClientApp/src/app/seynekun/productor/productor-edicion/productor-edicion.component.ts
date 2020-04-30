@@ -194,6 +194,7 @@ export class ProductorEdicionComponent implements OnInit {
           const messageBox = this.modalService.open(AlertaModalOkComponent)
           messageBox.componentInstance.titulo = 'Productor editado'
           this.productor = p
+          this.formGroup.reset();
         } else {
           const messageBox = this.modalService.open(AlertaModalErrorComponent)
           messageBox.componentInstance.titulo = 'Ha ocurrido un error'

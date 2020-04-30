@@ -150,6 +150,7 @@ export class EmpleadoRegistroComponent implements OnInit {
         const messageBox = this.modalService.open(AlertaModalOkComponent)
         messageBox.componentInstance.titulo = 'Empleado Registrado'
         this.empleado = e
+        this.formGroup.reset();
       } else {
         const messageBox = this.modalService.open(AlertaModalErrorComponent)
         messageBox.componentInstance.titulo = 'Ha ocurrido un error'
