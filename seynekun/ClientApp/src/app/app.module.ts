@@ -41,13 +41,12 @@ import { ReporteInventarioComponent } from './seynekun/inventario/reporte-invent
 import { ProductoVistaComponent } from './seynekun/inventario/producto/producto-vista/producto-vista.component'
 import { ReporteInventarioService } from './servicios/servicio-de-reporte-inventario/reporte-inventario.service'
 import { ProductoService } from './servicios/servicio-de-producto/producto.service'
-import { ControlesService } from './servicios/servicio-de-controles/controles.service';
-import { AjusteInventarioComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario/ajuste-inventario.component';
-import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consultar/ajuste-inventario-consulta/ajuste-inventario-consulta.component';
-import { RegistroAjusteInventarioComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/registro-ajuste-inventario/registro-ajuste-inventario.component';
-import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component';
-import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component';
+import { ControlesService } from './servicios/servicio-de-controles/controles.service'
+
+import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
+import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
+import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component'
 
 @NgModule({
   declarations: [
@@ -79,10 +78,8 @@ import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-i
     ProductoRegistroComponent,
     ProductoVistaComponent,
     ProductoConsultaComponent,
-    ReporteInventarioComponent,
-    AjusteInventarioComponent,
-    AjusteInventarioConsultaComponent,
-    RegistroAjusteInventarioComponent,
+    ReporteInventarioComponent,    
+    AjusteInventarioConsultaComponent,    
     AjusteInventarioRegistroComponent,
     AjusteInventarioVistaComponent,
     AjusteInventarioEdicionComponent,

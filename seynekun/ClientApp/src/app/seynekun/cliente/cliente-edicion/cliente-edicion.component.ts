@@ -21,7 +21,7 @@ export class ClienteEdicionComponent implements OnInit {
   cliente: Cliente
   formGroup: FormGroup
   idTipos: string[]
-  seEncontro: Boolean
+  seEncontro: boolean
   departamentos: string[]
   municipios: string[]
   identificacion = this.rutaActiva.snapshot.params.id

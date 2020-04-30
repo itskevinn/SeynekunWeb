@@ -19,11 +19,12 @@ import { ProductoConsultaComponent } from './seynekun/inventario/producto/produc
 import { ProductoEdicionComponent } from './seynekun/inventario/producto/producto-edicion/producto-edicion.component'
 import { ProductoRegistroComponent } from './seynekun/inventario/producto/producto-registro/producto-registro.component'
 import { ProductoVistaComponent } from './seynekun/inventario/producto/producto-vista/producto-vista.component'
-import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
+
 import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component'
 import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
+import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
 
 const routes: Routes = [
   {
