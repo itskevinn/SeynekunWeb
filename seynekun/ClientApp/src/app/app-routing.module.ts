@@ -20,6 +20,10 @@ import { ProductoEdicionComponent } from './seynekun/inventario/producto/product
 import { ProductoRegistroComponent } from './seynekun/inventario/producto/producto-registro/producto-registro.component'
 import { ProductoVistaComponent } from './seynekun/inventario/producto/producto-vista/producto-vista.component'
 import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
+import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component'
+import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
+import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
+import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
 
 const routes: Routes = [
   {
@@ -46,7 +50,12 @@ const routes: Routes = [
   { path: 'Producto/:id', component: ProductoVistaComponent },
   { path: 'EditarProducto/:id', component: ProductoEdicionComponent },
   { path: 'RegistrarProducto', component: ProductoRegistroComponent },
-  { path: 'ValorInventario', component: ReporteInventarioComponent },
+  { path: 'Reporte-De-Inventario', component: ReporteInventarioComponent },  
+  { path: 'Ajustes-De-Inventario', component: AjusteInventarioConsultaComponent },  
+  { path: 'Ajuste-De-Inventario/:id', component: AjusteInventarioVistaComponent },  
+  { path: 'Editar-Ajuste-De-Inventario/:id', component: AjusteInventarioEdicionComponent },  
+  { path: 'Añadir-Ajuste-De-Inventario', component: AjusteInventarioRegistroComponent },  
+
 ]
 
 @NgModule({

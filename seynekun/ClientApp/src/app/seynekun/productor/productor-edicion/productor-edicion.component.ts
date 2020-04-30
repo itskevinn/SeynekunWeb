@@ -198,7 +198,7 @@ export class ProductorEdicionComponent implements OnInit {
           const messageBox = this.modalService.open(AlertaModalErrorComponent)
           messageBox.componentInstance.titulo = 'Ha ocurrido un error'
           messageBox.componentInstance.mensaje =
-            'No se ha podido registrar al cliente'
+            'No se ha podido editar al productor'
         }
       })
   }
