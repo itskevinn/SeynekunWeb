@@ -4,20 +4,20 @@
     <div class="modal-content">
       <div class="text-center separarArriba2">
         <button class="close" type="button" (click)="activeModal.close('Close click')" data-dismiss="modal"
-        aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
+          aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
         <span>
-          <i class="fas fa-fw fa-exclamation titulo-rojo"></i>
+          <i class="fas fa-fw fa-question titulo-rojo"></i>
         </span>
         <div>
-          <p class="titulo-rojo"> <strong>Ha ocurrido un error</strong> </p>
-        </div>    
-        <hr>    
-      </div>                 
+          <p class="titulo-rojo"> <strong> {{titulo}} </strong> </p>
+        </div>
+        <hr>
+      </div>
       <div class="modal-body text-center">
         <span [innerHTML]="mensaje"></span>
-      </div>      
+      </div>
       <div class="separarAbajo text-center">
         <hr>
         <button class="btn btn-light" type="button" (click)="activeModal.close('Close click')"

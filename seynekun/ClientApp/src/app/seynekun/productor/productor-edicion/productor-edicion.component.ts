@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router'
 import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component'
 import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { AlertaModalPreguntaComponent } from 'src/app/@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component'
 
 @Component({
   selector: 'app-productor-edicion',
@@ -194,7 +195,7 @@ export class ProductorEdicionComponent implements OnInit {
           const messageBox = this.modalService.open(AlertaModalOkComponent)
           messageBox.componentInstance.titulo = 'Productor editado'
           this.productor = p
-          this.formGroup.reset();
+          this.formGroup.reset()
         } else {
           const messageBox = this.modalService.open(AlertaModalErrorComponent)
           messageBox.componentInstance.titulo = 'Ha ocurrido un error'
@@ -202,5 +203,34 @@ export class ProductorEdicionComponent implements OnInit {
             'No se ha podido editar al productor'
         }
       })
+  }
+  eliminar() {
+    this.productor = this.formGroup.value
+    const estado = 'Eliminado'
+    const messageBox = this.modalService.open(AlertaModalPreguntaComponent)
+    messageBox.componentInstance.titulo =
+      '¿Desea eliminar este productor?'
+    messageBox.componentInstance.mensaje = 'Esta acción no es reversible'
+    messageBox.result.then((result) => {
+      if (result) {
+        this.productorService
+          .delete(this.identificacion)
+          .subscribe((p) => {
+            if (p != null) {
+              const messageBox = this.modalService.open(AlertaModalOkComponent)
+              messageBox.componentInstance.titulo = 'Productor eliminado'
+              this.productor = null
+              this.formGroup.reset()
+            } else {
+              const messageBox = this.modalService.open(
+                AlertaModalErrorComponent,
+              )
+              messageBox.componentInstance.titulo = 'Ha ocurrido un error'
+              messageBox.componentInstance.mensaje =
+                'No se ha podido eliminar al productor'
+            }
+          })
+      }
+    })
   }
 }

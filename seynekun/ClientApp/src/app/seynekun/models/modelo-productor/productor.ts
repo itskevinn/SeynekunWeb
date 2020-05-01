@@ -10,4 +10,5 @@ export class Productor {
     vereda: string;
     numeroTelefono: string;
     afiliacionSalud: string;
+    estado: string;
 }

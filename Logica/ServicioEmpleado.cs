@@ -16,18 +16,18 @@ namespace Logica
             repositorioEmpleado = new RepositorioEmpleado(_conexión);
         }
 
-        public GuardarResponse Guardar(Empleado empleado)
+        public GuardarEmpleadoResponse Guardar(Empleado empleado)
         {
             try
             {
                 _conexión.Abrir();
                 repositorioEmpleado.Guardar(empleado);
                 _conexión.Cerrar();
-                return new GuardarResponse(empleado);
+                return new GuardarEmpleadoResponse(empleado);
             }
             catch (Exception e)
             {
-                return new GuardarResponse(e.Message);
+                return new GuardarEmpleadoResponse(e.Message);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Logica
         {
             Error = false;
             this.objetos = objetos;
-            
+
         }
 
         public ConsultarEmpleadoResponse(string mensaje)
@@ -66,5 +66,22 @@ namespace Logica
             Mensaje = mensaje;
         }
     }
+    public class GuardarEmpleadoResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Empleado Empleado { get; set; }
+        public GuardarEmpleadoResponse(Empleado empleado)
+        {
+            Error = false;
+            Empleado = empleado;
+        }
+        public GuardarEmpleadoResponse(string mensaje)
+        {
+            Mensaje = mensaje;
+            Error = true;
+        }
+    }
 
 }
+

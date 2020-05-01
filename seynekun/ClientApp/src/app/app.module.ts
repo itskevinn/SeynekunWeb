@@ -46,7 +46,8 @@ import { ControlesService } from './servicios/servicio-de-controles/controles.se
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
 import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
-import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component'
+import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component';
+import { AlertaModalPreguntaComponent } from './@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component'
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-
     AjusteInventarioRegistroComponent,
     AjusteInventarioVistaComponent,
     AjusteInventarioEdicionComponent,
+    AlertaModalPreguntaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

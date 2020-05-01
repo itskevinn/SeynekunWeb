@@ -9,8 +9,7 @@ import { Productor } from '../../models/modelo-productor/productor';
 })
 export class ProductorConsultaComponent implements OnInit {
   productores: Productor[];
-  productor: Productor;
-  tieneDatos: boolean;
+  productor: Productor;  
   cantidadProductores: Number;
   textoABuscar: String;
   constructor(private productorService: ProductorService) { }
@@ -18,9 +17,6 @@ export class ProductorConsultaComponent implements OnInit {
   ngOnInit(): void {        
     this.productorService.gets().subscribe(result => {
       this.productores = result;
-    });        
-    if (this.productores.length==0) {
-      this.tieneDatos = false;
-    }
+    });           
   } 
 }

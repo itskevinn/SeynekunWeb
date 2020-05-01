@@ -35,7 +35,7 @@ namespace seynekun.Controllers
             {
                 return BadRequest(response.Mensaje);
             }
-            return Ok(response.objeto);
+            return Ok(response.Empleado);
         }
 
         private Empleado MapToEmpleado(EmpleadoInputModel empleadoInputModel)
