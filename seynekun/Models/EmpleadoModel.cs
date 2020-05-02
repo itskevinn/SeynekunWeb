@@ -13,7 +13,7 @@ namespace seynekun.Models
     {
         public EmpleadoViewModel(Empleado empleado)
         {
-            Identificacion = empleado.Identificacion;
+            Cedula = empleado.Cedula;
             Nombre = empleado.Nombre;
             Apellido = empleado.Apellido;
             NumeroTelefono = empleado.NumeroTelefono;

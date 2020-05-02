@@ -20,7 +20,7 @@ namespace Logica
         {
             try
             {
-                _conexión.Abrir();
+                _conexión.Abrir();                
                 repositorioProductor.Guardar(productor);
                 _conexión.Cerrar();
                 return new GuardarResponse(productor);
@@ -36,7 +36,7 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                List<Productor> productores = repositorioProductor.Consultar().FindAll(p => !p.Estado.Equals("Eliminado"));
+                List<Productor> productores = repositorioProductor.Consultar();
                 _conexión.Cerrar();
                 return new ConsultarResponse(productores);
             }
@@ -61,109 +61,81 @@ namespace Logica
             }
         }
 
-        public string Modificar(Productor productorNuevo)
+        public string Modificar(string identificacion, Productor productorNuevo)
         {
             try
             {
                 _conexión.Abrir();
-                var productorViejo = repositorioProductor.BuscarxId(productorNuevo.Identificacion);
-                if (productorViejo != null)
-                {
-                    repositorioProductor.ModificarEstado(productorViejo.Identificacion, "Modificado");
-                    repositorioProductor.Modificar(productorNuevo);
-                    _conexión.Cerrar();
-                    return ($"El productor {productorNuevo.Nombre} se ha modificado satisfactoriamente.");
-                }
-                else
-                {
-                    return "No se encontró productor con la cédula ingresada";
-                }
-            }
-            catch (Exception e)
-            {
-
-                return $"Error de la Aplicación: {e.Message}";
-            }
-            finally { _conexión.Cerrar(); }
-
-        }
-        public string Eliminar(string identificacion)
-        {
-            try
-            {
-                _conexión.Abrir();
-                Productor productor = repositorioProductor.BuscarxId(identificacion);
-                if (productor != null)
-                {
-                    repositorioProductor.ModificarEstado(identificacion, "Eliminado");
-                    return $"El productor {productor.Nombre} {productor.Apellido} se ha eliminado.";
-                }
+                Productor productorAntiguo = repositorioProductor.BuscarxId(identificacion);
+                    if(productorAntiguo!=null){
+                        repositorioProductor.Modificar(productorAntiguo, productorNuevo);
+                        return $"El productor {productorAntiguo.Nombre} {productorAntiguo.Apellido} se ha modificado exitosamente.";
+                    }                
                 _conexión.Cerrar();
-                return "No se encontró productor con la cédula ingresada";
+                return $"El productor {productorAntiguo.Cedula} no está registrado.";
             }
             catch (Exception e)
             {
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
+    }
 
-
-        public class GuardarResponse
+    public class GuardarResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Object objeto { get; set; }
+        
+        public GuardarResponse(Object objeto)
         {
-            public bool Error { get; set; }
-            public string Mensaje { get; set; }
-            public Object objeto { get; set; }
-
-            public GuardarResponse(Object objeto)
-            {
-                Error = false;
-                this.objeto = objeto;
-            }
-
-            public GuardarResponse(string mensaje)
-            {
-                Error = true;
-                Mensaje = mensaje;
-            }
+            Error = false;
+            this.objeto = objeto;
         }
 
-        public class ConsultarResponse
+        public GuardarResponse(string mensaje)
         {
-            public bool Error { get; set; }
-            public string Mensaje { get; set; }
-            public List<Productor> objetos;
-
-            public ConsultarResponse(List<Productor> objetos)
-            {
-                Error = false;
-                this.objetos = objetos;
-
-            }
-
-            public ConsultarResponse(string mensaje)
-            {
-                Error = true;
-                Mensaje = mensaje;
-            }
-        }
-
-        public class BuscarxIdResponse
-        {
-            public bool Error { get; set; }
-            public string Mensaje { get; set; }
-            public Productor Productor;
-
-            public BuscarxIdResponse(Productor productor)
-            {
-                Error = false;
-                this.Productor = productor;
-            }
-
-            public BuscarxIdResponse(string mensaje)
-            {
-                Error = true;
-                Mensaje = mensaje;
-            }
+            Error = true;
+            Mensaje = mensaje;
         }
     }
+
+    public class ConsultarResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public List<Productor> objetos;
+
+        public ConsultarResponse(List<Productor> objetos)
+        {
+            Error = false;
+            this.objetos = objetos;
+            
+        }
+
+        public ConsultarResponse(string mensaje)
+        {
+            Error = true;
+            Mensaje = mensaje;
+        }
+    }
+    
+    public class BuscarxIdResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Productor Productor;
+
+        public BuscarxIdResponse(Productor productor)
+        {
+            Error = false;
+            this.Productor = productor;
+        }
+
+        public BuscarxIdResponse(string mensaje)
+        {
+            Error = true;
+            Mensaje = mensaje;
+        }
+    }    
 }
