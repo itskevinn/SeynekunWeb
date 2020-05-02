@@ -3,3 +3,15 @@
 *.cache
 *.dll
 *.dll
+Logica/bin/Debug/netstandard2.0/datos.dll
+Logica/bin/Debug/netstandard2.0/datos.dll
+Logica/bin/Debug/netstandard2.0/datos.pdb
+Logica/bin/Debug/netstandard2.0/Entity.pdb
+Logica/bin/Debug/netstandard2.0/Entity.dll
+Logica/obj/Logica.csproj.nuget.dgspec.json
+Logica/obj/Debug/netstandard2.0/Logica.pdb
+Logica/obj/Debug/netstandard2.0/Logica.csprojAssemblyReference.cache
+Logica/obj/Debug/netstandard2.0/Logica.assets.cache
+Logica/obj/Logica.csproj.nuget.g.props
+Logica/obj/Logica.csproj.nuget.dgspec.json
+Logica/obj/Debug/netstandard2.0/Logica.pdb
