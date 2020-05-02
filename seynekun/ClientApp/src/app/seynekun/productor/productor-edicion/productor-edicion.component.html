@@ -221,42 +221,13 @@
                       </div>
                     </div>
                     <br>
-                    <button (click)="onSubmit()" (click)="validarMensaje()" class="btn btn-success btn-user btn-block">
+                    <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
                       Editar Productor
-                    </button>
-                    <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn">
-                      Limpiar
-                    </button>
-                    <button class=" btn btn-danger btn-user btn-block" id="eliminarBtn">
+                    </button>                    
+                    <button (click)="eliminar()" class=" btn btn-danger btn-user btn-block" id="eliminarBtn">
                       Eliminar
                     </button>
                     <hr>
-                    <div *ngIf=" formGroup.invalid && botonPresionado">
-                      <div class="text-center">
-                        <span>
-                          <i class="fas fa-fw fa-times titulo-rojo"></i>
-                        </span>
-                        <div>
-                          <p class="titulo-rojo"> <strong>Información inválida</strong> </p>
-                          <ul>
-                            <li> Puede que haya algún campo vacío</li>
-                            <li> Puede que algún número no sea válido</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div *ngIf="botonPresionado">
-                      <div *ngIf="formGroup.valid && botonPresionado">
-                        <div class="text-center">
-                          <span>
-                            <i class="fas fa-fw fa-check titulo-verde"></i>
-                          </span>
-                          <div>
-                            <p class="titulo-verde"> <strong>Productor Editado</strong></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </form>
                 </div>
               </div>

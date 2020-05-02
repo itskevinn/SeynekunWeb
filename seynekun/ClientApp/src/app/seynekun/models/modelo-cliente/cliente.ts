@@ -8,6 +8,7 @@ export class Cliente {
     municipio: string;
     barrio: string;
     email: string;
+    estado: string;
     numeroTelefono: string;
     numeroTelefono2: string;    
 }

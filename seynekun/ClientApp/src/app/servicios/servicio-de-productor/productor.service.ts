@@ -1,51 +1,72 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HandleHttpErrorService } from '../../@base/handle-http-error.service';
-import { Observable, from } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
-import { Productor } from 'src/app/seynekun/models/modelo-productor/productor';
+import { Injectable, Inject } from '@angular/core'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HandleHttpErrorService } from '../../@base/handle-http-error.service'
+import { Observable, from } from 'rxjs'
+import { tap, catchError } from 'rxjs/operators'
+import { Productor } from 'src/app/seynekun/models/modelo-productor/productor'
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+}
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductorService {
-  baseUrl: string;
+  baseUrl: string
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string,
-    private handleErrorService: HandleHttpErrorService) {
-    this.baseUrl = baseUrl;
+    private handleErrorService: HandleHttpErrorService,
+  ) {
+    this.baseUrl = baseUrl
   }
   gets(): Observable<Productor[]> {
-    return this.http.get<Productor[]>(this.baseUrl + 'api/Productor')
-      .pipe(
-        tap(_ => this.handleErrorService.log('Datos traídos')),
-        catchError(this.handleErrorService.handleError<Productor[]>("Consulta de prodcutores", null))
-      );
+    return this.http.get<Productor[]>(this.baseUrl + 'api/Productor').pipe(
+      tap((_) => this.handleErrorService.log('Datos traídos')),
+      catchError(
+        this.handleErrorService.handleError<Productor[]>(
+          'Consulta de prodcutores',
+          null,
+        ),
+      ),
+    )
+  }
+  delete(productor: Productor| string): Observable<string> {
+    const id = typeof productor === 'string' ? productor : productor.cedula;
+    return this.http.delete<string>(this.baseUrl + 'api/productor/'+ id)
+    .pipe(
+      tap(_ => this.handleErrorService.log('datos enviados')),
+      catchError(this.handleErrorService.handleError<string>('Elimiar Persona', null))
+    );
   }
   post(productor: Productor): Observable<Productor> {
-    return this.http.post<Productor>(this.baseUrl + 'api/Productor', productor)
+    return this.http
+      .post<Productor>(this.baseUrl + 'api/Productor', productor)
       .pipe(
-        tap(_ => this.handleErrorService.log('Datos enviados')),
-        catchError(this.handleErrorService.handleError<Productor>("Registro del prodcutor", null))
-      );
+        tap((_) => this.handleErrorService.log('Datos enviados')),
+        catchError(
+          this.handleErrorService.handleError<Productor>(
+            'Registro del prodcutor',
+            null,
+          ),
+        ),
+      )
   }
   get(identificacion: string): Observable<Productor> {
-    const url = `${this.baseUrl + 'api/Productor'}/${identificacion}`;
-      return this.http.get<Productor>(url,httpOptions)
-      .pipe(
-        tap(_ => this.handleErrorService.log('Datos enviados y recibidos')),
-        catchError(this.handleErrorService.handleError<Productor>("Consulta x id", null))
-      );
+    const url = `${this.baseUrl + 'api/Productor'}/${identificacion}`
+    return this.http.get<Productor>(url, httpOptions).pipe(
+      tap((_) => this.handleErrorService.log('Datos enviados y recibidos')),
+      catchError(
+        this.handleErrorService.handleError<Productor>('Consulta x id', null),
+      ),
+    )
   }
   put(identificacion: string, productor: Productor): Observable<Productor> {
-    const url = `${this.baseUrl}api/Productor/${identificacion}`;
-      return this.http.put<Productor>(url,productor)
-      .pipe(
-        tap(_ => this.handleErrorService.log('Datos enviados y recibidos')),
-        catchError(this.handleErrorService.handleError<Productor>("Actualizar", null))
-      );
+    const url = `${this.baseUrl}api/Productor/${identificacion}`
+    return this.http.put<Productor>(url, productor).pipe(
+      tap((_) => this.handleErrorService.log('Datos enviados y recibidos')),
+      catchError(
+        this.handleErrorService.handleError<Productor>('Actualizar', null),
+      ),
+    )
   }
-} 
+}

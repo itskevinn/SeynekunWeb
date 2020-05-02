@@ -11,13 +11,14 @@ namespace seynekun.Models
         public string Municipio { get; set; }
         public string Vereda { get; set; }
         public string AfiliacionSalud { get; set; }
+        public string Estado { get; set; }
     }
 
     public class ProductorViewModel : ProductorInputModel
     {
         public ProductorViewModel(Productor productor)
         {
-            Cedula = productor.Cedula;
+            Identificacion = productor.Identificacion;
             Nombre = productor.Nombre;
             Apellido = productor.Apellido;
             CedulaCafetera = productor.CedulaCafetera;
@@ -28,6 +29,7 @@ namespace seynekun.Models
             Vereda = productor.Vereda;
             NumeroTelefono = productor.NumeroTelefono;
             AfiliacionSalud = productor.AfiliacionSalud;
+            Estado = productor.Estado;
         }
     }
 }
