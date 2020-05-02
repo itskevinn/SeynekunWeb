@@ -36,7 +36,7 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                List<Productor> productores = repositorioProductor.Consultar().FindAll(p => p.Estado != "Eliminado");
+                List<Productor> productores = repositorioProductor.Consultar().FindAll(p => !p.Estado.Equals("Eliminado"));
                 _conexión.Cerrar();
                 return new ConsultarResponse(productores);
             }
@@ -66,10 +66,10 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                var productorViejo = repositorioProductor.BuscarxId(productorNuevo.Cedula);
+                var productorViejo = repositorioProductor.BuscarxId(productorNuevo.Identificacion);
                 if (productorViejo != null)
                 {
-                    repositorioProductor.ModificarEstado(productorViejo.Cedula, "Modificado");
+                    repositorioProductor.ModificarEstado(productorViejo.Identificacion, "Modificado");
                     repositorioProductor.Modificar(productorNuevo);
                     _conexión.Cerrar();
                     return ($"El productor {productorNuevo.Nombre} se ha modificado satisfactoriamente.");

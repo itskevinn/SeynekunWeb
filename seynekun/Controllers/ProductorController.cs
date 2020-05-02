@@ -44,7 +44,7 @@ namespace seynekun.Controllers
         {
             var productor = new Productor
             {
-                Cedula = productorInputModel.Cedula,
+                Identificacion = productorInputModel.Identificacion,
                 Nombre = productorInputModel.Nombre,
                 Apellido = productorInputModel.Apellido,
                 CedulaCafetera = productorInputModel.CedulaCafetera,

@@ -37,3 +37,4 @@ C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Log
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Logica.AssemblyInfoInputs.cache
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Logica.AssemblyInfo.cs
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Logica.csproj.CopyComplete
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.0\Logica.csproj.CoreCompileInputs.cache

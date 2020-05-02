@@ -69,4 +69,12 @@ export class EmpleadoService {
         ),
       )
   }
+  delete(empleado: Empleado | string): Observable<string> {
+    const id = typeof empleado === 'string' ? empleado : empleado.cedula;
+    return this.http.delete<string>(this.urlBase + 'api/empleado/' + id)
+      .pipe(
+        tap(_ => this.handleErrorService.log('datos enviados')),
+        catchError(this.handleErrorService.handleError<string>('Eliminar Empleado', null))
+      );
+  }
 }

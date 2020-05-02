@@ -22,3 +22,4 @@ C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Entity\obj\Debug\netstandard2.0\Ent
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfo.cs
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Entity\obj\Debug\netstandard2.0\Entity.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Entity\obj\Debug\netstandard2.0\Entity.pdb
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Entity\obj\Debug\netstandard2.0\Entity.csproj.CoreCompileInputs.cache

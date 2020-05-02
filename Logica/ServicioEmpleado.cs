@@ -45,6 +45,68 @@ namespace Logica
                 return new ConsultarEmpleadoResponse(e.Message);
             }
         }
+
+        public BuscarxIdResponse BuscarxId(string identificacion)
+        {
+            try
+            {
+                _conexión.Abrir();
+                Empleado empleado = repositorioEmpleado.BuscarxId(identificacion);
+                _conexión.Cerrar();
+                return new BuscarxIdResponse(empleado);
+            }
+            catch (Exception e)
+            {
+                return new BuscarxIdResponse(e.Message);
+            }
+        }
+
+        public string Modificar(Empleado empleadoNuevo)
+        {
+            try
+            {
+                _conexión.Abrir();
+                var empleadoViejo = repositorioEmpleado.BuscarxId(empleadoNuevo.Identificacion);
+                if (empleadoViejo != null)
+                {
+                    repositorioEmpleado.ModificarEstado(empleadoViejo.Identificacion, "Modificado");
+                    repositorioEmpleado.Modificar(empleadoNuevo);
+                    _conexión.Cerrar();
+                    return ($"El empleado {empleadoNuevo.Nombre} se ha modificado satisfactoriamente.");
+                }
+                else
+                {
+                    return "No se encontró empleado con la cédula ingresada";
+                }
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { _conexión.Cerrar(); }
+
+        }
+        public string Eliminar(string identificacion)
+        {
+            try
+            {
+                _conexión.Abrir();
+                Empleado empleado = repositorioEmpleado.BuscarxId(identificacion);
+                if (empleado != null)
+                {
+                    repositorioEmpleado.ModificarEstado(identificacion, "Eliminado");
+                    return $"El empleado {empleado.Nombre} {empleado.Apellido} se ha eliminado.";
+                }
+                _conexión.Cerrar();
+                return "No se encontró empleado con la cédula ingresada";
+            }
+            catch (Exception e)
+            {
+                return $"Error de la aplicación: {e.Message} ";
+            }
+        }
+
     }
 
     public class ConsultarEmpleadoResponse
@@ -80,6 +142,24 @@ namespace Logica
         {
             Mensaje = mensaje;
             Error = true;
+        }
+    }
+    public class BuscarxIdResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Empleado Empleado;
+
+        public BuscarxIdResponse(Empleado empleado)
+        {
+            Error = false;
+            this.Empleado = empleado;
+        }
+
+        public BuscarxIdResponse(string mensaje)
+        {
+            Error = true;
+            Mensaje = mensaje;
         }
     }
 

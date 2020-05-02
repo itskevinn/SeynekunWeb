@@ -31,3 +31,4 @@ C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\bin\Debug\netstandard2.0\dato
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\bin\Debug\netstandard2.0\Entity.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\bin\Debug\netstandard2.0\Entity.pdb
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.csproj.CopyComplete
+C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\datos\obj\Debug\netstandard2.0\datos.csproj.CoreCompileInputs.cache

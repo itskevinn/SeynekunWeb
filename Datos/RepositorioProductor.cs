@@ -14,7 +14,7 @@ namespace Datos {
             using (var comando = _conexión.CreateCommand ()) {
                 comando.CommandText = @"Insert Into Productores (Cedula,Nombre,Apellido,CedulaCafetera,NombrePredio,CodigoFinca,CodigoSica,Municipio,Vereda,NumeroTelefono,AfiliacionSalud,Estado)
                     values (@Cedula,@Nombre,@Apellido,@CedulaCafetera,@NombrePredio,@CodigoFinca,@CodigoSica,@Municipio,@Vereda,@NumeroTelefono,@AfiliacionSalud,@Estado)";
-                comando.Parameters.AddWithValue ("@Cedula", productor.Cedula);
+                comando.Parameters.AddWithValue ("@Cedula", productor.Identificacion);
                 comando.Parameters.AddWithValue ("@Nombre", productor.Nombre);
                 comando.Parameters.AddWithValue ("@Apellido", productor.Apellido);
                 comando.Parameters.AddWithValue ("@CedulaCafetera", productor.CedulaCafetera);
@@ -58,7 +58,7 @@ namespace Datos {
         public void Modificar (Productor productorNuevo) {
             using (var comando = _conexión.CreateCommand ()) {
                 comando.CommandText = "update Productores set Nombre = @Nombre, Apellido = @Apellido, CedulaCafetera = @CedulaCafetera, NombrePredio = @NombrePredio, CodigoFinca = @CodigoFinca, CodigoSica = @CodigoSica, Municipio = @Municipio, Vereda = @Vereda , NumeroTelefono = @NumeroTelefono, AfiliacionSalud = @AfiliacionSalud where Cedula = @Cedula";
-                comando.Parameters.AddWithValue ("@Cedula", productorNuevo.Cedula);
+                comando.Parameters.AddWithValue ("@Cedula", productorNuevo.Identificacion);
                 comando.Parameters.AddWithValue ("@Nombre", productorNuevo.Nombre);
                 comando.Parameters.AddWithValue ("@Apellido", productorNuevo.Apellido);
                 comando.Parameters.AddWithValue ("@CedulaCafetera", productorNuevo.CedulaCafetera);
@@ -84,7 +84,7 @@ namespace Datos {
         private Productor MapToProductor (SqlDataReader datos) {
             if (!datos.HasRows) return null;
             Productor productor = new Productor ();
-            productor.Cedula = (string) datos["Cedula"];
+            productor.Identificacion = (string) datos["Cedula"];
             productor.Nombre = (string) datos["Nombre"];
             productor.Apellido = (string) datos["Apellido"];
             productor.CedulaCafetera = (string) datos["CedulaCafetera"];

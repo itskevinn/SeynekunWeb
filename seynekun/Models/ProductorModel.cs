@@ -18,7 +18,7 @@ namespace seynekun.Models
     {
         public ProductorViewModel(Productor productor)
         {
-            Cedula = productor.Cedula;
+            Identificacion = productor.Identificacion;
             Nombre = productor.Nombre;
             Apellido = productor.Apellido;
             CedulaCafetera = productor.CedulaCafetera;

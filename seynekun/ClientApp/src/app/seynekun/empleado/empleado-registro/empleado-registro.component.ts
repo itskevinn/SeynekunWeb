@@ -44,6 +44,7 @@ export class EmpleadoRegistroComponent implements OnInit {
     this.empleado.numeroTelefono = ''
     this.empleado.email = ''
     this.empleado.cargo = ''
+    this.empleado.estado = "Activo";
     this.formGroup = this.formBuilder.group({
       nombre: [this.empleado.nombre, Validators.required],
       apellido: [this.empleado.apellido, Validators.required],
@@ -66,6 +67,7 @@ export class EmpleadoRegistroComponent implements OnInit {
       ],
       email: [this.empleado.email, Validators.email],
       cargo: [this.empleado.cargo, Validators.required],
+      estado : [this.empleado.estado]
     })
   }
 
