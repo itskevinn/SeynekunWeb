@@ -16,7 +16,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
-                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{empleado.cedula}}</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800">{{empleado.identificacion}}</div>
                       <div class="h6 mb-0 font-weight-normal text-gray-800">{{empleado.nombre}}</div>
                       <div class="h6 mb-0 font-weight-normal text-gray-800">{{empleado.apellido}}</div>
                     </div>
@@ -66,15 +66,15 @@
               <br>
               <form class="user" [formGroup]="formGroup">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user required" name="cedula"
-                    placeholder="Cédula Ciudadanía" formControlName="cedula"
-                    [ngClass]="{'is-invalid':control.cedula.errors && control.cedula.touched}">
-                  <div *ngIf="control.cedula.errors && control.cedula.touched" class="invalid-feedback">
-                    <div class="validacion-texto" *ngIf="control.cedula.errors.required">Proporcione su
+                  <input type="text" class="form-control form-control-user required" name="identificacion"
+                    placeholder="Cédula Ciudadanía" formControlName="identificacion"
+                    [ngClass]="{'is-invalid':control.identificacion.errors && control.identificacion.touched}">
+                  <div *ngIf="control.identificacion.errors && control.identificacion.touched" class="invalid-feedback">
+                    <div class="validacion-texto" *ngIf="control.identificacion.errors.required">Proporcione su
                       número de cédula
                     </div>
                     <div class="validacion-texto"
-                      *ngIf="control.cedula.errors.minlength  || control.cedula.errors.maxlength || control.cedula.errors.validarNumeroCedula">
+                      *ngIf="control.identificacion.errors.minlength  || control.identificacion.errors.maxlength || control.identificacion.errors.validarNumeroidentificacion">
                       Proporcione un
                       número de cédula válido
                     </div>

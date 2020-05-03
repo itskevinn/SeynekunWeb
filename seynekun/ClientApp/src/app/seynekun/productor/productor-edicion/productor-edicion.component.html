@@ -84,15 +84,15 @@
                   </div>
                   <form class="user" [formGroup]="formGroup">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="cedula"
-                        placeholder="Cédula Ciudadanía" formControlName="cedula"
-                        [ngClass]="{'is-invalid':control.cedula.errors && control.cedula.touched}">
-                      <div *ngIf="control.cedula.errors && control.cedula.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.cedula.errors.required">Proporcione su
+                      <input type="text" class="form-control form-control-user" name="identificacion"
+                        placeholder="Cédula Ciudadanía" formControlName="identificacion"
+                        [ngClass]="{'is-invalid':control.identificacion.errors && control.identificacion.touched}">
+                      <div *ngIf="control.identificacion.errors && control.identificacion.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.identificacion.errors.required">Proporcione su
                           número de cédula
                         </div>
                         <div class="validacion-texto"
-                          *ngIf="control.cedula.errors.minlength  || control.cedula.errors.maxlength">
+                          *ngIf="control.identificacion.errors.minlength  || control.identificacion.errors.maxlength">
                           Proporcione un
                           número de cédula válido
                         </div>

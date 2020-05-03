@@ -33,16 +33,16 @@
               </thead>
               <tbody>
                 <tr *ngFor="let empleado of empleados|filtroEmpleado:textoABuscar; index as i ">
-                  <td>{{empleado.cedula}}</td>
+                  <td>{{empleado.identificacion}}</td>
                   <td>{{empleado.nombre}}</td>
                   <td>{{empleado.apellido}}</td>
                   <td>{{empleado.cargo}}</td>
                   <td>{{empleado.estado}}</td>
                   <td>{{empleado.numeroTelefono}}</td>                  
                   <td>
-                    <a routerLink='/Empleado/{{empleado.cedula}}'>Ver</a>
+                    <a routerLink='/Empleado/{{empleado.identificacion}}'>Ver</a>
                     <a> / </a>
-                    <a routerLink='/EditarEmpleado/{{empleado.cedula}}'>Editar</a>
+                    <a routerLink='/EditarEmpleado/{{empleado.identificacion}}'>Editar</a>
                   </td>
                 </tr>
               </tbody>

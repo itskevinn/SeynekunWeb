@@ -36,7 +36,7 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                List<Productor> productores = repositorioProductor.Consultar().FindAll(p => !p.Estado.Equals("Eliminado"));
+                List<Productor> productores = repositorioProductor.Consultar().FindAll(p => p.Estado.Equals("Activo") || p.Estado.Equals("Modificado"));
                 _conexión.Cerrar();
                 return new ConsultarResponse(productores);
             }

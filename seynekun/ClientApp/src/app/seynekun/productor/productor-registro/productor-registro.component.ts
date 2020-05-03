@@ -64,7 +64,7 @@ export class ProductorRegistroComponent implements OnInit {
   crearFormulario() {
     this.productor.nombre = ''
     this.productor.apellido = ''
-    this.productor.cedula = ''
+    this.productor.identificacion = ''
     this.productor.nombrePredio = ''
     this.productor.codigoFinca = ''
     this.productor.codigoSica = ''
@@ -77,8 +77,8 @@ export class ProductorRegistroComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       nombre: [this.productor.nombre, Validators.required],
       apellido: [this.productor.apellido, Validators.required],
-      cedula: [
-        this.productor.cedula,
+      identificacion: [
+        this.productor.identificacion,
         [
           Validators.required,
           Validators.minLength(6),

@@ -9,7 +9,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
-                <div class="h3 mb-0 font-weight-bold text-gray-800">{{productor.cedula}}</div>
+                <div class="h3 mb-0 font-weight-bold text-gray-800">{{productor.identificacion}}</div>
                 <div class="h5 mb-0 font-weight-normal text-gray-800">{{productor.nombre}}</div>
                 <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.apellido}}</div>
                 <div class="h4 mb-0 font-weight-normal text-gray-800">{{productor.cedulaCafetera}}</div>
@@ -73,7 +73,7 @@
     </div>
   </div>
   <div class="text-center separarAbajo">
-    <button routerLink='/EditarProductor/{{productor.cedula}}' type="button" class="btn btn-labeled btn-info">
+    <button routerLink='/EditarProductor/{{productor.identificacion}}' type="button" class="btn btn-labeled btn-info">
       <span class="btn-label"><i class="fas fa-pencil-alt"></i></span> Editar</button>
   </div>
 </div>

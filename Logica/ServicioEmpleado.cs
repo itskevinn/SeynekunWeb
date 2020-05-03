@@ -36,7 +36,7 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                List<Empleado> empleados = repositorioEmpleado.Consultar();
+                List<Empleado> empleados = repositorioEmpleado.Consultar().FindAll(e => e.Estado.Equals("Activo") || e.Estado.Equals("Modificado"));;
                 _conexión.Cerrar();
                 return new ConsultarEmpleadoResponse(empleados);
             }

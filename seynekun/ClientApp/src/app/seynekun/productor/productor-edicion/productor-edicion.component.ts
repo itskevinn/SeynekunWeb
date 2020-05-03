@@ -82,7 +82,7 @@ export class ProductorEdicionComponent implements OnInit {
     var productor = new Productor()
     productor.nombre = this.productor.nombre
     productor.apellido = this.productor.apellido
-    productor.cedula = this.productor.cedula
+    productor.identificacion = this.productor.identificacion;
     productor.cedulaCafetera = this.productor.cedulaCafetera
     productor.codigoFinca = this.productor.codigoFinca
     productor.codigoSica = this.productor.codigoSica
@@ -94,8 +94,8 @@ export class ProductorEdicionComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       nombre: [productor.nombre, Validators.required],
       apellido: [productor.apellido, Validators.required],
-      cedula: [
-        productor.cedula,
+      identificacion: [
+        productor.identificacion,
         [
           Validators.required,
           Validators.minLength(6),
@@ -118,7 +118,7 @@ export class ProductorEdicionComponent implements OnInit {
         ],
       ],
       afiliacionSalud: [productor.afiliacionSalud, Validators.required],
-    })
+    });
   }
 
   asignarValores() {

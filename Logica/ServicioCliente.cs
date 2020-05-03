@@ -36,7 +36,7 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                List<Cliente> clientes = repositorioCliente.Consultar();
+                List<Cliente> clientes = repositorioCliente.Consultar().FindAll(c => c.Estado.Equals("Activo") || c.Estado.Equals("Modificado"));;
                 _conexión.Cerrar();
                 return new ConsultarClienteResponse(clientes);
             }

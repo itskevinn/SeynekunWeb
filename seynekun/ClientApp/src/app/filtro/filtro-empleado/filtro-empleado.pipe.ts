@@ -8,9 +8,13 @@ export class FiltroEmpleadoPipe implements PipeTransform {
 
   transform(empleados: Empleado[], textoABuscar: string): any {
     if (textoABuscar == null) return empleados;
-    return empleados.filter(e => e.nombre.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1
-      || e.apellido.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1
-      || e.cedula.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1
-      || e.estado.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1);      
+    return empleados.filter(
+      (e) =>
+        e.nombre.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1 ||
+        e.apellido.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1 ||
+        e.identificacion.toLowerCase().indexOf(textoABuscar.toLowerCase()) !==
+          -1 ||
+        e.estado.toLowerCase().indexOf(textoABuscar.toLowerCase()) !== -1
+    );      
   }
 }

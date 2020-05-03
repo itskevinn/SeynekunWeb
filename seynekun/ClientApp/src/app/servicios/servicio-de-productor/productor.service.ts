@@ -31,7 +31,8 @@ export class ProductorService {
     )
   }
   delete(productor: Productor| string): Observable<string> {
-    const id = typeof productor === 'string' ? productor : productor.cedula;
+    const id =
+      typeof productor === "string" ? productor : productor.identificacion;
     return this.http.delete<string>(this.baseUrl + 'api/productor/'+ id)
     .pipe(
       tap(_ => this.handleErrorService.log('datos enviados')),

@@ -34,7 +34,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let productor of productores|filtroProductor:textoABuscar; index as i ">
-                  <td>{{productor.cedula}}</td>
+                  <td>{{productor.identificacion}}</td>
                   <td>{{productor.nombre}}</td>
                   <td>{{productor.apellido}}</td>
                   <td>{{productor.cedulaCafetera}}</td>
@@ -42,9 +42,9 @@
                   <td>{{productor.codigoSica}}</td>
                   <td>{{productor.vereda}}</td>
                   <td>
-                    <a routerLink='/Productor/{{productor.cedula}}'>Ver</a>
+                    <a routerLink='/Productor/{{productor.identificacion}}'>Ver</a>
                     <a> / </a>
-                    <a routerLink='/EditarProductor/{{productor.cedula}}'>Editar</a>
+                    <a routerLink='/EditarProductor/{{productor.identificacion}}'>Editar</a>
                   </td>
                 </tr>
               </tbody>

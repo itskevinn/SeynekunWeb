@@ -70,7 +70,8 @@ export class EmpleadoService {
       )
   }
   delete(empleado: Empleado | string): Observable<string> {
-    const id = typeof empleado === 'string' ? empleado : empleado.cedula;
+    const id =
+      typeof empleado === "string" ? empleado : empleado.identificacion;
     return this.http.delete<string>(this.urlBase + 'api/empleado/' + id)
       .pipe(
         tap(_ => this.handleErrorService.log('datos enviados')),

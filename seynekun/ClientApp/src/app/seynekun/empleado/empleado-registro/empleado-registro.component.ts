@@ -40,7 +40,7 @@ export class EmpleadoRegistroComponent implements OnInit {
   crearFormulario() {
     this.empleado.nombre = ''
     this.empleado.apellido = ''
-    this.empleado.cedula = ''
+    this.empleado.identificacion = ''
     this.empleado.numeroTelefono = ''
     this.empleado.email = ''
     this.empleado.cargo = ''
@@ -48,13 +48,13 @@ export class EmpleadoRegistroComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       nombre: [this.empleado.nombre, Validators.required],
       apellido: [this.empleado.apellido, Validators.required],
-      cedula: [
-        this.empleado.cedula,
+      identificacion: [
+        this.empleado.identificacion,
         [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(11),
-          this.validarNumeroCedula,
+          this.validarNumeroidentificacion,
         ],
       ],
       numeroTelefono: [
@@ -71,7 +71,7 @@ export class EmpleadoRegistroComponent implements OnInit {
     })
   }
 
-  private validarNumeroCedula(control: AbstractControl) {
+  private validarNumeroidentificacion(control: AbstractControl) {
     const numero = control.value
     var esNumero = false
     var number
@@ -85,7 +85,7 @@ export class EmpleadoRegistroComponent implements OnInit {
       return null
     } else
       return {
-        validaNumeroCedula: true,
+        validaNumeroidentificacion: true,
         mensajeNumero: 'Número cédula no válido',
       }
   }
