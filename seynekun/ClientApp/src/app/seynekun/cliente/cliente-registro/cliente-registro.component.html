@@ -128,10 +128,40 @@
                     </div>
                   </div>
                   <hr>
-                  <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                  <a (click)="onSubmit()" (click)="validarMensaje()" class="btn btn-verde btn-user btn-block"
+                    id="registrarBtn">
                     Registrar Empleado
-                  </a>                  
+                  </a>
+                  <button type="reset" class=" btn btn-dark btn-user btn-block" id="limpiarBtn">
+                    Limpiar
+                  </button>
                   <hr>
+                  <div *ngIf=" formGroup.invalid && botonPresionado">
+                    <div class="text-center">
+                      <span>
+                        <i class="fas fa-fw fa-times titulo-rojo"></i>
+                      </span>
+                      <div>
+                        <p class="titulo-rojo"> <strong>Información inválida</strong> </p>
+                        <ul>
+                          <li> Puede que haya algún campo vacío</li>
+                          <li> Puede que algún número no sea válido</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="botonPresionado">
+                    <div *ngIf="formGroup.valid && botonPresionado">
+                      <div class="text-center">
+                        <span>
+                          <i class="fas fa-fw fa-check titulo-verde"></i>
+                        </span>
+                        <div>
+                          <p class="titulo-verde"> <strong>Empleado Registrado</strong></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

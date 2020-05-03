@@ -69,30 +69,16 @@
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
       aria-controls="collapseOne">
-      <i class="fas fa-fw fa-user-friends"></i>
+      <i class="fas fa-fw fa-person-booth"></i>
       <span>Personas</span>
     </a>
-    <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
         <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
         <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
-      </div>
-    </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboInventario" aria-expanded="true"
-      aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-industry"></i>
-      <span>Inventario</span>
-    </a>
-    <div id="comboInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" [routerLink]="['/Productos']">Productos a la venta</a>
-        <a class="collapse-item" [routerLink]="['/Ajustes-De-Inventario']">Ajuste de inventario</a>
-        <a class="collapse-item" [routerLink]="['/Reporte-De-Inventario']">Valor de inventario</a>
       </div>
     </div>
   </li>

@@ -73,7 +73,6 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor.numeroTelefono = null
     this.productor.afiliacionSalud = ''
     this.productor.cedulaCafetera = ''
-    this.productor.estado= ''
     this.formGroup = this.formBuilder.group({
       nombre: [this.productor.nombre, Validators.required],
       apellido: [this.productor.apellido, Validators.required],
@@ -85,7 +84,6 @@ export class ProductorRegistroComponent implements OnInit {
           Validators.maxLength(11),
         ],
       ],
-      estado: ['Activo'],
       cedulaCafetera: [this.productor.cedulaCafetera, Validators.required],
       nombrePredio: [this.productor.nombrePredio, Validators.required],
       codigoFinca: [this.productor.codigoFinca, Validators.required],
@@ -168,13 +166,11 @@ export class ProductorRegistroComponent implements OnInit {
   }
   registrar() {
     this.productor = this.formGroup.value
-    this.productor.estado = "Activo"
     this.productorService.post(this.productor).subscribe((p) => {
       if (p != null) {
         const messageBox = this.modalService.open(AlertaModalOkComponent)
         messageBox.componentInstance.titulo = 'Productor Registrado'
-        this.productor = p        
-        this.formGroup.reset()
+        this.productor = p
       } else {
         const messageBox = this.modalService.open(AlertaModalErrorComponent)
         messageBox.componentInstance.titulo = 'Ha ocurrido un error'

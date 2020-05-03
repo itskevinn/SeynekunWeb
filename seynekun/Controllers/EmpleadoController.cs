@@ -35,13 +35,13 @@ namespace seynekun.Controllers
             {
                 return BadRequest(response.Mensaje);
             }
-            return Ok(response.Empleado);
+            return Ok(response.objeto);
         }
 
         private Empleado MapToEmpleado(EmpleadoInputModel empleadoInputModel)
         {
             var empleado = new Empleado{
-                Identificacion = empleadoInputModel.Identificacion,
+                Cedula = empleadoInputModel.Cedula,
                 Nombre = empleadoInputModel.Nombre,
                 Apellido = empleadoInputModel.Apellido,
                 NumeroTelefono = empleadoInputModel.NumeroTelefono,
@@ -58,36 +58,6 @@ namespace seynekun.Controllers
         {
             var response = servicioEmpleado.Consultar().objetos.Select(p=> new EmpleadoViewModel(p));
             return response;
-        }
-       
-
-        [HttpGet("{identificacion}")]
-        public ActionResult<EmpleadoViewModel> Get(string identificacion)
-        {
-            var empleado = servicioEmpleado.BuscarxId(identificacion).Empleado;
-            if (empleado == null) return NotFound();
-            var empleadoViewModel = new EmpleadoViewModel(empleado);
-            return empleadoViewModel;
-        }
-        [HttpPut("{identificacion}")]
-        public ActionResult<string> Put(Empleado empleado, string identificacion)
-        {
-            var id = servicioEmpleado.BuscarxId(identificacion);
-            if (id == null)
-            {
-                return BadRequest("Empleado no econtrado");
-            }
-            else
-            {
-                var mensaje = servicioEmpleado.Modificar(empleado);
-                return Ok(mensaje);
-            }
-        }
-        [HttpDelete("{identificacion}")]
-        public ActionResult<string> Delete(string identificacion)
-        {
-            string mensaje = servicioEmpleado.Eliminar(identificacion);
-            return Ok(mensaje);
         }
     }
 }

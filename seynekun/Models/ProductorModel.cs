@@ -34,7 +34,7 @@ namespace seynekun.Models
     {
         public ProductorViewModel(Productor productor)
         {
-            Identificacion = productor.Identificacion;
+            Cedula = productor.Cedula;
             Nombre = productor.Nombre;
             Apellido = productor.Apellido;
             CedulaCafetera = productor.CedulaCafetera;
@@ -45,7 +45,6 @@ namespace seynekun.Models
             Vereda = productor.Vereda;
             NumeroTelefono = productor.NumeroTelefono;
             AfiliacionSalud = productor.AfiliacionSalud;
-            Estado = productor.Estado;
         }
     }
 }
