@@ -11,7 +11,7 @@ using Logica;
 
 namespace seynekun.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProductorController : ControllerBase
@@ -42,8 +42,9 @@ namespace seynekun.Controllers
 
         private Productor MapToProductor(ProductorInputModel productorInputModel)
         {
-            var productor = new Productor{
-                Cedula = productorInputModel.Cedula,
+            var productor = new Productor
+            {
+                Identificacion = productorInputModel.Identificacion,
                 Nombre = productorInputModel.Nombre,
                 Apellido = productorInputModel.Apellido,
                 CedulaCafetera = productorInputModel.CedulaCafetera,
@@ -54,6 +55,7 @@ namespace seynekun.Controllers
                 Vereda = productorInputModel.Vereda,
                 NumeroTelefono = productorInputModel.NumeroTelefono,
                 AfiliacionSalud = productorInputModel.AfiliacionSalud,
+                Estado = productorInputModel.Estado,
             };
             return productor;
         }
@@ -62,29 +64,37 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<ProductorViewModel> Gets()
         {
-            var response = servicioProductor.Consultar().objetos.Select(p=> new ProductorViewModel(p));
+            var response = servicioProductor.Consultar().objetos.Select(p => new ProductorViewModel(p));
             return response;
         }
 
         [HttpGet("{identificacion}")]
-        public ActionResult<ProductorViewModel> Get(string identificacion){
+        public ActionResult<ProductorViewModel> Get(string identificacion)
+        {
             var productor = servicioProductor.BuscarxId(identificacion).Productor;
-            if(productor==null) return NotFound();
+            if (productor == null) return NotFound();
             var productorViewModel = new ProductorViewModel(productor);
             return productorViewModel;
         }
         [HttpPut("{identificacion}")]
         public ActionResult<string> Put(Productor productor, string identificacion)
         {
-            var id= servicioProductor.BuscarxId(identificacion);
-            if(id==null){
-                return BadRequest("Productor no econtrado");
-            }else
+            var id = servicioProductor.BuscarxId(identificacion);
+            if (id == null)
             {
-            var mensaje = servicioProductor.Modificar(identificacion,productor);
-            return Ok(mensaje);
-            }                       
+                return BadRequest("Productor no econtrado");
+            }
+            else
+            {
+                var mensaje = servicioProductor.Modificar(productor);
+                return Ok(mensaje);
+            }
         }
-
+        [HttpDelete("{identificacion}")]
+        public ActionResult<string> Delete(string identificacion)
+        {
+            string mensaje = servicioProductor.Eliminar(identificacion);
+            return Ok(mensaje);
+        }
     }
 }

@@ -1,34 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { EmpleadoService } from 'src/app/servicios/servicio-de-empleado/empleado.service';
-import { Empleado } from '../../models/modelo-empleado/empleado';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import {
+  AbstractControl,
+  Validators,
+  FormBuilder,
+  FormGroup,
+} from "@angular/forms";
+import { EmpleadoService } from "src/app/servicios/servicio-de-empleado/empleado.service";
+import { Empleado } from "../../models/modelo-empleado/empleado";
+import { ActivatedRoute } from "@angular/router";
+import { AlertaModalOkComponent } from "src/app/@base/alerta-modal/alerta-modal.component";
+import { AlertaModalErrorComponent } from "src/app/@base/alerta-modal-error/alerta-modal-error.component";
+import { AlertaModalPreguntaComponent } from "src/app/@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-empleado-edicion',
-  templateUrl: './empleado-edicion.component.html',
-  styleUrls: ['./empleado-edicion.component.css']
+  selector: "app-empleado-edicion",
+  templateUrl: "./empleado-edicion.component.html",
+  styleUrls: ["./empleado-edicion.component.css"],
 })
 export class EmpleadoEdicionComponent implements OnInit {
-  identificacion = this.rutaActiva.snapshot.params.id;  
+  identificacion = this.rutaActiva.snapshot.params.id;
   empleado: Empleado;
   formGroup: FormGroup;
   seEncontro: Boolean;
   botonPresionado: Boolean = false;
-  cargos: string[] = ["Secretaria/o", "Jefe de Producción", "Coordinador de Producción", "Recepcionista", "Auxiliar de Planta"];
-  constructor(private empleadoService: EmpleadoService, private formBuilder: FormBuilder, private rutaActiva: ActivatedRoute) { }
+  cargos: string[] = [
+    "Secretaria/o",
+    "Jefe de Producción",
+    "Coordinador de Producción",
+    "Recepcionista",
+    "Auxiliar de Planta",
+  ];
+  constructor(
+    private empleadoService: EmpleadoService,
+    private formBuilder: FormBuilder,
+    private rutaActiva: ActivatedRoute,
+    private modalService: NgbModal
+  ) {}
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.empleado = new Empleado();
-    this.buscar();    
+    this.buscar();
     this.crearFormulario();
     this.formGroup.setValue(this.empleado);
   }
-  
-  buscar(){
-    this.empleadoService.get(this.identificacion).subscribe(result => {
+
+  buscar() {
+    this.empleadoService.get(this.identificacion).subscribe((result) => {
       this.empleado = result;
-      this.empleado != null ? this.seEncontro = true : this.seEncontro = false;
+      this.empleado != null
+        ? (this.seEncontro = true)
+        : (this.seEncontro = false);
     });
   }
 
@@ -81,21 +103,21 @@ export class EmpleadoEdicionComponent implements OnInit {
       return null;
     } else
       return {
-        validaNumeroIdentificacion: true,
+        validaNumeroidentificacion: true,
         mensajeNumero: "Número cédula no válido",
       };
   }
 
   cambiarCargo(e) {
     this.control.cargo.setValue(e.target.value, {
-      onlySelf: true
-    })
+      onlySelf: true,
+    });
   }
 
   private resetearBoton() {
     let seReseteó;
     this.botonPresionado = false;
-    return seReseteó = true;
+    return (seReseteó = true);
   }
 
   private validarNumeroTelefono(control: AbstractControl) {
@@ -112,7 +134,7 @@ export class EmpleadoEdicionComponent implements OnInit {
     } catch (error) {
       esNumero = false;
     }
-    numeroChar = numeroString.split('');
+    numeroChar = numeroString.split("");
     console.log(numeroChar[0]);
     try {
       Number(numero);
@@ -122,15 +144,17 @@ export class EmpleadoEdicionComponent implements OnInit {
     }
     if (numeroChar.length != 0) {
       if (esNumero) {
-        if (numeroChar[0] != '3') {
+        if (numeroChar[0] != "3") {
           return {
-            validaNumeroTelefono: true, mensajeNumero: 'Número teléfono no válido'
+            validaNumeroTelefono: true,
+            mensajeNumero: "Número teléfono no válido",
           };
         }
         return null;
       }
       return {
-        validaNumeroTelefono: true, mensajeNumero: 'Número teléfono no válido'
+        validaNumeroTelefono: true,
+        mensajeNumero: "Número teléfono no válido",
       };
     }
   }
@@ -144,15 +168,41 @@ export class EmpleadoEdicionComponent implements OnInit {
   get control() {
     return this.formGroup.controls;
   }
-
-  actualizar() {
+  eliminar() {
     this.empleado = this.formGroup.value;
-    this.empleadoService.put(this.identificacion,this.empleado).subscribe(e => {
-      if (e != null) {
-        this.empleado = e;
+    const messageBox = this.modalService.open(AlertaModalPreguntaComponent);
+    messageBox.componentInstance.titulo = "¿Desea eliminar este empleado?";
+    messageBox.componentInstance.mensaje = "Esta acción no es reversible";
+    messageBox.result.then((result) => {
+      if (result) {
+        this.empleadoService.delete(this.identificacion).subscribe((p) => {
+          if (p != null) {
+            const messageBox = this.modalService.open(AlertaModalOkComponent);
+            messageBox.componentInstance.titulo = "Empleado eliminado";
+            this.empleado = null;
+            this.formGroup.reset();
+          } else {
+            const messageBox = this.modalService.open(
+              AlertaModalErrorComponent
+            );
+            messageBox.componentInstance.titulo = "Ha ocurrido un error";
+            messageBox.componentInstance.mensaje =
+              "No se ha podido eliminar al empleado";
+          }
+        });
       }
     });
   }
 
-
+  actualizar() {
+    this.empleado = this.formGroup.value;
+    this.empleadoService
+      .put(this.identificacion, this.empleado)
+      .subscribe((e) => {
+        if (e != null) {
+          this.empleado = e;
+          this.formGroup.reset();
+        }
+      });
+  }
 }

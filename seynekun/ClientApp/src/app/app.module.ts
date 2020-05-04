@@ -10,17 +10,15 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component'
 import { HomeComponent } from './home/home.component'
 import { CounterComponent } from './counter/counter.component'
 import { FetchDataComponent } from './fetch-data/fetch-data.component'
-import { LoteRegistroComponent } from './seynekun/lote/lote-registro/lote-registro.component'
-import { LoteConsultaComponent } from './seynekun/lote/lote-consulta/lote-consulta.component'
 import { AppRoutingModule } from './app-routing.module'
-import { ProductorRegistroComponent } from './seynekun/productor/productor-registro/productor-registro.component'
+
 import { ProductorConsultaComponent } from './seynekun/productor/productor-consulta/productor-consulta.component'
 import { LoginComponent } from './login/login/login.component'
 import { ClienteRegistroComponent } from './seynekun/cliente/cliente-registro/cliente-registro.component'
 import { ClienteConsultaComponent } from './seynekun/cliente/cliente-consulta/cliente-consulta.component'
 import { EmpleadoConsultaComponent } from './seynekun/empleado/empleado-consulta/empleado-consulta.component'
 import { EmpleadoRegistroComponent } from './seynekun/empleado/empleado-registro/empleado-registro.component'
-
+import { ProductorRegistroComponent } from './seynekun/productor/productor-registro/productor-registro.component'
 import { EmpleadoEdicionComponent } from './seynekun/empleado/empleado-edicion/empleado-edicion.component'
 import { ClienteEdicionComponent } from './seynekun/cliente/cliente-edicion/cliente-edicion.component'
 import { ProductorEdicionComponent } from './seynekun/productor/productor-edicion/productor-edicion.component'
@@ -35,6 +33,21 @@ import { AlertaModalErrorComponent } from './@base/alerta-modal-error/alerta-mod
 import { EmpleadoService } from './servicios/servicio-de-empleado/empleado.service'
 import { ClienteService } from './servicios/servicio-de-cliente/cliente.service'
 import { ProductorService } from './servicios/servicio-de-productor/productor.service'
+import { ControlesComponent } from './seynekun/controles/controles/controles.component'
+import { ProductoEdicionComponent } from './seynekun/inventario/producto/producto-edicion/producto-edicion.component'
+import { ProductoRegistroComponent } from './seynekun/inventario/producto/producto-registro/producto-registro.component'
+import { ProductoConsultaComponent } from './seynekun/inventario/producto/producto-consulta/producto-consulta.component'
+import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
+import { ProductoVistaComponent } from './seynekun/inventario/producto/producto-vista/producto-vista.component'
+import { ReporteInventarioService } from './servicios/servicio-de-reporte-inventario/reporte-inventario.service'
+import { ProductoService } from './servicios/servicio-de-producto/producto.service'
+import { ControlesService } from './servicios/servicio-de-controles/controles.service'
+
+import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
+import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
+import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
+import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component';
+import { AlertaModalPreguntaComponent } from './@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component'
 
 @NgModule({
   declarations: [
@@ -43,9 +56,9 @@ import { ProductorService } from './servicios/servicio-de-productor/productor.se
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ProductorRegistroComponent,
     ProductorConsultaComponent,
     ProductorEdicionComponent,
+    ProductorRegistroComponent,
     LoginComponent,
     FiltroProductorPipe,
     ClienteRegistroComponent,
@@ -61,6 +74,17 @@ import { ProductorService } from './servicios/servicio-de-productor/productor.se
     ProductorVistaComponent,
     AlertaModalOkComponent,
     AlertaModalErrorComponent,
+    ControlesComponent,
+    ProductoEdicionComponent,
+    ProductoRegistroComponent,
+    ProductoVistaComponent,
+    ProductoConsultaComponent,
+    ReporteInventarioComponent,    
+    AjusteInventarioConsultaComponent,    
+    AjusteInventarioRegistroComponent,
+    AjusteInventarioVistaComponent,
+    AjusteInventarioEdicionComponent,
+    AlertaModalPreguntaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,7 +101,14 @@ import { ProductorService } from './servicios/servicio-de-productor/productor.se
   ],
   entryComponents: [AlertaModalOkComponent, AlertaModalErrorComponent],
   bootstrap: [AppComponent],
-  providers: [ClienteService, EmpleadoService, ProductorService],
+  providers: [
+    ClienteService,
+    EmpleadoService,
+    ProductorService,
+    ProductoService,
+    ControlesService,
+    ReporteInventarioService,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
