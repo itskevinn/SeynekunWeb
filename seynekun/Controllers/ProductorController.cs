@@ -9,13 +9,11 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 
-namespace seynekun.Controllers
-{
+namespace seynekun.Controllers {
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductorController : ControllerBase
-    {
+    public class ProductorController : ControllerBase {
 
         private readonly ServicioProductor servicioProductor;
         public IConfiguration configuration { get; }
@@ -37,25 +35,27 @@ namespace seynekun.Controllers
             {
                 return BadRequest(response.Mensaje);
             }
-            return Ok(response.objeto);
+            return Ok(response.Productor);
         }
 
         private Productor MapToProductor(ProductorInputModel productorInputModel)
         {
             var productor = new Productor
             {
+                TipoIdentificacion = productorInputModel.TipoIdentificacion,
                 Identificacion = productorInputModel.Identificacion,
                 Nombre = productorInputModel.Nombre,
                 Apellido = productorInputModel.Apellido,
+                NumeroTelefono = productorInputModel.NumeroTelefono,
                 CedulaCafetera = productorInputModel.CedulaCafetera,
                 NombrePredio = productorInputModel.NombrePredio,
                 CodigoFinca = productorInputModel.CodigoFinca,
                 CodigoSica = productorInputModel.CodigoSica,
                 Municipio = productorInputModel.Municipio,
                 Vereda = productorInputModel.Vereda,
-                NumeroTelefono = productorInputModel.NumeroTelefono,
                 AfiliacionSalud = productorInputModel.AfiliacionSalud,
-                Estado = productorInputModel.Estado,
+                NombreUsuario = productorInputModel.NombreUsuario,
+                Contrasena = productorInputModel.Contrasena
             };
             return productor;
         }
@@ -64,22 +64,26 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<ProductorViewModel> Gets()
         {
-            var response = servicioProductor.Consultar().objetos.Select(p => new ProductorViewModel(p));
+            var response = servicioProductor.Consultar().Productores.Select(p => new ProductorViewModel(p));
             return response;
         }
 
         [HttpGet("{identificacion}")]
         public ActionResult<ProductorViewModel> Get(string identificacion)
         {
-            var productor = servicioProductor.BuscarxId(identificacion).Productor;
-            if (productor == null) return NotFound();
-            var productorViewModel = new ProductorViewModel(productor);
-            return productorViewModel;
+            var response = servicioProductor.BuscarxId(identificacion);
+            if (response.Error)
+            {
+                return BadRequest(response.Mensaje);
+            }
+            var productor = new ProductorViewModel(response.Productor);
+            return Ok(productor);
         }
+
         [HttpPut("{identificacion}")]
         public ActionResult<string> Put(Productor productor, string identificacion)
         {
-            var id = servicioProductor.BuscarxId(identificacion);
+            var id = servicioProductor.BuscarxId(identificacion).Productor;
             if (id == null)
             {
                 return BadRequest("Productor no econtrado");
@@ -90,6 +94,7 @@ namespace seynekun.Controllers
                 return Ok(mensaje);
             }
         }
+
         [HttpDelete("{identificacion}")]
         public ActionResult<string> Delete(string identificacion)
         {
