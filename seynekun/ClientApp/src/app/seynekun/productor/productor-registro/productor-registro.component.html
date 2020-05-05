@@ -14,6 +14,18 @@
                   <h1 class="h4 text-gray-900 mb-4">Registrar Productor</h1>
                 </div>
                 <form class="user" [formGroup]="formGroup">
+
+                  <div class="">
+                    <select class="form-dropdown border-verde " name="tipoId" (change)="cambiarTipoIdentificaciones($event)">
+                      <option [ngValue]="null"> Tipo de identificacion </option>
+                      <option [ngValue]="tipoIdentificaciones" *ngFor="let tipoId of tipoIdentificaciones">{{tipoId}}</option>
+                    </select>
+                    <div *ngIf=" control.tipoIdentificacion.errors && control.tipoIdentificacion.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.tipoIdentificacion.errors.required">El tipo de identifiacion
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" name="identificacion"
                       placeholder="Cédula Ciudadanía" formControlName="identificacion"

@@ -4,9 +4,16 @@ import { HandleHttpErrorService } from '../../@base/handle-http-error.service'
 import { Observable, from } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 import { Productor } from 'src/app/seynekun/models/modelo-productor/productor'
-const httpOptions = {
+
+const httpOptionsPut = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-}
+  responseType: 'text'
+};
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -61,10 +68,11 @@ export class ProductorService {
       ),
     )
   }
+
   put(identificacion: string, productor: Productor): Observable<Productor> {
     const url = `${this.baseUrl}api/Productor/${identificacion}`
-    return this.http.put<Productor>(url, productor).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados y recibidos')),
+    return this.http.put<Productor>(url, productor, httpOptions).pipe(
+      tap((_) => this.handleErrorService.log('Datos enviados')),
       catchError(
         this.handleErrorService.handleError<Productor>('Actualizar', null),
       ),

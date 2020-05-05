@@ -68,6 +68,7 @@ export class ProductorEdicionComponent implements OnInit {
     this.buscar()
     this.asignarValores()
   }
+
   buscar() {
     this.productorService.get(this.identificacion).subscribe((result) => {
       this.productor = result
@@ -82,7 +83,7 @@ export class ProductorEdicionComponent implements OnInit {
     var productor = new Productor()
     productor.nombre = this.productor.nombre
     productor.apellido = this.productor.apellido
-    productor.identificacion = this.productor.identificacion;
+    productor.identificacion = this.productor.identificacion
     productor.cedulaCafetera = this.productor.cedulaCafetera
     productor.codigoFinca = this.productor.codigoFinca
     productor.codigoSica = this.productor.codigoSica
@@ -204,6 +205,7 @@ export class ProductorEdicionComponent implements OnInit {
         }
       })
   }
+  
   eliminar() {
     this.productor = this.formGroup.value
     const estado = 'Eliminado'

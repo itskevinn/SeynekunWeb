@@ -18,6 +18,7 @@ import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/aler
 })
 export class ProductorRegistroComponent implements OnInit {
   productor: Productor
+  tipoIdentificaciones: string[] = ['CC','TI','RC']
   municipios: string[] = ['Pueblo Bello', 'Codazzi']
   veredas: string[] = [
     'Jewrwa',
@@ -61,20 +62,24 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor = new Productor()
     this.crearFormulario()
   }
+  
   crearFormulario() {
+    this.productor.tipoIdentificacion = ''
+    this.productor.identificacion = ''
     this.productor.nombre = ''
     this.productor.apellido = ''
-    this.productor.identificacion = ''
+    this.productor.numeroTelefono = ''
+
     this.productor.nombrePredio = ''
     this.productor.codigoFinca = ''
     this.productor.codigoSica = ''
     this.productor.municipio = ''
     this.productor.vereda = ''
-    this.productor.numeroTelefono = null
     this.productor.afiliacionSalud = ''
     this.productor.cedulaCafetera = ''
-    this.productor.estado= ''
+
     this.formGroup = this.formBuilder.group({
+      tipoIdentificacion: [this.productor.tipoIdentificacion, Validators.required],
       nombre: [this.productor.nombre, Validators.required],
       apellido: [this.productor.apellido, Validators.required],
       identificacion: [
@@ -85,7 +90,6 @@ export class ProductorRegistroComponent implements OnInit {
           Validators.maxLength(11),
         ],
       ],
-      estado: ['Activo'],
       cedulaCafetera: [this.productor.cedulaCafetera, Validators.required],
       nombrePredio: [this.productor.nombrePredio, Validators.required],
       codigoFinca: [this.productor.codigoFinca, Validators.required],
@@ -143,17 +147,27 @@ export class ProductorRegistroComponent implements OnInit {
       }
     }
   }
+
+  cambiarTipoIdentificaciones(e){
+    this.control.tipoIdentificacion.setValue(e.target.value, {
+      onlySelf: true,
+    })
+    console.log(this.control.tipoIdentificacion.value)
+  }
+
   cambiarMunicipio(e) {
     this.control.municipio.setValue(e.target.value, {
       onlySelf: true,
     })
     console.log(this.control.municipio.value)
   }
+  
   cambiarVereda(e) {
     this.control.vereda.setValue(e.target.value, {
       onlySelf: true,
     })
   }
+
   onSubmit() {
     if (this.formGroup.invalid) {
       const messageBox = this.modalService.open(AlertaModalErrorComponent)
@@ -163,12 +177,13 @@ export class ProductorRegistroComponent implements OnInit {
       this.registrar()
     }
   }
+
   get control() {
     return this.formGroup.controls
   }
+
   registrar() {
     this.productor = this.formGroup.value
-    this.productor.estado = "Activo"
     this.productorService.post(this.productor).subscribe((p) => {
       if (p != null) {
         const messageBox = this.modalService.open(AlertaModalOkComponent)
@@ -178,8 +193,7 @@ export class ProductorRegistroComponent implements OnInit {
       } else {
         const messageBox = this.modalService.open(AlertaModalErrorComponent)
         messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-        messageBox.componentInstance.mensaje =
-          'No se ha podido registrar al productor'
+        messageBox.componentInstance.mensaje = 'No se ha podido registrar al productor'
       }
     })
   }

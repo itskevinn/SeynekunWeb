@@ -168,6 +168,7 @@ export class EmpleadoEdicionComponent implements OnInit {
   get control() {
     return this.formGroup.controls;
   }
+  
   eliminar() {
     this.empleado = this.formGroup.value;
     const messageBox = this.modalService.open(AlertaModalPreguntaComponent);
