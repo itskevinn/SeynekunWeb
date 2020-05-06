@@ -1089,6 +1089,7 @@
     ".NETStandard,Version=v2.0": [
       "Entity >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
+      "System.Collections >= 4.3.0",
       "datos >= 1.0.0"
     ]
   },
@@ -1098,11 +1099,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
+      "projectUniqueName": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
       "projectName": "Logica",
-      "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
+      "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
       "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\obj\\",
+      "outputPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1118,11 +1119,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj": {
-              "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj"
+            "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj": {
+              "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj"
             },
-            "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj"
+            "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
+              "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj"
             }
           }
         }
@@ -1141,6 +1142,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [
