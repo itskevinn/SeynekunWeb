@@ -1,6 +1,5 @@
 export class Bodega {
-    codigo: string;
-    detalle: string;
-    cantidadMáxima: number;
+    nombre: string;
+    detalle: string;    
     valor: number;
 }

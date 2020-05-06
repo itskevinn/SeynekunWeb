@@ -40,7 +40,6 @@ import { ProductoConsultaComponent } from './seynekun/inventario/producto/produc
 import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
 import { ProductoVistaComponent } from './seynekun/inventario/producto/producto-vista/producto-vista.component'
 import { ReporteInventarioService } from './servicios/servicio-de-reporte-inventario/reporte-inventario.service'
-import { ProductoService } from './servicios/servicio-de-producto/producto.service'
 import { ControlesService } from './servicios/servicio-de-controles/controles.service'
 
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
@@ -64,6 +63,10 @@ import { FabricanteConsultaComponent } from './seynekun/fabricante/fabricante-co
 import { FabricanteRegistroComponent } from './seynekun/fabricante/fabricante-registro/fabricante-registro/fabricante-registro.component';
 import { FabricanteEdicionComponent } from './seynekun/fabricante/fabricante-edicion/fabricante-edicion/fabricante-edicion.component';
 import { BodegaRegistroComponent } from './seynekun/inventario/bodega/bodega-registro/bodega-registro/bodega-registro.component'
+import { ProductoService } from './servicios/servicio-producto/producto.service';
+import { CategoriaRegistroComponent } from './seynekun/inventario/categoria/categoria-registro/categoria-registro/categoria-registro.component';
+import { CategoriaConsultaComponent } from './seynekun/inventario/categoria/categoria-consulta/categoria-consulta/categoria-consulta.component';
+import { CategoriaVistaComponent } from './seynekun/inventario/categoria/categoria-vista/categoria-vista/categoria-vista.component'
 
 
 @NgModule({
@@ -117,6 +120,9 @@ import { BodegaRegistroComponent } from './seynekun/inventario/bodega/bodega-reg
     FabricanteConsultaComponent,
     FabricanteRegistroComponent,
     FabricanteEdicionComponent,
+    CategoriaRegistroComponent,
+    CategoriaConsultaComponent,
+    CategoriaVistaComponent,
     
   ],
   imports: [

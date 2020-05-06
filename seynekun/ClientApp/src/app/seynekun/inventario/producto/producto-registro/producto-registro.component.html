@@ -11,84 +11,53 @@
             <div class="col-lg-7">
               <div class="p-5">
                 <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Registrar Empleado</h1>
+                  <h1 class="h4 text-gray-900 mb-4">Registrar Producto</h1>
                 </div>
                 <form class="user" [formGroup]="formGroup">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-user required" name="identificacion"
-                      placeholder="Cédula Ciudadanía" formControlName="identificacion"
-                      [ngClass]="{'is-invalid':control.identificacion.errors && control.identificacion.touched}">
-                    <div *ngIf="control.identificacion.errors && control.identificacion.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.identificacion.errors.required">Proporcione su
-                        número de cédula
-                      </div>
-                      <div class="validacion-texto"
-                        *ngIf="control.identificacion.errors.minlength  || control.identificacion.errors.maxlength || control.identificacion.errors.validarNumeroidentificacion">
-                        Proporcione un
-                        número de cédula válido
+                    <input type="text" class="form-control form-control-user required" name="codigo"
+                      placeholder="Código del Producto" formControlName="codigo"
+                      [ngClass]="{'is-invalid':control.codigo.errors && control.codigo.touched}">
+                    <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione un código para el
+                        producto
                       </div>
                     </div>
                   </div>
-                  <div class=" form-group row">
+                  <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <input type="text" class="form-control form-control-user required" name="nombre"
-                        placeholder="Nombre del Empleado" formControlName="nombre"
-                        [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
-                      <div *ngIf=" control.nombre.errors && control.nombre.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.nombre.errors.required">Ingrese su
-                          nombre
-                        </div>
-                      </div>
+                        placeholder="Nombre del Producto" formControlName="nombre">
                     </div>
                     <div class="col-sm-6">
-                      <input type="text" class="form-control form-control-user" name="apellido"
-                        placeholder="Apellido del Empleado" formControlName="apellido"
-                        [ngClass]="{'is-invalid':control.apellido.errors && control.apellido.touched}">
-                      <div *ngIf="control.apellido.errors && control.apellido.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.apellido.errors.required">Ingrese su
-                          apellido
+                      <input type="number" class="form-control form-control-user" name="precio"
+                        placeholder="Precio del Producto" formControlName="precio"
+                        [ngClass]="{'is-invalid':control.precio.errors && control.precio.touched}">
+                      <div *ngIf="control.precio.errors && control.precio.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.precio.errors.required">Proporcione un precio
+                          para el
+                          producto
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class=" form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" class="form-control form-control-user" name="numeroTelefono"
-                        placeholder="Número de teléfono" formControlName="numeroTelefono"
-                        [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
-                      <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
-                        class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.numeroTelefono.errors.required">Proporcione un
-                          número de teléfono
-                        </div>
-                        <div class="validacion-texto"
-                          *ngIf="control.numeroTelefono.errors.minlength || control.numeroTelefono.errors.maxlength || control.numeroTelefono.errors.validarNumeroTelefono">
-                          Ingrese un número de
-                          teléfono válido
-                        </div>
-                      </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0 separarArriba">
+                      <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
+                        <option [ngValue]="null"> Categoria </option>
+                        <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+                      </select>
                     </div>
                     <div class="col-sm-6 separarArriba">
-                      <select class="form-dropdown border-verde " name="cargo" (change)="cambiarCargo($event)">
-                        <option [ngValue]="null"> Cargo </option>
-                        <option [ngValue]="cargo" *ngFor="let cargo of cargos">{{cargo}}</option>
+                      <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
+                        <option [ngValue]="null"> Bodega </option>
+                        <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
                       </select>
-                      <div *ngIf="control.cargo.errors && control.cargo.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.cargo.errors.required">Seleccione un cargo
-                          de la lista
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-user" name="email"
-                      placeholder="Email del Empleado" formControlName="email"
-                      [ngClass]="{'is-invalid':control.email.errors && control.email.touched}">
-                    <div *ngIf="control.email.errors && control.apellido.touched" class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.email.errors.email">Ingrese un correo válido
-                      </div>
-                    </div>
+                    <input type="descripcion" class="form-control form-control-user" name="descripcion"
+                      placeholder="Descripción" formControlName="descripcion">
                   </div>
                   <hr>
                   <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
