@@ -9,5 +9,6 @@ namespace Entity
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string NumeroTelefono { get; set; }
+        public string Estado { get; set; }
     }
 }

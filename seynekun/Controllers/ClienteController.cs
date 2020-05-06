@@ -9,12 +9,12 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 
-namespace seynekun.Controllers
-{
+namespace seynekun.Controllers {
+
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
-    {
+    public class ClienteController : ControllerBase {
+
         private readonly ServicioCliente servicioCliente;
         public IConfiguration configuration { get; }
 
@@ -42,18 +42,17 @@ namespace seynekun.Controllers
         {
             var cliente = new Cliente
             {
-                TipoIdentificacion = clienteInputModel.TipoIdentifiacion,
+                TipoIdentificacion = clienteInputModel.TipoIdentificacion,
                 Identificacion = clienteInputModel.Identificacion,
                 Nombre = clienteInputModel.Nombre,
                 Apellido = clienteInputModel.Apellido,
                 NumeroTelefono = clienteInputModel.NumeroTelefono,
                 NumeroTelefono2 = clienteInputModel.NumeroTelefono2,
                 Email = clienteInputModel.Email,
+                Direccion = clienteInputModel.Direccion,
                 Departamento = clienteInputModel.Departamento,
                 Municipio = clienteInputModel.Municipio,
-                Direccion = clienteInputModel.Direccion,
-                Barrio = clienteInputModel.Barrio,
-                Estado = "Activo"
+                Barrio = clienteInputModel.Barrio
             };
             return cliente;
         }
@@ -62,24 +61,27 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<ClienteViewModel> Gets()
         {
-            var response = servicioCliente.Consultar().objetos.Select(p => new ClienteViewModel(p));
+            var response = servicioCliente.Consultar().Clientes.Select(p => new ClienteViewModel(p));
             return response;
         }
-
 
         [HttpGet("{identificacion}")]
         public ActionResult<ClienteViewModel> Get(string identificacion)
         {
-            var cliente = servicioCliente.BuscarxId(identificacion).Cliente;
-            if (cliente == null) return NotFound();
-            var clienteViewModel = new ClienteViewModel(cliente);
-            return clienteViewModel;
+            var response = servicioCliente.BuscarxId(identificacion);
+            if (response.Error)
+            {
+                return BadRequest(response.Mensaje);
+            }
+            var cliente = new ClienteViewModel(response.Cliente);
+            return cliente;
         }
+
         [HttpPut("{identificacion}")]
         public ActionResult<string> Put(Cliente cliente, string identificacion)
         {
-            var id = servicioCliente.BuscarxId(identificacion);
-            if (id == null)
+            var response = servicioCliente.BuscarxId(identificacion);
+            if (response.Cliente == null)
             {
                 return BadRequest("Cliente no econtrado");
             }
@@ -89,6 +91,7 @@ namespace seynekun.Controllers
                 return Ok(mensaje);
             }
         }
+
         [HttpDelete("{identificacion}")]
         public ActionResult<string> Delete(string identificacion)
         {
