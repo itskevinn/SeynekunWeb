@@ -25,6 +25,19 @@ import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inv
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
 import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
+import { FabricanteRegistroComponent } from './seynekun/fabricante/fabricante-registro/fabricante-registro/fabricante-registro.component'
+import { FabricanteEdicionComponent } from './seynekun/fabricante/fabricante-edicion/fabricante-edicion/fabricante-edicion.component'
+import { FabricanteConsultaComponent } from './seynekun/fabricante/fabricante-consulta/fabricante-consulta/fabricante-consulta.component'
+import { FabricanteVistaComponent } from './seynekun/fabricante/fabricante-vista/fabricante-vista/fabricante-vista.component'
+import { InsumoConsultaComponent } from './seynekun/inventario/insumo/insumo-consulta/insumo-consulta/insumo-consulta.component'
+import { InsumoVistaComponent } from './seynekun/inventario/insumo/insumo-vista/insumo-vista/insumo-vista.component'
+import { InsumoEdicionComponent } from './seynekun/inventario/insumo/insumo-edicion/insumo-edicion/insumo-edicion.component'
+import { FichaTecnicaVistaComponent } from './seynekun/inventario/insumo/ficha-tecnica/fecha-tecnica-vista/ficha-tecnica-vista/ficha-tecnica-vista.component'
+import { FichaTecnicaRegistroComponent } from './seynekun/inventario/insumo/ficha-tecnica/fecha-tecnica-registro/ficha-tecnica-registro/ficha-tecnica-registro.component'
+import { BodegaConsultaComponent } from './seynekun/inventario/bodega/bodega-consulta/bodega-consulta/bodega-consulta.component'
+import { BodegaVistaComponent } from './seynekun/inventario/bodega/bodega-vista/bodega-vista/bodega-vista.component'
+import { BodegaEdicionComponent } from './seynekun/inventario/bodega/bodega-edicion/bodega-edicion/bodega-edicion.component'
+import { BodegaRegistroComponent } from './seynekun/inventario/bodega/bodega-registro/bodega-registro/bodega-registro.component'
 
 const routes: Routes = [
   {
@@ -56,6 +69,20 @@ const routes: Routes = [
   { path: 'Ajuste-De-Inventario/:id', component: AjusteInventarioVistaComponent },  
   { path: 'Editar-Ajuste-De-Inventario/:id', component: AjusteInventarioEdicionComponent },  
   { path: 'Añadir-Ajuste-De-Inventario', component: AjusteInventarioRegistroComponent },  
+  { path: 'Fabricantes', component: FabricanteConsultaComponent },  
+  { path: 'EditarFabricante/:id', component: FabricanteEdicionComponent },  
+  { path: 'RegistrarFabricante', component: FabricanteRegistroComponent },  
+  { path: 'Insumos', component: InsumoConsultaComponent },  
+  { path: 'Insumo/:id', component: InsumoVistaComponent },  
+  { path: 'EditarInsumo/:id', component: InsumoEdicionComponent },  
+  { path: 'RegistrarInsumo/:id', component: FabricanteVistaComponent },  
+  { path: 'FichaTecnica', component: FichaTecnicaVistaComponent },  
+  { path: 'EditarFichaTecnica', component: FichaTecnicaVistaComponent },  
+  { path: 'RegistrarFichaTecnica', component: FichaTecnicaRegistroComponent },  
+  { path: 'Bodegas', component: BodegaConsultaComponent },  
+  { path: 'Bodega/:id', component: BodegaVistaComponent },  
+  { path: 'EditarBodega/:id', component: BodegaEdicionComponent },  
+  { path: 'RegistrarBodega', component: BodegaRegistroComponent },  
 
 ]
 
