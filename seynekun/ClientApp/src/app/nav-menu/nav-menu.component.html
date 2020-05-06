@@ -1,48 +1,4 @@
-<!--<header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">seynekun</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/RegistrarLote']"
-              >Registro de Lotes</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/ConsultarLote']"
-              >Consulta de Lotes</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
--->
+
 <ul class="navbar-nav bg-nav sidebar sidebar-dark accordion" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -79,6 +35,7 @@
         <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
         <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
         <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
+        <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
       </div>
     </div>
   </li>
@@ -93,6 +50,8 @@
         <a class="collapse-item" [routerLink]="['/Productos']">Productos a la venta</a>
         <a class="collapse-item" [routerLink]="['/Ajustes-De-Inventario']">Ajuste de inventario</a>
         <a class="collapse-item" [routerLink]="['/Reporte-De-Inventario']">Valor de inventario</a>
+        <a class="collapse-item" [routerLink]="['/Bodegas']">Bodegas</a>
+        <a class="collapse-item" [routerLink]="['/Insumos']">Insumos</a>
       </div>
     </div>
   </li>

@@ -47,7 +47,24 @@ import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-
 import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
 import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component';
-import { AlertaModalPreguntaComponent } from './@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component'
+import { AlertaModalPreguntaComponent } from './@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component';
+
+import { BodegaConsultaComponent } from './seynekun/inventario/bodega/bodega-consulta/bodega-consulta/bodega-consulta.component';
+import { BodegaVistaComponent } from './seynekun/inventario/bodega/bodega-vista/bodega-vista/bodega-vista.component';
+import { BodegaEdicionComponent } from './seynekun/inventario/bodega/bodega-edicion/bodega-edicion/bodega-edicion.component';
+import { InsumoRegistroComponent } from './seynekun/inventario/insumo/insumo-registro/insumo-registro/insumo-registro.component';
+import { InsumoConsultaComponent } from './seynekun/inventario/insumo/insumo-consulta/insumo-consulta/insumo-consulta.component';
+import { InsumoVistaComponent } from './seynekun/inventario/insumo/insumo-vista/insumo-vista/insumo-vista.component';
+import { FichaTecnicaVistaComponent } from './seynekun/inventario/insumo/ficha-tecnica/fecha-tecnica-vista/ficha-tecnica-vista/ficha-tecnica-vista.component';
+import { FichaTecnicaRegistroComponent } from './seynekun/inventario/insumo/ficha-tecnica/fecha-tecnica-registro/ficha-tecnica-registro/ficha-tecnica-registro.component';
+import { FichaTecnicaEdicionComponent } from './seynekun/inventario/insumo/ficha-tecnica/fecha-tecnica-edicion/ficha-tecnica-edicion/ficha-tecnica-edicion.component';
+import { InsumoEdicionComponent } from './seynekun/inventario/insumo/insumo-edicion/insumo-edicion/insumo-edicion.component';
+import { FabricanteVistaComponent } from './seynekun/fabricante/fabricante-vista/fabricante-vista/fabricante-vista.component';
+import { FabricanteConsultaComponent } from './seynekun/fabricante/fabricante-consulta/fabricante-consulta/fabricante-consulta.component';
+import { FabricanteRegistroComponent } from './seynekun/fabricante/fabricante-registro/fabricante-registro/fabricante-registro.component';
+import { FabricanteEdicionComponent } from './seynekun/fabricante/fabricante-edicion/fabricante-edicion/fabricante-edicion.component';
+import { BodegaRegistroComponent } from './seynekun/inventario/bodega/bodega-registro/bodega-registro/bodega-registro.component'
+
 
 @NgModule({
   declarations: [
@@ -67,7 +84,7 @@ import { AlertaModalPreguntaComponent } from './@base/alerta-modal-pregunta/aler
     EmpleadoConsultaComponent,
     EmpleadoRegistroComponent,
     EmpleadoEdicionComponent,
-    FiltroEmpleadoPipe,
+    FiltroEmpleadoPipe,    
     FiltroClientePipe,
     EmpleadoVistaComponent,
     ClienteVistaComponent,
@@ -84,7 +101,23 @@ import { AlertaModalPreguntaComponent } from './@base/alerta-modal-pregunta/aler
     AjusteInventarioRegistroComponent,
     AjusteInventarioVistaComponent,
     AjusteInventarioEdicionComponent,
-    AlertaModalPreguntaComponent,
+    AlertaModalPreguntaComponent,        
+    BodegaConsultaComponent,
+    BodegaVistaComponent,
+    BodegaRegistroComponent,
+    BodegaEdicionComponent,  
+    InsumoRegistroComponent,
+    InsumoConsultaComponent,
+    InsumoVistaComponent,
+    FichaTecnicaVistaComponent,
+    FichaTecnicaRegistroComponent,
+    FichaTecnicaEdicionComponent,
+    InsumoEdicionComponent,
+    FabricanteVistaComponent,
+    FabricanteConsultaComponent,
+    FabricanteRegistroComponent,
+    FabricanteEdicionComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

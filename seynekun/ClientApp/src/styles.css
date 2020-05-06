@@ -11927,6 +11927,27 @@ a:focus {
   background-position: center;
   background-size: cover;
 }
+.bg-registrar-bodega-imagen {
+  background: url("../src/assets/img/19404.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.bg-registrar-producto-imagen {
+ background: url("../src/assets/img/129291.jpg");
+ background-position: center;
+ background-size: cover;
+ }
+
+.bg-registrar-fabricante-imagen {
+  background: url("../src/assets/img/16617.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.bg-registrar-insumo-imagen {
+  background: url("../src/assets/img/21122.jpg");
+  background-position: center;
+  background-size: cover;
+}
 
 .bg-register-image {
   background: url("../src/assets/img/2380973.jpg");

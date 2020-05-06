@@ -105,6 +105,8 @@ export class ProductorRegistroComponent implements OnInit {
           this.validarNumeroTelefono,
         ],
       ],
+      contrasena: [this.productor.contrasena, [Validators.required, Validators.minLength(7)]],
+      usuario: [this.productor.nombreUsuario, [Validators.required, Validators.maxLength(10)]],
       afiliacionSalud: [this.productor.afiliacionSalud, Validators.required],
     })
   }
