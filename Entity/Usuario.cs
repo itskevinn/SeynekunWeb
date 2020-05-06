@@ -4,6 +4,5 @@ namespace Entity
     {
         public string NombreUsuario { get; set; }
         public string Contrasena { get; set; }
-        public string Estado { get; set; }
     }
 }
