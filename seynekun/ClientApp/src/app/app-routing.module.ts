@@ -38,6 +38,12 @@ import { BodegaConsultaComponent } from './seynekun/inventario/bodega/bodega-con
 import { BodegaVistaComponent } from './seynekun/inventario/bodega/bodega-vista/bodega-vista/bodega-vista.component'
 import { BodegaEdicionComponent } from './seynekun/inventario/bodega/bodega-edicion/bodega-edicion/bodega-edicion.component'
 import { BodegaRegistroComponent } from './seynekun/inventario/bodega/bodega-registro/bodega-registro/bodega-registro.component'
+import { CategoriaRegistroComponent } from './seynekun/inventario/categoria/categoria-registro/categoria-registro/categoria-registro.component'
+import { CategoriaConsultaComponent } from './seynekun/inventario/categoria/categoria-consulta/categoria-consulta/categoria-consulta.component'
+import { CategoriaVistaComponent } from './seynekun/inventario/categoria/categoria-vista/categoria-vista/categoria-vista.component'
+import { CategoriaEdicionComponent } from './seynekun/inventario/categoria/categoria-edicion/categoria-edicion/categoria-edicion.component'
+import { ProductosBodegaComponent } from './seynekun/inventario/bodega/bodega-productos-vista/productos-bodega/productos-bodega.component'
+import { ProductosCategoriaComponent } from './seynekun/inventario/categoria/categoria-productos-vista/productos-categoria/productos-categoria.component'
 
 const routes: Routes = [
   {
@@ -83,6 +89,14 @@ const routes: Routes = [
   { path: 'Bodega/:id', component: BodegaVistaComponent },  
   { path: 'EditarBodega/:id', component: BodegaEdicionComponent },  
   { path: 'RegistrarBodega', component: BodegaRegistroComponent },  
+  { path: 'RegistrarCategoria', component: CategoriaRegistroComponent },  
+  { path: 'Categorias', component: CategoriaConsultaComponent },  
+  { path: 'Categoria/:id', component: CategoriaVistaComponent },  
+  { path: 'EditarCategoria/:id', component: CategoriaEdicionComponent },  
+  { path: 'ProductosEnBodega/:id', component: ProductosBodegaComponent },  
+  { path: 'ProductosEnCategoria/:id', component: ProductosCategoriaComponent},  
+  
+
 
 ]
 

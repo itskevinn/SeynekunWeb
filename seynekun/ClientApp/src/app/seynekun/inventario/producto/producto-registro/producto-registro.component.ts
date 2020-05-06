@@ -42,17 +42,17 @@ export class ProductoRegistroComponent implements OnInit {
     this.producto.codigo = "";
     this.producto.descripcion = "";
     this.producto.precio = null;
-    this.producto.categoria = "";
-    this.producto.bodega = "Principal";
+    this.producto.nombreCategoria = "";
+    this.producto.nombreBodega = "Principal";
     this.producto.estado = "Activo";
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre],
       codigo: [this.producto.codigo, Validators.required],
       descripcion: [this.producto.descripcion],
       precio: [this.producto.precio, Validators.required],
-      categoria: [this.producto.categoria],
+      categoria: [this.producto.nombreCategoria],
       estado: [this.producto.estado],
-      bodega: [this.producto.bodega],
+      bodega: [this.producto.nombreBodega],
     });
   }
 

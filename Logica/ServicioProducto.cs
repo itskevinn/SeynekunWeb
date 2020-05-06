@@ -1,3 +1,8 @@
+using Entity;
+using Datos;
+using System.Collections.Generic;
+using System;
+
 namespace Logica
 {
     public class ServicioProducto
@@ -61,10 +66,10 @@ namespace Logica
             try
             {
                 _conexión.Abrir();
-                var productoViejo = repositorioProducto.BuscarxId(productoNuevo.codigo);
+                var productoViejo = repositorioProducto.BuscarxId(productoNuevo.Codigo);
                 if (productoViejo != null)
                 {
-                    repositorioProducto.ModificarEstado(productoViejo.codigo, "Modificado");
+                    repositorioProducto.ModificarEstado(productoViejo.Codigo, "Modificado");
                     repositorioProducto.Modificar(productoNuevo);
                     _conexión.Cerrar();
                     return ($"El producto {productoNuevo.Nombre} se ha modificado satisfactoriamente.");
@@ -127,7 +132,7 @@ namespace Logica
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public Producto producto { get; set; }
+        public Producto Producto { get; set; }
         public GuardarProductoResponse(Producto producto)
         {
             Error = false;

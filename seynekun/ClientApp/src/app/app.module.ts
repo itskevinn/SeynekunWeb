@@ -66,7 +66,13 @@ import { BodegaRegistroComponent } from './seynekun/inventario/bodega/bodega-reg
 import { ProductoService } from './servicios/servicio-producto/producto.service';
 import { CategoriaRegistroComponent } from './seynekun/inventario/categoria/categoria-registro/categoria-registro/categoria-registro.component';
 import { CategoriaConsultaComponent } from './seynekun/inventario/categoria/categoria-consulta/categoria-consulta/categoria-consulta.component';
-import { CategoriaVistaComponent } from './seynekun/inventario/categoria/categoria-vista/categoria-vista/categoria-vista.component'
+import { CategoriaVistaComponent } from './seynekun/inventario/categoria/categoria-vista/categoria-vista/categoria-vista.component';
+import { CategoriaEdicionComponent } from './seynekun/inventario/categoria/categoria-edicion/categoria-edicion/categoria-edicion.component';
+import { FiltroBodegaPipe } from './filtro/filtro-bodega/filtro-bodega.pipe';
+import { FiltroCategoriaPipe } from './filtro/filtro-categoria/filtro-categoria.pipe';
+import { FiltroProductoPipe } from './filtro/filtro-producto/filtro-producto.pipe';
+import { ProductosBodegaComponent } from './seynekun/inventario/bodega/bodega-productos-vista/productos-bodega/productos-bodega.component';
+import { ProductosCategoriaComponent } from './seynekun/inventario/categoria/categoria-productos-vista/productos-categoria/productos-categoria.component'
 
 
 @NgModule({
@@ -123,6 +129,12 @@ import { CategoriaVistaComponent } from './seynekun/inventario/categoria/categor
     CategoriaRegistroComponent,
     CategoriaConsultaComponent,
     CategoriaVistaComponent,
+    CategoriaEdicionComponent,
+    FiltroBodegaPipe,
+    FiltroCategoriaPipe,
+    FiltroProductoPipe,
+    ProductosBodegaComponent,
+    ProductosCategoriaComponent,
     
   ],
   imports: [

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj": {}
+    "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj": {
+    "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj",
         "projectName": "datos",
-        "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj",
+        "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\datos.csproj",
         "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\obj\\",
+        "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
-                "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj"
+              "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj"
               }
             }
           }
@@ -71,14 +71,14 @@
         }
       }
     },
-    "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
+    "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj",
+        "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj",
         "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\obj\\",
+        "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",

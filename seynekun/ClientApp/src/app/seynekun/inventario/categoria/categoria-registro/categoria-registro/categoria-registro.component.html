@@ -1,1 +1,44 @@
-<p>categoria-registro works!</p>
+<button [routerLink]="['/Categorias']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="page-top">
+  <div class="content">
+    <section id="datosGenerales">
+      <div class="card o-hidden border-0 shadow-lg my-1">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-registrar-categoria-imagen"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registrar Categoría</h1>
+                </div>
+                <form class="user" [formGroup]="formGroup">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user required" name="nombre"
+                      placeholder="Nombre de la categoría" formControlName="nombre"
+                      [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
+                    <div *ngIf="control.nombre.errors && control.nombre.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.nombre.errors.required">Proporcione un nombre para la
+                        categoría
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <input type="detalle" class="form-control form-control-user" name="detalle" placeholder="Detalle"
+                      formControlName="detalle">
+                  </div>
+                  <hr>
+                  <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                    Registrar Categoría
+                  </a>
+                  <hr>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

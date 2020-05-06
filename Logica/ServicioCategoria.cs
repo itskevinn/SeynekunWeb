@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using Datos;
+using Entity;
 namespace Logica
 {
     public class ServicioCategoria
@@ -42,12 +46,12 @@ namespace Logica
             }
         }
 
-        public BuscarCategoriaxIdResponse BuscarxId(string codigo)
+        public BuscarCategoriaxIdResponse BuscarxId(string nombre)
         {
             try
             {
                 _conexión.Abrir();
-                Categoria categoria = repositorioCategoria.BuscarxId(codigo);
+                Categoria categoria = repositorioCategoria.BuscarxId(nombre);
                 _conexión.Cerrar();
                 return new BuscarCategoriaxIdResponse(categoria);
             }
@@ -57,18 +61,18 @@ namespace Logica
             }
         }
 
-        public string Modificar(Categoria categoriaNuevo)
+        public string Modificar(Categoria categoriaNueva)
         {
             try
             {
                 _conexión.Abrir();
-                var categoriaViejo = repositorioCategoria.BuscarxId(categoriaNuevo.codigo);
-                if (categoriaViejo != null)
+                var categoriaVieja = repositorioCategoria.BuscarxId(categoriaNueva.Nombre);
+                if (categoriaVieja != null)
                 {
-                    repositorioCategoria.ModificarEstado(categoriaViejo.codigo, "Modificado");
-                    repositorioCategoria.Modificar(categoriaNuevo);
+                    repositorioCategoria.ModificarEstado(categoriaVieja.Nombre, "Modificada");
+                    repositorioCategoria.Modificar(categoriaNueva);
                     _conexión.Cerrar();
-                    return ($"El categoria {categoriaNuevo.Nombre} se ha modificado satisfactoriamente.");
+                    return ($"La categoria {categoriaNueva.Nombre} se ha modificado satisfactoriamente.");
                 }
                 else
                 {
@@ -83,16 +87,16 @@ namespace Logica
             finally { _conexión.Cerrar(); }
 
         }
-        public string Eliminar(string codigo)
+        public string Eliminar(string nombre)
         {
             try
             {
                 _conexión.Abrir();
-                Categoria categoria = repositorioCategoria.BuscarxId(codigo);
+                Categoria categoria = repositorioCategoria.BuscarxId(nombre);
                 if (categoria != null)
                 {
-                    repositorioCategoria.ModificarEstado(codigo, "Eliminado");
-                    return $"El categoria {categoria.Nombre} se ha eliminado.";
+                    repositorioCategoria.Eliminar(nombre);
+                    return $"La categoria {categoria.Nombre} se ha eliminado.";
                 }
                 _conexión.Cerrar();
                 return "No se encontró categoria con el código ingresada";
@@ -104,17 +108,16 @@ namespace Logica
         }
 
     }
-
     public class ConsultarCategoriaResponse
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public List<Categoria> objetos;
+        public List<Categoria> Categorias;
 
         public ConsultarCategoriaResponse(List<Categoria> objetos)
         {
             Error = false;
-            this.objetos = objetos;
+            this.Categorias = objetos;
 
         }
 
@@ -128,7 +131,7 @@ namespace Logica
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public Categoria categoria { get; set; }
+        public Categoria Categoria { get; set; }
         public GuardarCategoriaResponse(Categoria categoria)
         {
             Error = false;

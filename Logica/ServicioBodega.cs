@@ -31,13 +31,31 @@ namespace Logica
                 return new GuardarBodegaResponse(e.Message);
             }
         }
-
+        public string Eliminar(string nombre)
+        {
+            try
+            {
+                _conexión.Abrir();
+                Bodega bodega = repositorioBodega.BuscarxId(nombre);
+                if (bodega != null)
+                {
+                    repositorioBodega.Eliminar(nombre);
+                    return $"La bodega {bodega.Nombre} se ha eliminado.";
+                }
+                _conexión.Cerrar();
+                return "No se encontró bodega con el código ingresada";
+            }
+            catch (Exception e)
+            {
+                return $"Error de la aplicación: {e.Message} ";
+            }
+        }
         public ConsultarBodegaResponse Consultar()
         {
             try
             {
                 _conexión.Abrir();
-                List<Bodega> bodegas = repositorioBodega.Consultar().FindAll(c => c.Estado.Equals("Activo") || c.Estado.Equals("Modificado")); ;
+                List<Bodega> bodegas = repositorioBodega.Consultar().FindAll(b => b.Estado.Equals("Activo") || b.Estado.Equals("Modificado")); 
                 _conexión.Cerrar();
                 return new ConsultarBodegaResponse(bodegas);
             }
@@ -88,78 +106,58 @@ namespace Logica
             finally { _conexión.Cerrar(); }
 
         }
-        public string Eliminar(string codigo)
+
+        public class ConsultarBodegaResponse
         {
-            try
+            public bool Error { get; set; }
+            public string Mensaje { get; set; }
+            public List<Bodega> Bodegas;
+
+            public ConsultarBodegaResponse(List<Bodega> bodegas)
             {
-                _conexión.Abrir();
-                Bodega bodega = repositorioBodega.BuscarxId(codigo);
-                if (bodega != null)
-                {
-                    repositorioBodega.ModificarEstado(codigo, "Eliminado");
-                    return $"El bodega {bodega.Nombre} se ha eliminado.";
-                }
-                _conexión.Cerrar();
-                return "No se encontró bodega con el código ingresada";
+                Error = false;
+                this.Bodegas = bodegas;
             }
-            catch (Exception e)
+
+            public ConsultarBodegaResponse(string mensaje)
             {
-                return $"Error de la aplicación: {e.Message} ";
+                Error = true;
+                Mensaje = mensaje;
             }
         }
-
-    }
-
-    public class ConsultarBodegaResponse
-    {
-        public bool Error { get; set; }
-        public string Mensaje { get; set; }
-        public List<Bodega> Bodegas;
-
-        public ConsultarBodegaResponse(List<Bodega> bodegas)
+        public class GuardarBodegaResponse
         {
-            Error = false;
-            this.Bodegas = bodegas;
+            public bool Error { get; set; }
+            public string Mensaje { get; set; }
+            public Bodega Bodega { get; set; }
+            public GuardarBodegaResponse(Bodega bodega)
+            {
+                Error = false;
+                Bodega = bodega;
+            }
+            public GuardarBodegaResponse(string mensaje)
+            {
+                Mensaje = mensaje;
+                Error = true;
+            }
         }
+        public class BuscarBodegaxIdResponse
+        {
+            public bool Error { get; set; }
+            public string Mensaje { get; set; }
+            public Bodega Bodega;
 
-        public ConsultarBodegaResponse(string mensaje)
-        {
-            Error = true;
-            Mensaje = mensaje;
-        }
-    }
-    public class GuardarBodegaResponse
-    {
-        public bool Error { get; set; }
-        public string Mensaje { get; set; }
-        public Bodega Bodega { get; set; }
-        public GuardarBodegaResponse(Bodega bodega)
-        {
-            Error = false;
-            Bodega = bodega;
-        }
-        public GuardarBodegaResponse(string mensaje)
-        {
-            Mensaje = mensaje;
-            Error = true;
-        }
-    }
-    public class BuscarBodegaxIdResponse
-    {
-        public bool Error { get; set; }
-        public string Mensaje { get; set; }
-        public Bodega Bodega;
+            public BuscarBodegaxIdResponse(Bodega bodega)
+            {
+                Error = false;
+                this.Bodega = bodega;
+            }
 
-        public BuscarBodegaxIdResponse(Bodega bodega)
-        {
-            Error = false;
-            this.Bodega = bodega;
-        }
-
-        public BuscarBodegaxIdResponse(string mensaje)
-        {
-            Error = true;
-            Mensaje = mensaje;
+            public BuscarBodegaxIdResponse(string mensaje)
+            {
+                Error = true;
+                Mensaje = mensaje;
+            }
         }
     }
 }

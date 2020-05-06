@@ -1,17 +1,20 @@
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Entity;
-using Logica;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using seynekun.Models;
+using Logica;
 using static seynekun.Models.BodegaModel;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BodegaController
+    public class BodegaController : ControllerBase
     {
         private readonly ServicioBodega servicioBodega;
         public IConfiguration configuration { get; }
@@ -40,8 +43,9 @@ namespace seynekun.Controllers
             var bodega = new Bodega
             {
                 Detalle = bodegaInputModel.Detalle,
-                Nombre = bodegaInputModel.Nombre,                
-                Estado = "Activo"
+                Nombre = bodegaInputModel.Nombre,
+                Estado = "Activo",
+                Direccion = bodegaInputModel.Direccion,
             };
             return bodega;
         }
@@ -50,7 +54,7 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<BodegaViewModel> Gets()
         {
-            var response = servicioBodega.Consultar().Bodegas.Select(p => new BodegaViewModel(p));
+            var response = servicioBodega.Consultar().Bodegas.Select(b => new BodegaViewModel(b));
             return response;
         }
 

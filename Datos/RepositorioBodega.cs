@@ -11,16 +11,24 @@ namespace Datos
         {
             _conexión = conexión._conexion;
         }
-
+        public void Eliminar(string nombre)
+        {
+            using (var comando = _conexión.CreateCommand())
+            {
+                comando.CommandText = "DELETE FROM Bodegas WHERE Nombre=@Nombre";
+                comando.Parameters.AddWithValue("@Nombre", nombre);
+                comando.ExecuteNonQuery();
+            }
+        }
         public void Guardar(Bodega bodega)
         {
             using (var comando = _conexión.CreateCommand())
             {
-                comando.CommandText = @"Insert Into Bodegas (Nombre, Detalle, Valor, Estado) values (@Nombre,@Detalle,@Valor, @Estado)";
+                comando.CommandText = @"Insert Into Bodegas (Nombre, Detalle, Estado, Direccion) values (@Nombre,@Detalle, @Estado, @Direccion)";
                 comando.Parameters.AddWithValue("@Nombre", bodega.Nombre);
-                comando.Parameters.AddWithValue("@Detalle", bodega.Detalle);
-                comando.Parameters.AddWithValue("@Valor", bodega.Valor);
+                comando.Parameters.AddWithValue("@Detalle", bodega.Detalle);                
                 comando.Parameters.AddWithValue("@Estado", bodega.Estado);
+                comando.Parameters.AddWithValue("@Direccion", bodega.Direccion);
                 var filas = comando.ExecuteNonQuery();
             }
         }
@@ -47,10 +55,11 @@ namespace Datos
         {
             if (!datos.HasRows) return null;
             Bodega bodega = new Bodega();
-            bodega.Nombre = (string)datos["Nombre"];
-            bodega.Valor = (decimal)datos["Valor"];
+            bodega.Nombre = (string)datos["Nombre"];            
             bodega.Detalle = (string)datos["Detalle"];
             bodega.Estado = (string)datos["Estado"];
+            bodega.Direccion = (string)datos["Direccion"];
+            bodega.Productos = new List<Producto>();
             return bodega;
         }
         public Bodega BuscarxId(string nombre)
@@ -90,9 +99,9 @@ namespace Datos
             if (!datos.HasRows) return null;
             Producto producto = new Producto();
             producto.Codigo = (string)datos["Codigo"];
-            producto.Nombre = (string)datos["Nombre"];            
+            producto.Nombre = (string)datos["Nombre"];
             producto.Descripcion = (string)datos["Descripcion"];
-            producto.Precio = (decimal)datos["Precio"]
+            producto.Precio = (decimal)datos["Precio"];
             producto.Estado = (string)datos["Estado"];
             producto.NombreBodega = (string)datos["NombreBodega"];
             producto.NombreCategoria = (string)datos["NombreCategoria"];
@@ -102,10 +111,10 @@ namespace Datos
         {
             using (var comando = _conexión.CreateCommand())
             {
-                comando.CommandText = "update Bodegas set Nombre = @Nombre, Detalle = @Detalle, Valor = @Valor";
+                comando.CommandText = "update Bodegas set  Detalle = @Detalle, Direccion = @Direccion WHERE Nombre = @Nombre";
                 comando.Parameters.AddWithValue("@Nombre", bodegaNueva.Nombre);
                 comando.Parameters.AddWithValue("@Detalle", bodegaNueva.Detalle);
-                comando.Parameters.AddWithValue("@Valor", bodegaNueva.Valor);
+                comando.Parameters.AddWithValue("@Direccion", bodegaNueva.Direccion);
                 comando.ExecuteNonQuery();
             }
         }
@@ -119,6 +128,5 @@ namespace Datos
                 comando.ExecuteNonQuery();
             }
         }
-
     }
 }
