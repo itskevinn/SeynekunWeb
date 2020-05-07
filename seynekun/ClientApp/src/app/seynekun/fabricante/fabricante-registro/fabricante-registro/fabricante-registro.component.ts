@@ -11,5 +11,5 @@ export class FabricanteRegistroComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
 }

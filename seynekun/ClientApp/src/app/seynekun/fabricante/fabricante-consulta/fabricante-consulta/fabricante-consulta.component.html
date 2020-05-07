@@ -1,1 +1,61 @@
-<p>fabricante-consulta works!</p>
+<h1 class="h3 mb-2 text-gray-800">Fabricantes</h1>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar" ng-change="validarTamañoLista()">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo">
+            <button [routerLink]="['/RegistrarFabricante']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Fabricantes </button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th>Tipo Identificación</th>
+                  <th>Número de Identificación</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Número Telefónico</th>
+                  <th>Email</th>
+                  <th>Direccion</th>
+                  <th>Fax</th>
+                  <th>Sitio web</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let fabricante of fabricantes|filtroCliente:textoABuscar; index as i ">
+                  <td>{{fabricante.tipoIdentificacion}}</td>
+                  <td>{{fabricante.identificacion}}</td>
+                  <td>{{fabricante.nombre}}</td>
+                  <td>{{fabricante.apellido}}</td>
+                  <td>{{fabricante.numeroTelefono}}</td>
+                  <td>{{fabricante.email}}</td>
+                  <td>{{fabricante.direccion}}</td>
+                  <td>{{fabricante.fax}}</td>
+                  <td>{{fabricante.sitioWeb}}</td>
+                  <td>
+                    <a routerLink='/Fabricante/{{fabricante.identificacion}}'>Ver</a>
+                    <a> / </a>
+                    <a routerLink='/EditarFabricante/{{fabricante.identificacion}}'>Editar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
