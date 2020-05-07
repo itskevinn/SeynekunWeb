@@ -22,16 +22,15 @@
               aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Estado</th>
+                  <th>Nombre</th>                  
                   <th>Dirección</th>
+                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let bodega of bodegas|filtroBodega:textoABuscar; index as i ">
-                  <td>{{bodega.nombre}}</td>
-                  <td>{{bodega.estado}}</td>      
-                  <td>{{bodega.direccion}}</td>      
+                  <td>{{bodega.nombre}}</td>                  
+                  <td>{{bodega.direccion}}</td>                      
                   <td>
                     <a routerLink='/Bodega/{{bodega.nombre}}'>Ver</a>
                     <a> / </a>

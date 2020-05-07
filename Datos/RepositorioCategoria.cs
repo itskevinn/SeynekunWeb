@@ -49,6 +49,7 @@ namespace Datos
             categoria.Nombre = (string)datos["Nombre"];
             categoria.Detalle = (string)datos["Detalle"];
             categoria.Estado = (string)datos["Estado"];
+            categoria.Productos = new List<Producto>();
             return categoria;
         }
         public Categoria BuscarxId(string nombre)
