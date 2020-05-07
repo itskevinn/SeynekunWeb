@@ -18,16 +18,11 @@ namespace seynekun.Controllers
     {
         private readonly ServicioCategoria servicioCategoria;
         private readonly IConfiguration configuration1;
-
-        public IConfiguration Getconfiguration()
-        {
-            return configuration1;
-        }
-
+       
         public CategoriaController(IConfiguration configuration)
         {
             this.configuration1 = configuration;
-            string cadenaDeConexión = this.Getconfiguration()["ConnectionStrings:DefaultConnection"];
+            string cadenaDeConexión = this.configuration1["ConnectionStrings:DefaultConnection"];
             servicioCategoria = new ServicioCategoria(cadenaDeConexión);
         }
 

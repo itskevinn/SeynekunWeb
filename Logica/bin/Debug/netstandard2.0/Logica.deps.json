@@ -9,10 +9,10 @@
     ".NETStandard,Version=v2.0/": {
       "Logica/1.0.0": {
         "dependencies": {
+          "Datos": "1.0.0",
           "Entity": "1.0.0",
           "NETStandard.Library": "2.0.3",
-          "System.Collections": "4.3.0",
-          "datos": "1.0.0"
+          "System.Collections": "4.3.0"
         },
         "runtime": {
           "Logica.dll": {}
@@ -157,14 +157,14 @@
           }
         }
       },
-      "datos/1.0.0": {
+      "Datos/1.0.0": {
         "dependencies": {
           "Entity": "1.0.0",
           "System.Collections": "4.3.0",
           "System.Data.SqlClient": "4.8.1"
         },
         "runtime": {
-          "datos.dll": {}
+          "Datos.dll": {}
         }
       },
       "Entity/1.0.0": {
@@ -313,7 +313,7 @@
       "path": "system.text.encoding.codepages/4.7.0",
       "hashPath": "system.text.encoding.codepages.4.7.0.nupkg.sha512"
     },
-    "datos/1.0.0": {
+    "Datos/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

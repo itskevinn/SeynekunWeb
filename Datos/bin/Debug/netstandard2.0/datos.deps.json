@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "datos/1.0.0": {
+      "Datos/1.0.0": {
         "dependencies": {
           "Entity": "1.0.0",
           "NETStandard.Library": "2.0.3",
@@ -15,7 +15,7 @@
           "System.Data.SqlClient": "4.8.1"
         },
         "runtime": {
-          "datos.dll": {}
+          "Datos.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
@@ -165,7 +165,7 @@
     }
   },
   "libraries": {
-    "datos/1.0.0": {
+    "Datos/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

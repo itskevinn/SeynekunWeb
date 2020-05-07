@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductoService } from 'src/app/servicios/servicio-producto/producto.service';
+import { Producto } from 'src/app/seynekun/models/modelo-producto/producto';
 
 @Component({
   selector: 'app-producto-consulta',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductoConsultaComponent implements OnInit {
 
-  constructor() { }
+  productos: Producto[];  
+  listaVacia: Boolean = true;
+  cantidadEmpleados: Number;
+  textoABuscar: String;
+  constructor(private productoService: ProductoService) {}
 
   ngOnInit(): void {
-  }
+    this.productoService.gets().subscribe((result) => {
+      this.productos = result;
+    });
+  } 
 
 }

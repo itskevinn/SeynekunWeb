@@ -1,0 +1,51 @@
+<h1 class="h3 mb-2 text-gray-800">Productos</h1>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo">
+            <button [routerLink]="['/RegistrarProducto']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Producto</button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Categoría</th>
+                  <th>Bodega</th>                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of productos|filtroProducto:textoABuscar; index as i ">
+                  <td>{{producto.codigo}}</td>
+                  <td>{{producto.nombre}}</td>
+                  <td>{{producto.nombreCategoria}}</td>
+                  <td>{{producto.nombreBodega}}</td>                  
+                  <td>
+                    <a routerLink='/Producto/{{producto.codigo}}'>Ver</a>
+                    <a> / </a>
+                    <a routerLink='/EditarProducto/{{producto.codigo}}'>Editar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

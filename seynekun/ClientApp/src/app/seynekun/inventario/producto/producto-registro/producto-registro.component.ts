@@ -12,6 +12,8 @@ import { AlertaModalOkComponent } from "src/app/@base/alerta-modal/alerta-modal.
 import { Categoria } from "src/app/seynekun/models/modelo-categoria/categoria";
 import { Bodega } from "src/app/seynekun/models/modelo-bodega/bodega";
 import { ProductoService } from "src/app/servicios/servicio-producto/producto.service";
+import { BodegaService } from "src/app/servicios/servicio-bodega/bodega.service";
+import { CategoriaService } from "src/app/servicios/servicio-categoria/categoria.service";
 
 @Component({
   selector: "app-producto-registro",
@@ -26,7 +28,9 @@ export class ProductoRegistroComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private bodegaService: BodegaService,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
@@ -35,14 +39,23 @@ export class ProductoRegistroComponent implements OnInit {
     this.producto = new Producto();
     this.crearFormulario();
   }
-  obtenerBodegas() {}
+  obtenerBodegas() {
+    this.bodegaService.gets().subscribe((result) => {
+      this.bodegas = result;
+    });
+  }
+  obtenerCategorias() {
+    this.categoriaService.gets().subscribe((result) => {
+      this.categorias = result;
+    });
+  }
   obtenerCategorías() {}
   crearFormulario() {
     this.producto.nombre = "";
     this.producto.codigo = "";
     this.producto.descripcion = "";
     this.producto.precio = null;
-    this.producto.nombreCategoria = "";
+    this.producto.nombreCategoria = "No Especificada";
     this.producto.nombreBodega = "Principal";
     this.producto.estado = "Activo";
     this.formGroup = this.formBuilder.group({
@@ -86,8 +99,7 @@ export class ProductoRegistroComponent implements OnInit {
   get control() {
     return this.formGroup.controls;
   }
-   registrar() {
- 
+  registrar() {
     this.producto = this.formGroup.value;
     this.productoService.post(this.producto).subscribe((e) => {
       if (e != null) {

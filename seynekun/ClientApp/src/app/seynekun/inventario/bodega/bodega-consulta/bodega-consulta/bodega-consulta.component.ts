@@ -9,8 +9,7 @@ import { Bodega } from "src/app/seynekun/models/modelo-bodega/bodega";
 })
 export class BodegaConsultaComponent implements OnInit {
   bodegas: Bodega[];  
-  listaVacia: Boolean = true;
-  cantidadEmpleados: Number;
+  listaVacia: Boolean = true;  
   textoABuscar: String;
   constructor(private bodegaService: BodegaService) {}
 
