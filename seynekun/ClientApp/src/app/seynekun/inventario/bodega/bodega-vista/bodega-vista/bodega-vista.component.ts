@@ -11,7 +11,7 @@ import { Bodega } from "src/app/seynekun/models/modelo-bodega/bodega";
 export class BodegaVistaComponent implements OnInit {
   bodega: Bodega;
   textoABuscar: string;
-  seEncontro: Boolean;
+  seEncontro: boolean;
   constructor(
     private bodegaService: BodegaService,
     private rutaActiva: ActivatedRoute  
