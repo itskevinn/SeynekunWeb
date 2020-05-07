@@ -14,6 +14,8 @@ namespace seynekun.Models
             public string Estado { get; set; }
             [StringLength(100, ErrorMessage = "Descripción demasiado larga")]            
             public string Descripcion { get; set; }
+            public string NombreCategoria { get; set; }
+            public string NombreBodega { get; set; }
         }
 
         public class ProductoViewModel : ProductoInputModel

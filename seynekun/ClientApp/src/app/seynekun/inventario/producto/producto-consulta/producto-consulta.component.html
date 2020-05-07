@@ -26,13 +26,15 @@
                   <th>Nombre</th>
                   <th>Precio</th>
                   <th>Categoría</th>
-                  <th>Bodega</th>                  
+                  <th>Bodega</th>  
+                  <th>Acción</th>                
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let producto of productos|filtroProducto:textoABuscar; index as i ">
                   <td>{{producto.codigo}}</td>
                   <td>{{producto.nombre}}</td>
+                  <td>{{producto.precio}}</td>
                   <td>{{producto.nombreCategoria}}</td>
                   <td>{{producto.nombreBodega}}</td>                  
                   <td>

@@ -1,4 +1,4 @@
-<button [routerLink]="['/Empleados']" type="button" class="btn btn-labeled btn-light">
+<button [routerLink]="['/Productos']" type="button" class="btn btn-labeled btn-light">
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div class="page-top">
   <div class="content">
@@ -49,7 +49,7 @@
                       </select>
                     </div>
                     <div class="col-sm-6 separarArriba">
-                      <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
+                      <select class="form-dropdown border-verde " name="bodega" (change)="cambiarBodega($event)">
                         <option [ngValue]="null"> Bodega </option>
                         <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
                       </select>
@@ -60,9 +60,9 @@
                       placeholder="Descripción" formControlName="descripcion">
                   </div>
                   <hr>
-                  <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                  <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
                     Registrar Producto
-                  </a>                 
+                  </button>
                   <hr>
                 </form>
               </div>

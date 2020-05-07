@@ -1099,11 +1099,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
+      "projectUniqueName": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
       "projectName": "Logica",
-      "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
+      "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\Logica.csproj",
       "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\obj\\",
+      "outputPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\logica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1119,11 +1119,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Datos\\Datos.csproj": {
-              "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Datos\\Datos.csproj"
+            "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Datos\\Datos.csproj": {
+              "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Datos\\Datos.csproj"
             },
-            "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
-              "projectPath": "c:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj"
+            "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\Kevin\\Documents\\GitHub\\SeynekunnWeb\\Entity\\Entity.csproj"
             }
           }
         }

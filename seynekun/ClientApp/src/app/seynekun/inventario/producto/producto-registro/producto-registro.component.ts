@@ -35,7 +35,7 @@ export class ProductoRegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerBodegas();
-    this.obtenerCategorías();
+    this.obtenerCategorias();
     this.producto = new Producto();
     this.crearFormulario();
   }
@@ -49,7 +49,7 @@ export class ProductoRegistroComponent implements OnInit {
       this.categorias = result;
     });
   }
-  obtenerCategorías() {}
+
   crearFormulario() {
     this.producto.nombre = "";
     this.producto.codigo = "";
@@ -63,26 +63,26 @@ export class ProductoRegistroComponent implements OnInit {
       codigo: [this.producto.codigo, Validators.required],
       descripcion: [this.producto.descripcion],
       precio: [this.producto.precio, Validators.required],
-      categoria: [this.producto.nombreCategoria],
+      nombreCategoria: [this.producto.nombreCategoria],
       estado: [this.producto.estado],
-      bodega: [this.producto.nombreBodega],
+      nombreBodega: [this.producto.nombreBodega],
     });
   }
 
   cambiarCategoria(e) {
-    if (this.control.categoria.value == null) {
-      this.control.categoria.setValue("No especificada");
+    if (this.control.nombreCategoria.value == null) {
+      this.control.nombreCategoria.setValue("No especificada");
     } else {
-      this.control.categoria.setValue(e.target.value, {
+      this.control.nombreCategoria.setValue(e.target.value, {
         onlySelf: true,
       });
     }
   }
   cambiarBodega(e) {
-    if (this.control.bodega.value == null) {
-      this.control.bodega.setValue("Principal");
+    if (this.control.nombreBodega.value == null) {
+      this.control.nombreBodega.setValue("Principal");
     } else {
-      this.control.bodega.setValue(e.target.value, {
+      this.control.nombreBodega.setValue(e.target.value, {
         onlySelf: true,
       });
     }

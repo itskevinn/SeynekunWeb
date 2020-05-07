@@ -43,7 +43,7 @@
           <div class="col-lg-6">
             <div class="p-edicion">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Editar Empleado</h1>
+                <h1 class="h4 text-gray-900 mb-4">Editar Bodega</h1>
               </div>
               <br>
               <form class="user" [formGroup]="formGroup">
@@ -66,9 +66,12 @@
                     formControlName="detalle">
                 </div>
                 <hr>
-                <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
-                  Registrar Bodega
-                </a>
+                <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                  Editar Bodega
+                </button>
+                <button (click)="eliminar()" class="btn btn-danger btn-user btn-block">
+                  Eliminar Bodega
+                </button>
                 <hr>
               </form>
             </div>
