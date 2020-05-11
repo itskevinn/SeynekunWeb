@@ -1,6 +1,7 @@
 using Entity;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System;
 namespace Datos
 {
     public class RepositorioBodega
@@ -58,8 +59,8 @@ namespace Datos
             bodega.Nombre = (string)datos["Nombre"];            
             bodega.Detalle = (string)datos["Detalle"];
             bodega.Estado = (string)datos["Estado"];
-            bodega.Direccion = (string)datos["Direccion"];
-            bodega.Productos = new List<Producto>();
+            bodega.Direccion = (string)datos["Direccion"];    
+            bodega.Ajustes = new List<AjusteInventario>();        
             return bodega;
         }
         public Bodega BuscarxId(string nombre)
@@ -71,41 +72,41 @@ namespace Datos
                 comando.Parameters.AddWithValue("@Nombre", nombre);
                 var datos = comando.ExecuteReader();
                 datos.Read();
-                bodega = MapToBodega(datos);
-                bodega.Productos = ObtenerProductosBodega(bodega.Nombre);
+                bodega = MapToBodega(datos);        
+                bodega.Ajustes = ObtenerAjusteInventariosBodega(nombre);
                 return bodega;
             }
         }
-        public List<Producto> ObtenerProductosBodega(string nombre)
+        public List<AjusteInventario> ObtenerAjusteInventariosBodega(string nombre)
         {
-            List<Producto> productos = new List<Producto>();
+            List<AjusteInventario> ajusteInventarios = new List<AjusteInventario>();
             using (var comando = _conexión.CreateCommand())
             {
-                comando.CommandText = "SELECT * FROM Producto WHERE NombreBodega = @Nombre";
+                comando.CommandText = "SELECT * FROM AjusteInventarios WHERE NombreBodega = @Nombre";
                 comando.Parameters.AddWithValue("@Nombre", nombre);
                 var datos = comando.ExecuteReader();
                 if (datos.HasRows)
                 {
                     while (datos.Read())
                     {
-                        productos.Add(MapToProducto(datos));
+                        ajusteInventarios.Add(MapToAjusteInventario(datos));
                     }
                 }
             }
-            return productos;
+            return ajusteInventarios;
         }
-        public Producto MapToProducto(SqlDataReader datos)
+       public AjusteInventario MapToAjusteInventario(SqlDataReader datos)
         {
             if (!datos.HasRows) return null;
-            Producto producto = new Producto();
-            producto.Codigo = (string)datos["Codigo"];
-            producto.Nombre = (string)datos["Nombre"];
-            producto.Descripcion = (string)datos["Descripcion"];
-            producto.Precio = (decimal)datos["Precio"];
-            producto.Estado = (string)datos["Estado"];
-            producto.NombreBodega = (string)datos["NombreBodega"];
-            producto.NombreCategoria = (string)datos["NombreCategoria"];
-            return producto;
+            AjusteInventario ajusteInventario = new AjusteInventario();
+            ajusteInventario.Fecha = (DateTime)datos["Fecha"];
+            ajusteInventario.Codigo = (decimal)datos["Codigo"];
+            ajusteInventario.Descipcion = (string)datos["Descipcion"];
+            ajusteInventario.Cantidad = (decimal)datos["Cantidad"];
+            ajusteInventario.CodigoElemento = (string)datos["CodigoElemento"];           
+            ajusteInventario.Tipo = (string)datos["Tipo"];
+            ajusteInventario.NombreBodega = (string)datos["NombreBodega"];
+            return ajusteInventario;
         }
         public void Modificar(Bodega bodegaNueva)
         {

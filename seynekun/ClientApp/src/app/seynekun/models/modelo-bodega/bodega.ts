@@ -1,9 +1,9 @@
-import { Producto } from "../modelo-producto/producto";
+import { AjusteDeInventario } from "../modelo-ajuste-inventario/ajuste-de-inventario";
 
 export class Bodega {
     nombre: string;
     detalle: string;        
-    productos: Producto[];
+    ajustes: AjusteDeInventario[];
     estado: string;
     direccion: string;
 }

@@ -8,10 +8,10 @@
           <span aria-hidden="true">×</span>
         </button>
         <span>
-          <i class="fas fa-fw fa-question uk-text-warning"></i>
+          <i class="fas fa-fw fa-question text-warning"></i>
         </span>
         <div>
-          <p class="uk-text-warning"> <strong> {{titulo}} </strong> </p>
+          <p class="text-warning"> <strong> {{titulo}} </strong> </p>
         </div>
         <hr>
       </div>
@@ -20,8 +20,8 @@
       </div>
       <div class="separarAbajo text-center">
         <hr>
-        <button class="btn btn-light" type="button" (click)="activeModal.close('Close click')"
-          data-dismiss="modal">Cerrar</button>
+        <button class="btn btn-light" type="button" (click)="confirmar()" data-dismiss="modal">Ok</button>
+        <button class="btn btn-light" type="button" (click)="cancelar()" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

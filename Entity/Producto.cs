@@ -7,7 +7,8 @@ namespace Entity
         public string Nombre { get; set; }
         public string Estado { get; set; }
         public string Descripcion { get; set; }
-        public string NombreCategoria { get; set; }
-        public string NombreBodega { get; set; }
+        public string NombreCategoria { get; set; }        
+        public decimal Cantidad { get; set; }
+        public string UnidadMedida { get; set; }
     }
 }

@@ -17,15 +17,16 @@ namespace Datos
         {
             using (var comando = _conexión.CreateCommand())
             {
-                comando.CommandText = @"Insert Into Producto (Codigo,Nombre,Descripcion,Precio,NombreCategoria,Estado,NombreBodega)
-                    values (@Codigo,@Nombre,@Descripcion,@Precio,@NombreCategoria,@Estado,@NombreBodega)";
+                comando.CommandText = @"Insert Into Producto (Codigo,Nombre,Descripcion,Precio,NombreCategoria,Estado,Cantidad,UnidadMedida)
+                    values (@Codigo,@Nombre,@Descripcion,@Precio,@NombreCategoria,@Estado,@Cantidad,@UnidadMedida)";
                 comando.Parameters.AddWithValue("@Codigo", producto.Codigo);
                 comando.Parameters.AddWithValue("@Nombre", producto.Nombre);
                 comando.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                 comando.Parameters.AddWithValue("@Precio", producto.Precio);
                 comando.Parameters.AddWithValue("@NombreCategoria", producto.NombreCategoria);
                 comando.Parameters.AddWithValue("@Estado", producto.Estado);
-                comando.Parameters.AddWithValue("@NombreBodega", producto.NombreBodega);
+                comando.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
+                comando.Parameters.AddWithValue("@UnidadMedida", producto.UnidadMedida);
                 var filas = comando.ExecuteNonQuery();
             }
         }
@@ -58,7 +59,8 @@ namespace Datos
             producto.Precio = (decimal)datos["Precio"];
             producto.NombreCategoria = (string)datos["NombreCategoria"];
             producto.Estado = (string)datos["Estado"];
-            producto.NombreBodega = (string)datos["NombreBodega"];
+            producto.Cantidad = (decimal)datos["Cantidad"];
+            producto.UnidadMedida = (string)datos["UnidadMedida"];
             return producto;
         }
         public Producto BuscarxId(string Codigo)
@@ -78,14 +80,15 @@ namespace Datos
         {
             using (var comando = _conexión.CreateCommand())
             {
-                comando.CommandText = "update Producto set Nombre = @Nombre, Descripcion = @Descripcion, Estado = @Estado,  Precio = @Precio, NombreCategoria = @NombreCategoria, NombreBodega = @NombreBodega where Codigo = @Codigo";
+                comando.CommandText = "update Producto set Nombre = @Nombre, Descripcion = @Descripcion, Estado = @Estado,  Precio = @Precio, NombreCategoria = @NombreCategoria, Cantidad = @Cantidad, UnidadMedida = @UnidadMedida where Codigo = @Codigo";
                 comando.Parameters.AddWithValue("@Codigo", productoNuevo.Codigo);
                 comando.Parameters.AddWithValue("@Nombre", productoNuevo.Nombre);
                 comando.Parameters.AddWithValue("@Descripcion", productoNuevo.Descripcion);
                 comando.Parameters.AddWithValue("@Estado", productoNuevo.Estado);
                 comando.Parameters.AddWithValue("@Precio", productoNuevo.Precio);
-                comando.Parameters.AddWithValue("@NombreCategoria", productoNuevo.NombreCategoria);
-                comando.Parameters.AddWithValue("@NombreBodega", productoNuevo.NombreBodega);
+                comando.Parameters.AddWithValue("@NombreCategoria", productoNuevo.NombreCategoria);                
+                comando.Parameters.AddWithValue("@Cantidad", productoNuevo.Cantidad);                
+                comando.Parameters.AddWithValue("@UnidadMedida", productoNuevo.UnidadMedida);                
                 comando.ExecuteNonQuery();
             }
         }

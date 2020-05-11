@@ -10,9 +10,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AlertaModalErrorComponent } from "src/app/@base/alerta-modal-error/alerta-modal-error.component";
 import { AlertaModalOkComponent } from "src/app/@base/alerta-modal/alerta-modal.component";
 import { Categoria } from "src/app/seynekun/models/modelo-categoria/categoria";
-import { Bodega } from "src/app/seynekun/models/modelo-bodega/bodega";
 import { ProductoService } from "src/app/servicios/servicio-producto/producto.service";
-import { BodegaService } from "src/app/servicios/servicio-bodega/bodega.service";
 import { CategoriaService } from "src/app/servicios/servicio-categoria/categoria.service";
 
 @Component({
@@ -23,26 +21,19 @@ import { CategoriaService } from "src/app/servicios/servicio-categoria/categoria
 export class ProductoRegistroComponent implements OnInit {
   producto: Producto;
   formGroup: FormGroup;
+  unidadMedidas: string[] = ["Gramo", "Kg", "Tonelada"];
   categorias: Categoria[];
-  bodegas: Bodega[];
   constructor(
     private productoService: ProductoService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private bodegaService: BodegaService,
     private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
-    this.obtenerBodegas();
     this.obtenerCategorias();
     this.producto = new Producto();
     this.crearFormulario();
-  }
-  obtenerBodegas() {
-    this.bodegaService.gets().subscribe((result) => {
-      this.bodegas = result;
-    });
   }
   obtenerCategorias() {
     this.categoriaService.gets().subscribe((result) => {
@@ -56,8 +47,9 @@ export class ProductoRegistroComponent implements OnInit {
     this.producto.descripcion = "";
     this.producto.precio = null;
     this.producto.nombreCategoria = "No Especificada";
-    this.producto.nombreBodega = "Principal";
     this.producto.estado = "Activo";
+    this.producto.cantidad = null;
+    this.producto.unidadMedida = "";
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre],
       codigo: [this.producto.codigo, Validators.required],
@@ -65,24 +57,24 @@ export class ProductoRegistroComponent implements OnInit {
       precio: [this.producto.precio, Validators.required],
       nombreCategoria: [this.producto.nombreCategoria],
       estado: [this.producto.estado],
-      nombreBodega: [this.producto.nombreBodega],
+      cantidad: [this.producto.cantidad],
+      unidadMedida: [this.producto.unidadMedida],
     });
   }
-
+  cambiarUnidadMedida(e) {
+    if (this.control.unidadMedida.value == null) {
+      this.control.unidadMedida.setValue("No especificada");
+    } else {
+      this.control.unidadMedida.setValue(e.target.value, {
+        onlySelf: true,
+      });
+    }
+  }
   cambiarCategoria(e) {
     if (this.control.nombreCategoria.value == null) {
       this.control.nombreCategoria.setValue("No especificada");
     } else {
       this.control.nombreCategoria.setValue(e.target.value, {
-        onlySelf: true,
-      });
-    }
-  }
-  cambiarBodega(e) {
-    if (this.control.nombreBodega.value == null) {
-      this.control.nombreBodega.setValue("Principal");
-    } else {
-      this.control.nombreBodega.setValue(e.target.value, {
         onlySelf: true,
       });
     }

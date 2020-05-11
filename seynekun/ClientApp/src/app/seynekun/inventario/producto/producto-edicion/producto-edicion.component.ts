@@ -8,9 +8,7 @@ import { AlertaModalPreguntaComponent } from "src/app/@base/alerta-modal-pregunt
 import { AlertaModalOkComponent } from "src/app/@base/alerta-modal/alerta-modal.component";
 import { AlertaModalErrorComponent } from "src/app/@base/alerta-modal-error/alerta-modal-error.component";
 import { Categoria } from "src/app/seynekun/models/modelo-categoria/categoria";
-import { Bodega } from "src/app/seynekun/models/modelo-bodega/bodega";
 import { CategoriaService } from "src/app/servicios/servicio-categoria/categoria.service";
-import { BodegaService } from "src/app/servicios/servicio-bodega/bodega.service";
 
 @Component({
   selector: "app-producto-edicion",
@@ -21,11 +19,9 @@ export class ProductoEdicionComponent implements OnInit {
   nombre = this.rutaActiva.snapshot.params.id;
   producto: Producto;
   formGroup: FormGroup;
-  categorias: Categoria[];
-  bodegas: Bodega[];
+  categorias: Categoria[];  
   seEncontro: boolean;
-  constructor(
-    private bodegaService: BodegaService,
+  constructor(    
     private categoriaService: CategoriaService,
     private productoService: ProductoService,
     private formBuilder: FormBuilder,
@@ -33,8 +29,7 @@ export class ProductoEdicionComponent implements OnInit {
     private modalService: NgbModal
   ) {}
 
-  ngOnInit(): void {
-    this.obtenerBodegas();
+  ngOnInit(): void {    
     this.obtenerCategorias();
     this.producto = new Producto();
     this.buscar();
@@ -56,8 +51,7 @@ export class ProductoEdicionComponent implements OnInit {
     this.producto.codigo = "";
     this.producto.descripcion = "";
     this.producto.precio = null;
-    this.producto.nombreCategoria = "No Especificada";
-    this.producto.nombreBodega = "Principal";
+    this.producto.nombreCategoria = "No Especificada";    
     this.producto.estado = "Activo";
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre],
@@ -65,15 +59,9 @@ export class ProductoEdicionComponent implements OnInit {
       descripcion: [this.producto.descripcion],
       precio: [this.producto.precio, Validators.required],
       nombreCategoria: [this.producto.nombreCategoria],
-      estado: [this.producto.estado],
-      nombreBodega: [this.producto.nombreBodega],
+      estado: [this.producto.estado],      
     });
-  }
-  obtenerBodegas() {
-    this.bodegaService.gets().subscribe((result) => {
-      this.bodegas = result;
-    });
-  }
+  }  
   obtenerCategorias() {
     this.categoriaService.gets().subscribe((result) => {
       this.categorias = result;
@@ -87,16 +75,7 @@ export class ProductoEdicionComponent implements OnInit {
         onlySelf: true,
       });
     }
-  }
-  cambiarBodega(e) {
-    if (this.control.nombreBodega.value == null) {
-      this.control.nombreBodega.setValue("Principal");
-    } else {
-      this.control.nombreBodega.setValue(e.target.value, {
-        onlySelf: true,
-      });
-    }
-  }
+  }  
 
   onSubmit() {
     if (this.formGroup.invalid) {

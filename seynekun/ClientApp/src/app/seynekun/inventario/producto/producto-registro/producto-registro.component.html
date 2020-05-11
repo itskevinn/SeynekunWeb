@@ -41,20 +41,24 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0 separarArriba">
+                  <div class="form-group">                    
                       <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
                         <option [ngValue]="null"> Categoria </option>
                         <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-6 separarArriba">
-                      <select class="form-dropdown border-verde " name="bodega" (change)="cambiarBodega($event)">
-                        <option [ngValue]="null"> Bodega </option>
-                        <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
-                      </select>
-                    </div>
+                      </select>                                        
                   </div>
+                   <div class="form-group row">
+                     <div class="col-sm-6 mb-3 mb-sm-0">
+                       <input type="number" class="form-control form-control-user required" name="cantidad"
+                         placeholder="Cantidad de Presentación del Producto" formControlName="cantidad">
+                     </div>
+                     <div class="col-sm-6">
+                      <select class="form-dropdown border-verde separarArriba" name="unidadMedida" (change)="cambiarUnidadMedida($event)">
+                        <option [ngValue]="null"> Unidad de Medida </option>
+                        <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}</option>
+                      </select>
+                     </div>
+                   </div>
                   <div class="form-group">
                     <input type="descripcion" class="form-control form-control-user" name="descripcion"
                       placeholder="Descripción" formControlName="descripcion">

@@ -20,22 +20,20 @@
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
                 aria-describedby="dataTable_info" style="width: 100%;">
                 <thead>
-                  <tr>
-                    <th>Codigo</th>
+                  <tr>                    
+                    <th>Referencia</th>
                     <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Categoria</th>
+                    <th>Cantidad</th>                    
                     <th>Acción</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let producto of productos|filtroProducto:textoABuscar; index as i ">
-                    <td>{{producto.codigo}}</td>
-                    <td>{{producto.nombre}}</td>
-                    <td>{{producto.precio}}</td>
-                    <td>{{producto.nombreCategoria}}</td>
+                  <tr *ngFor="let productoBodega of productoEnBodegas|filtroProducto:textoABuscar; index as i ">
+                    <td>{{productoBodega.producto.codigo}}</td>
+                    <td>{{productoBodega.producto.nombre}}</td>
+                    <td>{{productoBodega.cantidad}}</td>
                     <td>
-                      <a routerLink='/Producto/{{producto.codigo}}'>Ver</a>
+                      <a routerLink='/Producto/{{productoBodega.producto.codigo}}'>Ver</a>
                     </td>
                   </tr>
                 </tbody>

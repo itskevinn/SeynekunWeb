@@ -92,8 +92,7 @@ namespace Datos
             producto.Nombre = (string)datos["Nombre"];
             producto.Descripcion = (string)datos["Descripcion"];
             producto.Precio = (decimal)datos["Precio"];
-            producto.Estado = (string)datos["Estado"];
-            producto.NombreBodega = (string)datos["NombreBodega"];
+            producto.Estado = (string)datos["Estado"];            
             producto.NombreCategoria = (string)datos["NombreCategoria"];
             return producto;
         }

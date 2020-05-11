@@ -22,7 +22,7 @@ import { ProductoVistaComponent } from './seynekun/inventario/producto/producto-
 
 import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component'
 import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
-import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
+
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
 import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
 import { FabricanteRegistroComponent } from './seynekun/fabricante/fabricante-registro/fabricante-registro/fabricante-registro.component'
@@ -44,6 +44,7 @@ import { CategoriaVistaComponent } from './seynekun/inventario/categoria/categor
 import { CategoriaEdicionComponent } from './seynekun/inventario/categoria/categoria-edicion/categoria-edicion/categoria-edicion.component'
 import { ProductosBodegaComponent } from './seynekun/inventario/bodega/bodega-productos-vista/productos-bodega/productos-bodega.component'
 import { ProductosCategoriaComponent } from './seynekun/inventario/categoria/categoria-productos-vista/productos-categoria/productos-categoria.component'
+import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
 
 const routes: Routes = [
   {
@@ -71,10 +72,10 @@ const routes: Routes = [
   { path: 'EditarProducto/:id', component: ProductoEdicionComponent },
   { path: 'RegistrarProducto', component: ProductoRegistroComponent },
   { path: 'Reporte-De-Inventario', component: ReporteInventarioComponent },  
-  { path: 'Ajustes-De-Inventario', component: AjusteInventarioConsultaComponent },  
-  { path: 'Ajuste-De-Inventario/:id', component: AjusteInventarioVistaComponent },  
-  { path: 'Editar-Ajuste-De-Inventario/:id', component: AjusteInventarioEdicionComponent },  
-  { path: 'Añadir-Ajuste-De-Inventario', component: AjusteInventarioRegistroComponent },  
+  { path: 'AjustesDeInventario', component: AjusteInventarioConsultaComponent },  
+  { path: 'AjusteDeInventario/:id', component: AjusteInventarioVistaComponent },  
+  { path: 'EditarAjusteDeInventario/:id', component: AjusteInventarioEdicionComponent },  
+  { path: 'RegistrarAjusteInventario', component: AjusteInventarioRegistroComponent },  
   { path: 'Fabricantes', component: FabricanteConsultaComponent },  
   { path: 'EditarFabricante/:id', component: FabricanteEdicionComponent },  
   { path: 'RegistrarFabricante', component: FabricanteRegistroComponent },  

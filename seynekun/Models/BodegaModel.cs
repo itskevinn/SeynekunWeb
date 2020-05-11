@@ -1,5 +1,6 @@
 using Entity;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 namespace seynekun.Models
 {
     public class BodegaModel
@@ -15,7 +16,7 @@ namespace seynekun.Models
             [StringLength(13, ErrorMessage = "Estado inválido")]
             public string Estado { get; set; }
             [StringLength(100,ErrorMessage="Direccion demasiado larga, trate de simplificarla")]
-            public string Direccion { get; set; }
+            public string Direccion { get; set; }            
         }
 
         public class BodegaViewModel : BodegaInputModel
@@ -26,7 +27,7 @@ namespace seynekun.Models
                 Detalle = bodega.Detalle;
                 Direccion = bodega.Direccion;
                 Estado = bodega.Estado;
-                Productos = bodega.Productos;
+                Ajustes = bodega.Ajustes;
             }
         }
     }

@@ -41,11 +41,12 @@ namespace seynekun.Controllers
             {
                 Codigo = productoInputModel.Codigo,
                 Nombre = productoInputModel.Nombre,
-                NombreCategoria = productoInputModel.NombreCategoria,
-                NombreBodega = productoInputModel.NombreBodega,
+                NombreCategoria = productoInputModel.NombreCategoria,                
                 Descripcion = productoInputModel.Descripcion,
                 Precio = productoInputModel.Precio,
-                Estado = "Activo"
+                Estado = "Activo",
+                Cantidad = productoInputModel.Cantidad,
+                UnidadMedida = productoInputModel.UnidadMedida
             };
             return producto;
         }
