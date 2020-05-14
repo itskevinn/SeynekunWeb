@@ -1,0 +1,79 @@
+<button [routerLink]="['/AjustesDeInventario']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="content">
+  <section id="datosGenerales">
+    <div class="card o-hidden border-0 shadow-lg my-1">
+      <div class="card-body p-0">
+        <div class="p-5">
+          <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Registrar Ajuste de Inventario</h1>
+          </div>
+          <form class="user" [formGroup]="formGroup">
+            <div class="form-group">
+              <input type="number" class="form-control form-control-user required" name="codigo" placeholder="Código"
+                formControlName="codigo" [ngClass]="{'is-invalid':control.codigo.errors && control.codigo.touched}">
+              <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione un código
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0 separarArriba">
+                <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
+                  <option [ngValue]="null">Bodega</option>
+                  <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="input-group separarArriba">
+                    <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
+                      [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
+                      [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-range" name="descipcion" placeholder="Descripción"
+                formControlName="descipcion">
+            </div>
+            <hr>
+            <div class="form-group">
+              <select class="form-dropdown border-verde " (change)="cambiarCodigo($event)">
+                <option [ngValue]="null">Referencia</option>
+                <optgroup label="Productos">
+                  <option [ngValue]="producto.codigo" *ngFor="let producto of productos">{{producto.codigo}} - {{producto.nombre}}
+                  </option>
+                </optgroup>
+                <optgroup label="Insumos">
+                  <!-- <option [ngValue]="insumo" *ngFor="let insumo of insumos">{{insumo.codigo}}</option>-->
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group ">
+              <input type="number" class="form-control form-control-user" name="cantidad" placeholder="Cantidad"
+                formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
+                  control.cantidad.touched}">
+              <div *ngIf="control.cantidad.errors && control.cantidad.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.cantidad.errors.required">Proporcione una cantidad
+                </div>
+              </div>
+            </div>
+            <div class="form-group ">
+              <select class="form-dropdown border-verde" (change)="cambiarTipo($event)">
+                <option [ngValue]=" null">Tipo</option>
+                <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+              </select>
+            </div>
+            <hr>
+            <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+              Registrar Ajuste de Inventario
+            </a>
+            <hr>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

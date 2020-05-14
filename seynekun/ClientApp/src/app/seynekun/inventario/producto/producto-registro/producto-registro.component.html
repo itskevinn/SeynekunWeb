@@ -1,0 +1,79 @@
+<button [routerLink]="['/Productos']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="page-top">
+  <div class="content">
+    <section id="datosGenerales">
+      <div class="card o-hidden border-0 shadow-lg my-1">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-registrar-producto-imagen"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registrar Producto</h1>
+                </div>
+                <form class="user" [formGroup]="formGroup">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user required" name="codigo"
+                      placeholder="Código del Producto" formControlName="codigo"
+                      [ngClass]="{'is-invalid':control.codigo.errors && control.codigo.touched}">
+                    <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione un código para el
+                        producto
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user required" name="nombre"
+                        placeholder="Nombre del Producto" formControlName="nombre">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control form-control-user" name="precio"
+                        placeholder="Precio del Producto" formControlName="precio"
+                        [ngClass]="{'is-invalid':control.precio.errors && control.precio.touched}">
+                      <div *ngIf="control.precio.errors && control.precio.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.precio.errors.required">Proporcione un precio
+                          para el
+                          producto
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">                    
+                      <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
+                        <option [ngValue]="null"> Categoria </option>
+                        <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+                      </select>                                        
+                  </div>
+                   <div class="form-group row">
+                     <div class="col-sm-6 mb-3 mb-sm-0">
+                       <input type="number" class="form-control form-control-user required" name="cantidad"
+                         placeholder="Cantidad de Presentación del Producto" formControlName="cantidad">
+                     </div>
+                     <div class="col-sm-6">
+                      <select class="form-dropdown border-verde separarArriba" name="unidadMedida" (change)="cambiarUnidadMedida($event)">
+                        <option [ngValue]="null"> Unidad de Medida </option>
+                        <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}</option>
+                      </select>
+                     </div>
+                   </div>
+                  <div class="form-group">
+                    <input type="descripcion" class="form-control form-control-user" name="descripcion"
+                      placeholder="Descripción" formControlName="descripcion">
+                  </div>
+                  <hr>
+                  <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                    Registrar Producto
+                  </button>
+                  <hr>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<h1 class="h3 mb-2 text-gray-800"> Productores</h1>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar" ng-change="validarTamañoLista()">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo">
+            <button [routerLink]="['/RegistrarProductor']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Productor</button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th>CC</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Cédula Cafetera</th>
+                  <th>Nombre Predio</th>
+                  <th>Código SICA</th>
+                  <th>Vereda</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let productor of productores|filtroProductor:textoABuscar; index as i ">
+                  <td>{{productor.identificacion}}</td>
+                  <td>{{productor.nombre}}</td>
+                  <td>{{productor.apellido}}</td>
+                  <td>{{productor.cedulaCafetera}}</td>
+                  <td>{{productor.nombrePredio}}</td>
+                  <td>{{productor.codigoSica}}</td>
+                  <td>{{productor.vereda}}</td>
+                  <td>
+                    <a routerLink='/Productor/{{productor.identificacion}}'>Ver</a>
+                    <a> / </a>
+                    <a routerLink='/EditarProductor/{{productor.identificacion}}'>Editar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<h1 class="h3 mb-2 text-gray-800">Ajustes de Inventario</h1>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+            placeholder="Buscar">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo">
+            <button [routerLink]="['/RegistrarAjusteInventario']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Crear Ajuste</button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr>                            
+                  <th>Fecha</th>
+                  <th>Bodega</th>
+                  <th>Cantidad Ajustada</th>
+                  <th>Tipo de Ajuste</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ajusteInvetario of ajusteInventarios|filtroAjusteInventario:textoABuscar; index as i ">                  
+                  <td>{{ajusteInvetario.fecha | date}}</td>
+                  <td>{{ajusteInvetario.nombreBodega}}</td>
+                  <td>{{ajusteInvetario.cantidad}}</td>
+                  <td>{{ajusteInvetario.tipo}}</td>
+                  <td>
+                    <a routerLink='/AjusteInventario/{{ajusteInvetario.codigo}}'>Ver</a>
+                    <a> / </a>
+                    <a routerLink='/EditarAjusteInventario/{{ajusteInvetario.codigo}}'>Editar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

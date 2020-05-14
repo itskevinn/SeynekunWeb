@@ -1,0 +1,79 @@
+<button [routerLink]="['/Categorias']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="content">
+  <section id="datosGenerales">
+    <div class="card o-hidden border-0 shadow-lg my-1">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Información Actual</h1>
+              </div>
+              <div class="card border-left-primary mb-4">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
+                      <div class="h2 mb-0 font-weight-bold text-gray-800">{{categoria.nombre}}</div>
+                      <div class="h4 mb-0 font-weight-normal text-gray-800">{{categoria.detalle}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card border-left-success mb-4">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Productos en Categoria</div>
+                      <a routerLink='/ProductosEncategoria/{{categoria.nombre}}'>Ver</a>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="p-edicion">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Editar Categoría</h1>
+              </div>
+              <br>
+              <form class="user" [formGroup]="formGroup">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user required" name="nombre"
+                    placeholder="Nombre de la Categoria" formControlName="nombre"
+                    [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
+                  <div *ngIf="control.nombre.errors && control.nombre.touched" class="invalid-feedback">
+                    <div class="validacion-texto" *ngIf="control.nombre.errors.required">Proporcione un nombre para la
+                      categoria
+                    </div>
+                  </div>
+                </div>               
+                <div class="form-group ">
+                  <input type="text" class="form-control form-control-user" name="detalle" placeholder="Detalle"
+                    formControlName="detalle">
+                </div>
+                <hr>
+                <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                  Editar Categoria
+                </button>
+                <button (click)="eliminar()" class="btn btn-danger btn-user btn-block">
+                  Eliminar Categoria
+                </button>
+                <hr>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
