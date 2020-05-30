@@ -14,6 +14,19 @@
                   <h1 class="h4 text-gray-900 mb-4">Registrar Empleado</h1>
                 </div>
                 <form class="user" [formGroup]="formGroup">
+                  <div class="form-group ">
+                    <select class="form-dropdown border-verde" (change)="cambiarTipoId($event)">
+                      <option selected>Tipo de Identificación</option>
+                      <option [ngValue]="tipo" *ngFor="let tipo of idTipos">{{tipo}}</option>
+                    </select>
+                    <div *ngIf="control.tipoIdentificacion.errors && control.tipoIdentificacion.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.tipoIdentificacion.errors.required">Seleccione un
+                        tipo de
+                        identificación
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user required" name="identificacion"
                       placeholder="Cédula Ciudadanía" formControlName="identificacion"

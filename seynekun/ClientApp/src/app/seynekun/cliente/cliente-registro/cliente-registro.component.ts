@@ -19,10 +19,20 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 export class ClienteRegistroComponent implements OnInit {
   cliente: Cliente
   formGroup: FormGroup
-  idTipos: string[]
-  departamentos: string[]
-  municipios: string[]
-
+  departamentos: string[] = [
+    'Cesar',
+    'La Guajira'
+  ]
+  municipios: string[] = [
+    'Rancho grande',
+    'Cocuhelo',
+    'Los corazones'
+  ]
+  idTipos: string[] = [
+    'CC',
+    'TI',
+    'RI'
+  ]
   constructor(
     private clienteService: ClienteService,
     private formBuilder: FormBuilder,
@@ -82,11 +92,13 @@ export class ClienteRegistroComponent implements OnInit {
       onlySelf: true,
     })
   }
+
   cambiarMunicipio(e) {
     this.control.municipio.setValue(e.target.value, {
       onlySelf: true,
     })
   }
+  
   cambiarDepartamento(e) {
     this.control.departamento.setValue(e.target.value, {
       onlySelf: true,

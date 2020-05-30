@@ -17,7 +17,7 @@
                   <div class="form-group ">
                     <select class="form-dropdown border-verde " name="tipoId" (change)="cambiarTipoId($event)">
                       <option [ngValue]="null"> Tipo de Identificación </option>
-                      <option [ngValue]="tipoIdentificacion" *ngFor="let tipo of idTipos">{{tipo}}</option>
+                      <option [ngValue]="tipo" *ngFor="let tipo of idTipos">{{tipo}}</option>
                     </select>
                     <div *ngIf="control.tipoIdentificacion.errors && control.tipoIdentificacion.touched"
                       class="invalid-feedback">

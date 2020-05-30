@@ -1,8 +1,33 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Entity
 {
-    public class Usuario : Persona
+    public class Usuario
     {
+        [Key]
         public string NombreUsuario { get; set; }
         public string Contrasena { get; set; }
+
+        [Required]
+        [StringLength(11)]
+        public string Estado { get; set; }
+
+        [Required]
+        [StringLength(25)]
+        public string Nombre { get; set; }
+
+        [Required]
+        [StringLength(25)]
+        public string Apellido { get; set; }
+
+        [Required]
+        [StringLength(13)]
+        public string NumeroTelefono { get; set; }
+        
+        [Required]
+        [StringLength(30)]
+        public string Email { get; set; }
+
+        public string Token { get; set; }
     }
 }

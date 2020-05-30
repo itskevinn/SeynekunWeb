@@ -11,8 +11,7 @@ namespace seynekun.Models {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
 
-        [StringLength(13, ErrorMessage="Ingrese un número de telefono válido")]
-        [Range(0, int.MaxValue, ErrorMessage = "Ingrese un número de telefono válido")]        
+        [StringLength(13, ErrorMessage="Ingrese un número de telefono válido")]       
         public string NumeroTelefono { get; set; }
 
         public string NumeroTelefono2 { get; set; }
@@ -22,14 +21,12 @@ namespace seynekun.Models {
         [StringLength(30, ErrorMessage="Correo demasiado largo")] 
         public string Email { get; set; }
         
-        
         [StringLength(40, ErrorMessage="Dirección demasido larga, trate de simplificarla")]
         public string Direccion { get; set; }
 
         [StringLength(14, ErrorMessage="Departamento inválido")]
         public string Departamento { get; set; }
 
-        [StringLength(14, ErrorMessage="Municipio inválido")]
         public string Municipio { get; set; }
 
         [StringLength(30, ErrorMessage="Nombre del barrio demasiado largo, trate de simplificarlo")]

@@ -19,13 +19,15 @@ import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.
 export class EmpleadoRegistroComponent implements OnInit {
   empleado: Empleado
   formGroup: FormGroup
+  idTipos: string[] = ['CC','TI','RI']
   cargos: string[] = [
     'Secretaria/o',
     'Jefe de Producción',
     'Coordinador de Producción',
     'Recepcionista',
-    'Auxiliar de Planta',
+    'Auxiliar de Planta'
   ]
+
   constructor(
     private empleadoService: EmpleadoService,
     private formBuilder: FormBuilder,
@@ -38,14 +40,17 @@ export class EmpleadoRegistroComponent implements OnInit {
   }
 
   crearFormulario() {
+    this.empleado.tipoIdentificacion = ''
     this.empleado.nombre = ''
     this.empleado.apellido = ''
     this.empleado.identificacion = ''
     this.empleado.numeroTelefono = ''
     this.empleado.email = ''
     this.empleado.cargo = ''
-    this.empleado.estado = "Activo";
+    this.empleado.estado = "Activo"
+
     this.formGroup = this.formBuilder.group({
+      tipoIdentificacion: [this.empleado.tipoIdentificacion, Validators.required],
       nombre: [this.empleado.nombre, Validators.required],
       apellido: [this.empleado.apellido, Validators.required],
       identificacion: [
@@ -89,6 +94,11 @@ export class EmpleadoRegistroComponent implements OnInit {
         mensajeNumero: 'Número cédula no válido',
       }
   }
+
+  cambiarTipoId(e) {
+    this.control.tipoIdentificacion.setValue(e.target.value)
+  }
+
   cambiarCargo(e) {
     this.control.cargo.setValue(e.target.value, {
       onlySelf: true,
@@ -133,6 +143,7 @@ export class EmpleadoRegistroComponent implements OnInit {
       }
     }
   }
+
   onSubmit() {
     if (this.formGroup.invalid) {
       const messageBox = this.modalService.open(AlertaModalErrorComponent)
@@ -142,9 +153,11 @@ export class EmpleadoRegistroComponent implements OnInit {
       this.registrar()
     }
   }
+
   get control() {
     return this.formGroup.controls
   }
+  
   registrar() {
     this.empleado = this.formGroup.value
     this.empleadoService.post(this.empleado).subscribe((e) => {

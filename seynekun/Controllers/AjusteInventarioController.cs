@@ -12,7 +12,7 @@ namespace seynekun.Controllers
     public class AjusteInventarioController : ControllerBase
     {
         private readonly ServicioAjusteInventario _ajusteService;
-        public AjusteInventarioController(AjusteInventarioContext context)
+        public AjusteInventarioController(SeynekunContext context)
         {
             _ajusteService = new ServicioAjusteInventario(context);
         }

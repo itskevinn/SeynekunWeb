@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
+using Datos;
 
 namespace seynekun.Controllers
 {
@@ -16,13 +17,9 @@ namespace seynekun.Controllers
     public class EmpleadoController : ControllerBase
     {
         private readonly ServicioEmpleado servicioEmpleado;
-        public IConfiguration configuration { get; }
-
-        public EmpleadoController(IConfiguration configuration)
+        public EmpleadoController(SeynekunContext context)
         {
-            this.configuration = configuration;
-            string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
-            servicioEmpleado = new ServicioEmpleado(cadenaDeConexión);
+            servicioEmpleado = new ServicioEmpleado(context);
         }
 
         // POST: api/Empleado
@@ -37,10 +34,10 @@ namespace seynekun.Controllers
             }
             return Ok(response.Empleado);
         }
-
         private Empleado MapToEmpleado(EmpleadoInputModel empleadoInputModel)
         {
             var empleado = new Empleado{
+                TipoIdentificacion = empleadoInputModel.TipoIdentificacion,
                 Identificacion = empleadoInputModel.Identificacion,
                 Nombre = empleadoInputModel.Nombre,
                 Apellido = empleadoInputModel.Apellido,
@@ -56,10 +53,9 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<EmpleadoViewModel> Gets()
         {
-            var response = servicioEmpleado.Consultar().objetos.Select(p=> new EmpleadoViewModel(p));
+            var response = servicioEmpleado.Consultar().Empleados.ConvertAll(e => new EmpleadoViewModel(e));
             return response;
         }
-       
 
         [HttpGet("{identificacion}")]
         public ActionResult<EmpleadoViewModel> Get(string identificacion)
@@ -69,6 +65,7 @@ namespace seynekun.Controllers
             var empleadoViewModel = new EmpleadoViewModel(empleado);
             return empleadoViewModel;
         }
+
         [HttpPut("{identificacion}")]
         public ActionResult<string> Put(Empleado empleado, string identificacion)
         {
@@ -83,6 +80,7 @@ namespace seynekun.Controllers
                 return Ok(mensaje);
             }
         }
+        
         [HttpDelete("{identificacion}")]
         public ActionResult<string> Delete(string identificacion)
         {

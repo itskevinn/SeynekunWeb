@@ -8,8 +8,8 @@ namespace Logica
 {
     public class ServicioAjusteInventario
     {
-        private readonly AjusteInventarioContext _context;
-        public ServicioAjusteInventario(AjusteInventarioContext context)
+        private readonly SeynekunContext _context;
+        public ServicioAjusteInventario(SeynekunContext context)
         {
             _context = context;
         }
