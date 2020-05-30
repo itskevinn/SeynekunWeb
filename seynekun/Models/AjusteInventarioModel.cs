@@ -4,7 +4,7 @@ namespace seynekun.Models
 {
     public class AjusteInventarioModel
     {
-        public class AjusteInventarioInputModel : AjusteInventario
+        public class AjusteInventarioInputModel
         {
          public decimal Codigo { get; set; }   
          public DateTime Fecha { get; set; }

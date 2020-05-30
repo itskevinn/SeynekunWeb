@@ -12,26 +12,27 @@
           <form class="user" [formGroup]="formGroup">
             <div class="form-group">
               <select class="form-dropdown border-verde" (change)="cambiarIdentificacion($event)">
-                <option [ngValue]="null">Productor</option>            
-                  <option [ngValue]="productor.identificacion" *ngFor="let productor of productores">{{productor.identificacion}} -
-                    {{productor.nombre}} {{producto.apellido}}
-                  </option>                
+                <option [ngValue]="null">Productor</option>
+                <option [ngValue]="productor.identificacion" *ngFor="let productor of productores">
+                  {{productor.identificacion}} -
+                  {{productor.nombre}} {{producto.apellido}}
+                </option>
               </select>
             </div>
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0 separarArriba">
-                <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
-                  <option [ngValue]="null">Bodega</option>
-                  <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
-                </select>
-              </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="form-group">
-                  <div class="input-group separarArriba">
-                    <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
-                      [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
-                      [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-user" name="cantidad" placeholder="Cantidad"
+                      formControlName="cantidad">
                   </div>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-dropdown border-verde" (change)="cambiarUnidadMedida($event)">
+                    <option [ngValue]="null">Unidad de Medida</option>
+                    <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>

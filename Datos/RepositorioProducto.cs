@@ -27,6 +27,7 @@ namespace Datos
                 comando.Parameters.AddWithValue("@Estado", producto.Estado);
                 comando.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
                 comando.Parameters.AddWithValue("@UnidadMedida", producto.UnidadMedida);
+                
                 var filas = comando.ExecuteNonQuery();
             }
         }
@@ -60,7 +61,7 @@ namespace Datos
             producto.NombreCategoria = (string)datos["NombreCategoria"];
             producto.Estado = (string)datos["Estado"];
             producto.Cantidad = (decimal)datos["Cantidad"];
-            producto.UnidadMedida = (string)datos["UnidadMedida"];
+            producto.UnidadMedida = (string)datos["UnidadMedida"];            
             return producto;
         }
         public Producto BuscarxId(string Codigo)
@@ -80,7 +81,7 @@ namespace Datos
         {
             using (var comando = _conexión.CreateCommand())
             {
-                comando.CommandText = "update Producto set Nombre = @Nombre, Descripcion = @Descripcion, Estado = @Estado,  Precio = @Precio, NombreCategoria = @NombreCategoria, Cantidad = @Cantidad, UnidadMedida = @UnidadMedida where Codigo = @Codigo";
+                comando.CommandText = "update Producto set Nombre = @Nombre,Descripcion = @Descripcion, Estado = @Estado,  Precio = @Precio, NombreCategoria = @NombreCategoria, Cantidad = @Cantidad, UnidadMedida = @UnidadMedida where Codigo = @Codigo";
                 comando.Parameters.AddWithValue("@Codigo", productoNuevo.Codigo);
                 comando.Parameters.AddWithValue("@Nombre", productoNuevo.Nombre);
                 comando.Parameters.AddWithValue("@Descripcion", productoNuevo.Descripcion);

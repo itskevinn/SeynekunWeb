@@ -86,14 +86,6 @@ namespace seynekun.Controllers
                 string mensaje = _ajusteService.Eliminar(codigo);
                 return Ok(mensaje);
             }
-        }
-        [HttpGet("{bodega}/{producto}")]
-       public ActionResult<decimal> GetCantidad(string bodega, string producto)
-        {
-            var cantidadSumada = _ajusteService.SumarCantidad(producto, bodega);
-            if (cantidadSumada == -1) return NoContent();
-            var cantidad = cantidadSumada;
-            return cantidad;
-        }
+        }    
     }
 }
