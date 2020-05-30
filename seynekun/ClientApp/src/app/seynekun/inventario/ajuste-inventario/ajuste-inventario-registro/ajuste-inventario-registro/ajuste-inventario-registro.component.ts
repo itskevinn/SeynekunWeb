@@ -82,16 +82,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.datepicker.hide();
   }*/
 
-  onSubmit() {
-    if (this.formGroup.invalid) {
-      const messageBox = this.modalService.open(AlertaModalErrorComponent);
-      messageBox.componentInstance.titulo = "Ha ocurrido un error";
-      messageBox.componentInstance.mensaje = "Aún faltan datos por llenar";
-      console.log(this.control.codigo);
-    } else {
-      this.registrar();
-    }
-  }
+  
   obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
       this.bodegas = result;
@@ -146,5 +137,15 @@ export class AjusteInventarioRegistroComponent implements OnInit {
           "No se ha podido registrar el Ajuste de Inventario";
       }
     });
+  }
+  onSubmit() {
+    if (this.formGroup.invalid) {
+      const messageBox = this.modalService.open(AlertaModalErrorComponent);
+      messageBox.componentInstance.titulo = "Ha ocurrido un error";
+      messageBox.componentInstance.mensaje = "Aún faltan datos por llenar";
+      console.log(this.control.codigo);
+    } else {
+      this.registrar();
+    }
   }
 }

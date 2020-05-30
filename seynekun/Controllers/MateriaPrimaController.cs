@@ -8,13 +8,13 @@ using static seynekun.Models.MateriaPrimaModel;
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]    
     public class MateriaPrimaController : ControllerBase
     {
         private readonly ServicioMateriaPrima materiaService;        
-        public MateriaPrimaController(MateriaPrimaContext contextMateria)
+        public MateriaPrimaController(ContextoDB context)
         {            
-            materiaService = new ServicioMateriaPrima(contextMateria);
+            materiaService = new ServicioMateriaPrima(context);
         }
         // POST: api/MateriaPrima
         [HttpPost]

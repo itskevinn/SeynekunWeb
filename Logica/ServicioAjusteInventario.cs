@@ -8,11 +8,10 @@ namespace Logica
 {
     public class ServicioAjusteInventario
     {
-        private readonly AjusteInventarioContext _context;
-        private readonly ServicioProducto servicioProducto = new ServicioProducto("Server=localhost\\SQLEXPRESS; Database=Seynekun; Trusted_Connection = True; MultipleActiveResultSets = true");
-        public ServicioAjusteInventario(AjusteInventarioContext context)
+        private readonly ContextoDB _context;        
+        public ServicioAjusteInventario(ContextoDB context)
         {
-            _context = context;
+            _context = context;            
         }
         public GuardarAjusteInventarioResponse Guardar(AjusteInventario ajusteInventario)
         {
@@ -73,16 +72,25 @@ namespace Logica
                 return $"Error de la Aplicación: {e.Message}";
             }
         }
-        private List<AjusteInventario> ObtenerAjustesxProductoyBodega(string codigoElemento, string nombreBodega)
+        public IEnumerable<AjusteInventario> ObtenerAjustesxProductoyBodega(string codigoElemento, string nombreBodega)
         {
-            return _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento && a.NombreBodega == nombreBodega).ToList();
+            return _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento && a.NombreBodega == nombreBodega);
         }
-        private List<AjusteInventario> ObtenerAjustesxProductoyMateria(string codigoElemento, decimal codigoMateria)
+  /*      public IEnumerable<AjusteInventario> ObtenerProductosDeMateria(decimal codigoMateriaPrima)
         {
-            return _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento && a.CodigoMateriaPrima == codigoMateria).ToList();
-        }
-        private decimal CalcularCantidad(List<AjusteInventario> ajustes)
+            var ajustesSolicitadosxMateria = _context.AjusteInventarios.Where(a => a.CodigoMateriaPrima == codigoMateriaPrima);
+            IEnumerable<ProductoStock> productos;
+            ProductoStock producto;
+            foreach (var ajuste in ajustesSolicitadosxMateria)
+            {
+                producto = new ProductoStock();
+                producto.Producto = _context.Productos.Find(a => a.CodigoMateriaPrima == ajuste.CodigoMateriaPrima);
+                producto.Cantidad = SumarCantidadTotal(producto.Producto.Codigo);
+            }
+        }*/
+        public decimal SumarCantidadTotal(string codigoElemento)
         {
+            var ajustes = _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento);
             var sumaIncremento = ajustes.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
             var sumaDisminucion = ajustes.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
@@ -92,45 +100,17 @@ namespace Logica
             }
             return cantidad;
         }
-        public List<ProductoStock> ObtenerProductosEnBodega(string nombreBodega)
+        public decimal SumarCantidad(string codigoElemento, string nombreBodega)
         {
-            List<AjusteInventario> ajustes = Consultar();
-            List<ProductoStock> productoEnBodegas = new List<ProductoStock>();
-            foreach (var ajuste in ajustes)
+            var ajustesSolicitadosxBodega = ObtenerAjustesxProductoyBodega(codigoElemento, nombreBodega);
+            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var cantidad = sumaIncremento - sumaDisminucion;
+            if (0 > cantidad)
             {
-                ProductoStock productoEnBodega = new ProductoStock();
-                productoEnBodega.Producto = servicioProducto.BuscarxId(ajuste.CodigoElemento).Producto;
-                productoEnBodega.Cantidad = CalcularCantidad(ObtenerAjustesxProductoyBodega(productoEnBodega.Producto.Codigo, nombreBodega));
-                if (!esRepetido(productoEnBodegas, productoEnBodega.Producto.Codigo))
-                {
-                    productoEnBodegas.Add(productoEnBodega);
-                }
+                return 0;
             }
-            return productoEnBodegas;
-        }
-        public List<ProductoStock> ObtenerProductosDeMateria(decimal codigoMateria)
-        {
-            List<AjusteInventario> ajustes = Consultar();
-            List<ProductoStock> productoEnBodegas = new List<ProductoStock>();
-            foreach (var ajuste in ajustes)
-            {
-                ProductoStock productoEnBodega = new ProductoStock();
-                productoEnBodega.Producto = servicioProducto.BuscarxId(ajuste.CodigoElemento).Producto;
-                productoEnBodega.Cantidad = CalcularCantidad(ObtenerAjustesxProductoyMateria(productoEnBodega.Producto.Codigo, codigoMateria));
-                if (!esRepetido(productoEnBodegas, productoEnBodega.Producto.Codigo))
-                {
-                    productoEnBodegas.Add(productoEnBodega);
-                }
-            }
-            return productoEnBodegas;
-        }
-        private bool esRepetido(List<ProductoStock> productosEnBodega, string codigo)
-        {
-            for (int i = 0; i < productosEnBodega.Count; i++)
-            {
-                if (productosEnBodega[i].Producto.Codigo == codigo) return true;
-            }
-            return false;
+            return cantidad;
         }
         public string Eliminar(decimal codigo)
         {

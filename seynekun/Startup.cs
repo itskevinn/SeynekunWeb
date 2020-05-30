@@ -25,7 +25,7 @@ namespace seynekun
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AjusteInventarioContext>(a => a.UseSqlServer(connectionString));
+            services.AddDbContext<ContextoDB>(a => a.UseSqlServer(connectionString));
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {

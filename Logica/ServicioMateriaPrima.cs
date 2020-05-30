@@ -8,9 +8,9 @@ namespace Logica
     public class ServicioMateriaPrima
     {
 
-        private readonly MateriaPrimaContext _context;
+        private readonly ContextoDB _context;
         RepositorioProducto repositorioProducto;                       
-        public ServicioMateriaPrima(MateriaPrimaContext contextMateria)
+        public ServicioMateriaPrima(ContextoDB contextMateria)
         {
             _context = contextMateria;                      
         }

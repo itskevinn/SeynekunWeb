@@ -11,7 +11,7 @@ namespace seynekun.Controllers
     public class ProductoStockController : ControllerBase
     {
         private readonly ServicioAjusteInventario _ajusteService;
-        public ProductoStockController(AjusteInventarioContext context)
+        public ProductoStockController(ContextoDB context)
         {
             _ajusteService = new ServicioAjusteInventario(context);
         }
@@ -19,16 +19,18 @@ namespace seynekun.Controllers
         [HttpGet("{codigoMateria}")]
         public IEnumerable<ProductoStock> GetProductosxMateria(decimal codigoMateria)
         {
-            var ProductoStocks = _ajusteService.ObtenerProductosDeMateria(codigoMateria);
+            /*var ProductoStocks = _ajusteService.ObtenerProductosDeMateria(codigoMateria);
             if (ProductoStocks == null) return null;
-            return ProductoStocks;
+            return ProductoStocks;*/
+            return null;
         }
         [HttpGet("{nombre}")]
         public IEnumerable<ProductoStock> GetProductosxBodega(string nombre)
         {
-            var ProductoStocks = _ajusteService.ObtenerProductosEnBodega(nombre);
+           /* var ProductoStocks = _ajusteService.ObtenerProductosEnBodega(nombre);
             if (ProductoStocks == null) return null;
-            return ProductoStocks;
+            return ProductoStocks;*/
+            return null;
         }
     }
 }
