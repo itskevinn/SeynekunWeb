@@ -11,7 +11,7 @@ namespace seynekun.Controllers
     public class ProductoStockController : ControllerBase
     {
         private readonly ServicioAjusteInventario _ajusteService;
-        public ProductoStockController(ContextoDB context)
+        public ProductoStockController(SeynekunContext context)
         {
             _ajusteService = new ServicioAjusteInventario(context);
         }
