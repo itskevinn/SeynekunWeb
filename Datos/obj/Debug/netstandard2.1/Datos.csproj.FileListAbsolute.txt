@@ -10,3 +10,15 @@ C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Dato
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Datos.csproj.CopyComplete
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Datos.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Datos.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Datos.deps.json
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Datos.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Datos.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Entity.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Entity.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.csprojAssemblyReference.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.AssemblyInfoInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.AssemblyInfo.cs
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.csproj.CoreCompileInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.csproj.CopyComplete
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.pdb

@@ -1,4 +1,4 @@
-using Entity;
+/*using Entity;
 
 namespace seynekun.Servicio
 {
@@ -47,3 +47,4 @@ namespace seynekun.Servicio
         }
     }
 }
+*/
