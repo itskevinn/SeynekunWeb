@@ -17,7 +17,7 @@ namespace Logica
         {
             try
             {
-                return _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Contrasena == contrasena && (u.Estado == "Activo" || u.Estado == "Modificado"));
+                return _context.Usuarios.Where(u => u.NombreUsuario == nombreUsuario && u.Contrasena == contrasena && (u.Estado == "Activo" || u.Estado == "Modificado")).FirstOrDefault();
             }
             catch (Exception e)
             {

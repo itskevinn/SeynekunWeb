@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 using Datos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
@@ -44,12 +45,13 @@ namespace seynekun.Controllers
                 NumeroTelefono = empleadoInputModel.NumeroTelefono,
                 Email = empleadoInputModel.Email,
                 Cargo = empleadoInputModel.Cargo,
-                Estado = "Activo"
+                Estado = "Act"
             };
             return empleado;
         }
 
         // GET: api/Empleado
+        [Authorize]
         [HttpGet]
         public IEnumerable<EmpleadoViewModel> Gets()
         {
