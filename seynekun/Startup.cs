@@ -1,14 +1,18 @@
 using Datos;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using seynekun.Config;
+using System.Text;
 
 namespace seynekun
 {
@@ -31,11 +35,11 @@ namespace seynekun
             services.AddControllersWithViews();
 
             // configure strongly typed settings objects
-           var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+            var appSettingsSection = Configuration.GetSection("AppSetting");
+            services.Configure<AppSetting>(appSettingsSection);
 
             // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
+            var appSettings = appSettingsSection.Get<AppSetting>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {
@@ -61,14 +65,14 @@ namespace seynekun
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Seynekun API",
-                    Description = "Seynekun API - ASP.NET Core Web API",
+                    Title = "School API",
+                    Description = "School API - ASP.NET Core Web API",
                     TermsOfService = new Uri("https://cla.dotnetfoundation.org/"),
                     Contact = new OpenApiContact
                     {
                         Name = "Unicesar",
                         Email = string.Empty,
-                        Url = new Uri(string.Empty),
+                        Url = new Uri("https://github.com/anyamiyeth"),
                     },
                     License = new OpenApiLicense
                     {
