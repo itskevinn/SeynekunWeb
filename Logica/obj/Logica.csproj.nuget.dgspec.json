@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\logica\\Logica.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
+        "projectName": "Datos",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
@@ -25,8 +42,13 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
                 "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+=======
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+>>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
               }
             }
           }
@@ -51,6 +73,17 @@
             "System.Collections": {
               "target": "Package",
               "version": "[4.3.0, )"
+<<<<<<< HEAD
+=======
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+>>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
             }
           },
           "imports": [
@@ -72,6 +105,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -83,6 +117,19 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "projectName": "Entity",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
@@ -128,6 +175,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -139,6 +187,19 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\logica\\Logica.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\logica\\Logica.csproj",
+        "projectName": "Logica",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\logica\\Logica.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\logica\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
@@ -149,11 +210,19 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
                 "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
               },
               "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
                 "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+=======
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
+              },
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+>>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
               }
             }
           }

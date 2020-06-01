@@ -11,7 +11,7 @@ namespace Logica
         private readonly SeynekunContext _context;                    
         public ServicioMateriaPrima(SeynekunContext contextMateria)
         {
-            _context = contextMateria;                      
+            _context = context;                      
         }
         public GuardarMateriaPrimaResponse Guardar(MateriaPrima materiaPrima)
         {

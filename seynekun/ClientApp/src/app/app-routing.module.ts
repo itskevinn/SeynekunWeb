@@ -45,6 +45,7 @@ import { CategoriaEdicionComponent } from './seynekun/inventario/categoria/categ
 import { ProductosBodegaComponent } from './seynekun/inventario/bodega/bodega-productos-vista/productos-bodega/productos-bodega.component'
 import { ProductosCategoriaComponent } from './seynekun/inventario/categoria/categoria-productos-vista/productos-categoria/productos-categoria.component'
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
+import { LoginComponent } from './login/login/login.component'
 
 const routes: Routes = [
   {
@@ -96,7 +97,7 @@ const routes: Routes = [
   { path: 'EditarCategoria/:id', component: CategoriaEdicionComponent },  
   { path: 'ProductosEnBodega/:id', component: ProductosBodegaComponent },  
   { path: 'ProductosEnCategoria/:id', component: ProductosCategoriaComponent},  
-  
+  { path: 'Login', component: LoginComponent}
 
 
 ]

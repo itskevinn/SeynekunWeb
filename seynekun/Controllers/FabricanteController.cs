@@ -22,7 +22,7 @@ namespace seynekun.Controllers
         {
             servicioFabricante = new ServicioFabricante(context);
         }
-
+        
         // POST: api/Fabricante
         [HttpPost]
         public ActionResult<FabricanteViewModel> Post(FabricanteInputModel fabricanteInputModel)
@@ -91,5 +91,6 @@ namespace seynekun.Controllers
             string mensaje = servicioFabricante.Eliminar(identificacion);
             return Ok(mensaje);
         }
+        */
     }
 }

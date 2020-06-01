@@ -95,6 +95,7 @@ namespace Logica
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
+        */
     }
     public class ConsultarFabricanteResponse
     {

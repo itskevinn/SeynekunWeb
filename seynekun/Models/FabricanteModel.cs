@@ -1,5 +1,6 @@
-using Entity;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using Entity;
 
 namespace seynekun.Models
 {
@@ -18,19 +19,18 @@ namespace seynekun.Models
 
     public class FabricanteViewModel : FabricanteInputModel
     {
-        public string Estado { get; set; }
-
-        public FabricanteViewModel(Fabricante fabricante) {
+        public List<Insumo> Insumos { get; set; }
+        public FabricanteViewModel(Fabricante fabricante)
+        {
             TipoIdentificacion = fabricante.TipoIdentificacion;
             Identificacion = fabricante.Identificacion;
             Nombre = fabricante.Nombre;
-            Apellido = fabricante.Apellido;
+            Direccion = fabricante.Direccion;
             NumeroTelefono = fabricante.NumeroTelefono;
             Email = fabricante.Email;
-            Direccion = fabricante.Direccion;
             Fax = fabricante.Fax;
             SitioWeb = fabricante.SitioWeb;
-            Estado = fabricante.Estado;
+            Insumos = fabricante.Insumos;
         }
     }
 }

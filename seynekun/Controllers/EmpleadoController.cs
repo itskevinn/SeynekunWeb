@@ -9,9 +9,11 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 using Datos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmpleadoController : ControllerBase
@@ -44,7 +46,7 @@ namespace seynekun.Controllers
                 NumeroTelefono = empleadoInputModel.NumeroTelefono,
                 Email = empleadoInputModel.Email,
                 Cargo = empleadoInputModel.Cargo,
-                Estado = "Activo"
+                Estado = "Act"
             };
             return empleado;
         }

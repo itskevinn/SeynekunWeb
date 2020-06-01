@@ -8,6 +8,7 @@ namespace Datos
         public SeynekunContext(DbContextOptions options) : base(options) { }
 
         public DbSet<AjusteInventario> AjusteInventarios { get; set; }
+        public DbSet<MateriaPrima> MateriasPrimas { get; set; }
         public DbSet<Empleado> Empleados { get; set; }
         public DbSet<Productor> Productores { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
