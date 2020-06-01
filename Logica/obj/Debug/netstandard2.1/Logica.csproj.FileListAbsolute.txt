@@ -12,3 +12,17 @@ C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.1\Log
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.1\Logica.csproj.CopyComplete
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.1\Logica.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\logica\obj\Debug\netstandard2.1\Logica.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\Logica.deps.json
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\Logica.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\Logica.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\datos.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\Entity.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\datos.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\bin\Debug\netstandard2.1\Entity.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\SeynekunWeb\logica\obj\Debug\netstandard2.1\Logica.csproj.CopyComplete

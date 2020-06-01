@@ -10,3 +10,15 @@ C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Dato
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Datos.csproj.CopyComplete
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Datos.dll
 C:\Users\Kevin\Documents\GitHub\SeynekunnWeb\Datos\obj\Debug\netstandard2.1\Datos.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.1\datos.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.1\datos.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.1\datos.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.1\datos.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\datos.deps.json
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\datos.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\datos.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\Entity.dll
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\Entity.pdb
+C:\Users\User\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.1\datos.csproj.CopyComplete
