@@ -18,13 +18,14 @@ namespace seynekun.Controllers
         private readonly ServicioFabricante servicioFabricante;
         public IConfiguration configuration { get; }
 
+        /*
         public FabricanteController(IConfiguration configuration)
         {
             this.configuration = configuration;
             string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
             servicioFabricante = new ServicioFabricante(cadenaDeConexión);
         }
-
+        
         // POST: api/Fabricante
         [HttpPost]
         public ActionResult<FabricanteViewModel> Post(FabricanteInputModel fabricanteInputModel)
@@ -93,5 +94,6 @@ namespace seynekun.Controllers
             string mensaje = servicioFabricante.Eliminar(identificacion);
             return Ok(mensaje);
         }
+        */
     }
 }

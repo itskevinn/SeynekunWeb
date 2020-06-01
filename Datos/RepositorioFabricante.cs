@@ -7,6 +7,7 @@ namespace Datos
 {
     public class RepositorioFabricante
     {
+        /*
         private readonly SqlConnection _conexión;
 
         public RepositorioFabricante(GestionadorDeConexión conexión)
@@ -113,5 +114,6 @@ namespace Datos
             fabricante.Estado = (string) datos["Estado"];
             return fabricante;
         }
+        */
     }
 }

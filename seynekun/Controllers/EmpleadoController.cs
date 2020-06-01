@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmpleadoController : ControllerBase
@@ -51,7 +52,6 @@ namespace seynekun.Controllers
         }
 
         // GET: api/Empleado
-        [Authorize]
         [HttpGet]
         public IEnumerable<EmpleadoViewModel> Gets()
         {

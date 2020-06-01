@@ -12,5 +12,9 @@ namespace Datos
         public DbSet<Empleado> Empleados { get; set; }
         public DbSet<Productor> Productores { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Documento> Documentos { get; set; }
+        public DbSet<Insumo> Insumos { get; set; }
+        public DbSet<FichaTecnica> FichasTecnicas { get; set; }
+        public DbSet<Fabricante> Fabricantes { get; set; }
     }
 }

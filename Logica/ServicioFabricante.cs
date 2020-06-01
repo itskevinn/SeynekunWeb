@@ -7,6 +7,7 @@ namespace Logica
 {
     public class ServicioFabricante
     {
+        /*
         private readonly GestionadorDeConexión _conexión;
         private readonly RepositorioFabricante repositorioFabricante;
 
@@ -104,6 +105,7 @@ namespace Logica
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
+        */
     }
 
     public class GuardarFabricanteResponse
