@@ -1,91 +1,109 @@
 using System;
 using System.Collections.Generic;
 using Datos;
+using System.Linq;
 using Entity;
 
-namespace Logica {
-    public class ServicioCliente {
+namespace Logica
+{
+    public class ServicioCliente
+    {
 
-        private readonly GestionadorDeConexión _conexión;
-        private readonly RepositorioCliente repositorioCliente;
+        private readonly SeynekunContext _context;
 
-        public ServicioCliente(string cadenaDeConexión) {
-            _conexión = new GestionadorDeConexión(cadenaDeConexión);
-            repositorioCliente = new RepositorioCliente(_conexión);
+        public ServicioCliente(SeynekunContext context)
+        {
+            _context = context;
         }
 
-        public GuardarClienteResponse Guardar(Cliente cliente) {
-            try {
+        public GuardarClienteResponse Guardar(Cliente cliente)
+        {
+            try
+            {
                 cliente.Estado = "Activo";
-                _conexión.Abrir();
-                repositorioCliente.Guardar(cliente);
-                _conexión.Cerrar();
+                var clienteBuscado = _context.Clientes.Find(cliente.Identificacion);
+                if (clienteBuscado != null)
+                {
+                    return new GuardarClienteResponse("El cliente ya se encuentra registrado");
+                }
+                _context.Clientes.Add(cliente);
+                _context.SaveChanges();
                 return new GuardarClienteResponse(cliente);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return new GuardarClienteResponse(e.Message);
             }
         }
 
-        public ConsultarClienteResponse Consultar() {
-            try {
-                _conexión.Abrir();
-                List<Cliente> clientes = repositorioCliente.Consultar().FindAll(c => c.Estado.Equals("Activo") || c.Estado.Equals("Modificado"));;
-                _conexión.Cerrar();
-                return new ConsultarClienteResponse(clientes);
-            }
-            catch (Exception e) {
-                return new ConsultarClienteResponse(e.Message);
-            }
+        public List<Cliente> Consultar()
+        {
+            var clientes = _context.Clientes.Where(c => c.Estado.Equals("Activo") || c.Estado.Equals("Modificado")).ToList();
+            return clientes;
         }
 
-        public BuscarClientexIdResponse BuscarxId(string identificacion) {
-            try {
-                _conexión.Abrir();
-                Cliente cliente = repositorioCliente.BuscarxId(identificacion);
-                _conexión.Cerrar();
-                if (cliente != null && cliente.Estado != "Eliminado") {
-                    return new BuscarClientexIdResponse(cliente);
-                }
-                return new BuscarClientexIdResponse("Cliente no encontrado");
+
+        public BuscarClientexIdResponse BuscarxId(string identificacion)
+        {
+            var cliente = _context.Clientes.Find(identificacion);
+            if (cliente != null && cliente.Estado != "Eliminado")
+            {
+                return new BuscarClientexIdResponse(cliente);
             }
-            catch (Exception e) {
-                return new BuscarClientexIdResponse(e.Message);
-            }
+            return new BuscarClientexIdResponse("Cliente no encontrado");
         }
 
-        public string Modificar(Cliente clienteNuevo) {
-            try {
-                _conexión.Abrir();
-                var clienteViejo = repositorioCliente.BuscarxId(clienteNuevo.Identificacion);
-                if (clienteViejo != null && clienteViejo.Estado != "Eliminado") {
-                    repositorioCliente.ModificarEstado(clienteViejo.Identificacion, "Modificado");
-                    repositorioCliente.Modificar(clienteNuevo);
-                    _conexión.Cerrar();
-                    return ($"El cliente {clienteNuevo.Nombre} se ha modificado satisfactoriamente.");
+        public string Modificar(Cliente clienteNuevo)
+        {
+            try
+            {
+                var clienteViejo = _context.Clientes.Find(clienteNuevo.Identificacion);
+                if (clienteViejo != null && clienteViejo.Estado != "Eliminado")
+                {
+                    clienteViejo.TipoIdentificacion = clienteNuevo.TipoIdentificacion;
+                    clienteViejo.Identificacion = clienteNuevo.Identificacion;
+                    clienteViejo.Nombre = clienteNuevo.Nombre;
+                    clienteViejo.NumeroTelefono = clienteNuevo.NumeroTelefono;
+                    clienteViejo.NumeroTelefono2 = clienteNuevo.NumeroTelefono2;
+                    clienteViejo.Municipio = clienteNuevo.Municipio;
+                    clienteViejo.Email = clienteNuevo.Email;
+                    clienteViejo.Direccion = clienteNuevo.Direccion;
+                    clienteViejo.Departamento = clienteNuevo.Departamento;
+                    clienteViejo.Barrio = clienteNuevo.Barrio;
+                    clienteViejo.Apellido = clienteNuevo.Apellido;
+                    clienteViejo.Estado = clienteNuevo.Estado;
+                    _context.Update(clienteViejo);
+                    _context.SaveChanges();
+                    return "El cliente se actualizó";
                 }
-                else {
+                else
+                {
                     return $"No se encontró cliente con la identificacion: {clienteNuevo.Identificacion} ingresada";
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return $"Error de la Aplicación: {e.Message}";
             }
-            finally { _conexión.Cerrar(); }
         }
 
-        public string Eliminar(string identificacion) {
-            try {
-                _conexión.Abrir();
-                Cliente cliente = repositorioCliente.BuscarxId(identificacion);
-                if (cliente != null && cliente.Estado != "Eliminado") {
-                    repositorioCliente.ModificarEstado(identificacion, "Eliminado");
+        public string Eliminar(string identificacion)
+        {
+            try
+            {
+
+                Cliente cliente = _context.Clientes.Find(identificacion);
+                if (cliente != null && cliente.Estado != "Eliminado")
+                {
+                    cliente.Estado = "Eliminado";
+                    _context.Update(cliente);
+                    _context.SaveChanges();
                     return $"El cliente {cliente.Nombre} {cliente.Apellido} se ha eliminado.";
                 }
-                _conexión.Cerrar();
                 return "No se encontró cliente con la cédula ingresada";
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return $"Error de la aplicación: {e.Message} ";
             }
         }

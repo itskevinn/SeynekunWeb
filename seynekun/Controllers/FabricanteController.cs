@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
+using Datos;
 
 namespace seynekun.Controllers
 {
@@ -16,13 +17,10 @@ namespace seynekun.Controllers
     public class FabricanteController : ControllerBase
     {
         private readonly ServicioFabricante servicioFabricante;
-        public IConfiguration configuration { get; }
 
-        public FabricanteController(IConfiguration configuration)
+        public FabricanteController(SeynekunContext context)
         {
-            this.configuration = configuration;
-            string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
-            servicioFabricante = new ServicioFabricante(cadenaDeConexión);
+            servicioFabricante = new ServicioFabricante(context);
         }
 
         // POST: api/Fabricante
@@ -59,7 +57,7 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<FabricanteViewModel> Gets()
         {
-            var response = servicioFabricante.Consultar().Fabricantes.Select(f => new FabricanteViewModel(f));
+            var response = servicioFabricante.Consultar().Select(f => new FabricanteViewModel(f));
             return response;
         }
 

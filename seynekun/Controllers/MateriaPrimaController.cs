@@ -12,7 +12,7 @@ namespace seynekun.Controllers
     public class MateriaPrimaController : ControllerBase
     {
         private readonly ServicioMateriaPrima materiaService;        
-        public MateriaPrimaController(ContextoDB context)
+        public MateriaPrimaController(SeynekunContext context)
         {            
             materiaService = new ServicioMateriaPrima(context);
         }

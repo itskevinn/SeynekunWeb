@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 using static seynekun.Models.CategoriaModel;
+using Datos;
 
 namespace seynekun.Controllers
 {
@@ -17,13 +18,9 @@ namespace seynekun.Controllers
     public class CategoriaController : ControllerBase
     {
         private readonly ServicioCategoria servicioCategoria;
-        private readonly IConfiguration configuration1;
-       
-        public CategoriaController(IConfiguration configuration)
+        public CategoriaController(SeynekunContext context)
         {
-            this.configuration1 = configuration;
-            string cadenaDeConexión = this.configuration1["ConnectionStrings:DefaultConnection"];
-            servicioCategoria = new ServicioCategoria(cadenaDeConexión);
+            servicioCategoria = new ServicioCategoria(context);
         }
 
         // POST: api/Categoria
@@ -54,7 +51,7 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<CategoriaViewModel> Gets()
         {
-            var response = servicioCategoria.Consultar().Categorias.Select(b => new CategoriaViewModel(b));
+            var response = servicioCategoria.Consultar().Select(b => new CategoriaViewModel(b));
             return response;
         }
 

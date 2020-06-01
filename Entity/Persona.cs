@@ -30,7 +30,7 @@ namespace Entity
         public string Email { get; set; }
         
         [Required]
-        [StringLength(3)]
+        [StringLength(13)]
         public string Estado { get; set; }
     }
 }

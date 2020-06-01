@@ -69,7 +69,7 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor.nombre = ''
     this.productor.apellido = ''
     this.productor.numeroTelefono = ''
-
+this.productor.email =""
     this.productor.nombrePredio = ''
     this.productor.codigoFinca = ''
     this.productor.codigoSica = ''
@@ -77,10 +77,13 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor.vereda = ''
     this.productor.afiliacionSalud = ''
     this.productor.cedulaCafetera = ''
+    this.productor.contrasena = ""
+    this.productor.nombreUsuario = ""
 
     this.formGroup = this.formBuilder.group({
       tipoIdentificacion: [this.productor.tipoIdentificacion, Validators.required],
       nombre: [this.productor.nombre, Validators.required],
+      email : [this.productor.email, Validators.email],
       apellido: [this.productor.apellido, Validators.required],
       identificacion: [
         this.productor.identificacion,
@@ -106,7 +109,7 @@ export class ProductorRegistroComponent implements OnInit {
         ],
       ],
       contrasena: [this.productor.contrasena, [Validators.required, Validators.minLength(7)]],
-      usuario: [this.productor.nombreUsuario, [Validators.required, Validators.maxLength(10)]],
+      nombreUsuario: [this.productor.nombreUsuario, [Validators.required, Validators.maxLength(10)]],
       afiliacionSalud: [this.productor.afiliacionSalud, Validators.required],
     })
   }

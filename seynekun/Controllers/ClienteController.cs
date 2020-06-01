@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
+using Datos;
 
 namespace seynekun.Controllers {
 
@@ -16,13 +17,10 @@ namespace seynekun.Controllers {
     public class ClienteController : ControllerBase {
 
         private readonly ServicioCliente servicioCliente;
-        public IConfiguration configuration { get; }
 
-        public ClienteController(IConfiguration configuration)
+        public ClienteController(SeynekunContext context)
         {
-            this.configuration = configuration;
-            string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
-            servicioCliente = new ServicioCliente(cadenaDeConexión);
+            servicioCliente = new ServicioCliente(context);
         }
 
         // POST: api/Cliente
@@ -61,7 +59,7 @@ namespace seynekun.Controllers {
         [HttpGet]
         public IEnumerable<ClienteViewModel> Gets()
         {
-            var response = servicioCliente.Consultar().Clientes.Select(p => new ClienteViewModel(p));
+            var response = servicioCliente.Consultar().Select(p => new ClienteViewModel(p));
             return response;
         }
 

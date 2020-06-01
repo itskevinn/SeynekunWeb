@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Datos;
 using Entity;
 using Logica;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +14,10 @@ namespace seynekun.Controllers
     public class ProductoController : ControllerBase
     {
         private readonly ServicioProducto servicioProducto;
-        public IConfiguration configuration { get; }
 
-        public ProductoController(IConfiguration configuration)
+        public ProductoController(SeynekunContext context)
         {
-            this.configuration = configuration;
-            string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
-            servicioProducto = new ServicioProducto(cadenaDeConexión);
+            servicioProducto = new ServicioProducto(context);
         }
 
         // POST: api/Producto
@@ -55,7 +53,7 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<ProductoViewModel> Gets()
         {
-            var response = servicioProducto.Consultar().objetos.Select(p => new ProductoViewModel(p));
+            var response = servicioProducto.Consultar().Select(p => new ProductoViewModel(p));
             return response;
         }
 

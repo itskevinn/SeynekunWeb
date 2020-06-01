@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Entity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using seynekun.Models;
 using Logica;
 using static seynekun.Models.BodegaModel;
+using Datos;
 
 namespace seynekun.Controllers
 {
@@ -17,12 +15,9 @@ namespace seynekun.Controllers
     public class BodegaController : ControllerBase
     {
         private readonly ServicioBodega servicioBodega;
-        public IConfiguration configuration { get; }
-        public BodegaController(IConfiguration configuration)
+        public BodegaController(SeynekunContext context)
         {
-            this.configuration = configuration;
-            string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
-            servicioBodega = new ServicioBodega(cadenaDeConexión);
+            servicioBodega = new ServicioBodega(context);
         }
 
         // POST: api/Bodega
@@ -54,7 +49,7 @@ namespace seynekun.Controllers
         [HttpGet]
         public IEnumerable<BodegaViewModel> Gets()
         {
-            var response = servicioBodega.Consultar().Bodegas.Select(b => new BodegaViewModel(b));
+            var response = servicioBodega.Consultar().Select(b => new BodegaViewModel(b));
             return response;
         }
 

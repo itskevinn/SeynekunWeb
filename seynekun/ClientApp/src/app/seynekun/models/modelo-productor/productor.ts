@@ -13,4 +13,5 @@ export class Productor {
     afiliacionSalud: string;
     nombreUsuario: string;
     contrasena: string;
+    email : string;
 }

@@ -51,14 +51,6 @@
             "System.Collections": {
               "target": "Package",
               "version": "[4.3.0, )"
-            },
-            "System.ComponentModel.Annotations": {
-              "target": "Package",
-              "version": "[4.7.0, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.1, )"
             }
           },
           "imports": [

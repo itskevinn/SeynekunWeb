@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using Datos;
@@ -7,23 +8,23 @@ namespace Logica
 {
     public class ServicioFabricante
     {
-        private readonly GestionadorDeConexión _conexión;
-        private readonly RepositorioFabricante repositorioFabricante;
 
-        public ServicioFabricante(string cadenaDeConexión)
+        private readonly SeynekunContext _context;
+        public ServicioFabricante(SeynekunContext context)
         {
-            _conexión = new GestionadorDeConexión(cadenaDeConexión);
-            repositorioFabricante = new RepositorioFabricante(_conexión);
+            _context = context;
         }
-
         public GuardarFabricanteResponse Guardar(Fabricante fabricante)
         {
             try
             {
-                fabricante.Estado = "Activo";
-                _conexión.Abrir();
-                repositorioFabricante.Guardar(fabricante);
-                _conexión.Cerrar();
+                var fabricanteBuscado = _context.Fabricantes.Find(fabricante.Nombre);
+                if (fabricanteBuscado != null)
+                {
+                    return new GuardarFabricanteResponse("Dos fabricantes no pueden tener el mismo nombre");
+                }
+                _context.Fabricantes.Add(fabricante);
+                _context.SaveChanges();
                 return new GuardarFabricanteResponse(fabricante);
             }
             catch (Exception e)
@@ -31,110 +32,81 @@ namespace Logica
                 return new GuardarFabricanteResponse(e.Message);
             }
         }
-
-        public ConsultarFabricanteResponse Consultar() {
-            try {
-                _conexión.Abrir();
-                List<Fabricante> fabricantes = repositorioFabricante.Consultar().FindAll(c => c.Estado.Equals("Activo") || c.Estado.Equals("Modificado"));;
-                _conexión.Cerrar();
-                return new ConsultarFabricanteResponse(fabricantes);
-            }
-            catch (Exception e) {
-                return new ConsultarFabricanteResponse(e.Message);
-            }
+        public List<Fabricante> Consultar()
+        {
+            List<Fabricante> fabricantes = _context.Fabricantes.ToList();
+            return fabricantes;
         }
-
-        public BuscarFabricantexIdResponse BuscarxId(string identificacion)
+        public BuscarFabricantexIdResponse BuscarxId(string nombre)
+        {
+            var fabricante = _context.Fabricantes.Find(nombre);
+            if (fabricante != null && fabricante.Estado != "Eliminado")
+            {
+                return new BuscarFabricantexIdResponse(fabricante);
+            }
+            return new BuscarFabricantexIdResponse("fabricante no encontrada");
+        }
+        public string Modificar(Fabricante fabricanteNueva)
         {
             try
             {
-                _conexión.Abrir();
-                Fabricante fabricante = repositorioFabricante.BuscarxId(identificacion);
-                _conexión.Cerrar();
-                if (fabricante != null && fabricante.Estado != "Eliminado") {
-                    return new BuscarFabricantexIdResponse(fabricante);
-                }
-                return new BuscarFabricantexIdResponse("fabricante no encontrado");
-            }
-            catch (Exception e)
-            {
-                return new BuscarFabricantexIdResponse(e.Message);
-            }
-        }
-
-        public string Modificar(Fabricante fabricanteNuevo)
-        {
-            try
-            {
-                _conexión.Abrir();
-                var fabricanViejo = repositorioFabricante.BuscarxId(fabricanteNuevo.Identificacion);
-                if (fabricanViejo != null && fabricanViejo.Estado != "Eliminado")
+                var fabricanteVieja = _context.Fabricantes.Find(fabricanteNueva.Nombre);
+                if (fabricanteVieja != null && fabricanteVieja.Estado != "Eliminado")
                 {
-                    repositorioFabricante.ModificarEstado(fabricanViejo.Identificacion, "Modificado");
-                    repositorioFabricante.Modificar(fabricanteNuevo);
-                    _conexión.Cerrar();
-                    return ($"El fabricante {fabricanteNuevo.Nombre} se ha modificado satisfactoriamente.");
+                    fabricanteVieja.Nombre = fabricanteNueva.Nombre;
+                    fabricanteVieja.Apellido = fabricanteNueva.Apellido;
+                    fabricanteVieja.Direccion = fabricanteNueva.Direccion;
+                    fabricanteVieja.Estado = fabricanteNueva.Estado;
+                    fabricanteVieja.Email = fabricanteNueva.Email;
+                    fabricanteVieja.Fax = fabricanteNueva.Fax;
+                    fabricanteVieja.SitioWeb = fabricanteNueva.SitioWeb;
+                    fabricanteVieja.Identificacion = fabricanteNueva.Identificacion;
+                    fabricanteVieja.TipoIdentificacion = fabricanteNueva.TipoIdentificacion;
+                    fabricanteVieja.NumeroTelefono = fabricanteNueva.NumeroTelefono;
+                    _context.Fabricantes.Update(fabricanteNueva);
+                    _context.SaveChanges();
+                    return ($"La fabricante se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return $"No se encontró Fabricante con la identificacion: {fabricanteNuevo.Identificacion} ingresada";
+                    return "No se encontró registro de la fabricante solicitada";
                 }
             }
             catch (Exception e)
             {
                 return $"Error de la Aplicación: {e.Message}";
             }
-            finally { _conexión.Cerrar(); }
         }
-
-        public string Eliminar(string identificacion)
+        public string Eliminar(string nombre)
         {
             try
             {
-                _conexión.Abrir();
-                Fabricante fabricante = repositorioFabricante.BuscarxId(identificacion);
-                if (fabricante != null && fabricante.Estado != "Eliminado") {
-                    repositorioFabricante.ModificarEstado(identificacion, "Eliminado");
-                    return $"El fabricante {fabricante.Nombre} {fabricante.Apellido} se ha eliminado.";
+                Fabricante fabricante = _context.Fabricantes.Find(nombre);
+                if (fabricante != null)
+                {
+                    _context.Fabricantes.Remove(fabricante);
+                    _context.SaveChanges();
+                    return $"La fabricante se ha eliminado.";
                 }
-                _conexión.Cerrar();
-                return "No se encontró fabricante con la cédula ingresada";
+                return "La fabricante no fue encontrada";
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
     }
-
-    public class GuardarFabricanteResponse
-    {
-        public bool Error { get; set; }
-        public string Mensaje { get; set; }
-        public Fabricante Fabricante { get; set; }
-
-        public GuardarFabricanteResponse(Fabricante fabricante)
-        {
-            Error = false;
-            this.Fabricante = fabricante;
-        }
-
-        public GuardarFabricanteResponse(string mensaje)
-        {
-            Mensaje = mensaje;
-            Error = true;
-        }
-    }
-
     public class ConsultarFabricanteResponse
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
         public List<Fabricante> Fabricantes;
 
-        public ConsultarFabricanteResponse(List<Fabricante> fabricantes)
+        public ConsultarFabricanteResponse(List<Fabricante> objetos)
         {
             Error = false;
-            this.Fabricantes = fabricantes;
+            this.Fabricantes = objetos;
+
         }
 
         public ConsultarFabricanteResponse(string mensaje)
@@ -143,7 +115,22 @@ namespace Logica
             Mensaje = mensaje;
         }
     }
-
+    public class GuardarFabricanteResponse
+    {
+        public bool Error { get; set; }
+        public string Mensaje { get; set; }
+        public Fabricante Fabricante { get; set; }
+        public GuardarFabricanteResponse(Fabricante fabricante)
+        {
+            Error = false;
+            Fabricante = fabricante;
+        }
+        public GuardarFabricanteResponse(string mensaje)
+        {
+            Mensaje = mensaje;
+            Error = true;
+        }
+    }
     public class BuscarFabricantexIdResponse
     {
         public bool Error { get; set; }

@@ -1,28 +1,30 @@
+using System.Linq;
+using System;
+using System.Collections.Generic;
 using Datos;
 using Entity;
-using System.Collections.Generic;
-using System;
 
 namespace Logica
 {
     public class ServicioProducto
     {
-        private readonly GestionadorDeConexión _conexión;
-        private readonly RepositorioProducto repositorioProducto;
 
-        public ServicioProducto(string cadenaDeConexión)
+        private readonly SeynekunContext _context;
+        public ServicioProducto(SeynekunContext context)
         {
-            _conexión = new GestionadorDeConexión(cadenaDeConexión);
-            repositorioProducto = new RepositorioProducto(_conexión);
+            _context = context;
         }
-
         public GuardarProductoResponse Guardar(Producto producto)
         {
             try
             {
-                _conexión.Abrir();
-                repositorioProducto.Guardar(producto);
-                _conexión.Cerrar();
+                var productoBuscado = _context.Productos.Find(producto.Nombre);
+                if (productoBuscado != null)
+                {
+                    return new GuardarProductoResponse("Dos productos no pueden tener el mismo nombre");
+                }
+                _context.Productos.Add(producto);
+                _context.SaveChanges();
                 return new GuardarProductoResponse(producto);
             }
             catch (Exception e)
@@ -30,95 +32,77 @@ namespace Logica
                 return new GuardarProductoResponse(e.Message);
             }
         }
-
-        public ConsultarProductoResponse Consultar()
+        public List<Producto> Consultar()
         {
-            try
-            {
-                _conexión.Abrir();
-                List<Producto> productos = repositorioProducto.Consultar().FindAll(c => c.Estado.Equals("Activo") || c.Estado.Equals("Modificado"));
-                _conexión.Cerrar();
-                return new ConsultarProductoResponse(productos);
-            }
-            catch (Exception e)
-            {
-                return new ConsultarProductoResponse(e.Message);
-            }
+            List<Producto> productos = _context.Productos.ToList();
+            return productos;
         }
-
-        public BuscarProductoxIdResponse BuscarxId(string codigo)
+        public BuscarProductoxIdResponse BuscarxId(string nombre)
         {
-            try
+            var producto = _context.Productos.Find(nombre);
+            if (producto != null && producto.Estado != "Eliminado")
             {
-                _conexión.Abrir();
-                Producto producto = repositorioProducto.BuscarxId(codigo);
-                _conexión.Cerrar();
                 return new BuscarProductoxIdResponse(producto);
             }
-            catch (Exception e)
-            {
-                return new BuscarProductoxIdResponse(e.Message);
-            }
+            return new BuscarProductoxIdResponse("producto no encontrada");
         }
-
-        public string Modificar(Producto productoNuevo)
+        public string Modificar(Producto productoNueva)
         {
             try
             {
-                _conexión.Abrir();
-                var productoViejo = repositorioProducto.BuscarxId(productoNuevo.Codigo);
-                if (productoViejo != null)
+                var productoVieja = _context.Productos.Find(productoNueva.Codigo);
+                if (productoVieja != null && productoVieja.Estado != "Eliminado")
                 {
-                    repositorioProducto.ModificarEstado(productoViejo.Codigo, "Modificado");
-                    repositorioProducto.Modificar(productoNuevo);
-                    _conexión.Cerrar();
-                    return ($"El producto {productoNuevo.Nombre} se ha modificado satisfactoriamente.");
+                    productoVieja.Nombre = productoNueva.Nombre;
+                    productoVieja.Cantidad = productoNueva.Cantidad;
+                    productoVieja.Estado = productoNueva.Estado;
+                    productoVieja.Descripcion = productoNueva.Descripcion;
+                    productoVieja.NombreCategoria = productoNueva.NombreCategoria;
+                    productoVieja.UnidadMedida = productoNueva.UnidadMedida;
+                    productoVieja.Precio = productoNueva.Precio;
+                    _context.Productos.Update(productoNueva);
+                    _context.SaveChanges();
+                    return ($"El producto se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return "No se encontró producto con el código ingresada";
+                    return "No se encontró registro del producto solicitada";
                 }
             }
             catch (Exception e)
             {
-
                 return $"Error de la Aplicación: {e.Message}";
             }
-            finally { _conexión.Cerrar(); }
-
         }
-        public string Eliminar(string codigo)
+        public string Eliminar(string nombre)
         {
             try
             {
-                _conexión.Abrir();
-                Producto producto = repositorioProducto.BuscarxId(codigo);
+                Producto producto = _context.Productos.Find(nombre);
                 if (producto != null)
                 {
-                    repositorioProducto.ModificarEstado(codigo, "Eliminado");
-                    return $"El producto {producto.Nombre} se ha eliminado.";
+                    _context.Productos.Remove(producto);
+                    _context.SaveChanges();
+                    return $"El producto se ha eliminado.";
                 }
-                _conexión.Cerrar();
-                return "No se encontró producto con el código ingresada";
+                return "El producto no fue encontrado";
             }
             catch (Exception e)
             {
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
-
     }
-
     public class ConsultarProductoResponse
     {
         public bool Error { get; set; }
         public string Mensaje { get; set; }
-        public List<Producto> objetos;
+        public List<Producto> Productos;
 
         public ConsultarProductoResponse(List<Producto> objetos)
         {
             Error = false;
-            this.objetos = objetos;
+            this.Productos = objetos;
 
         }
 
@@ -161,5 +145,5 @@ namespace Logica
             Error = true;
             Mensaje = mensaje;
         }
-    }    
+    }
 }

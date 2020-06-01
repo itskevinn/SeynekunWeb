@@ -1,28 +1,30 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using Datos;
 using Entity;
+
 namespace Logica
 {
     public class ServicioCategoria
     {
-        
-        private readonly GestionadorDeConexión _conexión;
-        private readonly RepositorioCategoria repositorioCategoria;
 
-        public ServicioCategoria(string cadenaDeConexión)
+         private readonly SeynekunContext _context;
+        public ServicioCategoria(SeynekunContext context)
         {
-            _conexión = new GestionadorDeConexión(cadenaDeConexión);
-            repositorioCategoria = new RepositorioCategoria(_conexión);
+            _context = context;            
         }
-
         public GuardarCategoriaResponse Guardar(Categoria categoria)
         {
             try
             {
-                _conexión.Abrir();
-                repositorioCategoria.Guardar(categoria);
-                _conexión.Cerrar();
+                var categoriaBuscado = _context.Categorias.Find(categoria.Nombre);
+                if (categoriaBuscado != null)
+                {
+                    return new GuardarCategoriaResponse("Dos categorias no pueden tener el mismo nombre");
+                }
+                _context.Categorias.Add(categoria);
+                _context.SaveChanges();
                 return new GuardarCategoriaResponse(categoria);
             }
             catch (Exception e)
@@ -30,83 +32,63 @@ namespace Logica
                 return new GuardarCategoriaResponse(e.Message);
             }
         }
-
-        public ConsultarCategoriaResponse Consultar()
+        public List<Categoria> Consultar()
         {
-            try
-            {
-                _conexión.Abrir();
-                List<Categoria> categorias = repositorioCategoria.Consultar();
-                _conexión.Cerrar();
-                return new ConsultarCategoriaResponse(categorias);
-            }
-            catch (Exception e)
-            {
-                return new ConsultarCategoriaResponse(e.Message);
-            }
+            List<Categoria> categorias = _context.Categorias.ToList();
+            return categorias;
         }
-
         public BuscarCategoriaxIdResponse BuscarxId(string nombre)
         {
-            try
+            var categoria = _context.Categorias.Find(nombre);
+            if (categoria != null && categoria.Estado!="Eliminado")
             {
-                _conexión.Abrir();
-                Categoria categoria = repositorioCategoria.BuscarxId(nombre);
-                _conexión.Cerrar();
                 return new BuscarCategoriaxIdResponse(categoria);
             }
-            catch (Exception e)
-            {
-                return new BuscarCategoriaxIdResponse(e.Message);
-            }
+            return new BuscarCategoriaxIdResponse("Categoria no encontrada");
         }
-
         public string Modificar(Categoria categoriaNueva)
         {
             try
             {
-                _conexión.Abrir();
-                var categoriaVieja = repositorioCategoria.BuscarxId(categoriaNueva.Nombre);
-                if (categoriaVieja != null)
+                var categoriaVieja = _context.Categorias.Find(categoriaNueva.Nombre);
+                if (categoriaVieja != null && categoriaVieja.Estado != "Eliminado")
                 {
-                    repositorioCategoria.ModificarEstado(categoriaVieja.Nombre, "Modificada");
-                    repositorioCategoria.Modificar(categoriaNueva);
-                    _conexión.Cerrar();
-                    return ($"La categoria {categoriaNueva.Nombre} se ha modificado satisfactoriamente.");
+                    categoriaVieja.Nombre = categoriaNueva.Nombre;
+                    categoriaVieja.Detalle = categoriaNueva.Detalle;                 
+                    categoriaVieja.Estado = categoriaNueva.Estado;
+                    categoriaVieja.Productos = categoriaNueva.Productos;
+                    _context.Categorias.Update(categoriaVieja);
+                    _context.SaveChanges();
+                    return ($"La categoria se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return "No se encontró categoria con el código ingresada";
+                    return "No se encontró registro de la categoria solicitada";
                 }
             }
             catch (Exception e)
             {
-
                 return $"Error de la Aplicación: {e.Message}";
             }
-            finally { _conexión.Cerrar(); }
-
         }
         public string Eliminar(string nombre)
         {
             try
             {
-                _conexión.Abrir();
-                Categoria categoria = repositorioCategoria.BuscarxId(nombre);
+                Categoria categoria = _context.Categorias.Find(nombre);
                 if (categoria != null)
                 {
-                    repositorioCategoria.Eliminar(nombre);
-                    return $"La categoria {categoria.Nombre} se ha eliminado.";
+                    _context.Categorias.Remove(categoria);
+                    _context.SaveChanges();
+                    return $"La categoria se ha eliminado.";
                 }
-                _conexión.Cerrar();
-                return "No se encontró categoria con el código ingresada";
+                return "La categoria no fue encontrada";
             }
             catch (Exception e)
             {
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
-
     }
     public class ConsultarCategoriaResponse
     {
@@ -160,5 +142,5 @@ namespace Logica
             Error = true;
             Mensaje = mensaje;
         }
-    }        
+    }
 }

@@ -8,21 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
+using Datos;
 
-namespace seynekun.Controllers {
+namespace seynekun.Controllers
+{
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductorController : ControllerBase {
+    public class ProductorController : ControllerBase
+    {
 
         private readonly ServicioProductor servicioProductor;
-        public IConfiguration configuration { get; }
 
-        public ProductorController(IConfiguration configuration)
+        public ProductorController(SeynekunContext context)
         {
-            this.configuration = configuration;
-            string cadenaDeConexión = this.configuration["ConnectionStrings:DefaultConnection"];
-            servicioProductor = new ServicioProductor(cadenaDeConexión);
+            servicioProductor = new ServicioProductor(context);
         }
 
         // POST: api/Productor
@@ -55,7 +55,9 @@ namespace seynekun.Controllers {
                 Vereda = productorInputModel.Vereda,
                 AfiliacionSalud = productorInputModel.AfiliacionSalud,
                 NombreUsuario = productorInputModel.NombreUsuario,
-                Contrasena = productorInputModel.Contrasena
+                Contrasena = productorInputModel.Contrasena,
+                Email = productorInputModel.Email,
+                Estado = "Activo"
             };
             return productor;
         }
@@ -64,7 +66,7 @@ namespace seynekun.Controllers {
         [HttpGet]
         public IEnumerable<ProductorViewModel> Gets()
         {
-            var response = servicioProductor.Consultar().Productores.Select(p => new ProductorViewModel(p));
+            var response = servicioProductor.Consultar().Select(p => new ProductorViewModel(p));
             return response;
         }
 
