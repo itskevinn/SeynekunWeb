@@ -9,7 +9,7 @@ namespace Logica
     {
 
         private readonly SeynekunContext _context;                    
-        public ServicioMateriaPrima(SeynekunContext contextMateria)
+        public ServicioMateriaPrima(SeynekunContext context)
         {
             _context = context;                      
         }

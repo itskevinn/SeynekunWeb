@@ -30,7 +30,7 @@ namespace seynekun.Controllers
             var admin = _context.Usuarios.Find("admin");
             if (admin == null)
             {
-                _context.Usuarios.Add(new Entity.Usuario() { NombreUsuario = "admin", Contrasena="admin", Estado ="Activo", Nombre="Adminitrador", Apellido="Administrador", NumeroTelefono="31800000000", Email = "admin@gmail.com"});
+                _context.Usuarios.Add(new Entity.Usuario() { NombreUsuario = "admin", Contrasena="admin", Estado ="Activo", Nombre="Adminitrador", Apellido="Administrador", NumeroTelefono="3180000000", Email = "admin@gmail.com"});
                 var i = _context.SaveChanges();
             }
             _servicioJwt = new ServicioJwt(appSettings);
@@ -45,15 +45,14 @@ namespace seynekun.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("Acceso Denegado", "Username or password is incorrect");
+                ModelState.AddModelError("Acceso Denegado", "Usuario y/o contraseña incorrectos");
                 var problemDetails = new ValidationProblemDetails(ModelState)
                 {
-                    Status = StatusCodes.Status400BadRequest,
+                    Status = StatusCodes.Status401Unauthorized,
                 };
                 return BadRequest(problemDetails);
             }
             var response = _servicioJwt.GenerarToken(user);
-
             return Ok(response);
         }
     }

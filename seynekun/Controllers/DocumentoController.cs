@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Entity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using seynekun.Models;
 using Logica;
 using Datos;
-using Microsoft.AspNetCore.Authorization;
+using seynekun.Models;
 
 namespace seynekun.Controllers
 {

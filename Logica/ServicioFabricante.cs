@@ -54,7 +54,6 @@ namespace Logica
                 if (fabricanteVieja != null && fabricanteVieja.Estado != "Eliminado")
                 {
                     fabricanteVieja.Nombre = fabricanteNueva.Nombre;
-                    fabricanteVieja.Apellido = fabricanteNueva.Apellido;
                     fabricanteVieja.Direccion = fabricanteNueva.Direccion;
                     fabricanteVieja.Estado = fabricanteNueva.Estado;
                     fabricanteVieja.Email = fabricanteNueva.Email;
@@ -95,7 +94,6 @@ namespace Logica
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
-        */
     }
     public class ConsultarFabricanteResponse
     {

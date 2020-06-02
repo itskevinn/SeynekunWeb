@@ -18,7 +18,7 @@ import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/aler
 })
 export class ProductorRegistroComponent implements OnInit {
   productor: Productor
-  tipoIdentificaciones: string[] = ['CC','TI','RC']
+  tipoIdentificaciones: string[] = ['CC', 'TI', 'RC']
   municipios: string[] = ['Pueblo Bello', 'Codazzi']
   veredas: string[] = [
     'Jewrwa',
@@ -56,20 +56,20 @@ export class ProductorRegistroComponent implements OnInit {
     private productorService: ProductorService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.productor = new Productor()
     this.crearFormulario()
   }
-  
+
   crearFormulario() {
     this.productor.tipoIdentificacion = ''
     this.productor.identificacion = ''
     this.productor.nombre = ''
     this.productor.apellido = ''
     this.productor.numeroTelefono = ''
-this.productor.email =""
+    this.productor.email = ''
     this.productor.nombrePredio = ''
     this.productor.codigoFinca = ''
     this.productor.codigoSica = ''
@@ -77,13 +77,13 @@ this.productor.email =""
     this.productor.vereda = ''
     this.productor.afiliacionSalud = ''
     this.productor.cedulaCafetera = ''
-    this.productor.contrasena = ""
-    this.productor.nombreUsuario = ""
+    this.productor.contrasena = ''
+    this.productor.nombreUsuario = ''
 
     this.formGroup = this.formBuilder.group({
       tipoIdentificacion: [this.productor.tipoIdentificacion, Validators.required],
       nombre: [this.productor.nombre, Validators.required],
-      email : [this.productor.email, Validators.email],
+      email: [this.productor.email, Validators.email],
       apellido: [this.productor.apellido, Validators.required],
       identificacion: [
         this.productor.identificacion,
@@ -108,7 +108,7 @@ this.productor.email =""
           this.validarNumeroTelefono,
         ],
       ],
-      contrasena: [this.productor.contrasena, [Validators.required, Validators.minLength(7)]],
+      contrasena: [this.productor.contrasena, [Validators.required, Validators.minLength(4)]],
       nombreUsuario: [this.productor.nombreUsuario, [Validators.required, Validators.maxLength(10)]],
       afiliacionSalud: [this.productor.afiliacionSalud, Validators.required],
     })
@@ -153,7 +153,7 @@ this.productor.email =""
     }
   }
 
-  cambiarTipoIdentificaciones(e){
+  cambiarTipoIdentificaciones(e) {
     this.control.tipoIdentificacion.setValue(e.target.value, {
       onlySelf: true,
     })
@@ -166,7 +166,7 @@ this.productor.email =""
     })
     console.log(this.control.municipio.value)
   }
-  
+
   cambiarVereda(e) {
     this.control.vereda.setValue(e.target.value, {
       onlySelf: true,
@@ -193,7 +193,7 @@ this.productor.email =""
       if (p != null) {
         const messageBox = this.modalService.open(AlertaModalOkComponent)
         messageBox.componentInstance.titulo = 'Productor Registrado'
-        this.productor = p        
+        this.productor = p
         this.formGroup.reset()
       } else {
         const messageBox = this.modalService.open(AlertaModalErrorComponent)

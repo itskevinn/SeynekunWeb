@@ -8,7 +8,6 @@ import { NgbDate, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -81,13 +80,15 @@ import { MateriaRegistroComponent } from './seynekun/inventario/materia-prima/ma
 import { MateriaConsultaComponent } from './seynekun/inventario/materia-prima/materia-consulta/materia-consulta/materia-consulta.component';
 import { MateriaVistaComponent } from './seynekun/inventario/materia-prima/materia-vista/materia-vista/materia-vista.component';
 import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/materia-edicion/materia-edicion/materia-edicion.component';
+import { Error404Component } from './Errores/error404/error404.component';
+import { CounterComponent } from "./counter/counter.component";
+import { JwtInterceptor } from "./servicios/interceptor/jwt.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent, 
+    NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     FetchDataComponent,
     ProductorConsultaComponent,
     ProductorEdicionComponent,
@@ -147,6 +148,7 @@ import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/mat
     MateriaConsultaComponent,
     MateriaVistaComponent,
     MateriaEdicionComponent,
+    Error404Component,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -157,9 +159,12 @@ import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/mat
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot([
-      { path: "", component: HomeComponent, pathMatch: "full" },
+      { path: "Login", component: LoginComponent, pathMatch: "full" },
+      { path: "", component: HomeComponent },
       { path: "counter", component: CounterComponent },
       { path: "fetch-data", component: FetchDataComponent },
+      { path: '404', component: Error404Component },
+      { path: '**', redirectTo: '/404' }
     ]),
     AppRoutingModule,
   ],
@@ -172,7 +177,8 @@ import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/mat
     ProductoService,
     ControlesService,
     ReporteInventarioService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {}
+export class AppModule { }

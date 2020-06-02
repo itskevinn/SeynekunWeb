@@ -16,8 +16,10 @@ namespace Datos
         public DbSet<Fabricante> Fabricantes { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Bodega> Bodegas { get; set; }
-        public DbSet<MateriaPrima> MateriasPrimas { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Documento> Documentos { get; set; }
+        public DbSet<FichaTecnica> FichasTecnicas { get; set; }
+        public DbSet<Insumo> Insumos { get; set; }
         
     }
 }

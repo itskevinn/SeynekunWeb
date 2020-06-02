@@ -68,12 +68,13 @@
                   </div>
                   <div class=" form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" class="form-control form-control-user" name="usuario"
-                        placeholder="Usuario para ingresar a la aplicación" formControlName="usuario"
-                        [ngClass]="{'is-invalid':control.usuario.errors && control.usuario.touched}">
-                      <div *ngIf=" control.usuario.errors && control.usuario.touched" class="invalid-feedback">
-                        <div class="validacion-texto" *ngIf="control.usuario.errors.required">Proporcione un usuario
-                        </div>
+                      <input type="text" class="form-control form-control-user" name="nombreUsuario"
+                        placeholder="Usuario para ingresar a la aplicación" formControlName="nombreUsuario"
+                        [ngClass]="{'is-invalid':control.nombreUsuario.errors && control.nombreUsuario.touched}">
+                      <div *ngIf=" control.nombreUsuario.errors && control.nombreUsuario.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.nombreUsuario.errors.required">Proporcione un
+                          Usuario </div>
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -162,8 +163,7 @@
                       <div class="validacion-texto" *ngIf="control.email.errors.required">Proporcione su
                         email
                       </div>
-                      <div class="validacion-texto"
-                        *ngIf="control.email.errors.email">
+                      <div class="validacion-texto" *ngIf="control.email.errors.email">
                         Ingrese un correo valido
                       </div>
                     </div>

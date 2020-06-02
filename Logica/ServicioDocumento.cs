@@ -21,7 +21,7 @@ namespace Logica
                 Documento documentoBuscado = _context.Documentos.Find(documento.Id);
                 if(documentoBuscado != null)
                 {
-                    return new GuardarDocumentoResponse("Id de documento ya registrada");
+                    return new GuardarDocumentoResponse("Id de documento ya registrado");
                 }
                 documento.Estado = "Activo";
                 _context.Documentos.Add(documento);

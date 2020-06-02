@@ -43,7 +43,6 @@ namespace seynekun.Controllers
                 TipoIdentificacion = fabricanteInputModel.TipoIdentificacion,
                 Identificacion = fabricanteInputModel.Identificacion,
                 Nombre = fabricanteInputModel.Nombre,
-                Apellido = fabricanteInputModel.Apellido,
                 NumeroTelefono = fabricanteInputModel.NumeroTelefono,
                 Email = fabricanteInputModel.Email,
                 Direccion = fabricanteInputModel.Direccion,
@@ -91,6 +90,5 @@ namespace seynekun.Controllers
             string mensaje = servicioFabricante.Eliminar(identificacion);
             return Ok(mensaje);
         }
-        */
     }
 }
