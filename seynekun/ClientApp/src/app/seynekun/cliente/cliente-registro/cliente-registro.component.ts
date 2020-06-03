@@ -37,7 +37,7 @@ export class ClienteRegistroComponent implements OnInit {
     private clienteService: ClienteService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.cliente = new Cliente()
@@ -98,7 +98,7 @@ export class ClienteRegistroComponent implements OnInit {
       onlySelf: true,
     })
   }
-  
+
   cambiarDepartamento(e) {
     this.control.departamento.setValue(e.target.value, {
       onlySelf: true,
@@ -145,9 +145,6 @@ export class ClienteRegistroComponent implements OnInit {
   }
   onSubmit() {
     if (this.formGroup.invalid) {
-      const messageBox = this.modalService.open(AlertaModalErrorComponent)
-      messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-      messageBox.componentInstance.mensaje = 'Aún faltan datos por llenar'
     } else {
       this.registrar()
     }
@@ -159,15 +156,8 @@ export class ClienteRegistroComponent implements OnInit {
     this.cliente = this.formGroup.value
     this.clienteService.post(this.cliente).subscribe((c) => {
       if (c != null) {
-        const messageBox = this.modalService.open(AlertaModalOkComponent)
-        messageBox.componentInstance.titulo = 'Cliente Registrado'
         this.cliente = c
         this.formGroup.reset();
-      } else {
-        const messageBox = this.modalService.open(AlertaModalErrorComponent)
-        messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-        messageBox.componentInstance.mensaje =
-          'No se ha podido registrar al cliente'
       }
     })
   }

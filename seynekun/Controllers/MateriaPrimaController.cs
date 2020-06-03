@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Datos;
 using Entity;
 using Logica;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static seynekun.Models.MateriaPrimaModel;
 
@@ -24,7 +25,12 @@ namespace seynekun.Controllers
             var response = materiaService.Guardar(materiaPrima);
             if (response.Error)
             {
-                return BadRequest(response.Mensaje);
+               ModelState.AddModelError("Error al registrar la materia prima", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
             }
             return Ok(response.MateriaPrima);
         }

@@ -1,0 +1,14 @@
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Logica.deps.json
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Logica.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Logica.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\datos.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Entity.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\datos.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Entity.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.csprojAssemblyReference.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.AssemblyInfoInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.AssemblyInfo.cs
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.csproj.CoreCompileInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.csproj.CopyComplete
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.pdb

@@ -28,7 +28,7 @@ export class ProductoRegistroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private categoriaService: CategoriaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerCategorias();
@@ -95,15 +95,8 @@ export class ProductoRegistroComponent implements OnInit {
     this.producto = this.formGroup.value;
     this.productoService.post(this.producto).subscribe((e) => {
       if (e != null) {
-        const messageBox = this.modalService.open(AlertaModalOkComponent);
-        messageBox.componentInstance.titulo = "Producto Registrado";
         this.producto = e;
         this.formGroup.reset();
-      } else {
-        const messageBox = this.modalService.open(AlertaModalErrorComponent);
-        messageBox.componentInstance.titulo = "Ha ocurrido un error";
-        messageBox.componentInstance.mensaje =
-          "No se ha podido registrar el producto";
       }
     });
   }

@@ -42,13 +42,12 @@ namespace seynekun.Controllers
         public IActionResult Login(LoginInputModel model)
         {
             var user = _servicioUsuario.ValidarUsuario(model.NombreUsuario, model.Contrasena);
-
             if (user == null)
             {
                 ModelState.AddModelError("Acceso Denegado", "Usuario y/o contraseña incorrectos");
                 var problemDetails = new ValidationProblemDetails(ModelState)
                 {
-                    Status = StatusCodes.Status401Unauthorized,
+                    Status = StatusCodes.Status400BadRequest,
                 };
                 return BadRequest(problemDetails);
             }

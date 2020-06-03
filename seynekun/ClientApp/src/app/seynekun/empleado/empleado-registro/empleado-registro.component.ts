@@ -19,7 +19,7 @@ import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.
 export class EmpleadoRegistroComponent implements OnInit {
   empleado: Empleado
   formGroup: FormGroup
-  idTipos: string[] = ['CC','TI','RI']
+  idTipos: string[] = ['CC', 'TI', 'RI']
   cargos: string[] = [
     'Secretaria/o',
     'Jefe de Producción',
@@ -32,7 +32,7 @@ export class EmpleadoRegistroComponent implements OnInit {
     private empleadoService: EmpleadoService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.empleado = new Empleado()
@@ -72,7 +72,7 @@ export class EmpleadoRegistroComponent implements OnInit {
       ],
       email: [this.empleado.email, Validators.email],
       cargo: [this.empleado.cargo, Validators.required],
-      estado : [this.empleado.estado]
+      estado: [this.empleado.estado]
     })
   }
 
@@ -146,9 +146,6 @@ export class EmpleadoRegistroComponent implements OnInit {
 
   onSubmit() {
     if (this.formGroup.invalid) {
-      const messageBox = this.modalService.open(AlertaModalErrorComponent)
-      messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-      messageBox.componentInstance.mensaje = 'Aún faltan datos por llenar'
     } else {
       this.registrar()
     }
@@ -157,20 +154,13 @@ export class EmpleadoRegistroComponent implements OnInit {
   get control() {
     return this.formGroup.controls
   }
-  
+
   registrar() {
     this.empleado = this.formGroup.value
     this.empleadoService.post(this.empleado).subscribe((e) => {
       if (e != null) {
-        const messageBox = this.modalService.open(AlertaModalOkComponent)
-        messageBox.componentInstance.titulo = 'Empleado Registrado'
         this.empleado = e
         this.formGroup.reset();
-      } else {
-        const messageBox = this.modalService.open(AlertaModalErrorComponent)
-        messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-        messageBox.componentInstance.mensaje =
-          'No se ha podido registrar al empleado'
       }
     })
   }

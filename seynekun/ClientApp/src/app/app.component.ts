@@ -16,8 +16,7 @@ export class AppComponent {
     private autenticacionServicio: AutenticacionService
   ) {
     this.autenticacionServicio.currentUser.subscribe(x => this.usuarioActual = x);
-    if (this.autenticacionServicio.currentUserValue) {
-      this.router.navigate(['/']);
+    if (this.autenticacionServicio.currentUserValue != null) {
       this.ingreso = true;
     }
   }

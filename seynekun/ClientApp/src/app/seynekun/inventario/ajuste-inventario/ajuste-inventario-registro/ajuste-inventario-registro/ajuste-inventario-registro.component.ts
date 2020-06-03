@@ -126,23 +126,13 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.ajusteInventario = this.formGroup.value;
     this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
       if (e != null) {
-        const messageBox = this.modalService.open(AlertaModalOkComponent);
-        messageBox.componentInstance.titulo = "Ajuste de Inventario Registrado";
         this.ajusteInventario = e;
         this.formGroup.reset();
-      } else {
-        const messageBox = this.modalService.open(AlertaModalErrorComponent);
-        messageBox.componentInstance.titulo = "Ha ocurrido un error";
-        messageBox.componentInstance.mensaje =
-          "No se ha podido registrar el Ajuste de Inventario";
       }
     });
   }
   onSubmit() {
     if (this.formGroup.invalid) {
-      const messageBox = this.modalService.open(AlertaModalErrorComponent);
-      messageBox.componentInstance.titulo = "Ha ocurrido un error";
-      messageBox.componentInstance.mensaje = "Aún faltan datos por llenar";
       console.log(this.control.codigo);
     } else {
       this.registrar();

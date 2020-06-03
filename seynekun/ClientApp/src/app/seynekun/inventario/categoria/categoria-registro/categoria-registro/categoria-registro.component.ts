@@ -18,7 +18,7 @@ export class CategoriaRegistroComponent implements OnInit {
     private categoriaService: CategoriaService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.categoria = new Categoria();
@@ -51,15 +51,8 @@ export class CategoriaRegistroComponent implements OnInit {
     this.categoria = this.formGroup.value;
     this.categoriaService.post(this.categoria).subscribe((e) => {
       if (e != null) {
-        const messageBox = this.modalService.open(AlertaModalOkComponent);
-        messageBox.componentInstance.titulo = "Categoria Registrada";
         this.categoria = e;
         this.formGroup.reset();
-      } else {
-        const messageBox = this.modalService.open(AlertaModalErrorComponent);
-        messageBox.componentInstance.titulo = "Ha ocurrido un error";
-        messageBox.componentInstance.mensaje =
-          "No se ha podido registrar el categoria";
       }
     });
   }

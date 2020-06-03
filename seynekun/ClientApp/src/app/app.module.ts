@@ -83,6 +83,7 @@ import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/mat
 import { Error404Component } from './Errores/error404/error404.component';
 import { CounterComponent } from "./counter/counter.component";
 import { JwtInterceptor } from "./servicios/interceptor/jwt.interceptor";
+import { AuthGuard } from "./servicios/guard/auth.guard";
 
 @NgModule({
   declarations: [
@@ -159,8 +160,8 @@ import { JwtInterceptor } from "./servicios/interceptor/jwt.interceptor";
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot([
-      { path: "Login", component: LoginComponent, pathMatch: "full" },
-      { path: "", component: HomeComponent },
+      { path: "Login", component: LoginComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: "counter", component: CounterComponent },
       { path: "fetch-data", component: FetchDataComponent },
       { path: '404', component: Error404Component },

@@ -31,7 +31,7 @@ export class MateriaRegistroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private productoService: ProductoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerProductos();
@@ -92,15 +92,8 @@ export class MateriaRegistroComponent implements OnInit {
     this.materia = this.formGroup.value;
     this.materiaService.post(this.materia).subscribe((e) => {
       if (e != null) {
-        const messageBox = this.modalService.open(AlertaModalOkComponent);
-        messageBox.componentInstance.titulo = "Registro de materia exitoso";
         this.materia = e;
         this.formGroup.reset();
-      } else {
-        const messageBox = this.modalService.open(AlertaModalErrorComponent);
-        messageBox.componentInstance.titulo = "Ha ocurrido un error";
-        messageBox.componentInstance.mensaje =
-          "No se ha podido registrar la materia";
       }
     });
   }

@@ -20,7 +20,7 @@ export class ClienteService {
   }
   gets(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.urlBase + 'api/Cliente').pipe(
-      tap((_) => this.handleErrorService.log('Datos traídos')),
+      tap((_) => console.log('Datos traídos')),
       catchError(
         this.handleErrorService.handleError<Cliente[]>(
           'Consulta de clientes',
@@ -31,7 +31,7 @@ export class ClienteService {
   }
   post(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.urlBase + 'api/Cliente', cliente).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados')),
+      tap((_) => this.handleErrorService.logOk('Cliente registrado con éxito')),
       catchError(
         this.handleErrorService.handleError<Cliente>(
           'Registro del cliente',
@@ -43,7 +43,7 @@ export class ClienteService {
   get(identificacion: string): Observable<Cliente> {
     return this.http.get<Cliente>(this.urlBase + 'api/Cliente').pipe(
       tap((_) =>
-        this.handleErrorService.log('Datos enviados al y traídos del backend'),
+        console.log('Datos enviados al y traídos del backend'),
       ),
       catchError(
         this.handleErrorService.handleError<Cliente>(
@@ -56,7 +56,7 @@ export class ClienteService {
   put(identificacion: string, cliente: Cliente): Observable<Cliente> {
     const url = `${this.urlBase}api/Cliente/${identificacion}`
     return this.http.put<Cliente>(url, cliente).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados y recibidos')),
+      tap((_) => this.handleErrorService.logOk('Datos enviados y recibidos')),
       catchError(
         this.handleErrorService.handleError<Cliente>('Actualizar', null),
       ),

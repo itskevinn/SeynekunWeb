@@ -19,7 +19,7 @@ export class EmpleadoService {
   }
   gets(): Observable<Empleado[]> {
     return this.http.get<Empleado[]>(this.urlBase + 'api/Empleado').pipe(
-      tap((_) => this.handleErrorService.log('Datos traídos')),
+      tap((_) => console.log('Datos traídos')),
       catchError(
         this.handleErrorService.handleError<Empleado[]>(
           'Consulta de empelados',
@@ -32,7 +32,7 @@ export class EmpleadoService {
     return this.http
       .post<Empleado>(this.urlBase + 'api/Empleado', empleado)
       .pipe(
-        tap((_) => this.handleErrorService.log('Datos enviados')),
+        tap((_) => this.handleErrorService.logOk('Empleado registrado con éxito')),
         catchError(
           this.handleErrorService.handleError<Empleado>(
             'Registro del empleado',
@@ -46,7 +46,7 @@ export class EmpleadoService {
       .get<Empleado>(this.urlBase + 'api/Empleado/' + identificacion)
       .pipe(
         tap((_) =>
-          this.handleErrorService.log(
+        console.log(
             'Identifiación enviada y empleado recibido',
           ),
         ),
@@ -60,7 +60,7 @@ export class EmpleadoService {
       .put<Empleado>(this.urlBase + 'api/Empleado/' + identificacion, empleado)
       .pipe(
         tap((_) =>
-          this.handleErrorService.log(
+          this.handleErrorService.logOk(
             'Identifiación enviada y empleado actualizado',
           ),
         ),
@@ -74,7 +74,7 @@ export class EmpleadoService {
       typeof empleado === "string" ? empleado : empleado.identificacion;
     return this.http.delete<string>(this.urlBase + 'api/empleado/' + id)
       .pipe(
-        tap(_ => this.handleErrorService.log('datos enviados')),
+        tap(_ => this.handleErrorService.logOk('datos enviados')),
         catchError(this.handleErrorService.handleError<string>('Eliminar Empleado', null))
       );
   }

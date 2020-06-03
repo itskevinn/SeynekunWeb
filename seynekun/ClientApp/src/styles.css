@@ -2702,7 +2702,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-success {
-  color: #fff;
+  color: #ffffff;
   background-color: #1cc88a;
   border-color: #1cc88a;
 }
@@ -2720,7 +2720,7 @@ fieldset:disabled a.btn {
 
 .btn-success.disabled,
 .btn-success:disabled {
-  color: #fff;
+  color: #ffffff;
   background-color: #1cc88a;
   border-color: #1cc88a;
 }

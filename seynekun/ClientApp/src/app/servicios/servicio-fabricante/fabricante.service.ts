@@ -18,7 +18,7 @@ export class FabricanteService {
   
   post(fabricante: Fabricante): Observable<Fabricante> {
     return this.http.post<Fabricante>(this.urlBase + 'api/Fabricante', fabricante).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados')),
+      tap((_) => this.handleErrorService.logOk('Fabricante registrado con éxito')),
       catchError(
         this.handleErrorService.handleError<Fabricante>(
           'Registro del fabricante',
@@ -30,7 +30,7 @@ export class FabricanteService {
 
   gets(): Observable<Fabricante[]> {
     return this.http.get<Fabricante[]>(this.urlBase + 'api/Fabricante').pipe(
-      tap((_) => this.handleErrorService.log('Datos traídos')),
+      tap((_) => console.log('Datos traídos')),
       catchError(
         this.handleErrorService.handleError<Fabricante[]>(
           'Consulta de fabricante',
@@ -43,7 +43,7 @@ export class FabricanteService {
   get(identificacion: string): Observable<Fabricante> {
     return this.http.get<Fabricante>(this.urlBase + 'api/Fabricante').pipe(
       tap((_) =>
-        this.handleErrorService.log('Datos enviados y traídos del backend'),
+        console.log('Datos enviados y traídos del backend'),
       ),
       catchError(
         this.handleErrorService.handleError<Fabricante>(
@@ -57,7 +57,7 @@ export class FabricanteService {
   put(identificacion: string, fabricante: Fabricante): Observable<Fabricante> {
     const url = `${this.urlBase}api/Fabricante/${identificacion}`
     return this.http.put<Fabricante>(url, fabricante).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados y recibidos')),
+      tap((_) => this.handleErrorService.logOk('Datos enviados y recibidos')),
       catchError(
         this.handleErrorService.handleError<Fabricante>('Actualizar', null),
       ),

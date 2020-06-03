@@ -27,7 +27,7 @@ export class ProductoService {
   }
   gets(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.baseUrl + "api/Producto").pipe(
-      tap((_) => this.handleErrorService.log("Datos traídos")),
+      tap((_) => console.log("Datos traídos")),
       catchError(
         this.handleErrorService.handleError<Producto[]>(
           "Consulta de productos",
@@ -39,7 +39,7 @@ export class ProductoService {
   delete(producto: Producto | string): Observable<string> {
     const id = typeof producto === "string" ? producto : producto.codigo;
     return this.http.delete<string>(this.baseUrl + "api/Producto/" + id).pipe(
-      tap((_) => this.handleErrorService.log("datos enviados")),
+      tap((_) => this.handleErrorService.logOk("datos enviados")),
       catchError(
         this.handleErrorService.handleError<string>("Eliminar Producto", null)
       )
@@ -49,7 +49,7 @@ export class ProductoService {
     return this.http
       .post<Producto>(this.baseUrl + "api/Producto", producto)
       .pipe(
-        tap((_) => this.handleErrorService.log("Datos enviados")),
+        tap((_) => this.handleErrorService.logOk("Producto registrado con éxito")),
         catchError(
           this.handleErrorService.handleError<Producto>(
             "Registro del producto",
@@ -61,7 +61,7 @@ export class ProductoService {
   get(codigo: string): Observable<Producto> {
     const url = `${this.baseUrl + "api/Producto"}/${codigo}`;
     return this.http.get<Producto>(url, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados y recibidos")),
+      tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
         this.handleErrorService.handleError<Producto>("Consulta por código", null)
       )
@@ -71,7 +71,7 @@ export class ProductoService {
   put(codigo: string, producto: Producto): Observable<Producto> {
     const url = `${this.baseUrl}api/Producto/${codigo}`;
     return this.http.put<Producto>(url, producto, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados")),
+      tap((_) => this.handleErrorService.logOk("Datos enviados")),
       catchError(
         this.handleErrorService.handleError<Producto>("Actualizar", null)
       )

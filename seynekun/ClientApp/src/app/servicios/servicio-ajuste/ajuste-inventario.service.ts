@@ -26,7 +26,7 @@ export class AjusteInventarioService {
   }
   gets(): Observable<AjusteDeInventario[]> {
     return this.http.get<AjusteDeInventario[]>(this.baseUrl + "api/AjusteInventario").pipe(
-      tap((_) => this.handleErrorService.log("Datos traídos")),
+      tap((_) => console.log("Datos traídos")),
       catchError(
         this.handleErrorService.handleError<AjusteDeInventario[]>(
           "Consulta de AjusteDeInventarios",
@@ -37,7 +37,7 @@ export class AjusteInventarioService {
   }
   getCantidad(bodega: string, producto: string): Observable<number> {
     return this.http.get<number>(this.baseUrl + "api/AjusteInventario/"+bodega+"/"+producto).pipe(
-      tap((_) => this.handleErrorService.log("Datos traídos")),
+      tap((_) => console.log("Datos traídos")),
       catchError(
         this.handleErrorService.handleError<number>(
           "Consulta de Cantidad Producto",
@@ -49,7 +49,7 @@ export class AjusteInventarioService {
   delete(ajusteInventario: AjusteDeInventario | string): Observable<string> {
     const id = typeof ajusteInventario === "string" ? ajusteInventario : ajusteInventario.codigo;
     return this.http.delete<string>(this.baseUrl + "api/AjusteDeInventario/" + id).pipe(
-      tap((_) => this.handleErrorService.log("datos enviados")),
+      tap((_) => this.handleErrorService.logOk("datos enviados")),
       catchError(
         this.handleErrorService.handleError<string>("Eliminar AjusteInventario", null)
       )
@@ -57,7 +57,7 @@ export class AjusteInventarioService {
   }
   post(ajusteInventario: AjusteDeInventario): Observable<AjusteDeInventario> {
     return this.http.post<AjusteDeInventario>(this.baseUrl + "api/AjusteInventario", ajusteInventario).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados")),
+      tap((_) => this.handleErrorService.logOk("Ajuste al inventario realizado con éxito")),
       catchError(
         this.handleErrorService.handleError<AjusteDeInventario>("Registro del AjusteInventario", null)
       )
@@ -66,7 +66,7 @@ export class AjusteInventarioService {
   get(codigo: string): Observable<AjusteDeInventario> {
     const url = `${this.baseUrl + "api/AjusteInventario"}/${codigo}`;
     return this.http.get<AjusteDeInventario>(url, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados y recibidos")),
+      tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
         this.handleErrorService.handleError<AjusteDeInventario>("Consulta por código", null)
       )
@@ -76,7 +76,7 @@ export class AjusteInventarioService {
   put(codigo: string, ajusteInventario: AjusteDeInventario): Observable<AjusteDeInventario> {
     const url = `${this.baseUrl}api/AjusteDeInventario/${codigo}`;
     return this.http.put<AjusteDeInventario>(url, ajusteInventario, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados")),
+      tap((_) => this.handleErrorService.logOk("Datos enviados")),
       catchError(
         this.handleErrorService.handleError<AjusteDeInventario>("Actualizar", null)
       )

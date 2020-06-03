@@ -175,9 +175,6 @@ export class ProductorRegistroComponent implements OnInit {
 
   onSubmit() {
     if (this.formGroup.invalid) {
-      const messageBox = this.modalService.open(AlertaModalErrorComponent)
-      messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-      messageBox.componentInstance.mensaje = 'Aún faltan datos por llenar'
     } else {
       this.registrar()
     }

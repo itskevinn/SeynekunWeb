@@ -33,7 +33,12 @@ namespace seynekun.Controllers
             var response = servicioProductor.Guardar(productor);
             if (response.Error)
             {
-                return BadRequest(response.Mensaje);
+               ModelState.AddModelError("Error al registrar al productor", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
             }
             return Ok(response.Productor);
         }

@@ -27,7 +27,7 @@ export class CategoriaService {
   }
   gets(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.baseUrl + "api/Categoria").pipe(
-      tap((_) => this.handleErrorService.log("Datos traídos")),
+      tap((_) => console.log("Datos traídos")),
       catchError(
         this.handleErrorService.handleError<Categoria[]>(
           "Consulta de Categorias",
@@ -39,7 +39,7 @@ export class CategoriaService {
   delete(categoria: Categoria | string): Observable<string> {
     const id = typeof categoria === "string" ? categoria : categoria.nombre;
     return this.http.delete<string>(this.baseUrl + "api/Categoria/" + id).pipe(
-      tap((_) => this.handleErrorService.log("datos enviados")),
+      tap((_) => this.handleErrorService.logOk("datos enviados")),
       catchError(
         this.handleErrorService.handleError<string>("Eliminar Categoria", null)
       )
@@ -49,7 +49,7 @@ export class CategoriaService {
     return this.http
       .post<Categoria>(this.baseUrl + "api/Categoria", categoria)
       .pipe(
-        tap((_) => this.handleErrorService.log("Datos enviados")),
+        tap((_) => this.handleErrorService.logOk("Categoría registrada con éxito")),
         catchError(
           this.handleErrorService.handleError<Categoria>(
             "Registro del Categoria",
@@ -61,7 +61,7 @@ export class CategoriaService {
   get(codigo: string): Observable<Categoria> {
     const url = `${this.baseUrl + "api/Categoria"}/${codigo}`;
     return this.http.get<Categoria>(url, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados y recibidos")),
+      tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
         this.handleErrorService.handleError<Categoria>(
           "Consulta por código",
@@ -74,7 +74,7 @@ export class CategoriaService {
   put(codigo: string, categoria: Categoria): Observable<Categoria> {
     const url = `${this.baseUrl}api/Categoria/${codigo}`;
     return this.http.put<Categoria>(url, categoria, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados")),
+      tap((_) => this.handleErrorService.logOk("Datos enviados")),
       catchError(
         this.handleErrorService.handleError<Categoria>("Actualizar", null)
       )

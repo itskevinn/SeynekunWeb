@@ -1,0 +1,12 @@
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\bin\Release\netstandard2.1\datos.deps.json
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\bin\Release\netstandard2.1\datos.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\bin\Release\netstandard2.1\datos.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\bin\Release\netstandard2.1\Entity.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\bin\Release\netstandard2.1\Entity.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.csprojAssemblyReference.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.AssemblyInfoInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.AssemblyInfo.cs
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.csproj.CoreCompileInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.csproj.CopyComplete
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\datos\obj\Release\netstandard2.1\datos.pdb

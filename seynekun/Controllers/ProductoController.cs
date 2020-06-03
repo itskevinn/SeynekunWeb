@@ -3,6 +3,7 @@ using System.Linq;
 using Datos;
 using Entity;
 using Logica;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using static seynekun.Models.ProductoModel;
@@ -26,9 +27,14 @@ namespace seynekun.Controllers
         {
             Producto producto = MapToProducto(productoInputModel);
             var response = servicioProducto.Guardar(producto);
-            if (response.Error)
+           if (response.Error)
             {
-                return BadRequest(response.Mensaje);
+               ModelState.AddModelError("Error al registrar al producto", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
             }
             return Ok(response.Producto);
         }

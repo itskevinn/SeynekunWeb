@@ -18,14 +18,17 @@ namespace Logica
         {
             try
             {
-                var productoBuscado = _context.Productores.Find(producto.Nombre);
-                if (productoBuscado != null)
+                var productoBuscado = _context.Productores.Find(producto.Identificacion);
+                if (productoBuscado == null)
                 {
-                    return new GuardarProductorResponse("Productor ya registrado");
+                    _context.Productores.Add(producto);
+                    _context.SaveChanges();
+                    return new GuardarProductorResponse(producto);
                 }
-                _context.Productores.Add(producto);
-                _context.SaveChanges();
-                return new GuardarProductorResponse(producto);
+                else
+                {
+                    return new GuardarProductorResponse("¡Productor ya registrado!");
+                }
             }
             catch (Exception e)
             {
@@ -87,7 +90,7 @@ namespace Logica
             try
             {
                 Productor productor = _context.Productores.Find(identificacion);
-                if (productor != null && productor.Estado != "Eliminado") 
+                if (productor != null && productor.Estado != "Eliminado")
                 {
                     productor.Estado = "Eliminado";
                     _context.Productores.Update(productor);

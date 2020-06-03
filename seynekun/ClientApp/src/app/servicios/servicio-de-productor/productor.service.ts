@@ -28,7 +28,7 @@ export class ProductorService {
   }
   gets(): Observable<Productor[]> {
     return this.http.get<Productor[]>(this.baseUrl + 'api/Productor').pipe(
-      tap((_) => this.handleErrorService.log('Datos traídos')),
+      tap((_) => console.log('Datos traídos')),
       catchError(
         this.handleErrorService.handleError<Productor[]>(
           'Consulta de prodcutores',
@@ -42,7 +42,7 @@ export class ProductorService {
       typeof productor === "string" ? productor : productor.identificacion;
     return this.http.delete<string>(this.baseUrl + 'api/productor/'+ id)
     .pipe(
-      tap(_ => this.handleErrorService.log('datos enviados')),
+      tap(_ => this.handleErrorService.logOk('datos enviados')),
       catchError(this.handleErrorService.handleError<string>('Elimiar Persona', null))
     );
   }
@@ -50,7 +50,7 @@ export class ProductorService {
     return this.http
       .post<Productor>(this.baseUrl + 'api/Productor', productor)
       .pipe(
-        tap((_) => this.handleErrorService.log('Datos enviados')),
+        tap((_) => this.handleErrorService.logOk('Productor registrado con éxito')),
         catchError(
           this.handleErrorService.handleError<Productor>(
             'Registro del prodcutor',
@@ -62,7 +62,7 @@ export class ProductorService {
   get(identificacion: string): Observable<Productor> {
     const url = `${this.baseUrl + 'api/Productor'}/${identificacion}`
     return this.http.get<Productor>(url, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados y recibidos')),
+      tap((_) => console.log('Datos enviados y recibidos')),
       catchError(
         this.handleErrorService.handleError<Productor>('Consulta x id', null),
       ),
@@ -72,7 +72,7 @@ export class ProductorService {
   put(identificacion: string, productor: Productor): Observable<Productor> {
     const url = `${this.baseUrl}api/Productor/${identificacion}`
     return this.http.put<Productor>(url, productor, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log('Datos enviados')),
+      tap((_) => this.handleErrorService.logOk('Datos enviados')),
       catchError(
         this.handleErrorService.handleError<Productor>('Actualizar', null),
       ),

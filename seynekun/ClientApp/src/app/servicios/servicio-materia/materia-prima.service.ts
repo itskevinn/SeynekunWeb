@@ -28,7 +28,7 @@ export class MateriaPrimaService {
     return this.http
       .get<MateriaPrima[]>(this.baseUrl + "api/MateriaPrima")
       .pipe(
-        tap((_) => this.handleErrorService.log("Datos traídos")),
+        tap((_) => console.log("Datos traídos")),
         catchError(
           this.handleErrorService.handleError<MateriaPrima[]>(
             "Consulta de MateriaPrimas",
@@ -46,7 +46,7 @@ export class MateriaPrimaService {
     return this.http
       .delete<string>(this.baseUrl + "api/MateriaPrima/" + id)
       .pipe(
-        tap((_) => this.handleErrorService.log("datos enviados")),
+        tap((_) => this.handleErrorService.logOk("datos enviados")),
         catchError(
           this.handleErrorService.handleError<string>(
             "Eliminar MateriaPrima",
@@ -62,7 +62,7 @@ export class MateriaPrimaService {
         ajusteInventario
       )
       .pipe(
-        tap((_) => this.handleErrorService.log("Datos enviados")),
+        tap((_) => this.handleErrorService.logOk("Materia prima registrada con éxito")),
         catchError(
           this.handleErrorService.handleError<MateriaPrima>(
             "Registro del MateriaPrima",
@@ -74,7 +74,7 @@ export class MateriaPrimaService {
   get(codigo: string): Observable<MateriaPrima> {
     const url = `${this.baseUrl + "api/MateriaPrima"}/${codigo}`;
     return this.http.get<MateriaPrima>(url, httpOptions).pipe(
-      tap((_) => this.handleErrorService.log("Datos enviados y recibidos")),
+      tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
         this.handleErrorService.handleError<MateriaPrima>(
           "Consulta por código",
@@ -92,7 +92,7 @@ export class MateriaPrimaService {
     return this.http
       .put<MateriaPrima>(url, ajusteInventario, httpOptions)
       .pipe(
-        tap((_) => this.handleErrorService.log("Datos enviados")),
+        tap((_) => this.handleErrorService.logOk("Datos enviados")),
         catchError(
           this.handleErrorService.handleError<MateriaPrima>(
             "Actualizar",
