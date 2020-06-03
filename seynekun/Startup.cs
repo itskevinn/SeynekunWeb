@@ -28,14 +28,6 @@ namespace seynekun
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<IISServerOptions>(options =>
-            {
-                options.AutomaticAuthentication = false;
-            });
-            services.Configure<IISOptions>(options =>
-            {
-                options.ForwardClientCertificate = false;
-            });
             // Configurar cadena de Conexion con EF
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SeynekunContext>(a => a.UseSqlServer(connectionString));
