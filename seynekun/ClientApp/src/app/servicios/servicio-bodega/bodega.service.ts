@@ -10,9 +10,8 @@ const httpOptionsPut = {
 };
 
 const httpOptions = {
-  headers: new HttpHeaders({ "Content-Type": "application/json" }),
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-
 
 @Injectable({
   providedIn: "root",
@@ -40,7 +39,7 @@ export class BodegaService {
   delete(bodega: Bodega | string): Observable<string> {
     const id = typeof bodega === "string" ? bodega : bodega.nombre;
     return this.http.delete<string>(this.baseUrl + "api/Bodega/" + id).pipe(
-      tap((_) => this.handleErrorService.logOk("datos enviados")),
+      tap((_) => this.handleErrorService.logOk("Bodega Eliminada")),
       catchError(
         this.handleErrorService.handleError<string>("Eliminar Bodega", null)
       )
@@ -48,7 +47,7 @@ export class BodegaService {
   }
   post(bodega: Bodega): Observable<Bodega> {
     return this.http.post<Bodega>(this.baseUrl + "api/Bodega", bodega).pipe(
-      tap((_) => this.handleErrorService.logOk("Datos enviados")),
+      tap((_) => this.handleErrorService.logOk("Bodega Registrada")),
       catchError(
         this.handleErrorService.handleError<Bodega>("Registro del Bodega", null)
       )
@@ -66,14 +65,12 @@ export class BodegaService {
       )
     );
   }
-
-  put(codigo: string, bodega: Bodega): Observable<Bodega> {
-    const url = `${this.baseUrl}api/Bodega/${codigo}`;
-    return this.http.put<Bodega>(url, bodega, httpOptions).pipe(
-      tap((_) => this.handleErrorService.logOk("Datos enviados")),
-      catchError(
-        this.handleErrorService.handleError<Bodega>("Actualizar", null)
-      )
-    );
+  put(bodega: Bodega): Observable<Bodega> {
+    const url = `${this.baseUrl + 'api/Bodega'}/${bodega.nombre}`;
+    return this.http.put<Bodega>(url, bodega, httpOptions)
+      .pipe(
+        tap(_ => this.handleErrorService.logOk('Bodega Actualizada')),
+        catchError(this.handleErrorService.handleError<Bodega>('Editar Bodega'))
+      );
   }
 }

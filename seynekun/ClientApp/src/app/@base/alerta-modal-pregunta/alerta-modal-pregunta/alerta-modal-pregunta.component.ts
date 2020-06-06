@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-alerta-modal-pregunta",
@@ -7,18 +7,20 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./alerta-modal-pregunta.component.css"],
 })
 export class AlertaModalPreguntaComponent implements OnInit {
-  ok: boolean = true;
-  constructor(public activeModal: NgbActiveModal) {}
+  respuesta: boolean = true;
+  constructor(public activeModal: NgbActiveModal) { }
 
   @Input() titulo;
 
   @Input() mensaje;
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   confirmar() {
-    this.ok = true;
+    this.respuesta = true;
+    this.activeModal.close(this.respuesta);
   }
   cancelar() {
-    this.ok = false;
+    this.respuesta = false;
+    this.activeModal.close(this.respuesta);
   }
 }

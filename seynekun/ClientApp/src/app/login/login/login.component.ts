@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  reload(){
+  reload() {
     window.location.reload();
   }
   // convenience getter for easy access to form fields
@@ -58,9 +58,6 @@ export class LoginComponent implements OnInit {
           this.reload();
         },
         error => {
-          const modalRef = this.modalService.open(AlertaModalErrorComponent);
-          modalRef.componentInstance.title = 'Acceso Denegado';
-          modalRef.componentInstance.message = error;
           this.loading = false;
         });
   }

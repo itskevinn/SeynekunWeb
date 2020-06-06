@@ -63,12 +63,7 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user required" name="codigo"
                     placeholder="Código del Producto" formControlName="codigo"
-                    [ngClass]="{'is-invalid':control.codigo.errors && control.codigo.touched}">
-                  <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
-                    <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione un código para el
-                      producto
-                    </div>
-                  </div>
+                    [ngClass]="{'is-invalid':control.codigo.errors && control.codigo.touched}" disabled>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -87,11 +82,25 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">                  
-                    <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
-                      <option [ngValue]="null"> Categoria </option>
-                      <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
-                    </select>                                    
+                <div class="form-group">
+                  <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
+                    <option [ngValue]="null"> Categoria </option>
+                    <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+                  </select>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user required" name="cantidad"
+                      placeholder="Cantidad de Presentación del Producto" formControlName="cantidad">
+                  </div>
+                  <div class="col-sm-6">
+                    <select class="form-dropdown border-verde separarArriba" name="unidadMedida"
+                      (change)="cambiarUnidadMedida($event)">
+                      <option [ngValue]="null"> Unidad de Medida </option>
+                      <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}
+                      </option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <input type="descripcion" class="form-control form-control-user" name="descripcion"

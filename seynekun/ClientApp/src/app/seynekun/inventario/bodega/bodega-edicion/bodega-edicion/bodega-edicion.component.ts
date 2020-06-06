@@ -16,14 +16,14 @@ import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/aler
 export class BodegaEdicionComponent implements OnInit {
   nombre = this.rutaActiva.snapshot.params.id;
   bodega: Bodega;
-  formGroup: FormGroup;  
+  formGroup: FormGroup;
   seEncontro: boolean;
   constructor(
     private bodegaService: BodegaService,
     private formBuilder: FormBuilder,
     private rutaActiva: ActivatedRoute,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.bodega = new Bodega();
@@ -35,12 +35,20 @@ export class BodegaEdicionComponent implements OnInit {
   buscar() {
     this.bodegaService.get(this.nombre).subscribe((result) => {
       this.bodega = result;
-      this.bodega != null
-        ? (this.seEncontro = true)
-        : (this.seEncontro = false);
+      if (this.bodega != null) {
+        this.actualizarForm();
+        this.seEncontro = true;
+      }
+      else {
+        this.seEncontro = false;
+      }
     });
   }
-
+  actualizarForm() {
+    this.control.nombre.setValue(this.bodega.nombre);
+    this.control.detalle.setValue(this.bodega.detalle);
+    this.control.direccion.setValue(this.bodega.direccion);
+  }
   crearFormulario() {
     this.bodega.nombre = "";
     this.bodega.detalle = "";
@@ -52,8 +60,8 @@ export class BodegaEdicionComponent implements OnInit {
       estado: [this.bodega.estado],
       direccion: [this.bodega.direccion],
     });
-  } 
-   
+  }
+
   onSubmit() {
     if (this.formGroup.invalid) {
       return null;
@@ -74,17 +82,8 @@ export class BodegaEdicionComponent implements OnInit {
       if (result) {
         this.bodegaService.delete(this.nombre).subscribe((p) => {
           if (p != null) {
-            const messageBox = this.modalService.open(AlertaModalOkComponent);
-            messageBox.componentInstance.titulo = "Bodega eliminada";
             this.bodega = null;
             this.formGroup.reset();
-          } else {
-            const messageBox = this.modalService.open(
-              AlertaModalErrorComponent
-            );
-            messageBox.componentInstance.titulo = "Ha ocurrido un error";
-            messageBox.componentInstance.mensaje =
-              "No se ha podido eliminar la bodega";
           }
         });
       }
@@ -93,7 +92,7 @@ export class BodegaEdicionComponent implements OnInit {
 
   actualizar() {
     this.bodega = this.formGroup.value;
-    this.bodegaService.put(this.nombre, this.bodega).subscribe((e) => {
+    this.bodegaService.put(this.bodega).subscribe((e) => {
       if (e != null) {
         this.bodega = e;
         this.formGroup.reset();
