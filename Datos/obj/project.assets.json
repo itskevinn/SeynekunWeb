@@ -6771,11 +6771,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj",
+      "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj",
       "projectName": "datos",
-      "projectPath": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj",
+      "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj",
       "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\obj\\",
+      "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6791,8 +6791,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
-              "projectPath": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+            "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
             }
           }
         }
