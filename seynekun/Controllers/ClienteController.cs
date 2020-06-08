@@ -10,11 +10,13 @@ using seynekun.Models;
 using Logica;
 using Datos;
 
-namespace seynekun.Controllers {
+namespace seynekun.Controllers
+{
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase {
+    public class ClienteController : ControllerBase
+    {
 
         private readonly ServicioCliente servicioCliente;
 
@@ -66,13 +68,10 @@ namespace seynekun.Controllers {
         [HttpGet("{identificacion}")]
         public ActionResult<ClienteViewModel> Get(string identificacion)
         {
-            var response = servicioCliente.BuscarxId(identificacion);
-            if (response.Error)
-            {
-                return BadRequest(response.Mensaje);
-            }
-            var cliente = new ClienteViewModel(response.Cliente);
-            return cliente;
+            var cliente = servicioCliente.BuscarxId(identificacion).Cliente;
+            if (cliente == null) return NotFound();
+            var clienteViewModel = new ClienteViewModel(cliente);
+            return clienteViewModel;
         }
 
         [HttpPut("{identificacion}")]

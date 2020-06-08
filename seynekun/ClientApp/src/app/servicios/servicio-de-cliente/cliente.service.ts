@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Observable, from } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
@@ -6,6 +6,9 @@ import { Injectable, Inject } from '@angular/core'
 import { Cliente } from 'src/app/seynekun/models/modelo-cliente/cliente'
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service'
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root',
 })
@@ -41,15 +44,11 @@ export class ClienteService {
     )
   }
   get(identificacion: string): Observable<Cliente> {
-    return this.http.get<Cliente>(this.urlBase + 'api/Cliente').pipe(
-      tap((_) =>
-        console.log('Datos enviados al y traídos del backend'),
-      ),
+    const url = `${this.urlBase + 'api/Cliente'}/${identificacion}`
+    return this.http.get<Cliente>(url, httpOptions).pipe(
+      tap((_) => console.log('Datos enviados y recibidos')),
       catchError(
-        this.handleErrorService.handleError<Cliente>(
-          'Consulta del cliente por id',
-          null,
-        ),
+        this.handleErrorService.handleError<Cliente>('Consulta x id', null),
       ),
     )
   }

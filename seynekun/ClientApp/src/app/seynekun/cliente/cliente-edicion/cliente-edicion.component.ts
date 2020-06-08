@@ -20,34 +20,35 @@ import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.
 export class ClienteEdicionComponent implements OnInit {
   cliente: Cliente
   formGroup: FormGroup
-  idTipos: string[]
+  idTipos: string[] = [
+    'CC',
+    'TI',
+    'RI'
+  ]
   seEncontro: boolean
-  departamentos: string[]
-  municipios: string[]
+  departamentos: string[] = [
+    'Cesar',
+    'La Guajira'
+  ]
+  municipios: string[] = [
+    'Rancho grande',
+    'Cocuhelo',
+    'Los corazones'
+  ]
   identificacion = this.rutaActiva.snapshot.params.id
   constructor(
     private clienteService: ClienteService,
     private rutaActiva: ActivatedRoute,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.cliente = new Cliente()
     this.crearFormulario()
+    this.buscar();
   }
   crearFormulario() {
-    this.cliente.nombre = ''
-    this.cliente.apellido = ''
-    this.cliente.tipoIdentificacion = ''
-    this.cliente.identificacion = ''
-    this.cliente.numeroTelefono = ''
-    this.cliente.numeroTelefono2 = ''
-    this.cliente.email = ''
-    this.cliente.direccion = ''
-    this.cliente.municipio = ''
-    this.cliente.departamento = ''
-    this.cliente.barrio = ''
     this.formGroup = this.formBuilder.group({
       nombre: [this.cliente.nombre, Validators.required],
       apellido: [this.cliente.apellido, Validators.required],
@@ -77,16 +78,34 @@ export class ClienteEdicionComponent implements OnInit {
       municipio: [this.cliente.municipio],
       departamento: [this.cliente.departamento],
       barrio: [this.cliente.barrio],
+      estado: [this.cliente.estado]
     })
   }
   buscar() {
-    const identificacion = this.rutaActiva.snapshot.params.id
-    this.clienteService.get(identificacion).subscribe((result) => {
-      this.cliente = result
-      this.cliente != null
-        ? (this.seEncontro = true)
-        : (this.seEncontro = false)
-    })
+    this.clienteService.get(this.identificacion).subscribe((result) => {
+      this.cliente = result;
+      if (this.cliente != null) {
+        this.actualizarForm();
+        this.seEncontro = true;
+      }
+      else {
+        this.seEncontro = false;
+      }
+    });
+  }
+
+  actualizarForm() {
+    this.control.nombre.setValue(this.cliente.nombre);
+    this.control.apellido.setValue(this.cliente.apellido);
+    this.control.tipoIdentificacion.setValue(this.cliente.tipoIdentificacion);
+    this.control.identificacion.setValue(this.cliente.identificacion);
+    this.control.numeroTelefono.setValue(this.cliente.numeroTelefono);
+    this.control.numeroTelefono2.setValue(this.cliente.numeroTelefono2);
+    this.control.email.setValue(this.cliente.email);
+    this.control.direccion.setValue(this.cliente.direccion);
+    this.control.municipio.setValue(this.cliente.municipio);
+    this.control.departamento.setValue(this.cliente.departamento);
+    this.control.barrio.setValue(this.cliente.barrio);
   }
   cambiarTipoId(e) {
     this.control.tipoIdentificacion.setValue(e.target.value, {

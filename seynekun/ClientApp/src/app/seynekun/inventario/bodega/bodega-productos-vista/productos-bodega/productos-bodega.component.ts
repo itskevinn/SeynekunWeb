@@ -26,7 +26,7 @@ export class ProductosBodegaComponent implements OnInit {
     private rutaActiva: ActivatedRoute,
     private ajusteService: AjusteInventarioService,
     private productoService: ProductoService
-  ) {}
+  ) { }
   ngOnInit(): void {
     const nombre = this.rutaActiva.snapshot.params.id;
     this.productoService.gets().subscribe((result) => {
@@ -41,21 +41,24 @@ export class ProductosBodegaComponent implements OnInit {
       this.obtenerProductosEnBodega();
     });
   }
-  private obtenerProductosEnBodega() {    
-    this.bodega.ajustes.forEach((ajuste) => {
-      var productoEnBodega = new ProductoEnBodega();
-      this.productoService.get(ajuste.codigoElemento).subscribe((result) => {
-        productoEnBodega.producto = result;
-        this.ajusteService
-          .getCantidad(this.bodega.nombre, productoEnBodega.producto.codigo)
-          .subscribe((result) => {
-            productoEnBodega.cantidad = result;
-          });
-        if (!this.esRepetido(this.productoEnBodegas, productoEnBodega.producto.codigo)) {
-          this.productoEnBodegas.push(productoEnBodega);
-        }
-      });
-    });
+  /* private obtenerProductosEnBodega() {
+     this.bodega.ajustes.forEach((ajuste) => {
+       var productoEnBodega = new ProductoEnBodega();
+       this.productoService.get(ajuste.codigoElemento).subscribe((result) => {
+         productoEnBodega.producto = result;
+         this.ajusteService
+           .getCantidad(this.bodega.nombre, productoEnBodega.producto.codigo)
+           .subscribe((result) => {
+             productoEnBodega.cantidad = result;
+           });
+         if (!this.esRepetido(this.productoEnBodegas, productoEnBodega.producto.codigo)) {
+           this.productoEnBodegas.push(productoEnBodega);
+         }
+       });
+     });
+   }*/
+  private obtenerProductosEnBodega() {
+
   }
   private esRepetido(productosEnBodega: ProductoEnBodega[], codigo: string) {
     for (let i = 0; i < productosEnBodega.length; i++) {
