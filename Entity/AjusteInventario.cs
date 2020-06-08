@@ -3,24 +3,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entity
 {
-    //"Server=tcp:seynekun.database.windows.net,1433;Initial Catalog=Seynekun;Persist Security Info=False;User ID=adminn;Password=Kevin.2!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     public class AjusteInventario
     {
         [Key]
         [Required(ErrorMessage = "Se requiere el código del ajuste")]
-        public decimal Codigo { get; set; }
-        [Required(ErrorMessage="Se requiere el código de la materia prima")]
-        public decimal CodigoMateriaPrima { get; set; }
+        public string Codigo { get; set; }
         [Required(ErrorMessage = "Se requiere la fecha del ajuste")]           
         [DataType(DataType.Date,ErrorMessage="Ingrese una fecha válida")]
         public DateTime Fecha { get; set; }
         public string Descipcion { get; set; }
         [Required(ErrorMessage = "Se requiere la cantidad a ajustar")]
         public decimal Cantidad { get; set; }
+        [Required(ErrorMessage ="Se requiere el código del elemento al que va a inventariar")]
         public string CodigoElemento { get; set; }
+        
         [Required(ErrorMessage = "Se requiere un tipo")]
         [TipoValidacion(ErrorMessage = "Ingrese un tipo válido")]
         public string Tipo { get; set; }
+        [Required(ErrorMessage = "Se requiere el código de la materia prima")]
+        public string CodigoMateriaPrima { get; set; }
         [Required(ErrorMessage = "Se requiere una bodega")]
         public string NombreBodega { get; set; }
     }

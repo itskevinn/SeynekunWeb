@@ -88,7 +88,7 @@ namespace Logica
             var ajustes = _context.AjusteInventarios.Where(a => a.NombreBodega == nombreBodega).ToList();
             foreach (var ajuste in ajustes)
             {
-                producto = _context.Productos.Find(ajuste.Codigo);
+                producto = _context.Productos.Find(ajuste.CodigoElemento);
                 productos.Add(producto);
             }
             foreach (var _producto in productos)

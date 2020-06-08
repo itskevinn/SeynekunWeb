@@ -64,7 +64,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.ajusteInventario.codigo = null;
     this.ajusteInventario.tipo = "";
     this.ajusteInventario.nombreBodega = "";
-    this.formGroup = this.formBuilder.group({  
+    this.formGroup = this.formBuilder.group({
       descipcion: [this.ajusteInventario.descipcion],
       codigoElemento: [this.ajusteInventario.codigoElemento],
       cantidad: [this.ajusteInventario.cantidad, Validators.required],
@@ -82,7 +82,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.datepicker.hide();
   }*/
 
-  
+
   obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
       this.bodegas = result;
@@ -116,7 +116,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   }
   cortarCodigo(codigo: string[]) {
     for (let i = 0; i < codigo.length; i++) {
-      return codigo[0];      
+      return codigo[0];
     }
   }
   get control() {
