@@ -12,6 +12,8 @@ namespace seynekun.Models
             public decimal Precio { get; set; }
             public string Estado { get; set; }
             public string Descripcion { get; set; }
+            
+            [Required]
             public string NombreCategoria { get; set; }
             public decimal Cantidad { get; set; }
             public string UnidadMedida { get; set; }

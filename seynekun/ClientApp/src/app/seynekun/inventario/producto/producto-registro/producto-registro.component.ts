@@ -70,7 +70,9 @@ export class ProductoRegistroComponent implements OnInit {
       });
     }
   }
+
   cambiarCategoria(e) {
+    console.log(e.target.value);
     if (this.control.nombreCategoria.value == null) {
       this.control.nombreCategoria.setValue("No especificada");
     } else {

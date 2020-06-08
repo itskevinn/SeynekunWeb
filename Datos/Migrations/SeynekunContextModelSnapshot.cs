@@ -21,8 +21,8 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entity.AjusteInventario", b =>
                 {
-                    b.Property<decimal>("Codigo")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BodegaNombre")
                         .HasColumnType("nvarchar(20)");
@@ -31,10 +31,12 @@ namespace Datos.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CodigoElemento")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("CodigoMateriaPrima")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("CodigoMateriaPrima")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descipcion")
                         .HasColumnType("nvarchar(max)");

@@ -17,8 +17,10 @@ namespace Entity
         public string Estado { get; set; }
         [StringLength(100, ErrorMessage = "Descripción demasiado larga")]
         public string Descripcion { get; set; }
-        [StringLength(17, ErrorMessage = "Nombre de caregoría inválido")]
+
+        [StringLength(17, ErrorMessage = "Nombre de categoría inválido")]
         public string NombreCategoria { get; set; }
+
         [Required(ErrorMessage = "Se requiere la cantidad del producto")]
         public decimal Cantidad { get; set; }
         [Required(ErrorMessage = "Se requiere la unidad de medida del producto")]
