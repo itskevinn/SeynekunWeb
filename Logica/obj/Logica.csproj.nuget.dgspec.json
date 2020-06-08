@@ -1,34 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj": {}
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj",
-        "projectName": "datos",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\datos.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\datos\\obj\\",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
+        "projectName": "Datos",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
               }
             }
           }
@@ -74,24 +72,22 @@
         }
       }
     },
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -132,34 +128,32 @@
         }
       }
     },
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
         "projectName": "Logica",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
-                "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
               },
-              "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
               }
             }
           }
