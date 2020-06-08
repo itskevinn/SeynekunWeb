@@ -22,7 +22,7 @@ export class ProductosCategoriaComponent implements OnInit {
     const nombre = this.rutaActiva.snapshot.params.id;
     this.categoriaService.get(nombre).subscribe((result) => {
       this.categoria = result;
-      this.productos = this.categoria.productos;
+      this.productos = result.productos;
       this.categoria != null
         ? (this.seEncontro = true)
         : (this.seEncontro = false);

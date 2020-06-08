@@ -55,6 +55,7 @@ namespace Logica
             var categoria = _context.Categorias.Find(nombre);
             if (categoria != null && categoria.Estado != "Eliminado")
             {
+                categoria.Productos = _context.Productos.Where(p => p.NombreCategoria == categoria.Nombre).ToList();
                 return new BuscarCategoriaxIdResponse(categoria);
             }
             return new BuscarCategoriaxIdResponse("Categoria no encontrada");

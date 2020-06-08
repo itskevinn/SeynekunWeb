@@ -16,16 +16,15 @@ export class CategoriaVistaComponent implements OnInit {
   seEncontro: boolean;
   constructor(
     private categoriaService: CategoriaService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
   ) {}
-
   ngOnInit(): void {
     const nombre = this.rutaActiva.snapshot.params.id;
     this.categoriaService.get(nombre).subscribe((result) => {
-      this.categoria = result;      
+      this.categoria = result;
       this.categoria != null
         ? (this.seEncontro = true)
         : (this.seEncontro = false);
-    });    
+    });
   }
 }

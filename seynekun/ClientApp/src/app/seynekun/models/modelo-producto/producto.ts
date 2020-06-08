@@ -1,7 +1,7 @@
 export class Producto {
     codigo: string
-    precio: number
     nombre: string
+    precio: number
     estado: string
     descripcion: string
     nombreCategoria: string

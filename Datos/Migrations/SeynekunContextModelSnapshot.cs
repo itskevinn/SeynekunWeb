@@ -161,6 +161,46 @@ namespace Datos.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("Entity.Documento", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Enlace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
+
+                    b.Property<string>("IdInsumo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("InsumoId")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InsumoId");
+
+                    b.ToTable("Documentos");
+                });
+
             modelBuilder.Entity("Entity.Empleado", b =>
                 {
                     b.Property<string>("Identificacion")
@@ -213,18 +253,15 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
                     b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -232,12 +269,14 @@ namespace Datos.Migrations
                         .HasMaxLength(13);
 
                     b.Property<string>("Fax")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("NumeroTelefono")
                         .IsRequired()
@@ -245,16 +284,138 @@ namespace Datos.Migrations
                         .HasMaxLength(13);
 
                     b.Property<string>("SitioWeb")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("TipoIdentificacion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3);
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.HasKey("Identificacion");
 
                     b.ToTable("Fabricantes");
+                });
+
+            modelBuilder.Entity("Entity.FichaTecnica", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Ce")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Col")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
+
+                    b.Property<string>("Etapa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("IdInsumo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Ingrediente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Jas")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Nop")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("NumeroCas")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Observacion")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("TipoIngrediente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FichasTecnicas");
+                });
+
+            modelBuilder.Entity("Entity.Insumo", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
+
+                    b.Property<string>("FabricanteIdentificacion")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("FichaTecnicaId")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("IdFabricante")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("RegistroIca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Resultado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Uso")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FabricanteIdentificacion");
+
+                    b.HasIndex("FichaTecnicaId");
+
+                    b.ToTable("Insumos");
                 });
 
             modelBuilder.Entity("Entity.MateriaPrima", b =>
@@ -457,6 +618,24 @@ namespace Datos.Migrations
                     b.HasOne("Entity.Bodega", null)
                         .WithMany("Ajustes")
                         .HasForeignKey("BodegaNombre");
+                });
+
+            modelBuilder.Entity("Entity.Documento", b =>
+                {
+                    b.HasOne("Entity.Insumo", null)
+                        .WithMany("Documentos")
+                        .HasForeignKey("InsumoId");
+                });
+
+            modelBuilder.Entity("Entity.Insumo", b =>
+                {
+                    b.HasOne("Entity.Fabricante", null)
+                        .WithMany("Insumos")
+                        .HasForeignKey("FabricanteIdentificacion");
+
+                    b.HasOne("Entity.FichaTecnica", "FichaTecnica")
+                        .WithMany()
+                        .HasForeignKey("FichaTecnicaId");
                 });
 
             modelBuilder.Entity("Entity.Producto", b =>
