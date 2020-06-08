@@ -21,7 +21,7 @@ namespace Logica
                 var bodegaBuscado = _context.Bodegas.Find(bodega.Nombre);
                 if (bodegaBuscado != null)
                 {
-                    return new GuardarBodegaResponse("!Bodega ya registrada!");
+                    return new GuardarBodegaResponse("¡Bodega ya registrada!");
                 }
                 _context.Bodegas.Add(bodega);
                 _context.SaveChanges();

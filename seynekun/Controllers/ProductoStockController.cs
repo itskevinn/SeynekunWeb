@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using Datos;
 using Entity;
 using Logica;
 using Microsoft.AspNetCore.Mvc;
+using static seynekun.Models.ProductoStockModel;
 
 namespace seynekun.Controllers
 {
@@ -10,27 +12,16 @@ namespace seynekun.Controllers
     [ApiController]
     public class ProductoStockController : ControllerBase
     {
-        private readonly ServicioAjusteInventario _ajusteService;
+        private readonly ServicioStock servicioStock;
         public ProductoStockController(SeynekunContext context)
         {
-            _ajusteService = new ServicioAjusteInventario(context);
-        }
-
-        [HttpGet("{codigoMateria}")]
-        public IEnumerable<ProductoStock> GetProductosxMateria(decimal codigoMateria)
-        {
-            /*var ProductoStocks = _ajusteService.ObtenerProductosDeMateria(codigoMateria);
-            if (ProductoStocks == null) return null;
-            return ProductoStocks;*/
-            return null;
+            servicioStock = new ServicioStock(context);
         }
         [HttpGet("{nombre}")]
-        public IEnumerable<ProductoStock> GetProductosxBodega(string nombre)
+        public IEnumerable<ProductoStockViewModel> Get(string nombre)
         {
-           /* var ProductoStocks = _ajusteService.ObtenerProductosEnBodega(nombre);
-            if (ProductoStocks == null) return null;
-            return ProductoStocks;*/
-            return null;
+            var productos = servicioStock.ObtenerProductosEnBodega(nombre).Select(p => new ProductoStockViewModel(p));
+            return productos;
         }
     }
 }

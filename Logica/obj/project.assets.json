@@ -1908,7 +1908,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Datos/1.0.0": {
+      "datos/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -1918,10 +1918,10 @@
           "System.Collections": "4.3.0"
         },
         "compile": {
-          "bin/placeholder/Datos.dll": {}
+          "bin/placeholder/datos.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Datos.dll": {}
+          "bin/placeholder/datos.dll": {}
         }
       },
       "Entity/1.0.0": {
@@ -6767,10 +6767,10 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "Datos/1.0.0": {
+    "datos/1.0.0": {
       "type": "project",
-      "path": "../Datos/Datos.csproj",
-      "msbuildProject": "../Datos/Datos.csproj"
+      "path": "../datos/datos.csproj",
+      "msbuildProject": "../datos/datos.csproj"
     },
     "Entity/1.0.0": {
       "type": "project",
@@ -6780,9 +6780,9 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Datos >= 1.0.0",
       "Entity >= 1.0.0",
-      "System.Collections >= 4.3.0"
+      "System.Collections >= 4.3.0",
+      "datos >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6791,11 +6791,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
+      "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj",
       "projectName": "Logica",
-      "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
+      "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\Logica.csproj",
       "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Logica\\obj\\",
+      "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\logica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",

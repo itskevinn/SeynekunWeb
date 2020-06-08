@@ -79,6 +79,38 @@ namespace Logica
             producto.Cantidad = SumarCantidadEnBodega(codigoElemento, nombreBodega);
             return producto;
         }
+        public List<ProductoStock> ObtenerProductosEnBodega(string nombreBodega)
+        {
+            List<ProductoStock> productosStock = new List<ProductoStock>();
+            ProductoStock productoStock;
+            Producto producto;
+            List<Producto> productos = new List<Producto>();
+            var ajustes = _context.AjusteInventarios.Where(a => a.NombreBodega == nombreBodega).ToList();
+            foreach (var ajuste in ajustes)
+            {
+                producto = _context.Productos.Find(ajuste.Codigo);
+                productos.Add(producto);
+            }
+            foreach (var _producto in productos)
+            {
+                productoStock = new ProductoStock();
+                productoStock.Producto = _producto;
+                productoStock.Cantidad = SumarCantidadEnBodega(_producto.Codigo, nombreBodega);
+                if (!EsRepetido(productosStock, productoStock.Producto.Codigo))
+                {
+                    productosStock.Add(productoStock);
+                }
+            }
+            return productosStock;
+        }
+        private bool EsRepetido(List<ProductoStock> productosEnBodega, string codigo)
+        {
+            for (int i = 0; i < productosEnBodega.Count; i++)
+            {
+                if (productosEnBodega[i].Producto.Codigo == codigo) return true;
+            }
+            return false;
+        }
         public InsumoStock ObtenerInsumoStockEnBodega(string codigo, string nombreBodega)
         {
             InsumoStock insumo = new InsumoStock();

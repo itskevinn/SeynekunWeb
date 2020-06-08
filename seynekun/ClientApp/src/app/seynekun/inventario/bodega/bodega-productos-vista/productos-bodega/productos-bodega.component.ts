@@ -7,6 +7,7 @@ import { AjusteInventarioService } from "src/app/servicios/servicio-ajuste/ajust
 import { Producto } from "src/app/seynekun/models/modelo-producto/producto";
 import { ProductoService } from "src/app/servicios/servicio-producto/producto.service";
 import { ProductoEnBodega } from "src/app/seynekun/models/modelo-producto-bodega/producto-en-bodega";
+import { ProductStockService } from "src/app/servicios/servicio-producto-stock/producto-stock.service";
 
 @Component({
   selector: "app-productos-bodega",
@@ -19,20 +20,22 @@ export class ProductosBodegaComponent implements OnInit {
   ajustes: AjusteDeInventario[];
   seEncontro: boolean;
   productos: Producto[];
+  nombre = this.rutaActiva.snapshot.params.id;
   productoEnBodegas: ProductoEnBodega[] = [];
   cantidadProducto: number;
   constructor(
     private bodegaService: BodegaService,
     private rutaActiva: ActivatedRoute,
     private ajusteService: AjusteInventarioService,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private productoStockService: ProductStockService
   ) { }
   ngOnInit(): void {
-    const nombre = this.rutaActiva.snapshot.params.id;
+
     this.productoService.gets().subscribe((result) => {
       this.productos = result;
     });
-    this.bodegaService.get(nombre).subscribe((result) => {
+    this.bodegaService.get(this.nombre).subscribe((result) => {
       this.bodega = result;
       this.ajustes = this.bodega.ajustes;
       this.bodega != null
@@ -58,7 +61,12 @@ export class ProductosBodegaComponent implements OnInit {
      });
    }*/
   private obtenerProductosEnBodega() {
-
+    this.productoStockService.get(this.nombre).subscribe((result) => {
+      this.productoEnBodegas = result;
+      this.productoEnBodegas != null
+        ? (this.seEncontro = true)
+        : (this.seEncontro = false);
+    });
   }
   private esRepetido(productosEnBodega: ProductoEnBodega[], codigo: string) {
     for (let i = 0; i < productosEnBodega.length; i++) {
