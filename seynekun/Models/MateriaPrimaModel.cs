@@ -18,7 +18,7 @@ namespace seynekun.Models
         {
             public MateriaPrimaViewModel(MateriaPrima materiaPrima)
             {
-                Codigo = materiaPrima.Codigo;
+                //Codigo = materiaPrima.Codigo;
                 Fecha = materiaPrima.Fecha;                
                 Cantidad = materiaPrima.Cantidad;
                 CodigoProductor = materiaPrima.CodigoProductor;                

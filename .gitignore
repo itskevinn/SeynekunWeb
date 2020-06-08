@@ -1797,3 +1797,17 @@ publish/seynekun.exe
 publish/seynekun.runtimeconfig.json
 publish/seynekun.Views.pdb
 publish/wwwroot/favicon.ico
+Datos/obj/Debug/netstandard2.1/Datos.pdb
+Datos/Migrations/SeynekunContextModelSnapshot.cs
+Datos/Migrations/20200608223024_InitialCreate.Designer.cs
+Datos/Migrations/20200608223024_InitialCreate.cs
+Datos/Migrations/20200608200252_InitialCreate.Designer.cs
+Datos/Migrations/20200608200252_InitialCreate.cs
+Datos/bin/Debug/netstandard2.1/Entity.pdb
+Datos/bin/Debug/netstandard2.1/Datos.pdb
+Entity/bin/Debug/netstandard2.1/Entity.pdb
+Entity/obj/Debug/netstandard2.1/Entity.pdb
+Logica/bin/Debug/netstandard2.1/Datos.pdb
+Logica/bin/Debug/netstandard2.1/Entity.pdb
+Logica/bin/Debug/netstandard2.1/Logica.pdb
+Logica/obj/Debug/netstandard2.1/Logica.pdb

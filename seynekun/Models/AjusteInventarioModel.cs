@@ -1,34 +1,54 @@
 using System;
 using Entity;
+using System.ComponentModel.DataAnnotations;
+
 namespace seynekun.Models
 {
     public class AjusteInventarioModel
     {
         public class AjusteInventarioInputModel
         {
-         public decimal Codigo { get; set; }   
-         public DateTime Fecha { get; set; }
-         public string Descipcion { get; set; }
-         public decimal Cantidad { get; set; }
-         public string CodigoElemento { get; set; }
-         public string Tipo { get; set; }
-         public decimal CodigoMateriaPrima { get; set; }
-         public string NombreBodega { get; set; }
+            [Required(ErrorMessage = "Se requiere el código del ajuste")]
+            public string CodigoAjuste { get; set; }
+
+            [Required(ErrorMessage = "Se requiere un tipo de elemento")]
+            public string TipoElemento { get; set; }
+
+            [Required(ErrorMessage = "Se requiere el nombre del elemento")]
+            public string NombreElemento { get; set; }
+
+            [Required(ErrorMessage="Se requiere el código del elemento")]
+            public string CodigoElemento { get; set; }
+
+            [Required(ErrorMessage = "Se requiere la fecha del ajuste")]           
+            [DataType(DataType.Date,ErrorMessage="Ingrese una fecha válida")]
+            public DateTime Fecha { get; set; }
+
+            [Required(ErrorMessage = "Se requiere el tipo de ajuste")]  
+            public string TipoAjusteInventario { get; set; }
+            public string Descipcion { get; set; }
+
+            [Required(ErrorMessage = "Se requiere la cantidad a ajustar")]
+            public decimal Cantidad { get; set; }
+
+            [Required(ErrorMessage = "Se requiere una bodega")]
+            public string NombreBodega { get; set; }
         }
 
         public class AjusteInventarioViewModel : AjusteInventarioInputModel
         {
             public AjusteInventarioViewModel(AjusteInventario ajusteInventario)
             {
-                Codigo = ajusteInventario.Codigo;
+                CodigoAjuste = ajusteInventario.CodigoAjuste;
+                TipoElemento = ajusteInventario.TipoElemento;
+                NombreElemento = ajusteInventario.NombreElemento;
+                CodigoElemento = ajusteInventario.CodigoElemento;
                 Fecha = ajusteInventario.Fecha;
+                TipoAjusteInventario = ajusteInventario.TipoAjusteInventario;
                 Descipcion = ajusteInventario.Descipcion;
                 Cantidad = ajusteInventario.Cantidad;
-                CodigoMateriaPrima = ajusteInventario.CodigoMateriaPrima;
-                CodigoElemento = ajusteInventario.CodigoElemento;
-                Tipo = ajusteInventario.Tipo;
                 NombreBodega = ajusteInventario.NombreBodega;
             }
-        }   
+        }
     }
 }

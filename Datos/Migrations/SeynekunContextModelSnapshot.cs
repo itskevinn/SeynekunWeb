@@ -21,8 +21,8 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entity.AjusteInventario", b =>
                 {
-                    b.Property<decimal>("Codigo")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("CodigoAjuste")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BodegaNombre")
                         .HasColumnType("nvarchar(20)");
@@ -31,10 +31,8 @@ namespace Datos.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CodigoElemento")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("CodigoMateriaPrima")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Descipcion")
                         .HasColumnType("nvarchar(max)");
@@ -46,11 +44,19 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tipo")
+                    b.Property<string>("NombreElemento")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Codigo");
+                    b.Property<string>("TipoAjusteInventario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoElemento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CodigoAjuste");
 
                     b.HasIndex("BodegaNombre");
 
@@ -420,8 +426,8 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entity.MateriaPrima", b =>
                 {
-                    b.Property<decimal>("Codigo")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Cantidad")
                         .HasColumnType("decimal(18,2)");

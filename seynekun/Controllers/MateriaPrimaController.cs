@@ -39,7 +39,7 @@ namespace seynekun.Controllers
         {
             var materiaPrima = new MateriaPrima
             {
-                Codigo = materiaPrimaInputModel.Codigo,
+                //Codigo = materiaPrimaInputModel.Codigo,
                 Fecha = materiaPrimaInputModel.Fecha,
                 Cantidad = materiaPrimaInputModel.Cantidad,
                 CodigoProductor = materiaPrimaInputModel.CodigoProductor,

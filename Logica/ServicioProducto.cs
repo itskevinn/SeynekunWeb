@@ -21,7 +21,6 @@ namespace Logica
                 var productoBuscado = _context.Productos.Find(producto.Codigo);
                 if (productoBuscado == null)
                 {
-                    producto.NombreCategoria = "A ver";
                     _context.Productos.Add(producto);
                     _context.SaveChanges();
                     return new GuardarProductoResponse(producto);
