@@ -35,16 +35,19 @@ namespace Logica
         public List<Categoria> Consultar()
         {
             List<Categoria> categorias = _context.Categorias.ToList();
-            ConsultarProductosEnCategoria(categorias);
+            categorias = ConsultarProductosEnCategoria(categorias);
             return categorias;
         }
 
-        private void ConsultarProductosEnCategoria(List<Categoria> categorias)
+        private List<Categoria> ConsultarProductosEnCategoria(List<Categoria> categorias)
         {
+            List<Categoria> _categorias = new List<Categoria>();
             foreach (var categoria in categorias)
             {
                 categoria.Productos = _context.Productos.Where(p => p.NombreCategoria == categoria.Nombre).ToList();
+                _categorias.Add(categoria);
             }
+            return _categorias;
         }
 
         public BuscarCategoriaxIdResponse BuscarxId(string nombre)
