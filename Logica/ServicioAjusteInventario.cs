@@ -17,10 +17,10 @@ namespace Logica
         {
             try
             {
-                var ajusteInventarioBuscado = _context.AjusteInventarios.Find(ajusteInventario.Codigo);
+                var ajusteInventarioBuscado = _context.AjusteInventarios.Find(ajusteInventario.CodigoAjuste);
                 if (ajusteInventarioBuscado != null)
                 {
-                    return new GuardarAjusteInventarioResponse("Imposible añadir este ajuste, código duplicado");
+                        return new GuardarAjusteInventarioResponse("!Ajuste de inventario ya registrado¡");
                 }
                 _context.AjusteInventarios.Add(ajusteInventario);
                 _context.SaveChanges();
@@ -31,6 +31,7 @@ namespace Logica
                 return new GuardarAjusteInventarioResponse(e.Message);
             }
         }
+        
         public List<AjusteInventario> Consultar()
         {
             List<AjusteInventario> ajusteInventarios = _context.AjusteInventarios.ToList();
@@ -49,14 +50,14 @@ namespace Logica
         {
             try
             {
-                var ajusteInventarioViejo = _context.AjusteInventarios.Find(ajusteInventarioNuevo.Codigo);
+                var ajusteInventarioViejo = _context.AjusteInventarios.Find(ajusteInventarioNuevo.CodigoAjuste);
                 if (ajusteInventarioViejo != null)
                 {
                     ajusteInventarioViejo.Fecha = ajusteInventarioNuevo.Fecha;
                     ajusteInventarioViejo.Descipcion = ajusteInventarioNuevo.Descipcion;
                     ajusteInventarioViejo.Cantidad = ajusteInventarioNuevo.Cantidad;
                     ajusteInventarioViejo.CodigoElemento = ajusteInventarioNuevo.CodigoElemento;
-                    ajusteInventarioViejo.Tipo = ajusteInventarioNuevo.Tipo;
+                    ajusteInventarioViejo.TipoAjusteInventario = ajusteInventarioNuevo.TipoAjusteInventario;
                     ajusteInventarioViejo.NombreBodega = ajusteInventarioNuevo.NombreBodega;
                     _context.AjusteInventarios.Update(ajusteInventarioViejo);
                     _context.SaveChanges();
@@ -91,8 +92,8 @@ namespace Logica
         public decimal SumarCantidadTotal(string codigoElemento)
         {
             var ajustes = _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento);
-            var sumaIncremento = ajustes.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustes.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustes.Where(a => a.TipoAjusteInventario == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustes.Where(a => a.TipoAjusteInventario == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {
@@ -103,8 +104,8 @@ namespace Logica
         public decimal SumarCantidad(string codigoElemento, string nombreBodega)
         {
             var ajustesSolicitadosxBodega = ObtenerAjustesxProductoyBodega(codigoElemento, nombreBodega);
-            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.TipoAjusteInventario == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.TipoAjusteInventario == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {

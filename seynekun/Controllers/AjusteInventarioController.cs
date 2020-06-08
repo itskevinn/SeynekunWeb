@@ -5,6 +5,7 @@ using Logica;
 using Microsoft.AspNetCore.Mvc;
 using static seynekun.Models.AjusteInventarioModel;
 
+
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
@@ -16,6 +17,7 @@ namespace seynekun.Controllers
         {
             _ajusteService = new ServicioAjusteInventario(context);
         }
+
         // POST: api/AjusteInventario
         [HttpPost]
         public ActionResult<AjusteInventarioViewModel> Post(AjusteInventarioInputModel ajusteInventarioInputModel)
@@ -33,13 +35,14 @@ namespace seynekun.Controllers
         {
             var ajusteInventario = new AjusteInventario
             {
-                Codigo = ajusteInventarioInputModel.Codigo,
+                CodigoAjuste = ajusteInventarioInputModel.CodigoAjuste,
+                TipoElemento = ajusteInventarioInputModel.TipoElemento,
+                NombreElemento = ajusteInventarioInputModel.NombreElemento,
+                CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
                 Fecha = ajusteInventarioInputModel.Fecha,
+                TipoAjusteInventario = ajusteInventarioInputModel.TipoAjusteInventario,
                 Descipcion = ajusteInventarioInputModel.Descipcion,
                 Cantidad = ajusteInventarioInputModel.Cantidad,
-                CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
-                Tipo = ajusteInventarioInputModel.Tipo,
-                CodigoMateriaPrima = ajusteInventarioInputModel.CodigoMateriaPrima,
                 NombreBodega = ajusteInventarioInputModel.NombreBodega,
             };
             return ajusteInventario;

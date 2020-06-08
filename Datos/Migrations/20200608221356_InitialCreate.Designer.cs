@@ -4,14 +4,16 @@ using Datos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Datos.Migrations
 {
     [DbContext(typeof(SeynekunContext))]
-    partial class SeynekunContextModelSnapshot : ModelSnapshot
+    [Migration("20200608221356_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,11 +23,7 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entity.AjusteInventario", b =>
                 {
-<<<<<<< HEAD
                     b.Property<string>("Codigo")
-=======
-                    b.Property<string>("CodigoAjuste")
->>>>>>> 7ded797877973524ffa5f2dc915dc9abbf6404c0
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BodegaNombre")
@@ -38,13 +36,10 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
                     b.Property<string>("CodigoMateriaPrima")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-=======
->>>>>>> 7ded797877973524ffa5f2dc915dc9abbf6404c0
                     b.Property<string>("Descipcion")
                         .HasColumnType("nvarchar(max)");
 
@@ -55,19 +50,11 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NombreElemento")
+                    b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TipoAjusteInventario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TipoElemento")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CodigoAjuste");
+                    b.HasKey("Codigo");
 
                     b.HasIndex("BodegaNombre");
 
@@ -437,8 +424,8 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entity.MateriaPrima", b =>
                 {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<decimal>("Codigo")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Cantidad")
                         .HasColumnType("decimal(18,2)");

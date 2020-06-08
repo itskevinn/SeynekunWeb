@@ -7,6 +7,7 @@ namespace Entity
         [Required(ErrorMessage = "Se necesita el código del producto")]
         [StringLength(30, ErrorMessage = "Código demasiado largo")]
         public string Codigo { get; set; }
+        
         [Required(ErrorMessage = "Se requiere el nombre del producto")]
         [StringLength(30, ErrorMessage = "Nombre demasiado largo")]
         public string Nombre { get; set; }
