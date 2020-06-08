@@ -106,6 +106,7 @@ export class ClienteEdicionComponent implements OnInit {
     this.control.municipio.setValue(this.cliente.municipio);
     this.control.departamento.setValue(this.cliente.departamento);
     this.control.barrio.setValue(this.cliente.barrio);
+    this.control.estado.setValue(this.cliente.estado)
   }
   cambiarTipoId(e) {
     this.control.tipoIdentificacion.setValue(e.target.value, {

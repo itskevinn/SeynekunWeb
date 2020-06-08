@@ -9,10 +9,10 @@ namespace Logica
     public class ServicioCategoria
     {
 
-         private readonly SeynekunContext _context;
+        private readonly SeynekunContext _context;
         public ServicioCategoria(SeynekunContext context)
         {
-            _context = context;            
+            _context = context;
         }
         public GuardarCategoriaResponse Guardar(Categoria categoria)
         {
@@ -35,12 +35,22 @@ namespace Logica
         public List<Categoria> Consultar()
         {
             List<Categoria> categorias = _context.Categorias.ToList();
+            ConsultarProductosEnCategoria(categorias);
             return categorias;
         }
+
+        private void ConsultarProductosEnCategoria(List<Categoria> categorias)
+        {
+            foreach (var categoria in categorias)
+            {
+                categoria.Productos = _context.Productos.Where(p => p.NombreCategoria == categoria.Nombre).ToList();
+            }
+        }
+
         public BuscarCategoriaxIdResponse BuscarxId(string nombre)
         {
             var categoria = _context.Categorias.Find(nombre);
-            if (categoria != null && categoria.Estado!="Eliminado")
+            if (categoria != null && categoria.Estado != "Eliminado")
             {
                 return new BuscarCategoriaxIdResponse(categoria);
             }
@@ -54,7 +64,7 @@ namespace Logica
                 if (categoriaVieja != null && categoriaVieja.Estado != "Eliminado")
                 {
                     categoriaVieja.Nombre = categoriaNueva.Nombre;
-                    categoriaVieja.Detalle = categoriaNueva.Detalle;                 
+                    categoriaVieja.Detalle = categoriaNueva.Detalle;
                     categoriaVieja.Estado = categoriaNueva.Estado;
                     categoriaVieja.Productos = categoriaNueva.Productos;
                     _context.Categorias.Update(categoriaVieja);

@@ -18,14 +18,17 @@ namespace Logica
         {
             try
             {
-                var productoBuscado = _context.Productos.Find(producto.Nombre);
-                if (productoBuscado != null)
+                var productoBuscado = _context.Productos.Find(producto.Codigo);
+                if (productoBuscado == null)
                 {
-                    return new GuardarProductoResponse("Dos productos no pueden tener el mismo nombre");
+                    _context.Productos.Add(producto);
+                    _context.SaveChanges();
+                    return new GuardarProductoResponse(producto);
                 }
-                _context.Productos.Add(producto);
-                _context.SaveChanges();
-                return new GuardarProductoResponse(producto);
+                else
+                {
+                    return new GuardarProductoResponse("¡Producto ya registrado!");
+                }
             }
             catch (Exception e)
             {

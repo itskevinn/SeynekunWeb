@@ -47,7 +47,7 @@ namespace Logica
             {
                 return new BuscarProductorxIdResponse(producto);
             }
-            return new BuscarProductorxIdResponse("producto no encontrada");
+            return new BuscarProductorxIdResponse("productor no encontrado");
         }
         public string Modificar(Productor productoNueva)
         {
