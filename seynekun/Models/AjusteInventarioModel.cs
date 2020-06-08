@@ -12,6 +12,7 @@ namespace seynekun.Models
          public decimal Cantidad { get; set; }
          public string CodigoElemento { get; set; }
          public string Tipo { get; set; }
+         public decimal CodigoMateriaPrima { get; set; }
          public string NombreBodega { get; set; }
         }
 
@@ -23,6 +24,7 @@ namespace seynekun.Models
                 Fecha = ajusteInventario.Fecha;
                 Descipcion = ajusteInventario.Descipcion;
                 Cantidad = ajusteInventario.Cantidad;
+                CodigoMateriaPrima = ajusteInventario.CodigoMateriaPrima;
                 CodigoElemento = ajusteInventario.CodigoElemento;
                 Tipo = ajusteInventario.Tipo;
                 NombreBodega = ajusteInventario.NombreBodega;
