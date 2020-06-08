@@ -17,7 +17,7 @@ export class ProductosCategoriaComponent implements OnInit {
   constructor(
     private categoriaService: CategoriaService,
     private rutaActiva: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit(): void {
     const nombre = this.rutaActiva.snapshot.params.id;
     this.categoriaService.get(nombre).subscribe((result) => {
@@ -26,6 +26,6 @@ export class ProductosCategoriaComponent implements OnInit {
       this.categoria != null
         ? (this.seEncontro = true)
         : (this.seEncontro = false);
-    });    
+    });
   }
 }

@@ -13,44 +13,59 @@ export class HandleHttpErrorService {
 
   public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      //console.error(error);
       console.error('status', error.status);
       if (error.status == "500") {
-        //this.mostrarError500(error);
-        this.mostrarError500(error);
+        this.mostrarEstado500(error);
       } else if (error.status == "400") {
-        this.mostrarError400(error);
+        this.mostrarEstado400(error);
       } else if (error.status == "401") {
-        this.mostrarError401(error);
+        this.mostrarEstado401(error);
+      } else if (error.status == "200") {
+        this.mostrarEstado200(error);
       }
       return of(result as T);
     }
   }
+  public mostrarEstado200(error: any): void {
+    console.log(error);
+    let contadorValidaciones: number = 0;
+    let mensajeValidaciones: string = "";
+    for (const prop in error.error.errors) {
+      contadorValidaciones++;
+      mensajeValidaciones += `<strong>${contadorValidaciones}. ${prop}:</strong>`;
+      error.error.errors[prop].forEach(element => {
+        mensajeValidaciones += `<br/> - ${element}`;
+      });
 
-  public mostrarError500(error: any): void {
+      mensajeValidaciones += `<br/>`;
+    }
+    const modalRef = this.modalService.open(AlertaModalOkComponent);
+    modalRef.componentInstance.titulo = mensajeValidaciones;
+  }
+  public mostrarEstado500(error: any): void {
     console.error(error);
     const modalRef = this.modalService.open(AlertaModalErrorComponent);
-    modalRef.componentInstance.title = 'Ha ocurrido un error inesperado';
-    modalRef.componentInstance.message = "Error de la aplicación, vuela a intentarlo más tarde.";
+    modalRef.componentInstance.titulo = 'Ha ocurrido un error inesperado';
+    modalRef.componentInstance.mensaje = "Error de la aplicación, vuela a intentarlo más tarde.";
   }
 
-  public logOk(message: string) {
-    console.log(message);
-    const messageBox = this.modalService.open(AlertaModalOkComponent)
-    messageBox.componentInstance.titulo = message;
+  public logOk(mensaje: string) {
+    console.log(mensaje);
+    const mensajeBox = this.modalService.open(AlertaModalOkComponent)
+    mensajeBox.componentInstance.titulo = mensaje;
   }
-  public logError(message: string) {
-    const messageBox = this.modalService.open(AlertaModalErrorComponent)
-    messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-    messageBox.componentInstance.mensaje = message;
+  public logError(mensaje: string) {
+    const mensajeBox = this.modalService.open(AlertaModalErrorComponent)
+    mensajeBox.componentInstance.titulo = 'Ha ocurrido un error'
+    mensajeBox.componentInstance.mensaje = mensaje;
   }
-  private mostrarError401(error: any): void {
+  private mostrarEstado401(error: any): void {
     const modalRef = this.modalService.open(AlertaModalErrorComponent);
     modalRef.componentInstance.titulo = 'Acceso denegado';
-    modalRef.componentInstance.mensaje = "No encontramos registros de su usuario en nuestro sistema";
+    modalRef.componentInstance.mensaje = "Usuario y/o contraseña incorrectos";
   }
 
-  private mostrarError400(error: any): void {
+  private mostrarEstado400(error: any): void {
     console.error(error);
     let contadorValidaciones: number = 0;
     let mensajeValidaciones: string =

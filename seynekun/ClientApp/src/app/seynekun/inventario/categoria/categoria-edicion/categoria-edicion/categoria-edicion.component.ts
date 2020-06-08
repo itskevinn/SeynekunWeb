@@ -23,24 +23,31 @@ export class CategoriaEdicionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private rutaActiva: ActivatedRoute,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.categoria = new Categoria();
     this.buscar();
     this.crearFormulario();
-    this.formGroup.setValue(this.categoria);
   }
 
   buscar() {
     this.categoriaService.get(this.nombre).subscribe((result) => {
       this.categoria = result;
-      this.categoria != null
-        ? (this.seEncontro = true)
-        : (this.seEncontro = false);
+      if (this.categoria != null) {
+        this.actualizarForm();
+        this.seEncontro = true;
+      }
+      else {
+        this.seEncontro = false;
+      }
     });
   }
-
+  actualizarForm() {
+    this.control.nombre.setValue(this.categoria.nombre);
+    this.control.detalle.setValue(this.categoria.detalle);
+    this.control.estado.setValue(this.categoria.estado);
+  }
   crearFormulario() {
     this.categoria.nombre = "";
     this.categoria.detalle = "";
@@ -72,17 +79,8 @@ export class CategoriaEdicionComponent implements OnInit {
       if (result) {
         this.categoriaService.delete(this.nombre).subscribe((p) => {
           if (p != null) {
-            const messageBox = this.modalService.open(AlertaModalOkComponent);
-            messageBox.componentInstance.titulo = "categoria eliminada";
             this.categoria = null;
             this.formGroup.reset();
-          } else {
-            const messageBox = this.modalService.open(
-              AlertaModalErrorComponent
-            );
-            messageBox.componentInstance.titulo = "Ha ocurrido un error";
-            messageBox.componentInstance.mensaje =
-              "No se ha podido eliminar la categoria";
           }
         });
       }

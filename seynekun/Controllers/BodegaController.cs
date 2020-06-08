@@ -69,22 +69,21 @@ namespace seynekun.Controllers
             return bodegaViewModel;
         }
         [HttpPut("{nombre}")]
-        public ActionResult<string> Put(Bodega bodega, string nombre)
+        public ActionResult<string> Put(string nombre, Bodega bodega)
         {
-            var id = servicioBodega.BuscarxId(nombre);
+            var id = servicioBodega.BuscarxId(bodega.Nombre);
             if (id == null)
             {
-                return BadRequest("Bodega no econtrada");
+                return BadRequest("Bodega no encontrada");
             }
-            else
-            {
-                var mensaje = servicioBodega.Modificar(bodega);
-                return Ok(mensaje);
-            }
+            var mensaje = servicioBodega.Modificar(bodega);
+            return Ok(mensaje);
         }
         [HttpDelete("{nombre}")]
         public ActionResult<string> Delete(string nombre)
         {
+            var id = servicioBodega.BuscarxId(nombre);
+            if (id == null) return BadRequest("Bodega no encontrada");
             string mensaje = servicioBodega.Eliminar(nombre);
             return Ok(mensaje);
         }

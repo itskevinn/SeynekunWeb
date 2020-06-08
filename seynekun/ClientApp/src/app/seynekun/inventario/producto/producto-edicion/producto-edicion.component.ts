@@ -19,49 +19,77 @@ export class ProductoEdicionComponent implements OnInit {
   nombre = this.rutaActiva.snapshot.params.id;
   producto: Producto;
   formGroup: FormGroup;
-  categorias: Categoria[];  
+  categorias: Categoria[];
+  respuesta: boolean;
   seEncontro: boolean;
-  constructor(    
+  unidadMedidas: string[] = ["Gramo", "Kg", "Tonelada"];
+  constructor(
     private categoriaService: CategoriaService,
     private productoService: ProductoService,
     private formBuilder: FormBuilder,
     private rutaActiva: ActivatedRoute,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.obtenerCategorias();
     this.producto = new Producto();
     this.buscar();
     this.crearFormulario();
-    this.formGroup.setValue(this.producto);
   }
 
   buscar() {
     this.productoService.get(this.nombre).subscribe((result) => {
       this.producto = result;
-      this.producto != null
-        ? (this.seEncontro = true)
-        : (this.seEncontro = false);
+      if (this.producto != null) {
+        this.actualizarForm();
+        this.seEncontro = true;
+      }
+      else {
+        this.seEncontro = false;
+      }
     });
   }
-
+  actualizarForm() {
+    this.control.nombre.setValue(this.producto.nombre);
+    this.control.codigo.setValue(this.producto.codigo);
+    this.control.descripcion.setValue(this.producto.descripcion);
+    this.control.precio.setValue(this.producto.precio);
+    this.control.nombreCategoria.setValue(this.producto.nombreCategoria);
+    this.control.estado.setValue(this.producto.estado);
+    this.control.cantidad.setValue(this.producto.cantidad);
+    this.control.unidadMedida.setValue(this.producto.unidadMedida);
+  }
+  cambiarUnidadMedida(e) {
+    if (this.control.unidadMedida.value == null) {
+      this.control.unidadMedida.setValue("No especificada");
+    } else {
+      this.control.unidadMedida.setValue(e.target.value, {
+        onlySelf: true,
+      });
+    }
+  }
   crearFormulario() {
     this.producto.nombre = "";
     this.producto.codigo = "";
     this.producto.descripcion = "";
     this.producto.precio = null;
-    this.producto.nombreCategoria = "No Especificada";    
+    this.producto.nombreCategoria = "No Especificada";
     this.producto.estado = "Activo";
+    this.producto.cantidad = null;
+    this.producto.unidadMedida = "";
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre],
       codigo: [this.producto.codigo, Validators.required],
       descripcion: [this.producto.descripcion],
       precio: [this.producto.precio, Validators.required],
       nombreCategoria: [this.producto.nombreCategoria],
-      estado: [this.producto.estado],      
+      estado: [this.producto.estado],
+      cantidad: [this.producto.cantidad],
+      unidadMedida: [this.producto.unidadMedida],
     });
-  }  
+  }
+
   obtenerCategorias() {
     this.categoriaService.gets().subscribe((result) => {
       this.categorias = result;
@@ -75,7 +103,7 @@ export class ProductoEdicionComponent implements OnInit {
         onlySelf: true,
       });
     }
-  }  
+  }
 
   onSubmit() {
     if (this.formGroup.invalid) {
@@ -94,23 +122,23 @@ export class ProductoEdicionComponent implements OnInit {
     messageBox.componentInstance.titulo = "¿Desea eliminar esta producto?";
     messageBox.componentInstance.mensaje = "Esta acción no es reversible";
     messageBox.result.then((result) => {
-      if (result) {
-        this.productoService.delete(this.nombre).subscribe((p) => {
+      this.respuesta = result;
+      if (this.respuesta === true) {
+        this.productoService.delete(this.producto.codigo).subscribe((p) => {
           if (p != null) {
             const messageBox = this.modalService.open(AlertaModalOkComponent);
-            messageBox.componentInstance.titulo = "producto eliminada";
+            messageBox.componentInstance.titulo = "Producto eliminado";
             this.producto = null;
             this.formGroup.reset();
-          } else {
-            const messageBox = this.modalService.open(
-              AlertaModalErrorComponent
-            );
-            messageBox.componentInstance.titulo = "Ha ocurrido un error";
-            messageBox.componentInstance.mensaje =
-              "No se ha podido eliminar la producto";
           }
         });
       }
+      else {
+        this.modalService.dismissAll();
+      }
+    });
+    messageBox.result.then((result) => {
+
     });
   }
 

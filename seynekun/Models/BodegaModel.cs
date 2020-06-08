@@ -6,11 +6,7 @@ namespace seynekun.Models
     public class BodegaModel
     {
         public class BodegaInputModel : Bodega
-        {          
-            public string Nombre { get; set; }
-            public string Detalle { get; set; }
-            public string Estado { get; set; }
-            public string Direccion { get; set; }            
+        {                     
         }
 
         public class BodegaViewModel : BodegaInputModel

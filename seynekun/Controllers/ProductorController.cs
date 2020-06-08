@@ -33,7 +33,7 @@ namespace seynekun.Controllers
             var response = servicioProductor.Guardar(productor);
             if (response.Error)
             {
-               ModelState.AddModelError("Error al registrar al productor", response.Mensaje);
+                ModelState.AddModelError("Error al registrar al productor", response.Mensaje);
                 var detallesProblema = new ValidationProblemDetails(ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest
@@ -78,28 +78,19 @@ namespace seynekun.Controllers
         [HttpGet("{identificacion}")]
         public ActionResult<ProductorViewModel> Get(string identificacion)
         {
-            var response = servicioProductor.BuscarxId(identificacion);
-            if (response.Error)
-            {
-                return BadRequest(response.Mensaje);
-            }
-            var productor = new ProductorViewModel(response.Productor);
-            return Ok(productor);
+            var producto = servicioProductor.BuscarxId(identificacion).Productor;
+            if (producto == null) return NotFound();
+            var productoViewModel = new ProductorViewModel(producto);
+            return productoViewModel;
         }
 
         [HttpPut("{identificacion}")]
         public ActionResult<string> Put(Productor productor, string identificacion)
         {
             var id = servicioProductor.BuscarxId(identificacion).Productor;
-            if (id == null)
-            {
-                return BadRequest("Productor no econtrado");
-            }
-            else
-            {
-                var mensaje = servicioProductor.Modificar(productor);
-                return Ok(mensaje);
-            }
+            if (id == null) return NotFound();
+            var mensaje = servicioProductor.Modificar(productor);
+            return Ok(mensaje);
         }
 
         [HttpDelete("{identificacion}")]

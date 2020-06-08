@@ -36,7 +36,7 @@ export class EmpleadoEdicionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private rutaActiva: ActivatedRoute,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.empleado = new Empleado();
@@ -44,13 +44,26 @@ export class EmpleadoEdicionComponent implements OnInit {
     this.crearFormulario();
     this.formGroup.setValue(this.empleado);
   }
-
+  actualizarForm() {
+    this.control.nombre.setValue(this.empleado.nombre);
+    this.control.apellido.setValue(this.empleado.apellido);
+    this.control.tipoIdentificacion.setValue(this.empleado.tipoIdentificacion);
+    this.control.identificacion.setValue(this.empleado.identificacion);
+    this.control.numeroTelefono.setValue(this.empleado.numeroTelefono);
+    this.control.email.setValue(this.empleado.email);
+    this.control.cargo.setValue(this.empleado.cargo);
+    this.control.estado.setValue(this.empleado.estado);
+  }
   buscar() {
     this.empleadoService.get(this.identificacion).subscribe((result) => {
       this.empleado = result;
-      this.empleado != null
-        ? (this.seEncontro = true)
-        : (this.seEncontro = false);
+      if (this.empleado != null) {
+        this.seEncontro = true;
+        this.actualizarForm();
+      }
+      else {
+        this.seEncontro = false;
+      }
     });
   }
 
@@ -168,7 +181,7 @@ export class EmpleadoEdicionComponent implements OnInit {
   get control() {
     return this.formGroup.controls;
   }
-  
+
   eliminar() {
     this.empleado = this.formGroup.value;
     const messageBox = this.modalService.open(AlertaModalPreguntaComponent);

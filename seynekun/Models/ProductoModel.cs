@@ -5,7 +5,7 @@ namespace seynekun.Models
 {
     public class ProductoModel
     {
-        public class ProductoInputModel :Producto
+        public class ProductoInputModel 
         {
             public string Codigo { get; set; }
             public string Nombre { get; set; }

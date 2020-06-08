@@ -27,9 +27,9 @@ namespace seynekun.Controllers
         {
             Producto producto = MapToProducto(productoInputModel);
             var response = servicioProducto.Guardar(producto);
-           if (response.Error)
+            if (response.Error)
             {
-               ModelState.AddModelError("Error al registrar al producto", response.Mensaje);
+                ModelState.AddModelError("Error al registrar al producto", response.Mensaje);
                 var detallesProblema = new ValidationProblemDetails(ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest
@@ -45,7 +45,7 @@ namespace seynekun.Controllers
             {
                 Codigo = productoInputModel.Codigo,
                 Nombre = productoInputModel.Nombre,
-                NombreCategoria = productoInputModel.NombreCategoria,                
+                NombreCategoria = productoInputModel.NombreCategoria,
                 Descripcion = productoInputModel.Descripcion,
                 Precio = productoInputModel.Precio,
                 Estado = "Activo",

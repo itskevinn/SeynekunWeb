@@ -60,7 +60,7 @@ export class ProductorEdicionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private rutaActiva: ActivatedRoute,
     private modalService: NgbModal,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.productor = new Productor()
@@ -72,13 +72,29 @@ export class ProductorEdicionComponent implements OnInit {
   buscar() {
     this.productorService.get(this.identificacion).subscribe((result) => {
       this.productor = result
-      this.productor != null
-        ? (this.seEncontro = true)
-        : (this.seEncontro = false)
+      if (this.productor != null) {
+        this.seEncontro = true;
+        this.actualizarForm();
+      }
+      else {
+        this.seEncontro = false;
+      }
     })
     return this.productor
   }
-
+  actualizarForm() {
+    this.control.nombre.setValue(this.productor.nombre);
+    this.control.apellido.setValue(this.productor.apellido);
+    this.control.identificacion.setValue(this.productor.identificacion);
+    this.control.cedulaCafetera.setValue(this.productor.cedulaCafetera);
+    this.control.codigoFinca.setValue(this.productor.codigoFinca);
+    this.control.codigoSica.setValue(this.productor.codigoSica);
+    this.control.numeroTelefono.setValue(this.productor.numeroTelefono);
+    this.control.municipio.setValue(this.productor.municipio);
+    this.control.vereda.setValue(this.productor.vereda);
+    this.control.afilicacionSadul.setValue(this.productor.afiliacionSalud);
+    this.control.nombrePredio.setValue(this.productor.nombrePredio);
+  }
   crearFormulario() {
     var productor = new Productor()
     productor.nombre = this.productor.nombre
@@ -205,7 +221,7 @@ export class ProductorEdicionComponent implements OnInit {
         }
       })
   }
-  
+
   eliminar() {
     this.productor = this.formGroup.value
     const estado = 'Eliminado'

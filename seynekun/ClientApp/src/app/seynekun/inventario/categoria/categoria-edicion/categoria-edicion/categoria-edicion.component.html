@@ -50,13 +50,13 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user required" name="nombre"
                     placeholder="Nombre de la Categoria" formControlName="nombre"
-                    [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
+                    [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}" disabled>
                   <div *ngIf="control.nombre.errors && control.nombre.touched" class="invalid-feedback">
                     <div class="validacion-texto" *ngIf="control.nombre.errors.required">Proporcione un nombre para la
                       categoria
                     </div>
                   </div>
-                </div>               
+                </div>
                 <div class="form-group ">
                   <input type="text" class="form-control form-control-user" name="detalle" placeholder="Detalle"
                     formControlName="detalle">

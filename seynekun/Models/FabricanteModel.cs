@@ -4,7 +4,7 @@ using Entity;
 
 namespace seynekun.Models
 {
-    public class FabricanteInputModel : Fabricante
+    public class FabricanteInputModel 
     {
         public string TipoIdentificacion { get; set; }
         public string Identificacion { get; set; }
