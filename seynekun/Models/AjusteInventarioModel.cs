@@ -8,16 +8,6 @@ namespace seynekun.Models
     {
         public class AjusteInventarioInputModel
         {
-<<<<<<< HEAD
-         public string Codigo { get; set; }   
-         public DateTime Fecha { get; set; }
-         public string Descipcion { get; set; }
-         public decimal Cantidad { get; set; }
-         public string CodigoElemento { get; set; }
-         public string Tipo { get; set; }
-         public string CodigoMateriaPrima { get; set; }
-         public string NombreBodega { get; set; }
-=======
             [Required(ErrorMessage = "Se requiere el código del ajuste")]
             public string CodigoAjuste { get; set; }
 
@@ -43,7 +33,6 @@ namespace seynekun.Models
 
             [Required(ErrorMessage = "Se requiere una bodega")]
             public string NombreBodega { get; set; }
->>>>>>> 7ded797877973524ffa5f2dc915dc9abbf6404c0
         }
 
         public class AjusteInventarioViewModel : AjusteInventarioInputModel
