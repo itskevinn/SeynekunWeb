@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Logica;
@@ -28,7 +29,12 @@ namespace seynekun.Controllers
             var response = servicioBodega.Guardar(bodega);
             if (response.Error)
             {
-                return BadRequest(response.Mensaje);
+                ModelState.AddModelError("Error al registrar bodega", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
             }
             return Ok(response.Bodega);
         }

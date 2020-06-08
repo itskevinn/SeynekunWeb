@@ -31,7 +31,12 @@ namespace seynekun.Controllers
             var response = servicioCategoria.Guardar(categoria);
             if (response.Error)
             {
-                return BadRequest(response.Mensaje);
+                ModelState.AddModelError("Error al registrar categoria", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
             }
             return Ok(response.Categoria);
         }
@@ -64,6 +69,7 @@ namespace seynekun.Controllers
             var categoriaViewModel = new CategoriaViewModel(categoria);
             return categoriaViewModel;
         }
+
         [HttpPut("{nombre}")]
         public ActionResult<string> Put(Categoria categoria, string nombre)
         {
@@ -78,6 +84,7 @@ namespace seynekun.Controllers
                 return Ok(mensaje);
             }
         }
+
         [HttpDelete("{nombre}")]
         public ActionResult<string> Delete(string nombre)
         {
@@ -85,5 +92,4 @@ namespace seynekun.Controllers
             return Ok(mensaje);
         }
     }
-
 }

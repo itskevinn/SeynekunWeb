@@ -31,7 +31,12 @@ namespace seynekun.Controllers {
             var response = servicioCliente.Guardar(cliente);
             if (response.Error)
             {
-                return BadRequest(response.Mensaje);
+                ModelState.AddModelError("Error al registrar cliente", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
             }
             return Ok(response.Cliente);
         }

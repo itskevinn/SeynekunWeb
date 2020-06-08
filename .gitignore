@@ -3,3 +3,5 @@
 *.cache
 *.dll
 *.dll
+/publish
+seynekun/appsettings.json

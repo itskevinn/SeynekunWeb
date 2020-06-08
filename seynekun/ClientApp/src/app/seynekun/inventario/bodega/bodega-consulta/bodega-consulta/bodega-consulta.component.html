@@ -24,6 +24,7 @@
                 <tr>
                   <th>Nombre</th>                  
                   <th>Dirección</th>
+                  <th>Detalle</th>
                   <th>Acción</th>
                 </tr>
               </thead>
@@ -31,6 +32,7 @@
                 <tr *ngFor="let bodega of bodegas|filtroBodega:textoABuscar; index as i ">
                   <td>{{bodega.nombre}}</td>                  
                   <td>{{bodega.direccion}}</td>                      
+                  <td>{{bodega.detalle}}</td>                      
                   <td>
                     <a routerLink='/Bodega/{{bodega.nombre}}'>Ver</a>
                     <a> / </a>

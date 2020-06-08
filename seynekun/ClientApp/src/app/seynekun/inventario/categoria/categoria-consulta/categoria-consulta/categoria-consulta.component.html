@@ -22,13 +22,15 @@
               aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Nombre</th>                  
+                  <th>Nombre</th>
+                  <th>Detalle</th>               
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let categoria of categorias|filtroCategoria:textoABuscar; index as i ">
-                  <td>{{categoria.nombre}}</td>                                    
+                  <td>{{categoria.nombre}}</td>
+                  <td>{{categoria.detalle}}</td>
                   <td>
                     <a routerLink='/Categoria/{{categoria.nombre}}'>Ver</a>
                     <a> / </a>

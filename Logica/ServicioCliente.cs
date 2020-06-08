@@ -24,7 +24,7 @@ namespace Logica
                 var clienteBuscado = _context.Clientes.Find(cliente.Identificacion);
                 if (clienteBuscado != null)
                 {
-                    return new GuardarClienteResponse("El cliente ya se encuentra registrado");
+                    return new GuardarClienteResponse("!Cliente ya registrado!");
                 }
                 _context.Clientes.Add(cliente);
                 _context.SaveChanges();

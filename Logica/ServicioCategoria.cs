@@ -21,7 +21,7 @@ namespace Logica
                 var categoriaBuscado = _context.Categorias.Find(categoria.Nombre);
                 if (categoriaBuscado != null)
                 {
-                    return new GuardarCategoriaResponse("Dos categorias no pueden tener el mismo nombre");
+                    return new GuardarCategoriaResponse("!Categoria ya registrada!");
                 }
                 _context.Categorias.Add(categoria);
                 _context.SaveChanges();
