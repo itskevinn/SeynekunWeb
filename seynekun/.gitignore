@@ -181,6 +181,9 @@ ClientBin/
 orleans.codegen.cs
 
 /node_modules
+seynekun/appsettings.json
+/publish
+/Datos/Migrations
 
 # RIA/Silverlight projects
 Generated_Code/
