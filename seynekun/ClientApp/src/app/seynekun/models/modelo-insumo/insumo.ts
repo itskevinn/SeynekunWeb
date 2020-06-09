@@ -1,8 +1,13 @@
+import { Documento } from "../modelo-documento/documento"
+
 export class Insumo {
-    nombre: string
-    uso: string
-    registroIca: string
-    descripcion: string
-    resultado: string
-    estado: string
+  id: string
+  idFabricante: string
+  nombre: string
+  uso: string
+  registroIca: string
+  descripcion: string
+  resultado: string
+  estado: string
+  documento: Documento[];
 }
