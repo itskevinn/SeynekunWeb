@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./insumo-consulta.component.css']
 })
 export class InsumoConsultaComponent implements OnInit {
-
+  textoABuscar: string;
   constructor() { }
 
   ngOnInit(): void {
