@@ -39,7 +39,7 @@ namespace seynekun.Controllers
                 Cantidad = ajusteInventarioInputModel.Cantidad,
                 CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
                 Tipo = ajusteInventarioInputModel.Tipo,
-                CodigoMateriaPrima = ajusteInventarioInputModel.CodigoMateriaPrima,
+                CodigoMateriaPrima ="11",
                 NombreBodega = ajusteInventarioInputModel.NombreBodega,
             };
             return ajusteInventario;

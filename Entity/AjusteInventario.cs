@@ -8,9 +8,9 @@ namespace Entity
     {
         [Key]
         [Required(ErrorMessage = "Se requiere el código del ajuste")]
-        public decimal Codigo { get; set; }
+        public string Codigo { get; set; }
         [Required(ErrorMessage="Se requiere el código de la materia prima")]
-        public decimal CodigoMateriaPrima { get; set; }
+        public string CodigoMateriaPrima { get; set; }
         [Required(ErrorMessage = "Se requiere la fecha del ajuste")]           
         [DataType(DataType.Date,ErrorMessage="Ingrese una fecha válida")]
         public DateTime Fecha { get; set; }

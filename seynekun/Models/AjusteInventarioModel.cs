@@ -6,13 +6,13 @@ namespace seynekun.Models
     {
         public class AjusteInventarioInputModel
         {
-         public decimal Codigo { get; set; }   
+         public string Codigo { get; set; }   
          public DateTime Fecha { get; set; }
          public string Descipcion { get; set; }
          public decimal Cantidad { get; set; }
          public string CodigoElemento { get; set; }
          public string Tipo { get; set; }
-         public decimal CodigoMateriaPrima { get; set; }
+         public string CodigoMateriaPrima { get; set; }
          public string NombreBodega { get; set; }
         }
 
