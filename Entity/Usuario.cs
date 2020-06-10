@@ -25,7 +25,6 @@ namespace Entity
 
         [StringLength(30)]
         public string Email { get; set; }
-        public string Tipo { get; set; }
 
         public string Token { get; set; }
     }
