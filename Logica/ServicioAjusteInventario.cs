@@ -9,6 +9,7 @@ namespace Logica
     public class ServicioAjusteInventario
     {
         private readonly SeynekunContext _context;
+        private ServicioProducto servicioProducto;
         public ServicioAjusteInventario(SeynekunContext context)
         {
             _context = context;            
@@ -20,9 +21,10 @@ namespace Logica
                 var ajusteInventarioBuscado = _context.AjusteInventarios.Find(ajusteInventario.CodigoAjuste);
                 if (ajusteInventarioBuscado != null)
                 {
-                        return new GuardarAjusteInventarioResponse("!Ajuste de inventario ya registrado¡");
+                    return new GuardarAjusteInventarioResponse("!Ajuste de inventario ya registrado¡");
                 }
                 _context.AjusteInventarios.Add(ajusteInventario);
+                AjustarCantidad(ajusteInventario);
                 _context.SaveChanges();
                 return new GuardarAjusteInventarioResponse(ajusteInventario);
             }
@@ -32,6 +34,12 @@ namespace Logica
             }
         }
         
+        public void AjustarCantidad(AjusteInventario ajuste)
+        {
+            servicioProducto = new ServicioProducto(_context);
+            servicioProducto.AjustarCantidad(ajuste);
+        }
+
         public List<AjusteInventario> Consultar()
         {
             List<AjusteInventario> ajusteInventarios = _context.AjusteInventarios.ToList();
@@ -75,6 +83,7 @@ namespace Logica
                 return $"Error de la Aplicación: {e.Message}";
             }
         }
+
         public IEnumerable<AjusteInventario> ObtenerAjustesxProductoyBodega(string codigoElemento, string nombreBodega)
         {
             return _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento && a.NombreBodega == nombreBodega);
@@ -103,6 +112,7 @@ namespace Logica
             }
             return cantidad;
         }
+        
         public decimal SumarCantidad(string codigoElemento, string nombreBodega)
         {
             var ajustesSolicitadosxBodega = ObtenerAjustesxProductoyBodega(codigoElemento, nombreBodega);

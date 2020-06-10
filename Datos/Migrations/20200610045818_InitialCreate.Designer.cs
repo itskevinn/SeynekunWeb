@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datos.Migrations
 {
     [DbContext(typeof(SeynekunContext))]
-    [Migration("20200609230912_InitialCreate")]
+    [Migration("20200610045818_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -457,11 +457,11 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal>("Cantidad")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("CategoriaNombre")
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("ContenidoNeto")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(100)")

@@ -47,8 +47,30 @@ namespace Logica
             {
                 return new BuscarProductoxIdResponse(producto);
             }
-            return new BuscarProductoxIdResponse("producto no encontrada");
+            return new BuscarProductoxIdResponse("Producto no encontradp");
         }
+
+        public void AjustarCantidad(AjusteInventario ajuste)
+        {
+            Producto producto = BuscarxId(ajuste.CodigoElemento).Producto;
+            if(producto != null && producto.Estado != "Eliminado")
+            {
+                RealizarAjuste(producto, ajuste);
+            }
+        }
+
+        private void RealizarAjuste(Producto producto, AjusteInventario ajuste)
+        {
+            if(ajuste.TipoAjuste == "Incremento" && producto.ContenidoNeto > ajuste.Cantidad)
+            {
+                producto.ContenidoNeto = producto.ContenidoNeto + ajuste.Cantidad;
+            }else if(ajuste.TipoAjuste == "Disminucion" && producto.ContenidoNeto > ajuste.Cantidad){
+                producto.ContenidoNeto = producto.ContenidoNeto - ajuste.Cantidad;
+            }
+            _context.Productos.Update(producto);
+            _context.SaveChanges();
+        }
+
         public string Modificar(Producto productoNueva)
         {
             try
@@ -57,13 +79,13 @@ namespace Logica
                 if (productoVieja != null && productoVieja.Estado != "Eliminado")
                 {
                     productoVieja.Nombre = productoNueva.Nombre;
-                    productoVieja.Cantidad = productoNueva.Cantidad;
+                    productoVieja.ContenidoNeto = productoNueva.ContenidoNeto;
                     productoVieja.Estado = productoNueva.Estado;
                     productoVieja.Descripcion = productoNueva.Descripcion;
                     productoVieja.NombreCategoria = productoNueva.NombreCategoria;
                     productoVieja.UnidadMedida = productoNueva.UnidadMedida;
                     productoVieja.Precio = productoNueva.Precio;
-                    _context.Productos.Update(productoNueva);
+                    _context.Productos.Update(productoVieja);
                     _context.SaveChanges();
                     return ($"El producto se ha modificado satisfactoriamente.");
                 }
@@ -77,6 +99,7 @@ namespace Logica
                 return $"Error de la Aplicación: {e.Message}";
             }
         }
+
         public string Eliminar(string nombre)
         {
             try

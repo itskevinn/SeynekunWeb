@@ -15,7 +15,7 @@ namespace Entity
         public decimal Precio { get; set; }
 
         [Required(ErrorMessage = "Se requiere la cantidad del producto")]
-        public decimal Cantidad { get; set; }
+        public decimal ContenidoNeto { get; set; }
 
         [Required(ErrorMessage = "Se requiere la unidad de medida del producto")]
         [StringLength(13, ErrorMessage = "Unidad inválida")]

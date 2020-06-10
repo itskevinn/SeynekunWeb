@@ -49,7 +49,7 @@ namespace seynekun.Controllers
                 Descripcion = productoInputModel.Descripcion,
                 Precio = productoInputModel.Precio,
                 Estado = "Activo",
-                Cantidad = productoInputModel.Cantidad,
+                ContenidoNeto = productoInputModel.ContenidoNeto,
                 UnidadMedida = productoInputModel.UnidadMedida
             };
             return producto;

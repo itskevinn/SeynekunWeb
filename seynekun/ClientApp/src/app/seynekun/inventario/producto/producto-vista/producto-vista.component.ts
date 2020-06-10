@@ -10,7 +10,6 @@ import { Producto } from "src/app/seynekun/models/modelo-producto/producto";
 })
 export class ProductoVistaComponent implements OnInit {
   producto: Producto;
-  textoABuscar: string;
   seEncontro: Boolean;
   constructor(
     private productoService: ProductoService,
