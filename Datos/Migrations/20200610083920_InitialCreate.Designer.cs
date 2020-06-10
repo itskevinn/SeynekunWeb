@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datos.Migrations
 {
     [DbContext(typeof(SeynekunContext))]
-    [Migration("20200609230912_InitialCreate")]
+    [Migration("20200610083920_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entity.AjusteInventario", b =>
                 {
-                    b.Property<string>("CodigoAjuste")
+                    b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BodegaNombre")
@@ -33,10 +33,13 @@ namespace Datos.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CodigoElemento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodigoMateriaPrima")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Descripcion")
+                    b.Property<string>("Descipcion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
@@ -46,19 +49,11 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NombreElemento")
+                    b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TipoAjuste")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TipoElemento")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CodigoAjuste");
+                    b.HasKey("Codigo");
 
                     b.HasIndex("BodegaNombre");
 

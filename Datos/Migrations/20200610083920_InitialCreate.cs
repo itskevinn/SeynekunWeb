@@ -178,20 +178,19 @@ namespace Datos.Migrations
                 name: "AjusteInventarios",
                 columns: table => new
                 {
-                    CodigoAjuste = table.Column<string>(nullable: false),
-                    TipoElemento = table.Column<string>(nullable: false),
-                    NombreElemento = table.Column<string>(nullable: false),
-                    CodigoElemento = table.Column<string>(nullable: false),
+                    Codigo = table.Column<string>(nullable: false),
+                    CodigoMateriaPrima = table.Column<string>(nullable: false),
                     Fecha = table.Column<DateTime>(nullable: false),
-                    TipoAjuste = table.Column<string>(nullable: false),
-                    Descripcion = table.Column<string>(nullable: true),
+                    Descipcion = table.Column<string>(nullable: true),
                     Cantidad = table.Column<decimal>(nullable: false),
+                    CodigoElemento = table.Column<string>(nullable: true),
+                    Tipo = table.Column<string>(nullable: false),
                     NombreBodega = table.Column<string>(nullable: false),
                     BodegaNombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AjusteInventarios", x => x.CodigoAjuste);
+                    table.PrimaryKey("PK_AjusteInventarios", x => x.Codigo);
                     table.ForeignKey(
                         name: "FK_AjusteInventarios_Bodegas_BodegaNombre",
                         column: x => x.BodegaNombre,

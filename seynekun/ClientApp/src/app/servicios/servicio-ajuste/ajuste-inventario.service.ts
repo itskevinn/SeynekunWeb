@@ -47,7 +47,7 @@ export class AjusteInventarioService {
     );
   }
   delete(ajusteInventario: AjusteDeInventario | string): Observable<string> {
-    const id = typeof ajusteInventario === "string" ? ajusteInventario : ajusteInventario.codigoAjuste;
+    const id = typeof ajusteInventario === "string" ? ajusteInventario : ajusteInventario.codigo;
     return this.http.delete<string>(this.baseUrl + "api/AjusteInventario/" + id).pipe(
       tap((_) => this.handleErrorService.logOk("Ajuste de inventario eliminado")),
       catchError(
@@ -63,7 +63,7 @@ export class AjusteInventarioService {
       )
     );
   }
-  
+
   get(codigo: string): Observable<AjusteDeInventario> {
     const url = `${this.baseUrl + "api/AjusteInventario"}/${codigo}`;
     return this.http.get<AjusteDeInventario>(url, httpOptions).pipe(

@@ -29,7 +29,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   fechaHoy: Date;
   productos: Producto[];
   bodegas: Bodega[];
-  tipoAjuste: string[] = ["Incremento", "Disminucion"];
+  tipos: string[] = ["Incremento", "Disminucion"];
   insumos: Insumo[];
   bsValue = new Date();
   fechaMinima: Date;
@@ -42,8 +42,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     private modalService: NgbModal,
     private productoService: ProductoService,
     private bodegaService: BodegaService,
-    private localeService: BsLocaleService )
-  {
+    private localeService: BsLocaleService) {
     this.fechaMinima = new Date();
     this.fechaMaxima = new Date();
     this.fechaMinima.setDate(this.fechaMinima.getDate() - 7);
@@ -59,24 +58,22 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   }
 
   crearFormulario() {
-    this.ajusteInventario.codigoAjuste = '';
-    this.ajusteInventario.tipoElemento = '';
-    this.ajusteInventario.nombreElemento = '';
+    this.ajusteInventario.codigo = '';
+    //this.ajusteInventario.tipoElemento = '';
     this.ajusteInventario.codigoElemento = '';
     this.ajusteInventario.fecha = new Date();
-    this.ajusteInventario.tipoAjuste = '';
-    this.ajusteInventario.descripcion = '';
+    this.ajusteInventario.codigo = '';
+    this.ajusteInventario.descipcion = '';
     this.ajusteInventario.cantidad = 0;
     this.ajusteInventario.nombreBodega = '';
 
     this.formGroup = this.formBuilder.group({
-      codigoAjuste: [this.ajusteInventario.codigoAjuste, Validators.required],
-      tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
-      nombreElemento: [this.ajusteInventario.nombreElemento, Validators.required],
+      codigo: [this.ajusteInventario.codigo, Validators.required],
+      //tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
       codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
       fecha: [this.ajusteInventario.fecha, Validators.required],
-      tipoAjuste: [this.ajusteInventario.tipoAjuste, Validators.required],
-      descripcion: [this.ajusteInventario.descripcion],
+      tipo: [this.ajusteInventario.tipo, Validators.required],
+      descipcion: [this.ajusteInventario.descipcion],
       cantidad: [this.ajusteInventario.cantidad, Validators.required],
       nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required]
     });
@@ -111,7 +108,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     });
   }
   cambiarTipo(e) {
-    this.control.tipoAjuste.setValue(e.target.value, {
+    this.control.tipo.setValue(e.target.value, {
       onlySelf: true,
     });
   }

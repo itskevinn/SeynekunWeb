@@ -53,7 +53,7 @@ namespace seynekun.Controllers
             return response;
         }
         [HttpGet("{codigo}")]
-        public ActionResult<AjusteInventarioViewModel> Get(decimal codigo)
+        public ActionResult<AjusteInventarioViewModel> Get(string codigo)
         {
             var ajusteInventario = _ajusteService.BuscarxId(codigo).AjusteInventario;
             if (ajusteInventario == null) return NotFound();
@@ -61,7 +61,7 @@ namespace seynekun.Controllers
             return ajusteInventarioViewModel;
         }
         [HttpPut("{codigo}")]
-        public ActionResult<string> Put(AjusteInventario ajusteInventario, decimal codigo)
+        public ActionResult<string> Put(AjusteInventario ajusteInventario, string codigo)
         {
             var id = _ajusteService.BuscarxId(codigo);
             if (id == null)
@@ -75,7 +75,7 @@ namespace seynekun.Controllers
             }
         }
         [HttpDelete("{codigo}")]
-        public ActionResult<string> Delete(decimal codigo)
+        public ActionResult<string> Delete(string codigo)
         {
             var id = _ajusteService.BuscarxId(codigo);
             if (id == null)

@@ -57,7 +57,7 @@ export class ProductoEdicionComponent implements OnInit {
     this.control.precio.setValue(this.producto.precio);
     this.control.nombreCategoria.setValue(this.producto.nombreCategoria);
     this.control.estado.setValue(this.producto.estado);
-    this.control.contenidoNeto.setValue(this.producto.contenidoNeto);
+    this.control.cantidad.setValue(this.producto.cantidad);
     this.control.unidadMedida.setValue(this.producto.unidadMedida);
   }
   cambiarUnidadMedida(e) {
@@ -76,7 +76,7 @@ export class ProductoEdicionComponent implements OnInit {
     this.producto.precio = null;
     this.producto.nombreCategoria = "No Especificada";
     this.producto.estado = "Activo";
-    this.producto.contenidoNeto = null;
+    this.producto.cantidad = null;
     this.producto.unidadMedida = "";
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre],
@@ -85,7 +85,7 @@ export class ProductoEdicionComponent implements OnInit {
       precio: [this.producto.precio, Validators.required],
       nombreCategoria: [this.producto.nombreCategoria],
       estado: [this.producto.estado],
-      cantidad: [this.producto.contenidoNeto],
+      cantidad: [this.producto.cantidad],
       unidadMedida: [this.producto.unidadMedida],
     });
   }
