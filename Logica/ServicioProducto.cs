@@ -61,10 +61,10 @@ namespace Logica
 
         private void RealizarAjuste(Producto producto, AjusteInventario ajuste)
         {
-            if(ajuste.TipoAjuste == "Incremento" && producto.ContenidoNeto > ajuste.Cantidad)
+            if(ajuste.Tipo == "Incremento" && producto.ContenidoNeto > ajuste.Cantidad)
             {
                 producto.ContenidoNeto = producto.ContenidoNeto + ajuste.Cantidad;
-            }else if(ajuste.TipoAjuste == "Disminucion" && producto.ContenidoNeto > ajuste.Cantidad){
+            }else if(ajuste.Tipo == "Disminucion" && producto.ContenidoNeto > ajuste.Cantidad){
                 producto.ContenidoNeto = producto.ContenidoNeto - ajuste.Cantidad;
             }
             _context.Productos.Update(producto);

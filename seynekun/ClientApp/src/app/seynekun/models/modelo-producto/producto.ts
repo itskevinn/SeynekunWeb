@@ -7,4 +7,5 @@ export class Producto {
     nombreCategoria: string
     ContenidoNeto: number
     unidadMedida: string
+    cantidad: string
 }
