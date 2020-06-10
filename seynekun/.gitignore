@@ -182,8 +182,10 @@ orleans.codegen.cs
 
 /node_modules
 seynekun/appsettings.json
-publish/
-/Datos/Migrations
+/publish
+/Migrations
+*.pdb
+*.obj
 
 # RIA/Silverlight projects
 Generated_Code/
