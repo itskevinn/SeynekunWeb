@@ -57,6 +57,20 @@
     </div>
   </li>
   <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboTransportes" aria-expanded="true"
+      aria-controls="collapseOne">
+      <i class="fas fa-fw fa-truck"></i>
+      <span>Transportes</span>
+    </a>
+    <div id="comboTransportes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" [routerLink]="['/Traslados']">Traslados</a>
+        <a class="collapse-item" [routerLink]="['/Transportadores']">Transportadores</a>
+        <a class="collapse-item" [routerLink]="['/Vehiculos']">Vehiculos</a>
+      </div>
+    </div>
+  </li>
+  <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
       aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>

@@ -181,12 +181,9 @@ ClientBin/
 orleans.codegen.cs
 
 /node_modules
-<<<<<<< HEAD
 seynekun/appsettings.json
 publish/
 /Datos/Migrations
-=======
->>>>>>> parent of e54cccd... Cambios en frond
 
 # RIA/Silverlight projects
 Generated_Code/

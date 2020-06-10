@@ -46,6 +46,18 @@ import { ProductosBodegaComponent } from './seynekun/inventario/bodega/bodega-pr
 import { ProductosCategoriaComponent } from './seynekun/inventario/categoria/categoria-productos-vista/productos-categoria/productos-categoria.component'
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
 import { LoginComponent } from './login/login/login.component'
+import { VehiculoConsultaComponent } from './seynekun/transportes/vehiculo/vehiculo-consulta/vehiculo-consulta.component'
+import { VehiculoVistaComponent } from './seynekun/transportes/vehiculo/vehiculo-vista/vehiculo-vista.component'
+import { VehiculoEdicionComponent } from './seynekun/transportes/vehiculo/vehiculo-edicion/vehiculo-edicion.component'
+import { VehiculoRegistroComponent } from './seynekun/transportes/vehiculo/vehiculo-registro/vehiculo-registro.component'
+import { TransportadorRegistroComponent } from './seynekun/transportes/transportador/transportador-registro/transportador-registro.component'
+import { TransportadorConsultaComponent } from './seynekun/transportes/transportador/transportador-consulta/transportador-consulta.component'
+import { TransportadorVistaComponent } from './seynekun/transportes/transportador/transportador-vista/transportador-vista.component'
+import { TransportadorEdicionComponent } from './seynekun/transportes/transportador/transportador-edicion/transportador-edicion.component'
+import { TrasladosRegistroComponent } from './seynekun/transportes/traslados/traslados-registro/traslados-registro.component'
+import { TrasladosConsultaComponent } from './seynekun/transportes/traslados/traslados-consulta/traslados-consulta.component'
+import { TrasladosVistaComponent } from './seynekun/transportes/traslados/traslados-vista/traslados-vista.component'
+import { TrasladosEdicionComponent } from './seynekun/transportes/traslados/traslados-edicion/traslados-edicion.component'
 
 const routes: Routes = [
   {
@@ -97,9 +109,19 @@ const routes: Routes = [
   { path: 'EditarCategoria/:id', component: CategoriaEdicionComponent },  
   { path: 'ProductosEnBodega/:id', component: ProductosBodegaComponent },  
   { path: 'ProductosEnCategoria/:id', component: ProductosCategoriaComponent},  
-  { path: 'Login', component: LoginComponent}
-
-
+  { path: 'Login', component: LoginComponent},
+  { path: 'RegistrarVehiculo', component: VehiculoRegistroComponent},
+  { path: 'Vehiculos', component: VehiculoConsultaComponent },
+  { path: 'Vehiculo/:id', component: VehiculoVistaComponent},
+  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent},
+  { path: 'RegistrarTransportador', component: TransportadorRegistroComponent},
+  { path: 'Transportadores', component: TransportadorConsultaComponent},
+  { path: 'Transportador/:id', component: TransportadorVistaComponent},
+  { path: 'EditarTransportador/:id', component: TransportadorEdicionComponent},
+  { path: 'RegistrarTraslado', component: TrasladosRegistroComponent},
+  { path: 'Traslados', component: TrasladosConsultaComponent},
+  { path: 'Traslado/:id', component: TrasladosVistaComponent},
+  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent}
 ]
 
 @NgModule({
