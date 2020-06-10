@@ -58,6 +58,10 @@ import { TrasladosRegistroComponent } from './seynekun/transportes/traslados/tra
 import { TrasladosConsultaComponent } from './seynekun/transportes/traslados/traslados-consulta/traslados-consulta.component'
 import { TrasladosVistaComponent } from './seynekun/transportes/traslados/traslados-vista/traslados-vista.component'
 import { TrasladosEdicionComponent } from './seynekun/transportes/traslados/traslados-edicion/traslados-edicion.component'
+import { MateriaRegistroComponent } from './seynekun/inventario/materia-prima/materia-registro/materia-registro/materia-registro.component'
+import { MateriaConsultaComponent } from './seynekun/inventario/materia-prima/materia-consulta/materia-consulta/materia-consulta.component'
+import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/materia-edicion/materia-edicion/materia-edicion.component'
+import { MateriaVistaComponent } from './seynekun/inventario/materia-prima/materia-vista/materia-vista/materia-vista.component'
 
 const routes: Routes = [
   {
@@ -84,44 +88,48 @@ const routes: Routes = [
   { path: 'Producto/:id', component: ProductoVistaComponent },
   { path: 'EditarProducto/:id', component: ProductoEdicionComponent },
   { path: 'RegistrarProducto', component: ProductoRegistroComponent },
-  { path: 'Reporte-De-Inventario', component: ReporteInventarioComponent },  
-  { path: 'AjustesDeInventario', component: AjusteInventarioConsultaComponent },  
-  { path: 'AjusteDeInventario/:id', component: AjusteInventarioVistaComponent },  
-  { path: 'EditarAjusteDeInventario/:id', component: AjusteInventarioEdicionComponent },  
-  { path: 'RegistrarAjusteInventario', component: AjusteInventarioRegistroComponent },  
-  { path: 'Fabricantes', component: FabricanteConsultaComponent },  
-  { path: 'EditarFabricante/:id', component: FabricanteEdicionComponent },  
-  { path: 'RegistrarFabricante', component: FabricanteRegistroComponent },  
-  { path: 'Insumos', component: InsumoConsultaComponent },  
-  { path: 'Insumo/:id', component: InsumoVistaComponent },  
-  { path: 'EditarInsumo/:id', component: InsumoEdicionComponent },  
-  { path: 'RegistrarInsumo/:id', component: FabricanteVistaComponent },  
-  { path: 'FichaTecnica', component: FichaTecnicaVistaComponent },  
-  { path: 'EditarFichaTecnica', component: FichaTecnicaVistaComponent },  
-  { path: 'RegistrarFichaTecnica', component: FichaTecnicaRegistroComponent },  
-  { path: 'Bodegas', component: BodegaConsultaComponent },  
-  { path: 'Bodega/:id', component: BodegaVistaComponent },  
-  { path: 'EditarBodega/:id', component: BodegaEdicionComponent },  
-  { path: 'RegistrarBodega', component: BodegaRegistroComponent },  
-  { path: 'RegistrarCategoria', component: CategoriaRegistroComponent },  
-  { path: 'Categorias', component: CategoriaConsultaComponent },  
-  { path: 'Categoria/:id', component: CategoriaVistaComponent },  
-  { path: 'EditarCategoria/:id', component: CategoriaEdicionComponent },  
-  { path: 'ProductosEnBodega/:id', component: ProductosBodegaComponent },  
-  { path: 'ProductosEnCategoria/:id', component: ProductosCategoriaComponent},  
-  { path: 'Login', component: LoginComponent},
-  { path: 'RegistrarVehiculo', component: VehiculoRegistroComponent},
+  { path: 'Reporte-De-Inventario', component: ReporteInventarioComponent },
+  { path: 'AjustesDeInventario', component: AjusteInventarioConsultaComponent },
+  { path: 'AjusteDeInventario/:id', component: AjusteInventarioVistaComponent },
+  { path: 'EditarAjusteDeInventario/:id', component: AjusteInventarioEdicionComponent },
+  { path: 'RegistrarAjusteInventario', component: AjusteInventarioRegistroComponent },
+  { path: 'Fabricantes', component: FabricanteConsultaComponent },
+  { path: 'EditarFabricante/:id', component: FabricanteEdicionComponent },
+  { path: 'RegistrarFabricante', component: FabricanteRegistroComponent },
+  { path: 'Insumos', component: InsumoConsultaComponent },
+  { path: 'Insumo/:id', component: InsumoVistaComponent },
+  { path: 'EditarInsumo/:id', component: InsumoEdicionComponent },
+  { path: 'RegistrarInsumo/:id', component: FabricanteVistaComponent },
+  { path: 'FichaTecnica', component: FichaTecnicaVistaComponent },
+  { path: 'EditarFichaTecnica', component: FichaTecnicaVistaComponent },
+  { path: 'RegistrarFichaTecnica', component: FichaTecnicaRegistroComponent },
+  { path: 'Bodegas', component: BodegaConsultaComponent },
+  { path: 'Bodega/:id', component: BodegaVistaComponent },
+  { path: 'EditarBodega/:id', component: BodegaEdicionComponent },
+  { path: 'RegistrarBodega', component: BodegaRegistroComponent },
+  { path: 'RegistrarCategoria', component: CategoriaRegistroComponent },
+  { path: 'Categorias', component: CategoriaConsultaComponent },
+  { path: 'Categoria/:id', component: CategoriaVistaComponent },
+  { path: 'EditarCategoria/:id', component: CategoriaEdicionComponent },
+  { path: 'ProductosEnBodega/:id', component: ProductosBodegaComponent },
+  { path: 'ProductosEnCategoria/:id', component: ProductosCategoriaComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'RegistrarVehiculo', component: VehiculoRegistroComponent },
   { path: 'Vehiculos', component: VehiculoConsultaComponent },
-  { path: 'Vehiculo/:id', component: VehiculoVistaComponent},
-  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent},
-  { path: 'RegistrarTransportador', component: TransportadorRegistroComponent},
-  { path: 'Transportadores', component: TransportadorConsultaComponent},
-  { path: 'Transportador/:id', component: TransportadorVistaComponent},
-  { path: 'EditarTransportador/:id', component: TransportadorEdicionComponent},
-  { path: 'RegistrarTraslado', component: TrasladosRegistroComponent},
-  { path: 'Traslados', component: TrasladosConsultaComponent},
-  { path: 'Traslado/:id', component: TrasladosVistaComponent},
-  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent}
+  { path: 'Vehiculo/:id', component: VehiculoVistaComponent },
+  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent },
+  { path: 'RegistrarTransportador', component: TransportadorRegistroComponent },
+  { path: 'Transportadores', component: TransportadorConsultaComponent },
+  { path: 'Transportador/:id', component: TransportadorVistaComponent },
+  { path: 'EditarTransportador/:id', component: TransportadorEdicionComponent },
+  { path: 'RegistrarTraslado', component: TrasladosRegistroComponent },
+  { path: 'Traslados', component: TrasladosConsultaComponent },
+  { path: 'Traslado/:id', component: TrasladosVistaComponent },
+  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent },
+  { path: 'MateriasPrima', component: MateriaConsultaComponent },
+  { path: 'RegistroMateriaPrima', component: MateriaRegistroComponent },
+  { path: 'EditarMateriaPrima/:id', component: MateriaEdicionComponent },
+  { path: 'MateriaPrima/:id', component: MateriaVistaComponent }
 ]
 
 @NgModule({
@@ -129,4 +137,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
