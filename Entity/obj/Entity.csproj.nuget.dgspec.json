@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {}
+    "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+    "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "projectUniqueName": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\obj\\",
+        "projectPath": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

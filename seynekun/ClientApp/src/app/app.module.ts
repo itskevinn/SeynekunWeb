@@ -84,18 +84,6 @@ import { Error404Component } from './Errores/error404/error404.component';
 import { CounterComponent } from "./counter/counter.component";
 import { JwtInterceptor } from "./servicios/interceptor/jwt.interceptor";
 import { AuthGuard } from "./servicios/guard/auth.guard";
-import { TrasladosConsultaComponent } from './seynekun/transportes/traslados/traslados-consulta/traslados-consulta.component';
-import { TrasladosRegistroComponent } from './seynekun/transportes/traslados/traslados-registro/traslados-registro.component';
-import { TrasladosVistaComponent } from './seynekun/transportes/traslados/traslados-vista/traslados-vista.component';
-import { TrasladosEdicionComponent } from './seynekun/transportes/traslados/traslados-edicion/traslados-edicion.component';
-import { VehiculoEdicionComponent } from './seynekun/transportes/vehiculo/vehiculo-edicion/vehiculo-edicion.component';
-import { VehiculoVistaComponent } from './seynekun/transportes/vehiculo/vehiculo-vista/vehiculo-vista.component';
-import { VehiculoRegistroComponent } from './seynekun/transportes/vehiculo/vehiculo-registro/vehiculo-registro.component';
-import { VehiculoConsultaComponent } from './seynekun/transportes/vehiculo/vehiculo-consulta/vehiculo-consulta.component';
-import { TransportadorConsultaComponent } from './seynekun/transportes/transportador/transportador-consulta/transportador-consulta.component';
-import { TransportadorRegistroComponent } from './seynekun/transportes/transportador/transportador-registro/transportador-registro.component';
-import { TransportadorVistaComponent } from './seynekun/transportes/transportador/transportador-vista/transportador-vista.component';
-import { TransportadorEdicionComponent } from './seynekun/transportes/transportador/transportador-edicion/transportador-edicion.component';
 
 @NgModule({
   declarations: [
@@ -162,18 +150,6 @@ import { TransportadorEdicionComponent } from './seynekun/transportes/transporta
     MateriaVistaComponent,
     MateriaEdicionComponent,
     Error404Component,
-    TrasladosConsultaComponent,
-    TrasladosRegistroComponent,
-    TrasladosVistaComponent,
-    TrasladosEdicionComponent,
-    VehiculoEdicionComponent,
-    VehiculoVistaComponent,
-    VehiculoRegistroComponent,
-    VehiculoConsultaComponent,
-    TransportadorConsultaComponent,
-    TransportadorRegistroComponent,
-    TransportadorVistaComponent,
-    TransportadorEdicionComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

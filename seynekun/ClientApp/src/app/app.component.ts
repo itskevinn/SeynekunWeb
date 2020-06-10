@@ -19,6 +19,7 @@ export class AppComponent {
     this.autenticacionServicio.currentUser.subscribe(x => this.usuarioActual = x);
     if (this.autenticacionServicio.currentUserValue != null) {
       this.ingreso = true;
+
       this.primerIngreso = this.primerIngreso + 1;
     }
     else if (localStorage.getItem('currentUser') == null && this.primerIngreso > 2) {
