@@ -1,0 +1,70 @@
+<button [routerLink]="['/Ventas']" type="button" class="btn btn-labeled btn-light">
+    <span class="btn-label"><i class="fas fa-arrow-left"></i></span>Regresar</button>
+  <div class="page-top">
+    <div class="content">
+      <section id="datosGenerales">
+        <div class="card o-hidden border-0 shadow-lg my-1">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-5 d-none d-lg-block bg-registrar-bodega-imagen"></div>
+              <div class="col-lg-7">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Registrar venta</h1>
+                </div>
+                    <form class="user" [formGroup]="formGroup">
+                        <div class="form-group">
+                          <input type="text" class="form-control form-control-user required"
+                            placeholder="Codigo de venta" formControlName="codigoVenta"
+                            [ngClass]="{'is-invalid':control.codigoVenta.errors && control.codigoVenta.touched}">
+                          <div *ngIf="control.codigoVenta.errors && control.codigoVenta.touched" class="invalid-feedback">
+                            <div class="validacion-texto" *ngIf="control.codigoVenta.errors.required">Proporcione un
+                                codigo de venta
+                            </div>
+                          </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control form-control-user required"
+                                placeholder="Identificacion del cliente" aria-label="Recipient's username" aria-describedby="button-addon2"
+                                formControlName="clienteId" [ngClass]="{'is-invalid':control.clienteId.errors && control.clienteId.touched}">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                            </div>
+                            <div *ngIf="control.clienteId.errors && control.clienteId.touched" class="invalid-feedback">
+                                <div class="validacion-texto" *ngIf="control.clienteId.errors.required">Proporcione la identificacion
+                                    del cliente
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="input-group separarArriba">
+                              <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
+                                [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
+                                [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                          <input type="text" class="form-control form-control-user" name="direccion"
+                            placeholder="Direccion" formControlName="direccion">
+                        </div>
+                        <div class="form-group ">
+                          <input type="text" class="form-control form-control-user" name="detalle"
+                            placeholder="Detalle" formControlName="detalle">
+                        </div>
+                        <hr>
+                        <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                          Registrar Bodega
+                        </a>                 
+                        <hr>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
