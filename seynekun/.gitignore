@@ -182,7 +182,7 @@ orleans.codegen.cs
 
 /node_modules
 seynekun/appsettings.json
-seynekunweb/publish
+publish/
 /Datos/Migrations
 
 # RIA/Silverlight projects
