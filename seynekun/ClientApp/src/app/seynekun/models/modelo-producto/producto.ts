@@ -5,6 +5,6 @@ export class Producto {
     estado: string
     descripcion: string
     nombreCategoria: string
+    ContenidoNeto: number
     unidadMedida: string
-    cantidad: string
 }

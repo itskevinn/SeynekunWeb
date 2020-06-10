@@ -48,7 +48,7 @@ export class ProductoRegistroComponent implements OnInit {
     this.producto.precio = null;
     this.producto.nombreCategoria = "No Especificada";
     this.producto.estado = "Activo";
-    this.producto.cantidad = null;
+    this.producto.ContenidoNeto = null;
     this.producto.unidadMedida = "";
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre],
@@ -57,7 +57,7 @@ export class ProductoRegistroComponent implements OnInit {
       precio: [this.producto.precio, Validators.required],
       nombreCategoria: [this.producto.nombreCategoria],
       estado: [this.producto.estado],
-      cantidad: [this.producto.cantidad],
+      ContenidoNeto: [this.producto.ContenidoNeto],
       unidadMedida: [this.producto.unidadMedida],
     });
   }

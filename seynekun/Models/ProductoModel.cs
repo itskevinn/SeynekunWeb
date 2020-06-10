@@ -15,7 +15,7 @@ namespace seynekun.Models
             
             [Required]
             public string NombreCategoria { get; set; }
-            public decimal Cantidad { get; set; }
+            public decimal ContenidoNeto { get; set; }
             public string UnidadMedida { get; set; }
         }
 
@@ -29,7 +29,7 @@ namespace seynekun.Models
                 Precio = producto.Precio;
                 Estado = producto.Estado;
                 Descripcion = producto.Descripcion;
-                Cantidad = producto.Cantidad;
+                ContenidoNeto = producto.ContenidoNeto;
                 UnidadMedida = producto.UnidadMedida;
             }
         }

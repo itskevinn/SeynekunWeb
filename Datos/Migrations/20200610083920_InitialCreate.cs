@@ -206,7 +206,7 @@ namespace Datos.Migrations
                     Codigo = table.Column<string>(maxLength: 30, nullable: false),
                     Nombre = table.Column<string>(maxLength: 30, nullable: false),
                     Precio = table.Column<decimal>(nullable: false),
-                    Cantidad = table.Column<decimal>(nullable: false),
+                    ContenidoNeto = table.Column<decimal>(nullable: false),
                     UnidadMedida = table.Column<string>(maxLength: 13, nullable: false),
                     Descripcion = table.Column<string>(maxLength: 100, nullable: true),
                     NombreCategoria = table.Column<string>(maxLength: 17, nullable: true),
