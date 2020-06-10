@@ -2,8 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
-import { map, catchError } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators';
 import { Usuario } from 'src/app/seynekun/models/modelo-usuario/usuario';
+
 
 @Injectable({
   providedIn: 'root'

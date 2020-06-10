@@ -17,6 +17,7 @@ export class AppComponent {
     private autenticacionServicio: AutenticacionService
   ) {
     this.autenticacionServicio.currentUser.subscribe(x => this.usuarioActual = x);
+    this.ingreso = true;
   }
   reload() {
     window.location.reload();
