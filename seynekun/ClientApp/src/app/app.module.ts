@@ -96,6 +96,10 @@ import { TransportadorConsultaComponent } from './seynekun/transportes/transport
 import { TransportadorRegistroComponent } from './seynekun/transportes/transportador/transportador-registro/transportador-registro.component';
 import { TransportadorVistaComponent } from './seynekun/transportes/transportador/transportador-vista/transportador-vista.component';
 import { TransportadorEdicionComponent } from './seynekun/transportes/transportador/transportador-edicion/transportador-edicion.component';
+import { VentaConsultaComponent } from './seynekun/ventas/venta/venta-consulta/venta-consulta.component';
+import { VentaRegistroComponent } from './seynekun/ventas/venta/venta-registro/venta-registro.component';
+import { VentaEdicionComponent } from './seynekun/ventas/venta/venta-edicion/venta-edicion.component';
+import { VentaVistaComponent } from './seynekun/ventas/venta/venta-vista/venta-vista.component';
 
 @NgModule({
   declarations: [
@@ -174,6 +178,10 @@ import { TransportadorEdicionComponent } from './seynekun/transportes/transporta
     TransportadorRegistroComponent,
     TransportadorVistaComponent,
     TransportadorEdicionComponent,
+    VentaConsultaComponent,
+    VentaRegistroComponent,
+    VentaEdicionComponent,
+    VentaVistaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

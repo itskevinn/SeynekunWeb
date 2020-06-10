@@ -58,6 +58,10 @@ import { TrasladosRegistroComponent } from './seynekun/transportes/traslados/tra
 import { TrasladosConsultaComponent } from './seynekun/transportes/traslados/traslados-consulta/traslados-consulta.component'
 import { TrasladosVistaComponent } from './seynekun/transportes/traslados/traslados-vista/traslados-vista.component'
 import { TrasladosEdicionComponent } from './seynekun/transportes/traslados/traslados-edicion/traslados-edicion.component'
+import { VentaRegistroComponent } from './seynekun/ventas/venta/venta-registro/venta-registro.component'
+import { VentaConsultaComponent } from './seynekun/ventas/venta/venta-consulta/venta-consulta.component'
+import { VentaVistaComponent } from './seynekun/ventas/venta/venta-vista/venta-vista.component'
+import { VentaEdicionComponent } from './seynekun/ventas/venta/venta-edicion/venta-edicion.component'
 
 const routes: Routes = [
   {
@@ -121,7 +125,11 @@ const routes: Routes = [
   { path: 'RegistrarTraslado', component: TrasladosRegistroComponent},
   { path: 'Traslados', component: TrasladosConsultaComponent},
   { path: 'Traslado/:id', component: TrasladosVistaComponent},
-  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent}
+  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent},
+  { path: 'RegistrarVenta', component: VentaRegistroComponent},
+  { path: 'Ventas', component: VentaConsultaComponent},
+  { path: 'Venta/:id', component: VentaVistaComponent},
+  { path: 'EditarVenta/:id', component: VentaEdicionComponent}
 ]
 
 @NgModule({
