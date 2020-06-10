@@ -7,13 +7,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BodegaService } from 'src/app/servicios/servicio-bodega/bodega.service';
 import { VentaService } from 'src/app/servicios/servicio-venta/venta.service';
 import { ProductoService } from 'src/app/servicios/servicio-producto/producto.service';
-import {
-  BsDatepickerDirective,
-  BsLocaleService,
-} from "ngx-bootstrap/datepicker";
-import { defineLocale, esLocale } from "ngx-bootstrap/chronos";
 import { AjusteDeInventario } from 'src/app/seynekun/models/modelo-ajuste-inventario/ajuste-de-inventario';
-defineLocale("es", esLocale);
+import { AjusteInventarioService } from 'src/app/servicios/servicio-ajuste/ajuste-inventario.service';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-venta-registro',
@@ -21,8 +17,8 @@ defineLocale("es", esLocale);
   styleUrls: ['./venta-registro.component.css']
 })
 export class VentaRegistroComponent implements OnInit {
-  ajuste: AjusteDeInventario;
   venta: Venta;
+  ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
   fechaHoy: Date;
   productos: Producto[];
@@ -33,6 +29,7 @@ export class VentaRegistroComponent implements OnInit {
   codigoElemento: string;
 
   constructor(
+    private ajusteInventarioService: AjusteInventarioService,
     private ventaService: VentaService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
@@ -46,7 +43,7 @@ export class VentaRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.venta = new Venta();
+    this.ajusteInventario = new AjusteDeInventario();
     this.obtenerBodegas();
     this.obtenerProductos();
     this.crearFormulario();
@@ -54,17 +51,24 @@ export class VentaRegistroComponent implements OnInit {
   }
 
   crearFormulario() {
-    this.venta.codigoVenta = '';
-    //this.venta.tipoElemento = '';
-    this.venta.fecha = new Date();
-    this.venta.observacion = '';
-    this.venta.totalVenta = null;
+    this.ajusteInventario.codigo = '';
+    //this.ajusteInventario.tipoElemento = '';
+    this.ajusteInventario.codigoElemento = '';
+    this.ajusteInventario.fecha = new Date();
+    this.ajusteInventario.codigo = '';
+    this.ajusteInventario.descipcion = '';
+    this.ajusteInventario.cantidad = 0;
+    this.ajusteInventario.nombreBodega = '';
+
     this.formGroup = this.formBuilder.group({
-      codigo: [this.venta.codigoVenta, Validators.required],
-      //tipoElemento: [this.venta.tipoElemento, Validators.required],
-      codigoElemento: [this.venta.observacion, Validators.required],
-      fecha: [this.venta.fecha, Validators.required],
-      tipo: [this.venta.totalVenta, Validators.required],
+      codigo: [this.ajusteInventario.codigo, Validators.required],
+      //tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
+      codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
+      fecha: [this.ajusteInventario.fecha, Validators.required],
+      tipo: [this.ajusteInventario.tipo, Validators.required],
+      descipcion: [this.ajusteInventario.descipcion],
+      cantidad: [this.ajusteInventario.cantidad, Validators.required],
+      nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required]
     });
   }
   /* @ViewChild(BsDatepickerDirective, { static: false })
@@ -112,16 +116,15 @@ export class VentaRegistroComponent implements OnInit {
     }
   }
 
-
   get control() {
     return this.formGroup.controls;
   }
 
   registrar() {
-    this.venta = this.formGroup.value;
-    this.ventaService.post(this.venta).subscribe((e) => {
+    this.ajusteInventario = this.formGroup.value;
+    this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
       if (e != null) {
-        this.venta = e;
+        this.ajusteInventario = e;
         this.formGroup.reset();
       }
     });
@@ -133,4 +136,6 @@ export class VentaRegistroComponent implements OnInit {
       this.registrar();
     }
   }
+
+
 }

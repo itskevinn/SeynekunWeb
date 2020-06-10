@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Usuario } from 'src/app/seynekun/models/modelo-usuario/usuario';
 import { HttpClient } from '@angular/common/http';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators'
+import { Usuario } from 'src/app/seynekun/models/modelo-usuario/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,12 @@ export class AutenticacionService {
           this.currentUserSubject.next(user);
         }
         return user;
-      }));
+      }), catchError(
+        this.handleErrorService.handleError<Usuario>(
+          "Error",
+          null
+        )
+      ));
   }
 
   logout() {

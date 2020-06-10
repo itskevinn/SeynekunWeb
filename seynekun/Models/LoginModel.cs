@@ -8,6 +8,7 @@ namespace seynekun.Models
         public string Contrasena { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public string Tipo { get; set; }
         public string Token { get; set; }
     }
 
@@ -20,6 +21,7 @@ namespace seynekun.Models
             Nombre = usuario.Nombre;
             Apellido = usuario.Apellido;
             Token = usuario.Token;
+            Tipo = usuario.Tipo;
         }
     }
 }
