@@ -123,6 +123,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     }
   }
 
+
   get control() {
     return this.formGroup.controls;
   }

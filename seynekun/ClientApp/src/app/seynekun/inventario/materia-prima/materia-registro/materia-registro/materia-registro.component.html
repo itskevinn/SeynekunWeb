@@ -1,5 +1,4 @@
-<!--
-<button [routerLink]="['/AjustesDeInventario']" type="button" class="btn btn-labeled btn-light">
+<button [routerLink]="['/MateriasPrima']" type="button" class="btn btn-labeled btn-light">
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div class="content">
   <section id="datosGenerales">
@@ -11,50 +10,31 @@
           </div>
           <form class="user" [formGroup]="formGroup">
             <div class="form-group">
-              <select class="form-dropdown border-verde" (change)="cambiarIdentificacion($event)">
-                <option [ngValue]="null">Productor</option>
-                <option [ngValue]="productor.identificacion" *ngFor="let productor of productores">
-                  {{productor.identificacion}} -
-                  {{productor.nombre}} {{producto.apellido}}
-                </option>
-              </select>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input type="text" class="form-control form-control-user" name="cantidad" placeholder="Cantidad"
-                      formControlName="cantidad">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <select class="form-dropdown border-verde" (change)="cambiarUnidadMedida($event)">
-                    <option [ngValue]="null">Unidad de Medida</option>
-                    <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}
-                    </option>
-                  </select>
+              <input type="text" class="form-control form-control-user" name="codigo" placeholder="Código"
+                formControlName="codigo" [ngClass]="{'is-invalid':control.codigo.errors &&
+                  control.codigo.touched}">
+              <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione una cantidad
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-range" name="descipcion" placeholder="Descripción"
-                formControlName="descipcion">
+              <div class="input-group separarArriba">
+                <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
+                  [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
+                  [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
+              </div>
             </div>
-            <hr>
             <div class="form-group">
-              <select class="form-dropdown border-verde " (change)="cambiarCodigo($event)">
-                <option [ngValue]="null">Referencia</option>
-                <optgroup label="productores">
-                  <option [ngValue]="productor.codigo" *ngFor="let productor of productores">{{productor.codigo}} -
-                    {{productor.nombre}}
-                  </option>
-                </optgroup>
-                <optgroup label="Insumos">
-                   <option [ngValue]="insumo" *ngFor="let insumo of insumos">{{insumo.codigo}}</option>
-                </optgroup>
+              <select class="form-dropdown border-verde" (change)="cambiarIdentificacion($event)">
+                <option [ngValue]="null">Productor</option>
+                <option [ngValue]="productor" *ngFor="let productor of productores">
+                  {{productor.identificacion}} -
+                  {{productor.nombre}} {{productor.apellido}}
+                </option>
               </select>
             </div>
-            <div class="form-group ">
+            <div class="form-group">
               <input type="number" class="form-control form-control-user" name="cantidad" placeholder="Cantidad"
                 formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
                   control.cantidad.touched}">
@@ -63,15 +43,9 @@
                 </div>
               </div>
             </div>
-            <div class="form-group ">
-              <select class="form-dropdown border-verde" (change)="cambiarTipo($event)">
-                <option [ngValue]=" null">Tipo</option>
-                <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
-              </select>
-            </div>
             <hr>
             <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
-              Registrar Ajuste de Inventario
+              Registrar Materia Prima
             </a>
             <hr>
           </form>

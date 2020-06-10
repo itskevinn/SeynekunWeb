@@ -10,6 +10,7 @@ import { Productor } from '../../models/modelo-productor/productor'
 import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component'
+import { Usuario } from '../../models/modelo-usuario/usuario'
 
 @Component({
   selector: 'app-productor-registro',
@@ -18,6 +19,7 @@ import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/aler
 })
 export class ProductorRegistroComponent implements OnInit {
   productor: Productor
+  usuario: Usuario
   tipoIdentificaciones: string[] = ['CC', 'TI', 'RC']
   municipios: string[] = ['Pueblo Bello', 'Codazzi']
   veredas: string[] = [

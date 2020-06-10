@@ -19,14 +19,12 @@ namespace Entity
         [Required]
         [StringLength(25)]
         public string Apellido { get; set; }
-
-        [Required]
         [StringLength(13)]
         public string NumeroTelefono { get; set; }
-        
-        [Required]
+
         [StringLength(30)]
         public string Email { get; set; }
+        public string Tipo { get; set; }
 
         public string Token { get; set; }
     }

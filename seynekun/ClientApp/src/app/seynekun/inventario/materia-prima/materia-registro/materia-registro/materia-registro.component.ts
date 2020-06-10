@@ -8,14 +8,15 @@ import { AlertaModalErrorComponent } from "src/app/@base/alerta-modal-error/aler
 import { AlertaModalOkComponent } from "src/app/@base/alerta-modal/alerta-modal.component";
 import { MateriaPrimaService } from "src/app/servicios/servicio-materia/materia-prima.service";
 import { HttpHeaders } from "@angular/common/http";
-const httpOptionsPut = {
-  headers: new HttpHeaders({ "Content-Type": "application/json" }),
-  responseType: "text",
-};
+import { Productor } from "src/app/seynekun/models/modelo-productor/productor";
+import { ProductorService } from "src/app/servicios/servicio-de-productor/productor.service";
+import {
+  BsDatepickerDirective,
+  BsLocaleService,
+} from "ngx-bootstrap/datepicker";
+import { defineLocale, esLocale } from "ngx-bootstrap/chronos";
+defineLocale("es", esLocale);
 
-const httpOptions = {
-  headers: new HttpHeaders({ "Content-Type": "application/json" }),
-};
 @Component({
   selector: "app-materia-registro",
   templateUrl: "./materia-registro.component.html",
@@ -25,65 +26,57 @@ export class MateriaRegistroComponent implements OnInit {
   materia: MateriaPrima;
   formGroup: FormGroup;
   unidadMedidas: string[] = ["Gramo", "Kg", "Tonelada"];
-  productos: Producto[];
+  productores: Productor[];
+  bsValue = new Date();
+  fechaMinima: Date;
+  fechaMaxima: Date;
   constructor(
     private materiaService: MateriaPrimaService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private productoService: ProductoService
-  ) { }
+    private productorService: ProductorService,
+    private localeService: BsLocaleService) {
+    this.fechaMinima = new Date();
+    this.fechaMaxima = new Date();
+    this.fechaMinima.setDate(this.fechaMinima.getDate() - 7);
+    this.fechaMaxima.setDate(this.fechaMaxima.getDate());
+  }
 
   ngOnInit(): void {
-    this.obtenerProductos();
+    this.obtenerProductores();
     this.materia = new MateriaPrima();
     this.crearFormulario();
   }
-  obtenerProductos() {
-    this.productoService.gets().subscribe((result) => {
-      this.productos = result;
+  obtenerProductores() {
+    this.productorService.gets().subscribe((result) => {
+      this.productores = result;
     });
   }
+  cambiarIdentificacion(e) {
 
+  }
   crearFormulario() {
     this.materia.fecha = new Date();
-    this.materia.codigo = null;
-    this.materia.unidadMedida = "";
+    this.materia.codigo = "";
     this.materia.codigoProductor = "";
     this.materia.cantidad = null;
     this.formGroup = this.formBuilder.group({
       fecha: [this.materia.fecha, Validators.required],
       codigo: [this.materia.codigo, Validators.required],
-      unidadMedida: [this.materia.unidadMedida, Validators.required],
       codigoProductor: [this.materia.codigoProductor, Validators.required],
       cantidad: [this.materia.cantidad, Validators.required],
     });
   }
-  cambiarUnidadMedida(e) {
-    if (this.control.unidadMedida.value == null) {
-      this.control.unidadMedida.setValue("No especificada");
-    } else {
-      this.control.unidadMedida.setValue(e.target.value, {
+  cambiarCodigo(e) {
+    {
+      this.control.codigo.setValue(e.target.value, {
         onlySelf: true,
       });
     }
   }
-  cambiarProducto(e) {
-    if (this.control.codigoProducto.value == null) {
-      this.control.codigoProducto.setValue("No especificada");
-    } else {
-      this.control.codigoProducto.setValue(e.target.value, {
-        onlySelf: true,
-      });
-    }
-  }
+
   onSubmit() {
-    if (this.formGroup.invalid) {
-      const messageBox = this.modalService.open(AlertaModalErrorComponent);
-      messageBox.componentInstance.titulo = "Ha ocurrido un error";
-      messageBox.componentInstance.mensaje = "Aún faltan datos por llenar";
-    } else {
-      this.registrar();
-    }
+    this.registrar();
   }
   get control() {
     return this.formGroup.controls;

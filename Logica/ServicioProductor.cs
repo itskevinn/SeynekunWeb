@@ -14,70 +14,87 @@ namespace Logica
         {
             _context = context;
         }
-        public GuardarProductorResponse Guardar(Productor producto)
+        public GuardarProductorResponse Guardar(Productor productor)
         {
             try
             {
-                var productoBuscado = _context.Productores.Find(producto.Identificacion);
-                if (productoBuscado == null)
+                var productorBuscado = _context.Productores.Find(productor.Identificacion);
+                var usuarioBuscado = _context.Usuarios.Find(productor.NombreUsuario);
+                if (productorBuscado == null && usuarioBuscado == null)
                 {
-                    _context.Productores.Add(producto);
+                    _context.Productores.Add(productor);
+                    RegistrarUsuario(productor);
                     _context.SaveChanges();
-                    return new GuardarProductorResponse(producto);
+                    return new GuardarProductorResponse(productor);
                 }
-                else
+                if (productorBuscado != null)
                 {
                     return new GuardarProductorResponse("¡Productor ya registrado!");
                 }
+                return new GuardarProductorResponse("¡El nombre de usuario ya está en uso!");
             }
             catch (Exception e)
             {
                 return new GuardarProductorResponse(e.Message);
             }
         }
+        private void RegistrarUsuario(Productor productor)
+        {
+            Usuario usuario = new Usuario();
+            usuario.NombreUsuario = productor.NombreUsuario;
+            usuario.Nombre = productor.Nombre;
+            usuario.Apellido = productor.Apellido;
+            usuario.Contrasena = productor.Contrasena;
+            usuario.Email = productor.Email;
+            usuario.Estado = productor.Estado;
+            usuario.NumeroTelefono = productor.NumeroTelefono;
+            usuario.Tipo = "Productor";
+            _context.Usuarios.Add(usuario);
+            _context.SaveChanges();
+        }
         public List<Productor> Consultar()
         {
-            List<Productor> productos = _context.Productores.ToList();
-            return productos;
+            List<Productor> productors = _context.Productores.ToList();
+            return productors;
         }
         public BuscarProductorxIdResponse BuscarxId(string identificacion)
         {
-            var producto = _context.Productores.Find(identificacion);
-            if (producto != null && producto.Estado != "Eliminado")
+            var productor = _context.Productores.Find(identificacion);
+            if (productor != null && productor.Estado != "Eliminado")
             {
-                return new BuscarProductorxIdResponse(producto);
+                return new BuscarProductorxIdResponse(productor);
             }
-            return new BuscarProductorxIdResponse("productor no encontrado");
+            return new BuscarProductorxIdResponse("productorr no encontrado");
         }
-        public string Modificar(Productor productoNueva)
+        public string Modificar(Productor productorNueva)
         {
             try
             {
-                var productoVieja = _context.Productores.Find(productoNueva.Identificacion);
-                if (productoVieja != null && productoVieja.Estado != "Eliminado")
+                var productorVieja = _context.Productores.Find(productorNueva.Identificacion);
+                if (productorVieja != null && productorVieja.Estado != "Eliminado")
                 {
-                    productoVieja.Nombre = productoNueva.Nombre;
-                    productoVieja.Apellido = productoNueva.Apellido;
-                    productoVieja.Estado = productoNueva.Estado;
-                    productoVieja.AfiliacionSalud = productoNueva.AfiliacionSalud;
-                    productoVieja.NombrePredio = productoNueva.NombrePredio;
-                    productoVieja.NombreUsuario = productoNueva.NombreUsuario;
-                    productoVieja.NumeroTelefono = productoNueva.NumeroTelefono;
-                    productoVieja.Municipio = productoNueva.Municipio;
-                    productoVieja.Vereda = productoNueva.Vereda;
-                    productoVieja.TipoIdentificacion = productoNueva.TipoIdentificacion;
-                    productoVieja.CedulaCafetera = productoNueva.CedulaCafetera;
-                    productoVieja.CodigoFinca = productoNueva.CodigoFinca;
-                    productoVieja.CodigoSica = productoNueva.CodigoSica;
-                    productoVieja.Contrasena = productoNueva.Contrasena;
-                    productoVieja.Email = productoNueva.Email;
-                    _context.Productores.Update(productoNueva);
+                    productorVieja.Nombre = productorNueva.Nombre;
+                    productorVieja.Apellido = productorNueva.Apellido;
+                    productorVieja.Estado = productorNueva.Estado;
+                    productorVieja.AfiliacionSalud = productorNueva.AfiliacionSalud;
+                    productorVieja.NombrePredio = productorNueva.NombrePredio;
+                    productorVieja.NombreUsuario = productorNueva.NombreUsuario;
+                    productorVieja.NumeroTelefono = productorNueva.NumeroTelefono;
+                    productorVieja.Municipio = productorNueva.Municipio;
+                    productorVieja.Vereda = productorNueva.Vereda;
+                    productorVieja.TipoIdentificacion = productorNueva.TipoIdentificacion;
+                    productorVieja.CedulaCafetera = productorNueva.CedulaCafetera;
+                    productorVieja.CodigoFinca = productorNueva.CodigoFinca;
+                    productorVieja.CodigoSica = productorNueva.CodigoSica;
+                    productorVieja.Contrasena = productorNueva.Contrasena;
+                    productorVieja.Email = productorNueva.Email;
+                    _context.Productores.Update(productorNueva);
                     _context.SaveChanges();
-                    return ($"El productor se ha modificado satisfactoriamente.");
+                    return ($"El productorr se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return "No se encontró registro del productor solicitado";
+                    return "No se encontró registro del productorr solicitado";
                 }
             }
             catch (Exception e)
@@ -89,15 +106,15 @@ namespace Logica
         {
             try
             {
-                Productor productor = _context.Productores.Find(identificacion);
-                if (productor != null && productor.Estado != "Eliminado")
+                Productor productorr = _context.Productores.Find(identificacion);
+                if (productorr != null && productorr.Estado != "Eliminado")
                 {
-                    productor.Estado = "Eliminado";
-                    _context.Productores.Update(productor);
+                    productorr.Estado = "Eliminado";
+                    _context.Productores.Update(productorr);
                     _context.SaveChanges();
-                    return $"El productor se ha eliminado.";
+                    return $"El productorr se ha eliminado.";
                 }
-                return "El productor no fue encontrado";
+                return "El productorr no fue encontrado";
             }
             catch (Exception e)
             {
@@ -129,10 +146,10 @@ namespace Logica
         public bool Error { get; set; }
         public string Mensaje { get; set; }
         public Productor Productor { get; set; }
-        public GuardarProductorResponse(Productor producto)
+        public GuardarProductorResponse(Productor productor)
         {
             Error = false;
-            Productor = producto;
+            Productor = productor;
         }
         public GuardarProductorResponse(string mensaje)
         {
@@ -146,10 +163,10 @@ namespace Logica
         public string Mensaje { get; set; }
         public Productor Productor;
 
-        public BuscarProductorxIdResponse(Productor producto)
+        public BuscarProductorxIdResponse(Productor productor)
         {
             Error = false;
-            this.Productor = producto;
+            this.Productor = productor;
         }
 
         public BuscarProductorxIdResponse(string mensaje)
