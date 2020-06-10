@@ -19,25 +19,41 @@ namespace Logica
             try
             {
                 var productoBuscado = _context.Productores.Find(producto.Identificacion);
-                if (productoBuscado == null)
+                var usuarioBuscado = _context.Usuarios.Find(producto.NombreUsuario);
+                if (productoBuscado == null && usuarioBuscado == null)
                 {
                     _context.Productores.Add(producto);
+                    GuardarUsuario(producto);
                     _context.SaveChanges();
                     return new GuardarProductorResponse(producto);
                 }
-                else
+                if (productoBuscado != null)
                 {
                     return new GuardarProductorResponse("¡Productor ya registrado!");
                 }
+                return new GuardarProductorResponse("¡Usuario ya está en uso!");
             }
             catch (Exception e)
             {
                 return new GuardarProductorResponse(e.Message);
             }
         }
+        public void GuardarUsuario(Productor productor)
+        {
+            Usuario usuario = new Usuario();
+            usuario.NombreUsuario = productor.NombreUsuario;
+            usuario.NumeroTelefono = productor.NumeroTelefono;
+            usuario.Nombre = productor.Nombre;
+            usuario.Estado = "Activo";
+            usuario.Email = productor.Email;
+            usuario.Tipo = "Productor";
+            usuario.Apellido = productor.Apellido;
+            _context.Usuarios.Add(usuario);
+            _context.SaveChanges();
+        }
         public List<Productor> Consultar()
         {
-            List<Productor> productos = _context.Productores.ToList();
+            List<Productor> productos = _context.Productores.Where(p => p.Estado != "Eliminado").ToList();
             return productos;
         }
         public BuscarProductorxIdResponse BuscarxId(string identificacion)
@@ -47,7 +63,7 @@ namespace Logica
             {
                 return new BuscarProductorxIdResponse(producto);
             }
-            return new BuscarProductorxIdResponse("productor no encontrado");
+            return new BuscarProductorxIdResponse("Productor no encontrado");
         }
         public string Modificar(Productor productoNueva)
         {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AutenticacionService } from 'src/app/servicios/servicio-autenticacion/autenticacion.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
-import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component';
+import { AutenticacionService } from 'src/app/servicios/servicio-autenticacion/autenticacion.service';
+
 
 @Component({
   selector: 'app-login',
@@ -55,7 +55,12 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
-          this.reload();
+          if (localStorage.getItem('currentUser')) {
+            this.reload();
+          }
+          else {
+            this.loading = false;
+          }
         },
         error => {
           this.loading = false;

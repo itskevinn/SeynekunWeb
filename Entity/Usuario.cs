@@ -11,6 +11,7 @@ namespace Entity
         [Required]
         [StringLength(11)]
         public string Estado { get; set; }
+        public string Tipo { get; set; }
 
         [Required]
         [StringLength(25)]
