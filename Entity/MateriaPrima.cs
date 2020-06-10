@@ -8,7 +8,6 @@ namespace Entity
         [Key]
         [Required(ErrorMessage="Se requiere un código")]
         public string Codigo { get; set; }
-        
         [Required(ErrorMessage="Se requiere la fecha de ingreso")]
         public DateTime Fecha { get; set; }
         [StringLength(20,ErrorMessage="Unidad inválida")]

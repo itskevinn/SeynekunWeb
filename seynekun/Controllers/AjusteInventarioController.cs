@@ -3,7 +3,6 @@ using Datos;
 using Entity;
 using Logica;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using static seynekun.Models.AjusteInventarioModel;
 
 namespace seynekun.Controllers
@@ -17,7 +16,6 @@ namespace seynekun.Controllers
         {
             _ajusteService = new ServicioAjusteInventario(context);
         }
-
         // POST: api/AjusteInventario
         [HttpPost]
         public ActionResult<AjusteInventarioViewModel> Post(AjusteInventarioInputModel ajusteInventarioInputModel)
@@ -26,12 +24,7 @@ namespace seynekun.Controllers
             var response = _ajusteService.Guardar(ajusteInventario);
             if (response.Error)
             {
-                ModelState.AddModelError("Error al registrar ajuste", response.Mensaje);
-                var detallesProblema = new ValidationProblemDetails(ModelState)
-                {
-                    Status = StatusCodes.Status400BadRequest
-                };
-                return BadRequest(detallesProblema);
+                return BadRequest(response.Mensaje);
             }
             return Ok(response.AjusteInventario);
         }
@@ -40,14 +33,13 @@ namespace seynekun.Controllers
         {
             var ajusteInventario = new AjusteInventario
             {
-                CodigoAjuste = ajusteInventarioInputModel.CodigoAjuste,
-                TipoElemento = ajusteInventarioInputModel.TipoElemento,
-                NombreElemento = ajusteInventarioInputModel.NombreElemento,
-                CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
+                Codigo = ajusteInventarioInputModel.Codigo,
                 Fecha = ajusteInventarioInputModel.Fecha,
-                TipoAjuste = ajusteInventarioInputModel.TipoAjuste,
-                Descripcion = ajusteInventarioInputModel.Descripcion,
+                Descipcion = ajusteInventarioInputModel.Descipcion,
                 Cantidad = ajusteInventarioInputModel.Cantidad,
+                CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
+                Tipo = ajusteInventarioInputModel.Tipo,
+                CodigoMateriaPrima ="11",
                 NombreBodega = ajusteInventarioInputModel.NombreBodega,
             };
             return ajusteInventario;
@@ -61,7 +53,7 @@ namespace seynekun.Controllers
             return response;
         }
         [HttpGet("{codigo}")]
-        public ActionResult<AjusteInventarioViewModel> Get(string codigo)
+        public ActionResult<AjusteInventarioViewModel> Get(decimal codigo)
         {
             var ajusteInventario = _ajusteService.BuscarxId(codigo).AjusteInventario;
             if (ajusteInventario == null) return NotFound();
@@ -69,7 +61,7 @@ namespace seynekun.Controllers
             return ajusteInventarioViewModel;
         }
         [HttpPut("{codigo}")]
-        public ActionResult<string> Put(AjusteInventario ajusteInventario, string codigo)
+        public ActionResult<string> Put(AjusteInventario ajusteInventario, decimal codigo)
         {
             var id = _ajusteService.BuscarxId(codigo);
             if (id == null)
@@ -83,16 +75,16 @@ namespace seynekun.Controllers
             }
         }
         [HttpDelete("{codigo}")]
-        public ActionResult<string> Delete(string codigo)
+        public ActionResult<string> Delete(decimal codigo)
         {
-            var ajuste = _ajusteService.BuscarxId(codigo).AjusteInventario;
-            if (ajuste == null)
+            var id = _ajusteService.BuscarxId(codigo);
+            if (id == null)
             {
-                return BadRequest("Ajuste de Inventario no encontrado");
+                return BadRequest("Ajuste de Inventario no econtrado");
             }
             else
             {
-                string mensaje = _ajusteService.Eliminar(ajuste.CodigoAjuste);
+                string mensaje = _ajusteService.Eliminar(codigo);
                 return Ok(mensaje);
             }
         }    

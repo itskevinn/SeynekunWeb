@@ -7,7 +7,7 @@ namespace seynekun.Models
     {
         public class MateriaPrimaInputModel 
         {
-            public decimal Codigo { get; set; }
+            public string Codigo { get; set; }
             public DateTime Fecha { get; set; }            
             public decimal Cantidad { get; set; }
             public string CodigoProductor { get; set; }

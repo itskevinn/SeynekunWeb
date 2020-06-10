@@ -9,12 +9,12 @@ using static seynekun.Models.MateriaPrimaModel;
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]    
+    [ApiController]
     public class MateriaPrimaController : ControllerBase
     {
-        private readonly ServicioMateriaPrima materiaService;        
+        private readonly ServicioMateriaPrima materiaService;
         public MateriaPrimaController(SeynekunContext context)
-        {            
+        {
             materiaService = new ServicioMateriaPrima(context);
         }
         // POST: api/MateriaPrima
@@ -25,7 +25,7 @@ namespace seynekun.Controllers
             var response = materiaService.Guardar(materiaPrima);
             if (response.Error)
             {
-               ModelState.AddModelError("Error al registrar la materia prima", response.Mensaje);
+                ModelState.AddModelError("Error al registrar la materia prima", response.Mensaje);
                 var detallesProblema = new ValidationProblemDetails(ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest
