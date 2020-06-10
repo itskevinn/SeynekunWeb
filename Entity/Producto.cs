@@ -13,19 +13,22 @@ namespace Entity
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Proporcione un precio para el producto")]
         public decimal Precio { get; set; }
-        [Required(ErrorMessage = "El Estado es requerido")]
-        [StringLength(13, ErrorMessage = "Estado demasido largo")]
-        public string Estado { get; set; }
+
+        [Required(ErrorMessage = "Se requiere la cantidad del producto")]
+        public decimal Cantidad { get; set; }
+
+        [Required(ErrorMessage = "Se requiere la unidad de medida del producto")]
+        [StringLength(13, ErrorMessage = "Unidad inválida")]
+        public string UnidadMedida { get; set; }
+
         [StringLength(100, ErrorMessage = "Descripción demasiado larga")]
         public string Descripcion { get; set; }
 
         [StringLength(17, ErrorMessage = "Nombre de categoría inválido")]
         public string NombreCategoria { get; set; }
 
-        [Required(ErrorMessage = "Se requiere la cantidad del producto")]
-        public decimal Cantidad { get; set; }
-        [Required(ErrorMessage = "Se requiere la unidad de medida del producto")]
-        [StringLength(13, ErrorMessage = "Unidad inválida")]
-        public string UnidadMedida { get; set; }
+        [Required(ErrorMessage = "El Estado es requerido")]
+        [StringLength(13, ErrorMessage = "Estado demasido largo")]
+        public string Estado { get; set; }
     }
 }

@@ -25,8 +25,8 @@ namespace seynekun.Models
             public DateTime Fecha { get; set; }
 
             [Required(ErrorMessage = "Se requiere el tipo de ajuste")]  
-            public string TipoAjusteInventario { get; set; }
-            public string Descipcion { get; set; }
+            public string TipoAjuste { get; set; }
+            public string Descripcion { get; set; }
 
             [Required(ErrorMessage = "Se requiere la cantidad a ajustar")]
             public decimal Cantidad { get; set; }
@@ -44,8 +44,8 @@ namespace seynekun.Models
                 NombreElemento = ajusteInventario.NombreElemento;
                 CodigoElemento = ajusteInventario.CodigoElemento;
                 Fecha = ajusteInventario.Fecha;
-                TipoAjusteInventario = ajusteInventario.TipoAjusteInventario;
-                Descipcion = ajusteInventario.Descipcion;
+                TipoAjuste = ajusteInventario.TipoAjuste;
+                Descripcion = ajusteInventario.Descripcion;
                 Cantidad = ajusteInventario.Cantidad;
                 NombreBodega = ajusteInventario.NombreBodega;
             }

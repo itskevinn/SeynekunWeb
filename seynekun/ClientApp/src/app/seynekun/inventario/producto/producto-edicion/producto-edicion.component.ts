@@ -138,7 +138,6 @@ export class ProductoEdicionComponent implements OnInit {
       }
     });
     messageBox.result.then((result) => {
-
     });
   }
 

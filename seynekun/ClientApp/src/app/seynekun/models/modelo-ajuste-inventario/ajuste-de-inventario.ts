@@ -1,10 +1,11 @@
 export class AjusteDeInventario {
-    fecha: Date
-    codigoMateriaPrima: number
-    codigo: number
-    descipcion: string
-    cantidad: number
+    codigoAjuste: string
+    tipoElemento: string
+    nombreElemento: string
     codigoElemento: string
-    tipo: string
+    fecha: Date
+    tipoAjuste: string
+    descripcion: string
+    cantidad: number
     nombreBodega: string
 }

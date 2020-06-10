@@ -20,5 +20,4 @@ export class ProductoConsultaComponent implements OnInit {
       this.productos = result;
     });
   } 
-
 }

@@ -7,9 +7,9 @@ namespace Entity
     {
         [Key]
         [Required(ErrorMessage = "Proporcione un nombre")]
-        [StringLength(20, ErrorMessage = "Nombre demasiado largo")]
+        [StringLength(50, ErrorMessage = "Nombre demasiado largo")]
         public string Nombre { get; set; }
-        [StringLength(200, ErrorMessage = "Detalle demasiado largo")]
+        [StringLength(256, ErrorMessage = "Detalle demasiado largo")]
         public string Detalle { get; set; }
         [Required(ErrorMessage = "Proporcione un estado")]
         [StringLength(13, ErrorMessage = "Estado inválido")]

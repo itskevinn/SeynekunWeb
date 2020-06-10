@@ -42,7 +42,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Presentación</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Cantidad disponible</div>
                       <a class="h4 mb-0 font-weight-normal text-gray-800"> {{producto.cantidad}}</a>
                       <a class="h4 mb-0 font-weight-bold text-gray-800"> {{producto.unidadMedida}}</a>
                     </div>
@@ -58,6 +58,19 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Descripción</div>
                       <a class="h4 mb-0 font-weight-light text-gray-800"> {{producto.descripcion}}</a>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-pen fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card border-left-info mb-4">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Categoria</div>
+                      <a class="h4 mb-0 font-weight-light text-gray-800"> {{producto.nombreCategoria}}</a>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-pen fa-2x text-gray-300"></i>

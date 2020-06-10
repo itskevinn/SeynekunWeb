@@ -23,25 +23,27 @@ defineLocale("es", esLocale);
   styleUrls: ["./ajuste-inventario-registro.component.css"],
 })
 export class AjusteInventarioRegistroComponent implements OnInit {
+
   ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
   fechaHoy: Date;
   productos: Producto[];
   bodegas: Bodega[];
-  tipos: string[] = ["Incremento", "Disminucion"];
+  tipoAjuste: string[] = ["Incremento", "Disminucion"];
   insumos: Insumo[];
   bsValue = new Date();
   fechaMinima: Date;
   fechaMaxima: Date;
   codigoElemento: string;
+
   constructor(
     private ajusteInventarioService: AjusteInventarioService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private productoService: ProductoService,
     private bodegaService: BodegaService,
-    private localeService: BsLocaleService
-  ) {
+    private localeService: BsLocaleService )
+  {
     this.fechaMinima = new Date();
     this.fechaMaxima = new Date();
     this.fechaMinima.setDate(this.fechaMinima.getDate() - 7);
@@ -57,21 +59,26 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   }
 
   crearFormulario() {
+    this.ajusteInventario.codigoAjuste = '';
+    this.ajusteInventario.tipoElemento = '';
+    this.ajusteInventario.nombreElemento = '';
+    this.ajusteInventario.codigoElemento = '';
     this.ajusteInventario.fecha = new Date();
-    this.ajusteInventario.descipcion = " ";
-    this.ajusteInventario.cantidad = null;
-    this.ajusteInventario.codigoElemento = "";
-    this.ajusteInventario.codigo = null;
-    this.ajusteInventario.tipo = "";
-    this.ajusteInventario.nombreBodega = "";
+    this.ajusteInventario.tipoAjuste = '';
+    this.ajusteInventario.descripcion = '';
+    this.ajusteInventario.cantidad = 0;
+    this.ajusteInventario.nombreBodega = '';
+
     this.formGroup = this.formBuilder.group({
-      descipcion: [this.ajusteInventario.descipcion],
-      codigoElemento: [this.ajusteInventario.codigoElemento],
-      cantidad: [this.ajusteInventario.cantidad, Validators.required],
+      codigoAjuste: [this.ajusteInventario.codigoAjuste, Validators.required],
+      tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
+      nombreElemento: [this.ajusteInventario.nombreElemento, Validators.required],
+      codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
       fecha: [this.ajusteInventario.fecha, Validators.required],
-      nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required],
-      tipo: [this.ajusteInventario.tipo, Validators.required],
-      codigo: [this.ajusteInventario.codigo, Validators.required],
+      tipoAjuste: [this.ajusteInventario.tipoAjuste, Validators.required],
+      descripcion: [this.ajusteInventario.descripcion],
+      cantidad: [this.ajusteInventario.cantidad, Validators.required],
+      nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required]
     });
   }
   /* @ViewChild(BsDatepickerDirective, { static: false })
@@ -81,7 +88,6 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   onScrollEvent() {
     this.datepicker.hide();
   }*/
-
 
   obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
@@ -105,7 +111,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     });
   }
   cambiarTipo(e) {
-    this.control.tipo.setValue(e.target.value, {
+    this.control.tipoAjuste.setValue(e.target.value, {
       onlySelf: true,
     });
   }
@@ -119,9 +125,11 @@ export class AjusteInventarioRegistroComponent implements OnInit {
       return codigo[0];
     }
   }
+
   get control() {
     return this.formGroup.controls;
   }
+
   registrar() {
     this.ajusteInventario = this.formGroup.value;
     this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
@@ -133,7 +141,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   }
   onSubmit() {
     if (this.formGroup.invalid) {
-      console.log(this.control.codigo);
+      console.log(this.control.codigoAjuste);
     } else {
       this.registrar();
     }

@@ -37,7 +37,8 @@ namespace Logica
             List<AjusteInventario> ajusteInventarios = _context.AjusteInventarios.ToList();
             return ajusteInventarios;
         }
-        public BuscarAjusteInventarioxIdResponse BuscarxId(decimal codigo)
+
+        public BuscarAjusteInventarioxIdResponse BuscarxId(string codigo)
         {
             var ajusteInventario = _context.AjusteInventarios.Find(codigo);
             if (ajusteInventario != null)
@@ -46,6 +47,7 @@ namespace Logica
             }
             return new BuscarAjusteInventarioxIdResponse("Ajuste no encontrado");
         }
+
         public string Modificar(AjusteInventario ajusteInventarioNuevo)
         {
             try
@@ -54,10 +56,10 @@ namespace Logica
                 if (ajusteInventarioViejo != null)
                 {
                     ajusteInventarioViejo.Fecha = ajusteInventarioNuevo.Fecha;
-                    ajusteInventarioViejo.Descipcion = ajusteInventarioNuevo.Descipcion;
+                    ajusteInventarioViejo.Descripcion = ajusteInventarioNuevo.Descripcion;
                     ajusteInventarioViejo.Cantidad = ajusteInventarioNuevo.Cantidad;
                     ajusteInventarioViejo.CodigoElemento = ajusteInventarioNuevo.CodigoElemento;
-                    ajusteInventarioViejo.TipoAjusteInventario = ajusteInventarioNuevo.TipoAjusteInventario;
+                    ajusteInventarioViejo.TipoAjuste = ajusteInventarioNuevo.TipoAjuste;
                     ajusteInventarioViejo.NombreBodega = ajusteInventarioNuevo.NombreBodega;
                     _context.AjusteInventarios.Update(ajusteInventarioViejo);
                     _context.SaveChanges();
@@ -92,8 +94,8 @@ namespace Logica
         public decimal SumarCantidadTotal(string codigoElemento)
         {
             var ajustes = _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento);
-            var sumaIncremento = ajustes.Where(a => a.TipoAjusteInventario == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustes.Where(a => a.TipoAjusteInventario == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustes.Where(a => a.TipoAjuste == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustes.Where(a => a.TipoAjuste == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {
@@ -104,8 +106,8 @@ namespace Logica
         public decimal SumarCantidad(string codigoElemento, string nombreBodega)
         {
             var ajustesSolicitadosxBodega = ObtenerAjustesxProductoyBodega(codigoElemento, nombreBodega);
-            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.TipoAjusteInventario == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.TipoAjusteInventario == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.TipoAjuste == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.TipoAjuste == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {
@@ -113,7 +115,8 @@ namespace Logica
             }
             return cantidad;
         }
-        public string Eliminar(decimal codigo)
+
+        public string Eliminar(string codigo)
         {
             try
             {
@@ -122,7 +125,7 @@ namespace Logica
                 {
                     _context.AjusteInventarios.Remove(ajusteInventario);
                     _context.SaveChanges();
-                    return $"El Ajuste de Inventario se ha eliminado.";
+                    return $"El ajuste de inventario se ha eliminado.";
                 }
                 return "El Ajuste de Inventario no fue encontrado";
             }
@@ -132,6 +135,7 @@ namespace Logica
             }
         }
     }
+
     public class ConsultarAjusteInventarioResponse
     {
         public bool Error { get; set; }

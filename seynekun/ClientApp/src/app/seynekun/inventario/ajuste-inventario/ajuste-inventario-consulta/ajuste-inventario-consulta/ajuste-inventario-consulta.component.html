@@ -10,7 +10,7 @@
         <div class="col-sm-12 col-md-6">
           <div class="text-right separarAbajo">
             <button [routerLink]="['/RegistrarAjusteInventario']" type="button" class="btn btn-labeled btn-success">
-              <span class="btn-label"><i class="fas fa-plus"></i></span> Crear Ajuste</button>
+              <span class="btn-label"><i class="fas fa-plus"></i></span>Crear ajuste</button>
           </div>
         </div>
         <hr>
@@ -24,8 +24,9 @@
                 <tr>                            
                   <th>Fecha</th>
                   <th>Bodega</th>
-                  <th>Cantidad Ajustada</th>
-                  <th>Tipo de Ajuste</th>
+                  <th>Tipo de elemento</th>
+                  <th>Cantidad ajustada</th>
+                  <th>Tipo de ajuste</th>
                   <th>Acción</th>
                 </tr>
               </thead>
@@ -33,12 +34,11 @@
                 <tr *ngFor="let ajusteInvetario of ajusteInventarios|filtroAjusteInventario:textoABuscar; index as i ">                  
                   <td>{{ajusteInvetario.fecha | date}}</td>
                   <td>{{ajusteInvetario.nombreBodega}}</td>
+                  <td>{{ajusteInvetario.tipoElemento}}</td>
                   <td>{{ajusteInvetario.cantidad}}</td>
-                  <td>{{ajusteInvetario.tipo}}</td>
+                  <td>{{ajusteInvetario.tipoAjuste}}</td>
                   <td>
-                    <a routerLink='/AjusteInventario/{{ajusteInvetario.codigo}}'>Ver</a>
-                    <a> / </a>
-                    <a routerLink='/EditarAjusteInventario/{{ajusteInvetario.codigo}}'>Editar</a>
+                    <a routerLink='/AjusteDeInventario/{{ajusteInvetario.codigoAjuste}}'>Ver</a>
                   </td>
                 </tr>
               </tbody>

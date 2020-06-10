@@ -23,9 +23,9 @@ namespace Entity
         public DateTime Fecha { get; set; }
 
         [Required(ErrorMessage = "Se requiere el tipo de ajuste")]  
-        public string TipoAjusteInventario { get; set; }
+        public string TipoAjuste { get; set; }
 
-        public string Descipcion { get; set; }
+        public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "Se requiere la cantidad a ajustar")]
         public decimal Cantidad { get; set; }
