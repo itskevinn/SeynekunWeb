@@ -38,9 +38,10 @@ namespace seynekun.Controllers
                 Descipcion = ajusteInventarioInputModel.Descipcion,
                 Cantidad = ajusteInventarioInputModel.Cantidad,
                 CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
-                Tipo = ajusteInventarioInputModel.Tipo,
-                CodigoMateriaPrima ="11",
+                TipoAjuste = ajusteInventarioInputModel.TipoAjuste,
+                CodigoMateriaPrima = ajusteInventarioInputModel.CodigoMateriaPrima,
                 NombreBodega = ajusteInventarioInputModel.NombreBodega,
+                TipoElemento = ajusteInventarioInputModel.TipoElemento
             };
             return ajusteInventario;
         }
@@ -87,6 +88,6 @@ namespace seynekun.Controllers
                 string mensaje = _ajusteService.Eliminar(codigo);
                 return Ok(mensaje);
             }
-        }    
+        }
     }
 }

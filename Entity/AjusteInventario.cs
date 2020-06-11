@@ -9,7 +9,6 @@ namespace Entity
         [Key]
         [Required(ErrorMessage = "Se requiere el código del ajuste")]
         public string Codigo { get; set; }
-        [Required(ErrorMessage="Se requiere el código de la materia prima")]
         public string CodigoMateriaPrima { get; set; }
         [Required(ErrorMessage = "Se requiere la fecha del ajuste")]           
         [DataType(DataType.Date,ErrorMessage="Ingrese una fecha válida")]
@@ -18,11 +17,11 @@ namespace Entity
         [Required(ErrorMessage = "Se requiere la cantidad a ajustar")]
         public decimal Cantidad { get; set; }
         public string CodigoElemento { get; set; }
-        [Required(ErrorMessage = "Se requiere un tipo")]
-        [TipoValidacion(ErrorMessage = "Ingrese un tipo válido")]
-        public string Tipo { get; set; }
+        public string TipoAjuste { get; set; }
         [Required(ErrorMessage = "Se requiere una bodega")]
         public string NombreBodega { get; set; }
+        [Required(ErrorMessage = "Se requiere el tipo de elemento a ajustar")]
+        public string TipoElemento { get; set; }
     }
     public class TipoValidacion : ValidationAttribute
     {

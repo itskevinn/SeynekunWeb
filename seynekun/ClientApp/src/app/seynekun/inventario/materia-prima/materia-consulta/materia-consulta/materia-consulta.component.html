@@ -24,6 +24,7 @@
                 <tr>
                   <th>Fecha</th>
                   <th>Cantidad</th>
+                  <th>Nombre Productor</th>
                   <th>Unidad de Peso</th>
                   <th>Estado</th>
                   <th>Acción</th>
@@ -33,6 +34,7 @@
                 <tr *ngFor="let MateriaPrima of materiaPrimas; index as i ">
                   <td>{{MateriaPrima.fecha | date}}</td>
                   <td>{{MateriaPrima.cantidad}}</td>
+                  <td>{{MateriaPrima.nombreProductor}}</td>
                   <td>Kg</td>
                   <td>{{MateriaPrima.estadoMateria}}</td>
                   <td>

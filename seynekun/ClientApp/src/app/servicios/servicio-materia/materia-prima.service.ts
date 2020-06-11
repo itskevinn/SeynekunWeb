@@ -14,7 +14,7 @@ const httpOptions = {
 };
 @Injectable({
   providedIn: "root",
-})  
+})
 export class MateriaPrimaService {
   baseUrl: string;
   constructor(
@@ -37,12 +37,12 @@ export class MateriaPrimaService {
         )
       );
   }
- 
-  delete(ajusteInventario: MateriaPrima | string): Observable<string> {
+
+  delete(materiaPrima: MateriaPrima | string): Observable<string> {
     const id =
-      typeof ajusteInventario === "string"
-        ? ajusteInventario
-        : ajusteInventario.codigo;
+      typeof materiaPrima === "string"
+        ? materiaPrima
+        : materiaPrima.codigo;
     return this.http
       .delete<string>(this.baseUrl + "api/MateriaPrima/" + id)
       .pipe(
@@ -55,11 +55,11 @@ export class MateriaPrimaService {
         )
       );
   }
-  post(ajusteInventario: MateriaPrima): Observable<MateriaPrima> {
+  post(materiaPrima: MateriaPrima): Observable<MateriaPrima> {
     return this.http
       .post<MateriaPrima>(
         this.baseUrl + "api/MateriaPrima",
-        ajusteInventario
+        materiaPrima
       )
       .pipe(
         tap((_) => this.handleErrorService.logOk("Materia prima registrada con éxito")),
@@ -86,11 +86,11 @@ export class MateriaPrimaService {
 
   put(
     codigo: string,
-    ajusteInventario: MateriaPrima
+    materiaPrima: MateriaPrima
   ): Observable<MateriaPrima> {
     const url = `${this.baseUrl}api/MateriaPrima/${codigo}`;
     return this.http
-      .put<MateriaPrima>(url, ajusteInventario, httpOptions)
+      .put<MateriaPrima>(url, materiaPrima, httpOptions)
       .pipe(
         tap((_) => this.handleErrorService.logOk("Datos enviados")),
         catchError(

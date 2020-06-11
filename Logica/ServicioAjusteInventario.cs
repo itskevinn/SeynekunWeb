@@ -12,7 +12,7 @@ namespace Logica
         private ServicioProducto servicioProducto;
         public ServicioAjusteInventario(SeynekunContext context)
         {
-            _context = context;            
+            _context = context;
         }
         public GuardarAjusteInventarioResponse Guardar(AjusteInventario ajusteInventario)
         {
@@ -21,10 +21,9 @@ namespace Logica
                 var ajusteInventarioBuscado = _context.AjusteInventarios.Find(ajusteInventario.Codigo);
                 if (ajusteInventarioBuscado != null)
                 {
-                    return new GuardarAjusteInventarioResponse("!Ajuste de inventario ya registrado¡");
+                    return new GuardarAjusteInventarioResponse("¡Ajuste de inventario ya registrado!");
                 }
                 _context.AjusteInventarios.Add(ajusteInventario);
-                AjustarCantidad(ajusteInventario);
                 _context.SaveChanges();
                 return new GuardarAjusteInventarioResponse(ajusteInventario);
             }
@@ -32,12 +31,6 @@ namespace Logica
             {
                 return new GuardarAjusteInventarioResponse(e.Message);
             }
-        }
-        
-        public void AjustarCantidad(AjusteInventario ajuste)
-        {
-            servicioProducto = new ServicioProducto(_context);
-            servicioProducto.AjustarCantidad(ajuste);
         }
 
         public List<AjusteInventario> Consultar()
@@ -67,7 +60,7 @@ namespace Logica
                     ajusteInventarioViejo.Descipcion = ajusteInventarioNuevo.Descipcion;
                     ajusteInventarioViejo.Cantidad = ajusteInventarioNuevo.Cantidad;
                     ajusteInventarioViejo.CodigoElemento = ajusteInventarioNuevo.CodigoElemento;
-                    ajusteInventarioViejo.Tipo = ajusteInventarioNuevo.Tipo;
+                    ajusteInventarioViejo.TipoAjuste = ajusteInventarioNuevo.TipoAjuste;
                     ajusteInventarioViejo.NombreBodega = ajusteInventarioNuevo.NombreBodega;
                     _context.AjusteInventarios.Update(ajusteInventarioViejo);
                     _context.SaveChanges();
@@ -88,23 +81,23 @@ namespace Logica
         {
             return _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento && a.NombreBodega == nombreBodega);
         }
-  /*      public IEnumerable<AjusteInventario> ObtenerProductosDeMateria(decimal codigoMateriaPrima)
-        {
-            var ajustesSolicitadosxMateria = _context.AjusteInventarios.Where(a => a.CodigoMateriaPrima == codigoMateriaPrima);
-            IEnumerable<ProductoStock> productos;
-            ProductoStock producto;
-            foreach (var ajuste in ajustesSolicitadosxMateria)
-            {
-                producto = new ProductoStock();
-                producto.Producto = _context.Productos.Find(a => a.CodigoMateriaPrima == ajuste.CodigoMateriaPrima);
-                producto.Cantidad = SumarCantidadTotal(producto.Producto.Codigo);
-            }
-        }*/
+        /*      public IEnumerable<AjusteInventario> ObtenerProductosDeMateria(decimal codigoMateriaPrima)
+              {
+                  var ajustesSolicitadosxMateria = _context.AjusteInventarios.Where(a => a.CodigoMateriaPrima == codigoMateriaPrima);
+                  IEnumerable<ProductoStock> productos;
+                  ProductoStock producto;
+                  foreach (var ajuste in ajustesSolicitadosxMateria)
+                  {
+                      producto = new ProductoStock();
+                      producto.Producto = _context.Productos.Find(a => a.CodigoMateriaPrima == ajuste.CodigoMateriaPrima);
+                      producto.Cantidad = SumarCantidadTotal(producto.Producto.Codigo);
+                  }
+              }*/
         public decimal SumarCantidadTotal(string codigoElemento)
         {
             var ajustes = _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento);
-            var sumaIncremento = ajustes.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustes.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustes.Where(a => a.TipoAjuste == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustes.Where(a => a.TipoAjuste == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {
@@ -112,12 +105,12 @@ namespace Logica
             }
             return cantidad;
         }
-        
+
         public decimal SumarCantidad(string codigoElemento, string nombreBodega)
         {
             var ajustesSolicitadosxBodega = ObtenerAjustesxProductoyBodega(codigoElemento, nombreBodega);
-            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.TipoAjuste == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.TipoAjuste == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {

@@ -56,7 +56,7 @@ namespace Logica
                     ajusteInventarioViejo.Descipcion = ajusteInventarioNuevo.Descipcion;
                     ajusteInventarioViejo.Cantidad = ajusteInventarioNuevo.Cantidad;
                     ajusteInventarioViejo.CodigoElemento = ajusteInventarioNuevo.CodigoElemento;
-                    ajusteInventarioViejo.Tipo = ajusteInventarioNuevo.Tipo;
+                    ajusteInventarioViejo.TipoAjuste = ajusteInventarioNuevo.TipoAjuste;
                     ajusteInventarioViejo.NombreBodega = ajusteInventarioNuevo.NombreBodega;
                     _context.AjusteInventarios.Update(ajusteInventarioViejo);
                     _context.SaveChanges();
@@ -137,8 +137,8 @@ namespace Logica
         public decimal SumarCantidad(string codigoElemento)
         {
             var ajustes = _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento);
-            var sumaIncremento = ajustes.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustes.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustes.Where(a => a.TipoAjuste == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustes.Where(a => a.TipoAjuste == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {
@@ -149,8 +149,8 @@ namespace Logica
         public decimal SumarCantidadEnBodega(string codigoElemento, string nombreBodega)
         {
             var ajustesSolicitadosxBodega = ObtenerAjustesElementoBodega(codigoElemento, nombreBodega);
-            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Incremento").Sum(a => a.Cantidad);
-            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.Tipo == "Disminucion").Sum(a => a.Cantidad);
+            var sumaIncremento = ajustesSolicitadosxBodega.Where(a => a.TipoAjuste == "Incremento").Sum(a => a.Cantidad);
+            var sumaDisminucion = ajustesSolicitadosxBodega.Where(a => a.TipoAjuste == "Disminucion").Sum(a => a.Cantidad);
             var cantidad = sumaIncremento - sumaDisminucion;
             if (0 > cantidad)
             {

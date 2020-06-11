@@ -57,6 +57,7 @@ export class VentaRegistroComponent implements OnInit {
     this.ajusteInventario.fecha = new Date();
     this.ajusteInventario.codigo = '';
     this.ajusteInventario.descipcion = '';
+    this.ajusteInventario.tipoAjuste = '';
     this.ajusteInventario.cantidad = 0;
     this.ajusteInventario.nombreBodega = '';
 
@@ -65,7 +66,7 @@ export class VentaRegistroComponent implements OnInit {
       //tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
       codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
       fecha: [this.ajusteInventario.fecha, Validators.required],
-      tipo: [this.ajusteInventario.tipo, Validators.required],
+      tipoAjuste: [this.ajusteInventario.tipoAjuste, Validators.required],
       descipcion: [this.ajusteInventario.descipcion],
       cantidad: [this.ajusteInventario.cantidad, Validators.required],
       nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required]

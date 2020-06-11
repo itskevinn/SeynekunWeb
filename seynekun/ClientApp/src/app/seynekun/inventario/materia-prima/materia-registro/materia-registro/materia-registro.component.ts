@@ -1,13 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MateriaPrima } from "src/app/seynekun/models/modelo-materia-prima/materia-prima";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Producto } from "src/app/seynekun/models/modelo-producto/producto";
-import { ProductoService } from "src/app/servicios/servicio-producto/producto.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { AlertaModalErrorComponent } from "src/app/@base/alerta-modal-error/alerta-modal-error.component";
-import { AlertaModalOkComponent } from "src/app/@base/alerta-modal/alerta-modal.component";
 import { MateriaPrimaService } from "src/app/servicios/servicio-materia/materia-prima.service";
-import { HttpHeaders } from "@angular/common/http";
 import { Productor } from "src/app/seynekun/models/modelo-productor/productor";
 import { ProductorService } from "src/app/servicios/servicio-de-productor/productor.service";
 import {
@@ -52,29 +47,44 @@ export class MateriaRegistroComponent implements OnInit {
       this.productores = result;
     });
   }
-  cambiarIdentificacion(e) {
-
+  cortarCodigo(texto: string) {
+    var nombre = texto.split("-");
+    for (let i = 0; i < nombre.length; i++) {
+      console.log(nombre[0]);
+      return nombre[0];
+    }
   }
   crearFormulario() {
     this.materia.fecha = new Date();
     this.materia.codigo = "";
     this.materia.codigoProductor = "";
     this.materia.cantidad = null;
+    this.materia.nombreProductor = "";
     this.formGroup = this.formBuilder.group({
       fecha: [this.materia.fecha, Validators.required],
       codigo: [this.materia.codigo, Validators.required],
       codigoProductor: [this.materia.codigoProductor, Validators.required],
       cantidad: [this.materia.cantidad, Validators.required],
+      nombreProductor: [this.materia.nombreProductor, Validators.required]
     });
   }
   cambiarCodigo(e) {
     {
-      this.control.codigo.setValue(e.target.value, {
+      this.control.codigoProductor.setValue(this.cortarCodigo(e.target.value), {
+        onlySelf: true,
+      });
+      this.control.nombreProductor.setValue(this.cortarNombre(e.target.value), {
         onlySelf: true,
       });
     }
   }
-
+  cortarNombre(texto: string) {
+    var nombre = texto.split(" - ");
+    for (let i = 0; i < nombre.length; i++) {
+      console.log(nombre[1]);
+      return nombre[1];
+    }
+  }
   onSubmit() {
     this.registrar();
   }
