@@ -13,6 +13,8 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { Cliente } from 'src/app/seynekun/models/modelo-cliente/cliente';
 import { ClienteService } from 'src/app/servicios/servicio-de-cliente/cliente.service';
 import { DetalleVenta } from 'src/app/seynekun/models/modelo-detalle-venta/detalle-venta';
+import { ProductoEnBodega } from 'src/app/seynekun/models/modelo-producto-bodega/producto-en-bodega';
+import { ProductStockService } from 'src/app/servicios/servicio-producto-stock/producto-stock.service';
 
 @Component({
   selector: 'app-venta-registro',
@@ -22,8 +24,13 @@ import { DetalleVenta } from 'src/app/seynekun/models/modelo-detalle-venta/detal
 export class VentaRegistroComponent implements OnInit {
   venta: Venta;
   cliente: Cliente;
-  encontrado: Boolean
+  productoEnBodegas: ProductoEnBodega[] = [];
   detalles: DetalleVenta[] = [];
+  nombreBodegaSeleccionada: string;
+  textoABuscar: string;
+  textoCantidad: string;
+  totalTemp: Number = 0;
+
   detalle: DetalleVenta;
   ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
@@ -40,6 +47,7 @@ export class VentaRegistroComponent implements OnInit {
   constructor(
     private ajusteInventarioService: AjusteInventarioService,
     private ventaService: VentaService,
+    private productoStockService: ProductStockService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private productoService: ProductoService,
@@ -56,7 +64,6 @@ export class VentaRegistroComponent implements OnInit {
     this.venta = new Venta;
     this.ajusteInventario = new AjusteDeInventario();
     this.obtenerBodegas();
-    this.obtenerProductos();
     this.crearFormulario();
     this.formularioVenta();
     this.localeService.use("es");
@@ -90,59 +97,45 @@ export class VentaRegistroComponent implements OnInit {
     this.venta.clienteId = ''
     this.venta.fecha = new Date()
     this.venta.observacion = ''
-    this.venta.totalVenta = 0
-
+    this.venta.totalVenta = null
+    this.venta.detallesVentas = null
     this.formGroupVenta = this.formBuilder.group({
       codigoVenta: [this.venta.codigoVenta,Validators.required],
       clienteId: [this.venta.clienteId,Validators.required],
       fecha: [this.venta.fecha,Validators.required],
       observacion: [this.venta.observacion,Validators.required],
-      totalVenta: [this.venta.totalVenta,Validators.required]
+      totalVenta: [this.venta.totalVenta,Validators.required],
+      detallesVentas: [this.venta.detallesVentas,Validators.required]
     });
   }
 
-  /* @ViewChild(BsDatepickerDirective, { static: false })
-  datepicker: BsDatepickerDirective;
-
-  @HostListener("window:scroll")
-  onScrollEvent() {
-    this.datepicker.hide();
-  }*/
-
-  obtenerBodegas() {
+  obtenerBodegas(){
     this.bodegaService.gets().subscribe((result) => {
       this.bodegas = result;
     });
   }
-  obtenerProductos() {
-    this.productoService.gets().subscribe((result) => {
-      this.productos = result;
+  cambiarBodega(e){
+    this.nombreBodegaSeleccionada = e.target.value;
+    this.obtenerProductosEnBodega();
+  }
+  private obtenerProductosEnBodega(){
+    this.productoStockService.get(this.nombreBodegaSeleccionada).subscribe((result) => {
+      this.productoEnBodegas = result;
     });
   }
-  /*  obtenerInsumos() {
-    this.insumoService.gets().subscribe((result) => {
-      this.insumos = result;
-    });
-  }*/
 
-  cambiarBodega(e) {
-    this.control.nombreBodega.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-  cambiarTipo(e) {
-    this.control.tipo.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-  cambiarCodigo(e) {
-    this.control.codigoElemento.setValue(this.cortarCodigo(e.target.value), {
-      onlySelf: true,
-    });
-  }
-  cortarCodigo(codigo: string[]) {
-    for (let i = 0; i < codigo.length; i++) {
-      return codigo[0];
+  agregarDetalle(productoSeleccionado: ProductoEnBodega){
+    if(this.textoCantidad != ""){
+      this.detalle = new DetalleVenta;
+      this.detalle.codigoDetalle = String(this.detalles.length);
+      this.detalle.codigoVenta = this.controlVenta.codigoVenta.value;
+      this.detalle.codigoProducto = productoSeleccionado.producto.codigo;
+      this.detalle.cantidadProducto = Number(this.textoCantidad);
+      this.detalle.totalDetalle = this.detalle.cantidadProducto * productoSeleccionado.producto.precio;
+      console.log(this.detalle.totalDetalle);
+      this.detalles.push(this.detalle);
+      this.controlVenta.detallesVentas.setValue(this.detalles);
+      this.calcularTotal();
     }
   }
 
@@ -152,15 +145,6 @@ export class VentaRegistroComponent implements OnInit {
 
   get controlVenta() {
     return this.formGroupVenta.controls;
-  }
-
-
-  onSubmit() {
-    if (this.formGroup.invalid) {
-      console.log(this.control.codigoAjuste);
-    } else {
-      this.registrar();
-    }
   }
 
   buscarCliente(){
@@ -174,40 +158,26 @@ export class VentaRegistroComponent implements OnInit {
     });
   }
 
-  generarDetalle(){
-    this.detalle = new DetalleVenta;
-    this.detalle.codigoDetalle = "123";
-    this.detalle.codigoVenta = this.venta.codigoVenta;
-    this.detalle.codigoProducto = this.producto.codigo;
-    this.detalle.total = 10999;
-    this.detalle.cantidadProducto = 9;
-    this.detalles.push(this.detalle);
+  calcularTotal(){
+    this.venta.totalVenta = 0;
+    for(let dett of this.detalles){
+      this.venta.totalVenta += dett.totalDetalle;
+    }
+    this.controlVenta.totalVenta.setValue(this.venta.totalVenta);
   }
-
-  registrarVenta(){
-    this.venta = new Venta();
-    this.venta.codigoVenta = "11111";
+  onSubmit() {
+    if (this.formGroupVenta.invalid) {
+    } else {
+      this.registrar();
+    }
+  }
+  registrar(){
+    this.venta = this.formGroupVenta.value;
     this.venta.clienteId = this.cliente.identificacion;
-    this.venta.fecha = new Date();
-    this.venta.observacion = "Probando";
-    this.venta.totalVenta = 10999;
-    this.generarDetalle();
-    console.log(this.cliente);
-    console.log(this.producto);
-    
-    this.venta.detallesVentas = this.detalles;
-    this.ventaService.post(this.venta).subscribe((e) => {
-      this.venta = e;
-    });
-    console.log(this.venta);
-  }
-
-  registrar() {
-    this.ajusteInventario = this.formGroup.value;
-    this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
-      if (e != null) {
-        this.ajusteInventario = e;
-        this.formGroup.reset();
+    this.ventaService.post(this.venta).subscribe((v) => {
+      if (v != null) {
+        this.venta = v;
+        this.formGroupVenta.reset();
       }
     });
   }
