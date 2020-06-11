@@ -4,8 +4,7 @@ import { Cliente } from "../modelo-cliente/cliente"
 export class DetalleVenta {
     codigoDetalle: string
     codigoVenta: string
-    cliente: Cliente
-    producto: Producto
+    codigoProducto: string
     cantidadProducto: number
     total: number
 }

@@ -25,6 +25,10 @@ namespace Logica
                     return new GuardarVentaResponse("!Venta ya registrada!");
                 }
                 _context.Ventas.Add(venta);
+                foreach (var item in venta.DetallesVentas)
+                {
+                    _context.DetallesVentas.Add(item);
+                }
                 _context.SaveChanges();
                 return new GuardarVentaResponse(venta);
             }
@@ -33,18 +37,19 @@ namespace Logica
                 return new GuardarVentaResponse(e.Message);
             }
         }
-
-        private void GuardarDetalles(Venta venta)
+        private DetalleVenta GuardarDetalles(Venta venta)
         {
+            //System.Console.WriteLine("Sin errores");
             var detalles = venta.DetallesVentas;
-            if(detalles != null)
-            {
-                ServicioDetalleVenta servicioDetalle = new ServicioDetalleVenta(_context);
+            DetalleVenta detail = new DetalleVenta();
+           
+                //ServicioDetalleVenta servicioDetalle = new ServicioDetalleVenta(_context);
                 foreach (var item in detalles)
                 {
-                    servicioDetalle.Guardar(item);
+                    detail = item;
+                    //servicioDetalle.Guardar(item);
                 }
-            }
+            return detail;
         }
 
         public ConsultarVentaResponse Consultar()
