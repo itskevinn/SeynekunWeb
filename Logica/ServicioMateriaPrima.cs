@@ -51,7 +51,7 @@ namespace Logica
             List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.Where(m => m.CodigoProductor == codigo).ToList();
             return MateriasPrimas;
         }
-        public BuscarMateriaPrimaxIdResponse BuscarxId(decimal codigo)
+        public BuscarMateriaPrimaxIdResponse BuscarxId(string codigo)
         {
             var materiaPrima = _context.MateriasPrimas.Find(codigo);
             if (materiaPrima != null)
@@ -85,7 +85,7 @@ namespace Logica
                 return $"Error de la Aplicación: {e.Message}";
             }
         }
-        public string Eliminar(decimal codigo)
+        public string Eliminar(string codigo)
         {
             try
             {

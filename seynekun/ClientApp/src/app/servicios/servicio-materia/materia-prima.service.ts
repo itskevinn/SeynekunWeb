@@ -83,6 +83,18 @@ export class MateriaPrimaService {
         )
       );
   }
+  getInfo(codigo: string): Observable<MateriaPrima> {
+    const url = `${this.baseUrl + "api/MateriaPrimaProductor"}/${codigo}`;
+    return this.http.get<MateriaPrima>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<MateriaPrima>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
   get(codigo: string): Observable<MateriaPrima[]> {
     const url = `${this.baseUrl + "api/MateriaPrima"}/${codigo}`;
     return this.http.get<MateriaPrima[]>(url, httpOptions).pipe(

@@ -67,6 +67,7 @@ import { MateriaConsultaComponent } from './seynekun/inventario/materia-prima/ma
 import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/materia-edicion/materia-edicion/materia-edicion.component'
 import { MateriaVistaComponent } from './seynekun/inventario/materia-prima/materia-vista/materia-vista/materia-vista.component'
 import { MateriaPrimaProductorComponent } from './seynekun/inventario/materia-prima/materia-prima-productor/materia-prima-productor.component'
+import { MateriaPrimaProductorVistaComponent } from './seynekun/inventario/materia-prima/materia-prima-productor/materia-prima-productor-vista/materia-prima-productor-vista.component'
 
 const routes: Routes = [
   {
@@ -149,7 +150,8 @@ const routes: Routes = [
   { path: 'RegistroMateriaPrima', component: MateriaRegistroComponent },
   { path: 'EditarMateriaPrima/:id', component: MateriaEdicionComponent },
   { path: 'MateriaPrima/:id', component: MateriaVistaComponent },
-  { path: 'ConsultarMateria/:id', component: MateriaPrimaProductorComponent }
+  { path: 'ConsultarMateria/:id', component: MateriaPrimaProductorComponent },
+  { path: 'ProductorMateriaPrima/:id', component: MateriaPrimaProductorVistaComponent }
 ]
 
 @NgModule({

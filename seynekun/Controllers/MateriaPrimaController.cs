@@ -64,7 +64,7 @@ namespace seynekun.Controllers
         }
         
         [HttpPut("{codigo}")]
-        public ActionResult<string> Put(MateriaPrima materiaPrima, decimal codigo)
+        public ActionResult<string> Put(MateriaPrima materiaPrima, string codigo)
         {
             var id = materiaService.BuscarxId(codigo);
             if (id == null)
@@ -78,7 +78,7 @@ namespace seynekun.Controllers
             }
         }
         [HttpDelete("{codigo}")]
-        public ActionResult<string> Delete(decimal codigo)
+        public ActionResult<string> Delete(string codigo)
         {
             var id = materiaService.BuscarxId(codigo);
             if (id == null)
