@@ -23,9 +23,8 @@ export class MateriaPrimaProductorComponent implements OnInit {
     this.productorService.get(id).subscribe((result) => {
       this.productor = result;
     })
-    this.materiaPrimaService.gets().subscribe((result) => {
+    this.materiaPrimaService.get(id).subscribe((result) => {
       this.materiaPrimas = result;
     });
-    this
   }
 }

@@ -23,18 +23,20 @@
               <thead>
                 <tr>
                   <th>Fecha</th>
-                  <th>Cliente id</th>
+                  <th>Cliente ID</th>
                   <th>Observacion</th>
                   <th>Total venta</th>
+                  <th>Empleado Responsable ID</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let venta of ventas|filtroBodega:textoABuscar; index as i ">
-                  <td>{{venta.fecha}}</td>
-                  <td>{{venta.cliente.identificacion}}</td>
+                  <td>{{venta.fecha | date}}</td>
+                  <td>{{venta.clienteId}}</td>
                   <td>{{venta.observacion}}</td>
                   <td>{{venta.totalVenta}}</td>
+                  <td>{{venta.empleadoId}}</td>
                   <td>
                     <a routerLink='#'>Ver</a>
                   </td>

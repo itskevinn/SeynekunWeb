@@ -47,6 +47,18 @@ export class VentaService {
       )
     );
   }
+  getCantidadDiaria(): Observable<number> {
+    const url = `${this.baseUrl + "api/VentaDiaria"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Suma cantidad diaria",
+          null
+        )
+      )
+    );
+  }
 
   post(venta: Venta): Observable<Venta> {
     return this.http.post<Venta>(this.baseUrl + "api/Venta", venta).pipe(

@@ -9,9 +9,9 @@ import { VentaService } from 'src/app/servicios/servicio-venta/venta.service';
 })
 export class VentaConsultaComponent implements OnInit {
   ventas: Venta[];
-  listaVacia: Boolean = true;  
+  listaVacia: Boolean = true;
   textoABuscar: String;
-  
+
   constructor(private ventaService: VentaService) { }
 
   ngOnInit(): void {

@@ -17,6 +17,7 @@ import { ProductoEnBodega } from 'src/app/seynekun/models/modelo-producto-bodega
 import { ProductStockService } from 'src/app/servicios/servicio-producto-stock/producto-stock.service';
 import { EmpleadoService } from 'src/app/servicios/servicio-de-empleado/empleado.service';
 import { Empleado } from 'src/app/seynekun/models/modelo-empleado/empleado';
+import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component';
 
 @Component({
   selector: 'app-venta-registro',
@@ -71,7 +72,7 @@ export class VentaRegistroComponent implements OnInit {
     this.localeService.use("es");
   }
 
-  formularioVenta(){
+  formularioVenta() {
     this.venta.codigoVenta = ''
     this.venta.clienteId = ''
     this.venta.empleadoId = ''
@@ -80,43 +81,43 @@ export class VentaRegistroComponent implements OnInit {
     this.venta.totalVenta = null
     this.venta.detallesVentas = null
     this.formGroupVenta = this.formBuilder.group({
-      codigoVenta: [this.venta.codigoVenta,Validators.required],
-      clienteId: [this.venta.clienteId,Validators.required],
-      fecha: [this.venta.fecha,Validators.required],
-      observacion: [this.venta.observacion,Validators.required],
-      totalVenta: [this.venta.totalVenta,Validators.required],
-      detallesVentas: [this.venta.detallesVentas,Validators.required],
-      empleadoId: [this.venta.empleadoId,Validators.required]
+      codigoVenta: [this.venta.codigoVenta, Validators.required],
+      clienteId: [this.venta.clienteId, Validators.required],
+      fecha: [this.venta.fecha, Validators.required],
+      observacion: [this.venta.observacion, Validators.required],
+      totalVenta: [this.venta.totalVenta, Validators.required],
+      detallesVentas: [this.venta.detallesVentas, Validators.required],
+      empleadoId: [this.venta.empleadoId, Validators.required]
     });
   }
 
-  obtenerEmpleados(){
+  obtenerEmpleados() {
     this.empleadoService.gets().subscribe((result) => {
       this.empleados = result;
     });
   }
-  cambiarEmpleado(e){
+  cambiarEmpleado(e) {
     this.controlVenta.empleadoId.setValue(e.target.value, {
       onlySelf: true,
     });
   }
-  obtenerBodegas(){
+  obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
       this.bodegas = result;
     });
   }
-  cambiarBodega(e){
+  cambiarBodega(e) {
     this.nombreBodegaSeleccionada = e.target.value;
     this.obtenerProductosEnBodega();
   }
-  private obtenerProductosEnBodega(){
+  private obtenerProductosEnBodega() {
     this.productoStockService.get(this.nombreBodegaSeleccionada).subscribe((result) => {
       this.productoEnBodegas = result;
     });
   }
 
-  agregarDetalle(productoSeleccionado: ProductoEnBodega){
-    if(this.textoCantidad != ""){
+  agregarDetalle(productoSeleccionado: ProductoEnBodega) {
+    if (this.textoCantidad != "") {
       this.detalle = new DetalleVenta;
       this.detalle.codigoDetalle = String(this.detalles.length) + this.controlVenta.codigoVenta.value;
       this.detalle.codigoVenta = this.controlVenta.codigoVenta.value;
@@ -129,6 +130,10 @@ export class VentaRegistroComponent implements OnInit {
       this.controlVenta.detallesVentas.setValue(this.detalles);
       this.calcularTotal();
     }
+    else {
+      const modalRef = this.modalService.open(AlertaModalErrorComponent);
+      modalRef.componentInstance.titulo = 'Por favor, digite una cantidad';
+    }
   }
 
   get control() {
@@ -139,20 +144,20 @@ export class VentaRegistroComponent implements OnInit {
     return this.formGroupVenta.controls;
   }
 
-  buscarCliente(){
+  buscarCliente() {
     const id = this.controlVenta.clienteId.value;
     this.clienteService.get(id).subscribe((result) => {
-      if(result != null){
+      if (result != null) {
         this.cliente = result;
-        const fullName = result.nombre+" "+result.apellido;
+        const fullName = result.nombre + " " + result.apellido;
         this.controlVenta.clienteId.setValue(fullName);
       }
     });
   }
 
-  calcularTotal(){
+  calcularTotal() {
     this.venta.totalVenta = 0;
-    for(let dett of this.detalles){
+    for (let dett of this.detalles) {
       this.venta.totalVenta += dett.totalDetalle;
     }
     this.controlVenta.totalVenta.setValue(this.venta.totalVenta);
@@ -163,7 +168,7 @@ export class VentaRegistroComponent implements OnInit {
       this.registrar();
     }
   }
-  registrar(){
+  registrar() {
     this.venta = this.formGroupVenta.value;
     this.venta.clienteId = this.cliente.identificacion;
     this.ventaService.post(this.venta).subscribe((v) => {

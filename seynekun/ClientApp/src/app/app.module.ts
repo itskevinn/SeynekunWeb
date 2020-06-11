@@ -103,6 +103,7 @@ import { VentaVistaComponent } from './seynekun/ventas/venta/venta-vista/venta-v
 import { MateriaPrimaProductorComponent } from './seynekun/inventario/materia-prima/materia-prima-productor/materia-prima-productor.component';
 import { ProductosMateriaProductorComponent } from './seynekun/inventario/materia-prima/productos-materia-productor/productos-materia-productor.component';
 import { MateriaPrimaProductorVistaComponent } from './seynekun/inventario/materia-prima/materia-prima-productor/materia-prima-productor-vista/materia-prima-productor-vista.component';
+import { AvisoModalComponent } from './@base/alerta-aviso-modal/aviso-modal/aviso-modal.component';
 
 @NgModule({
   declarations: [
@@ -188,6 +189,7 @@ import { MateriaPrimaProductorVistaComponent } from './seynekun/inventario/mater
     MateriaPrimaProductorComponent,
     ProductosMateriaProductorComponent,
     MateriaPrimaProductorVistaComponent,
+    AvisoModalComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

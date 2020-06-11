@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entity
 {
-    //"Server=tcp:seynekun.database.windows.net,1433;Initial Catalog=Seynekun;Persist Security Info=False;User ID=adminn;Password=Kevin.2!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    
     public class AjusteInventario
     {
         [Key]

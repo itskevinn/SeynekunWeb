@@ -29,7 +29,7 @@ namespace Logica
                 {
                     _context.DetallesVentas.Add(item);
                 }
-                 GuardarAjustes(venta);
+                GuardarAjustes(venta);
                 _context.SaveChanges();
                 return new GuardarVentaResponse(venta);
             }
@@ -38,7 +38,10 @@ namespace Logica
                 return new GuardarVentaResponse(e.Message);
             }
         }
-
+        public decimal SumarCantidadTotalDiaria()
+        {
+            return _context.Ventas.Where(p => p.Fecha.Day == DateTime.Now.Day && p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.TotalVenta);
+        }
         private void GuardarAjustes(Venta venta)
         {
             AjusteInventario ajuste;
@@ -46,7 +49,7 @@ namespace Logica
             ServicioAjusteInventario servicio = new ServicioAjusteInventario(_context);
             foreach (var item in venta.DetallesVentas)
             {
-                ajuste= new AjusteInventario();
+                ajuste = new AjusteInventario();
                 cont++;
                 ajuste.Codigo = Convert.ToString(cont) + venta.CodigoVenta;
                 ajuste.CodigoMateriaPrima = item.CodigoProducto;
@@ -79,7 +82,7 @@ namespace Logica
             try
             {
                 var venta = _context.Ventas.Find(codigo);
-                if( venta != null)
+                if (venta != null)
                 {
                     return new BuscarVentaResponse(venta);
                 }
