@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Datos;
 using Entity;
-using Logica;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Logica;
 using static seynekun.Models.VentaModel;
 
 namespace seynekun.Controllers

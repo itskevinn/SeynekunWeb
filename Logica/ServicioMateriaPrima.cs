@@ -41,6 +41,11 @@ namespace Logica
             List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.ToList();
             return MateriasPrimas;
         }
+        public List<MateriaPrima> ConsultarxProductor(string codigo)
+        {
+            List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.Where(m => m.CodigoProductor == codigo).ToList();
+            return MateriasPrimas;
+        }
         public BuscarMateriaPrimaxIdResponse BuscarxId(decimal codigo)
         {
             var materiaPrima = _context.MateriasPrimas.Find(codigo);

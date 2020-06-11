@@ -66,6 +66,7 @@ import { MateriaRegistroComponent } from './seynekun/inventario/materia-prima/ma
 import { MateriaConsultaComponent } from './seynekun/inventario/materia-prima/materia-consulta/materia-consulta/materia-consulta.component'
 import { MateriaEdicionComponent } from './seynekun/inventario/materia-prima/materia-edicion/materia-edicion/materia-edicion.component'
 import { MateriaVistaComponent } from './seynekun/inventario/materia-prima/materia-vista/materia-vista/materia-vista.component'
+import { MateriaPrimaProductorComponent } from './seynekun/inventario/materia-prima/materia-prima-productor/materia-prima-productor.component'
 
 const routes: Routes = [
   {
@@ -120,20 +121,20 @@ const routes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'RegistrarVehiculo', component: VehiculoRegistroComponent },
   { path: 'Vehiculos', component: VehiculoConsultaComponent },
-  { path: 'Vehiculo/:id', component: VehiculoVistaComponent},
-  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent},
-  { path: 'RegistrarTransportador', component: TransportadorRegistroComponent},
-  { path: 'Transportadores', component: TransportadorConsultaComponent},
-  { path: 'Transportador/:id', component: TransportadorVistaComponent},
-  { path: 'EditarTransportador/:id', component: TransportadorEdicionComponent},
-  { path: 'RegistrarTraslado', component: TrasladosRegistroComponent},
-  { path: 'Traslados', component: TrasladosConsultaComponent},
-  { path: 'Traslado/:id', component: TrasladosVistaComponent},
-  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent},
-  { path: 'RegistrarVenta', component: VentaRegistroComponent},
-  { path: 'Ventas', component: VentaConsultaComponent},
-  { path: 'Venta/:id', component: VentaVistaComponent},
-  { path: 'EditarVenta/:id', component: VentaEdicionComponent},
+  { path: 'Vehiculo/:id', component: VehiculoVistaComponent },
+  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent },
+  { path: 'RegistrarTransportador', component: TransportadorRegistroComponent },
+  { path: 'Transportadores', component: TransportadorConsultaComponent },
+  { path: 'Transportador/:id', component: TransportadorVistaComponent },
+  { path: 'EditarTransportador/:id', component: TransportadorEdicionComponent },
+  { path: 'RegistrarTraslado', component: TrasladosRegistroComponent },
+  { path: 'Traslados', component: TrasladosConsultaComponent },
+  { path: 'Traslado/:id', component: TrasladosVistaComponent },
+  { path: 'EditarTraslado/:id', component: TrasladosEdicionComponent },
+  { path: 'RegistrarVenta', component: VentaRegistroComponent },
+  { path: 'Ventas', component: VentaConsultaComponent },
+  { path: 'Venta/:id', component: VentaVistaComponent },
+  { path: 'EditarVenta/:id', component: VentaEdicionComponent },
   { path: 'Vehiculo/:id', component: VehiculoVistaComponent },
   { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent },
   { path: 'RegistrarTransportador', component: TransportadorRegistroComponent },
@@ -147,7 +148,8 @@ const routes: Routes = [
   { path: 'MateriasPrima', component: MateriaConsultaComponent },
   { path: 'RegistroMateriaPrima', component: MateriaRegistroComponent },
   { path: 'EditarMateriaPrima/:id', component: MateriaEdicionComponent },
-  { path: 'MateriaPrima/:id', component: MateriaVistaComponent }
+  { path: 'MateriaPrima/:id', component: MateriaVistaComponent },
+  { path: 'ConsultarMateria/:id', component: MateriaPrimaProductorComponent }
 ]
 
 @NgModule({
