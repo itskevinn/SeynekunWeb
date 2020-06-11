@@ -41,6 +41,22 @@ namespace Logica
             List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.ToList();
             return MateriasPrimas;
         }
+        public decimal SumarCantidadTotalMensual()
+        {
+            return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.Cantidad);
+        }
+        public decimal SumarCantidadxProductorMensual(string codigo)
+        {
+            return _context.MateriasPrimas.Where(p => p.CodigoProductor == codigo && p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.Cantidad);
+        }
+        public decimal SumarCantidadTotalDiaria()
+        {
+            return _context.MateriasPrimas.Where(p => p.Fecha.Day == DateTime.Now.Day && p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.Cantidad);
+        }
+        public decimal SumarCantidadxProductorDiaria(string codigo)
+        {
+            return _context.MateriasPrimas.Where(p => p.CodigoProductor == codigo && p.Fecha.Day == DateTime.Now.Day && p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.Cantidad);
+        }
         public List<MateriaPrima> ConsultarDisponibles()
         {
             List<MateriaPrima> materiaPrimas = _context.MateriasPrimas.Where(m => m.EstadoMateria == "Pendiente").ToList();

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
+import { ProductoEnBodega } from 'src/app/seynekun/models/modelo-producto-bodega/producto-en-bodega';
 const httpOptionsPut = {
   headers: new HttpHeaders({ "Content-Type": "application/json" }),
   responseType: "text",
@@ -108,6 +109,66 @@ export class MateriaPrimaService {
     );
   }
 
+  getProductos(codigo: string): Observable<ProductoEnBodega[]> {
+    const url = `${this.baseUrl + "api/ProductoMateriaPrima"}/${codigo}`;
+    return this.http.get<ProductoEnBodega[]>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<ProductoEnBodega[]>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadDiariaProductor(codigo: string): Observable<number> {
+    const url = `${this.baseUrl + "api/MateriaPrimaCantidadDiaria"}/${codigo}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadDiaria(): Observable<number> {
+    const url = `${this.baseUrl + "api/MateriaPrimaCantidadDiaria"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadMensualProductor(codigo: string): Observable<number> {
+    const url = `${this.baseUrl + "api/MateriaPrimaCantidadMensual"}/${codigo}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadMensual(): Observable<number> {
+    const url = `${this.baseUrl + "api/MateriaPrimaCantidadMensual"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
   put(
     codigo: string,
     materiaPrima: MateriaPrima

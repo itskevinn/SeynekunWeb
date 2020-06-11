@@ -18,7 +18,10 @@ export class HomeComponent {
   materiaPrimaProductor: MateriaPrima[];
   cantidadProcesada: number = 20;
   materiaPrimaProductorTraida: boolean;
-  sumaMateriaPrima: number;
+  sumaMateriaMensualGeneral: number;
+  sumaMateriaDiariaGeneral: number;
+  sumaMateriaDiariaProductor: number;
+  sumaMateriaMensualProductor: number;
   productosAdmin: Producto[];
   usuario: Usuario;
   bodegasTraidas: boolean;
@@ -35,6 +38,9 @@ export class HomeComponent {
     this.obtenerBodegas();
     this.obtenerProductos();
     this.obtenerMateriaPrima();
+    this.obtenerSumaMateriaPrimaProductorMensual();
+    this.obtenerSumaMateriaPrimaGeneralDiaria();
+    this.obtenerSumaMateriaPrimaGeneralMensual();
   }
   obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
@@ -48,7 +54,26 @@ export class HomeComponent {
       this.materiaPrimaProductorTraida = true;
     })
   }
-
+  obtenerSumaMateriaPrimaGeneralMensual() {
+    this.materiaPrimaService.getCantidadMensual().subscribe((result) => {
+      this.sumaMateriaMensualGeneral = result;
+    })
+  }
+  obtenerSumaMateriaPrimaGeneralDiaria() {
+    this.materiaPrimaService.getCantidadDiaria().subscribe((result) => {
+      this.sumaMateriaDiariaGeneral = result;
+    })
+  }
+  obtenerSumaMateriaPrimaProductorMensual() {
+    this.materiaPrimaService.getCantidadMensualProductor(this.usuario.id).subscribe((result) => {
+      this.sumaMateriaMensualProductor = result;
+    })
+  }
+  obtenerSumaMateriaPrimaProductorDiaria() {
+    this.materiaPrimaService.getCantidadDiariaProductor(this.usuario.id).subscribe((result) => {
+      this.sumaMateriaDiariaProductor = result;
+    })
+  }
   obtenerProductos() {
     this.productoService.gets().subscribe((result) => {
       this.productosAdmin = result;

@@ -12,6 +12,7 @@ import { MateriaPrimaService } from 'src/app/servicios/servicio-materia/materia-
 })
 export class MateriaPrimaProductorVistaComponent implements OnInit {
   usuario: Usuario;
+  seEncontro: boolean;
   ingreso = false;
   materia: MateriaPrima;
   primerIngreso: number;
@@ -28,6 +29,7 @@ export class MateriaPrimaProductorVistaComponent implements OnInit {
     const nombre = this.rutaActiva.snapshot.params.id;
     this.materiaService.getInfo(nombre).subscribe((result) => {
       this.materia = result;
+      this.seEncontro = true;
     });
   }
 

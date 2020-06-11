@@ -9,7 +9,7 @@ import { Producto } from 'src/app/seynekun/models/modelo-producto/producto';
 })
 export class ProductoConsultaComponent implements OnInit {
 
-  productos: Producto[];  
+  productos: Producto[];
   listaVacia: Boolean = true;
   cantidadEmpleados: Number;
   textoABuscar: String;
@@ -19,5 +19,5 @@ export class ProductoConsultaComponent implements OnInit {
     this.productoService.gets().subscribe((result) => {
       this.productos = result;
     });
-  } 
+  }
 }
