@@ -10,7 +10,7 @@
         <div class="col-sm-12 col-md-6">
           <div class="text-right separarAbajo">
             <button [routerLink]="['/RegistrarAjusteInventario']" type="button" class="btn btn-labeled btn-success">
-              <span class="btn-label"><i class="fas fa-plus"></i></span>Crear ajuste</button>
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Crear ajuste</button>
           </div>
         </div>
         <hr>
@@ -21,7 +21,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
               aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
-                <tr>                            
+                <tr>
                   <th>Fecha</th>
                   <th>Bodega</th>
                   <th>Tipo de elemento</th>
@@ -31,7 +31,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let ajusteInvetario of ajusteInventarios|filtroAjusteInventario:textoABuscar; index as i ">                  
+                <tr *ngFor="let ajusteInvetario of ajusteInventarios|filtroAjusteInventario:textoABuscar; index as i ">
                   <td>{{ajusteInvetario.fecha | date}}</td>
                   <td>{{ajusteInvetario.nombreBodega}}</td>
                   <td>{{ajusteInvetario.tipoElemento}}</td>

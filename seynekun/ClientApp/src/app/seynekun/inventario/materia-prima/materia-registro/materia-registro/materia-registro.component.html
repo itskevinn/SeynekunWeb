@@ -26,11 +26,10 @@
               </div>
             </div>
             <div class="form-group">
-              <select class="form-dropdown border-verde" (change)="cambiarIdentificacion($event)">
+              <select class="form-dropdown border-verde" (change)="cambiarCodigo($event)">
                 <option [ngValue]="null">Productor</option>
                 <option [ngValue]="productor" *ngFor="let productor of productores">
-                  {{productor.identificacion}} -
-                  {{productor.nombre}} {{productor.apellido}}
+                  {{productor.identificacion}} - {{productor.nombre}} {{productor.apellido}}
                 </option>
               </select>
             </div>
@@ -54,4 +53,3 @@
     </div>
   </section>
 </div>
--->

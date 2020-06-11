@@ -10,8 +10,9 @@ namespace seynekun.Models
          public DateTime Fecha { get; set; }
          public string Descipcion { get; set; }
          public decimal Cantidad { get; set; }
+         public string TipoElemento { get; set; }
          public string CodigoElemento { get; set; }
-         public string Tipo { get; set; }
+         public string TipoAjuste { get; set; }
          public string CodigoMateriaPrima { get; set; }
          public string NombreBodega { get; set; }
         }
@@ -26,7 +27,8 @@ namespace seynekun.Models
                 Cantidad = ajusteInventario.Cantidad;
                 CodigoMateriaPrima = ajusteInventario.CodigoMateriaPrima;
                 CodigoElemento = ajusteInventario.CodigoElemento;
-                Tipo = ajusteInventario.Tipo;
+                TipoAjuste = ajusteInventario.TipoAjuste;
+                TipoElemento = ajusteInventario.TipoElemento;
                 NombreBodega = ajusteInventario.NombreBodega;
             }
         }   

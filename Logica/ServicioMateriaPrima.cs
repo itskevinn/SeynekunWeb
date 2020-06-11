@@ -8,19 +8,24 @@ namespace Logica
     public class ServicioMateriaPrima
     {
 
-        private readonly SeynekunContext _context;                    
+        private readonly SeynekunContext _context;
         public ServicioMateriaPrima(SeynekunContext context)
         {
-            _context = context;                      
+            _context = context;
         }
         public GuardarMateriaPrimaResponse Guardar(MateriaPrima materiaPrima)
         {
             try
             {
                 var materiaPrimaBuscado = _context.MateriasPrimas.Find(materiaPrima.Codigo);
+                var productor = _context.Productores.Find(materiaPrima.CodigoProductor);
                 if (materiaPrimaBuscado != null)
                 {
-                    return new GuardarMateriaPrimaResponse("Imposible añadir este ajuste, código duplicado");
+                    if (productor == null)
+                    {
+                        return new GuardarMateriaPrimaResponse("Este productor no existe");
+                    }
+                    return new GuardarMateriaPrimaResponse("Imposible añadir este registro, código duplicado");
                 }
                 _context.MateriasPrimas.Add(materiaPrima);
                 _context.SaveChanges();
@@ -30,7 +35,7 @@ namespace Logica
             {
                 return new GuardarMateriaPrimaResponse(e.Message);
             }
-        }        
+        }
         public List<MateriaPrima> Consultar()
         {
             List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.ToList();
@@ -43,7 +48,7 @@ namespace Logica
             {
                 return new BuscarMateriaPrimaxIdResponse(materiaPrima);
             }
-            return new BuscarMateriaPrimaxIdResponse("Ajuste no encontrado");
+            return new BuscarMateriaPrimaxIdResponse("Materia no encontrado");
         }
         public string Modificar(MateriaPrima materiaPrimaNuevo)
         {

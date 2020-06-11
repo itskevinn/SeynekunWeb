@@ -38,6 +38,21 @@
       </div>
     </div>
   </li>
+  <li class="nav-item" *ngIf="usuario.tipo=='Coordinador'">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+      aria-controls="collapseOne">
+      <i class="fas fa-fw fa-user-friends"></i>
+      <span>Personas</span>
+    </a>
+    <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
+        <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
+        <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
+        <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
+      </div>
+    </div>
+  </li>
   <li class="nav-item" *ngIf="usuario.tipo=='Administrador'">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboInventario" aria-expanded="true"
       aria-controls="collapseTwo">
@@ -71,19 +86,32 @@
     </div>
   </li>
   <li class="nav-item" *ngIf="usuario.tipo=='Productor'">
-    <a class="nav-link" aria-expanded="true"
-      aria-controls="collapseOne" [routerLink]="['/MateriasPrima']">
+    <a class="nav-link" aria-expanded="true" aria-controls="collapseOne" [routerLink]="['/MateriasPrima']">
       <i class="fas fa-fw fa-clipboard-list"></i>
       <span>Materias Prima</span>
     </a>
   </li>
   <li class="nav-item" *ngIf="usuario.tipo=='Productor'">
-    <a class="nav-link" aria-expanded="true"
-      aria-controls="collapseOne" [routerLink]="['/Productos']">
+    <a class="nav-link" aria-expanded="true" aria-controls="collapseOne" [routerLink]="['/Productos']">
       <i class="fas fa-fw fa-boxes"></i>
       <span>Productos generados</span>
     </a>
   </li>
+  <li class="nav-item" *ngIf="usuario.tipo=='Coordinador'">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+      aria-controls="collapseOne">
+      <i class="fas fa-fw fa-user-friends"></i>
+      <span>Personas</span>
+    </a>
+    <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
+        <a class="collapse-item" [routerLink]="['/Productores']">Solicitudes de Registro</a>
+        <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
+      </div>
+    </div>
+  </li>
+  <!--
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboVentas" aria-expanded="true"
       aria-controls="collapseOne">

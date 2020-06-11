@@ -6,16 +6,16 @@ namespace Entity
     public class MateriaPrima
     {
         [Key]
-        [Required(ErrorMessage="Se requiere un código")]
+        [Required(ErrorMessage = "Se requiere un código")]
         public string Codigo { get; set; }
-        [Required(ErrorMessage="Se requiere la fecha de ingreso")]
+        [Required(ErrorMessage = "Se requiere la fecha de ingreso")]
         public DateTime Fecha { get; set; }
-        [StringLength(20,ErrorMessage="Unidad inválida")]
-        [Required(ErrorMessage="Se requiere una unidad de medida")]
         public string UnidadMedida { get; set; }
-        [Required(ErrorMessage="Se requiere el código del producto")]
+        public string NombreProductor { get; set; }
+        [Required(ErrorMessage = "Se requiere el código del productor")]
         public string CodigoProductor { get; set; }
-        [Required(ErrorMessage="Se requiere la cantidad del producto")]
-        public decimal Cantidad { get; set; }        
+        [Required(ErrorMessage = "Se requiere la cantidad ingresada de materia prima")]
+        public decimal Cantidad { get; set; }
+        public string EstadoMateria { get; set; }
     }
 }

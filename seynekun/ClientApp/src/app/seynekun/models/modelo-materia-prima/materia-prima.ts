@@ -5,7 +5,7 @@ export class MateriaPrima {
   cantidad: number;
   codigo: string;
   codigoProductor: string;
-  estado: string;
+  nombreProductor: string;
   estadoMateria: string;
   productos: Producto[]
 }
