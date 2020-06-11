@@ -3,8 +3,8 @@ import { Cliente } from "../modelo-cliente/cliente"
 
 export class Venta {
     codigoVenta: string
-    listaDetalles: DetalleVenta[]
-    cliente: Cliente
+    detallesVentas: DetalleVenta[]
+    clienteId: string
     fecha: Date
     observacion:  string
     totalVenta: number

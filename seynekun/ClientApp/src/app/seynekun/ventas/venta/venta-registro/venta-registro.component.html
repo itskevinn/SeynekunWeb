@@ -13,13 +13,13 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Registrar venta</h1>
                 </div>
-                    <form class="user" [formGroup]="formGroup">
+                    <form class="user" [formGroup]="formGroupVenta">
                         <div class="form-group">
                           <input type="text" class="form-control form-control-user required"
                             placeholder="Codigo de venta" formControlName="codigoVenta"
-                            [ngClass]="{'is-invalid':control.codigoVenta.errors && control.codigoVenta.touched}">
-                          <div *ngIf="control.codigoVenta.errors && control.codigoVenta.touched" class="invalid-feedback">
-                            <div class="validacion-texto" *ngIf="control.codigoVenta.errors.required">Proporcione un
+                            [ngClass]="{'is-invalid':controlVenta.codigoVenta.errors && controlVenta.codigoVenta.touched}">
+                          <div *ngIf="controlVenta.codigoVenta.errors && controlVenta.codigoVenta.touched" class="invalid-feedback">
+                            <div class="validacion-texto" *ngIf="controlVenta.codigoVenta.errors.required">Proporcione un
                                 codigo de venta
                             </div>
                           </div>
@@ -27,12 +27,12 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control form-control-user required"
                                 placeholder="Identificacion del cliente" aria-label="Recipient's username" aria-describedby="button-addon2"
-                                formControlName="clienteId" [ngClass]="{'is-invalid':control.clienteId.errors && control.clienteId.touched}">
+                                formControlName="clienteId" [ngClass]="{'is-invalid':controlVenta.clienteId.errors && controlVenta.clienteId.touched}">
                             <div class="input-group-append">
-                              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                              <button (click)="buscarCliente()" [disabled]="encontrado" class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
                             </div>
-                            <div *ngIf="control.clienteId.errors && control.clienteId.touched" class="invalid-feedback">
-                                <div class="validacion-texto" *ngIf="control.clienteId.errors.required">Proporcione la identificacion
+                            <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched" class="invalid-feedback">
+                                <div class="validacion-texto" *ngIf="controlVenta.clienteId.errors.required">Proporcione la identificacion
                                     del cliente
                                 </div>
                             </div>
@@ -48,15 +48,15 @@
 
                         <div class="form-group ">
                           <input type="text" class="form-control form-control-user" name="direccion"
-                            placeholder="Direccion" formControlName="direccion">
+                            placeholder="Direccion">
                         </div>
                         <div class="form-group ">
                           <input type="text" class="form-control form-control-user" name="detalle"
-                            placeholder="Detalle" formControlName="detalle">
+                            placeholder="Detalle" >
                         </div>
                         <hr>
-                        <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
-                          Registrar Bodega
+                        <a (click)="registrarVenta()" class="btn btn-success btn-user btn-block">
+                          Registrar venta
                         </a>
                         <hr>
                     </form>
@@ -68,3 +68,5 @@
       </section>
     </div>
   </div>
+<br>
+

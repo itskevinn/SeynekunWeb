@@ -10,6 +10,9 @@ import { ProductoService } from 'src/app/servicios/servicio-producto/producto.se
 import { AjusteDeInventario } from 'src/app/seynekun/models/modelo-ajuste-inventario/ajuste-de-inventario';
 import { AjusteInventarioService } from 'src/app/servicios/servicio-ajuste/ajuste-inventario.service';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { Cliente } from 'src/app/seynekun/models/modelo-cliente/cliente';
+import { ClienteService } from 'src/app/servicios/servicio-de-cliente/cliente.service';
+import { DetalleVenta } from 'src/app/seynekun/models/modelo-detalle-venta/detalle-venta';
 
 @Component({
   selector: 'app-venta-registro',
@@ -18,10 +21,16 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 })
 export class VentaRegistroComponent implements OnInit {
   venta: Venta;
+  cliente: Cliente;
+  encontrado: Boolean
+  detalles: DetalleVenta[] = [];
+  detalle: DetalleVenta;
   ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
+  formGroupVenta: FormGroup;
   fechaHoy: Date;
   productos: Producto[];
+  producto: Producto;
   bodegas: Bodega[];
   bsValue = new Date();
   fechaMinima: Date;
@@ -34,6 +43,7 @@ export class VentaRegistroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private productoService: ProductoService,
+    private clienteService: ClienteService,
     private bodegaService: BodegaService,
     private localeService: BsLocaleService) {
     this.fechaMinima = new Date();
@@ -43,10 +53,12 @@ export class VentaRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.venta = new Venta;
     this.ajusteInventario = new AjusteDeInventario();
     this.obtenerBodegas();
     this.obtenerProductos();
     this.crearFormulario();
+    this.formularioVenta();
     this.localeService.use("es");
   }
 
@@ -64,14 +76,31 @@ export class VentaRegistroComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       codigo: [this.ajusteInventario.codigo, Validators.required],
       //tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
-      codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
+      clienteId: [this.ajusteInventario.codigoElemento, Validators.required],
       fecha: [this.ajusteInventario.fecha, Validators.required],
       tipoAjuste: [this.ajusteInventario.tipoAjuste, Validators.required],
       descipcion: [this.ajusteInventario.descipcion],
       cantidad: [this.ajusteInventario.cantidad, Validators.required],
-      nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required]
+      codigoVenta: [this.ajusteInventario.nombreBodega, Validators.required]
     });
   }
+
+  formularioVenta(){
+    this.venta.codigoVenta = ''
+    this.venta.clienteId = ''
+    this.venta.fecha = new Date()
+    this.venta.observacion = ''
+    this.venta.totalVenta = 0
+
+    this.formGroupVenta = this.formBuilder.group({
+      codigoVenta: [this.venta.codigoVenta,Validators.required],
+      clienteId: [this.venta.clienteId,Validators.required],
+      fecha: [this.venta.fecha,Validators.required],
+      observacion: [this.venta.observacion,Validators.required],
+      totalVenta: [this.venta.totalVenta,Validators.required]
+    });
+  }
+
   /* @ViewChild(BsDatepickerDirective, { static: false })
   datepicker: BsDatepickerDirective;
 
@@ -121,6 +150,58 @@ export class VentaRegistroComponent implements OnInit {
     return this.formGroup.controls;
   }
 
+  get controlVenta() {
+    return this.formGroupVenta.controls;
+  }
+
+
+  onSubmit() {
+    if (this.formGroup.invalid) {
+      console.log(this.control.codigoAjuste);
+    } else {
+      this.registrar();
+    }
+  }
+
+  buscarCliente(){
+    const id = this.controlVenta.clienteId.value;
+    this.clienteService.get(id).subscribe((result) => {
+      if(result != null){
+        this.cliente = result;
+        const fullName = result.nombre+" "+result.apellido;
+        this.controlVenta.clienteId.setValue(fullName);
+      }
+    });
+  }
+
+  generarDetalle(){
+    this.detalle = new DetalleVenta;
+    this.detalle.codigoDetalle = "123";
+    this.detalle.codigoVenta = this.venta.codigoVenta;
+    this.detalle.codigoProducto = this.producto.codigo;
+    this.detalle.total = 10999;
+    this.detalle.cantidadProducto = 9;
+    this.detalles.push(this.detalle);
+  }
+
+  registrarVenta(){
+    this.venta = new Venta();
+    this.venta.codigoVenta = "11111";
+    this.venta.clienteId = this.cliente.identificacion;
+    this.venta.fecha = new Date();
+    this.venta.observacion = "Probando";
+    this.venta.totalVenta = 10999;
+    this.generarDetalle();
+    console.log(this.cliente);
+    console.log(this.producto);
+    
+    this.venta.detallesVentas = this.detalles;
+    this.ventaService.post(this.venta).subscribe((e) => {
+      this.venta = e;
+    });
+    console.log(this.venta);
+  }
+
   registrar() {
     this.ajusteInventario = this.formGroup.value;
     this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
@@ -130,13 +211,4 @@ export class VentaRegistroComponent implements OnInit {
       }
     });
   }
-  onSubmit() {
-    if (this.formGroup.invalid) {
-      console.log(this.control.codigoAjuste);
-    } else {
-      this.registrar();
-    }
-  }
-
-
 }

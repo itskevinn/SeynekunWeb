@@ -13,13 +13,10 @@ namespace seynekun.Models
             [StringLength(20, ErrorMessage = "Ingrese un codigo de venta valido")]
             public string CodigoVenta { get; set; }
 
-            [Required(ErrorMessage="Se requiere código de detalle de venta")]
-            [StringLength(20, ErrorMessage = "Ingrese un codigo de detalle de venta válido")]
             public List<DetalleVenta> DetallesVentas { get; set; }
 
             [Required(ErrorMessage="Se requiere identificacion del cliente")]
-            [StringLength(20, ErrorMessage = "Ingrese una identificacion válida")]
-            public Cliente Cliente { get; set; }
+            public string ClienteId { get; set; }
 
             [Required(ErrorMessage="Se requiere la fecha")]
             public DateTime Fecha { get; set; }
@@ -38,7 +35,7 @@ namespace seynekun.Models
             {
                 CodigoVenta = venta.CodigoVenta;
                 DetallesVentas = venta.DetallesVentas;
-                Cliente = venta.Cliente;
+                ClienteId = venta.ClienteId;
                 Fecha = venta.Fecha;
                 Observacion = venta.Observacion;
                 TotalVenta = venta.TotalVenta;
