@@ -20,6 +20,7 @@ namespace Datos
         public DbSet<Documento> Documentos { get; set; }
         public DbSet<FichaTecnica> FichasTecnicas { get; set; }
         public DbSet<Insumo> Insumos { get; set; }
-        
+        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<DetalleVenta> DetallesVentas { get; set; }
     }
 }
