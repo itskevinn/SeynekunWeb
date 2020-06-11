@@ -57,13 +57,18 @@
                           <input type="text" disabled class="form-control form-control-user required"
                             placeholder="Total venta" formControlName="totalVenta" name="totalVenta">
                         </div>
-                        <div class="col-sm-6 mb-3 separarArriba">
+                        <div class="form-group">
                           <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
                             <option selected>Seleccionar bodega</option>
                             <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
                           </select>
                         </div>
-
+                        <div class="form-group">
+                          <select class="form-dropdown border-verde" (change)="cambiarEmpleado($event)">
+                            <option selected>Seleccionar empleado</option>
+                            <option [ngValue]="empleado" *ngFor="let empleado of empleados">{{empleado.identificacion}}</option>
+                          </select>
+                        </div>
                         <hr>
                         <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
                           Registrar venta
