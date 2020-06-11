@@ -6,5 +6,5 @@ export class DetalleVenta {
     codigoVenta: string
     codigoProducto: string
     cantidadProducto: number
-    total: number
+    totalDetalle: number
 }
