@@ -6,6 +6,7 @@ namespace Entity
     {
         [Key]
         public string NombreUsuario { get; set; }
+        public string Id { get; set; }
         public string Contrasena { get; set; }
 
         [Required]

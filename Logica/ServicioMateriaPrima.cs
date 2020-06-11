@@ -41,6 +41,11 @@ namespace Logica
             List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.ToList();
             return MateriasPrimas;
         }
+        public List<MateriaPrima> ConsultarDisponibles()
+        {
+            List<MateriaPrima> materiaPrimas = _context.MateriasPrimas.Where(m => m.EstadoMateria == "Pendiente").ToList();
+            return materiaPrimas;
+        }
         public List<MateriaPrima> ConsultarxProductor(string codigo)
         {
             List<MateriaPrima> MateriasPrimas = _context.MateriasPrimas.Where(m => m.CodigoProductor == codigo).ToList();

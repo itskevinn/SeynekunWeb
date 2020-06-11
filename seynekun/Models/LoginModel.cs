@@ -4,6 +4,7 @@ namespace seynekun.Models
 {
     public class LoginInputModel
     {
+        public string Id { get; set; }
         public string NombreUsuario { get; set; }
         public string Contrasena { get; set; }
         public string Nombre { get; set; }
@@ -22,6 +23,7 @@ namespace seynekun.Models
             Apellido = usuario.Apellido;
             Token = usuario.Token;
             Tipo = usuario.Tipo;
+            Id = usuario.Id;
         }
     }
 }

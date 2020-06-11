@@ -64,6 +64,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.obtenerProductos();
     this.obtenerBodegas();
     this.obtenerMaterias();
+  //  this.filtrarMaterias();
     this.localeService.use("es");
   }
 
@@ -83,7 +84,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
       codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
       fecha: [this.ajusteInventario.fecha, Validators.required],
       descipcion: [this.ajusteInventario.descipcion],
-      tipoAjuste: [this.ajusteInventario.tipoAjuste, Validators.required],
+      tipoAjuste: ["Incremento", Validators.required],
       cantidad: [this.ajusteInventario.cantidad, Validators.required],
       nombreBodega: [this.ajusteInventario.nombreBodega, Validators.required],
       codigoMateriaPrima: [this.ajusteInventario.codigoMateriaPrima, Validators.required]
@@ -108,15 +109,18 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     });
   }
   obtenerMaterias() {
-    this.materiaService.gets().subscribe((result) => {
+    this.materiaService.getDisponibles().subscribe((result) => {
       this.materias = result;
     })
-    this.materias.forEach(materia => {
-      if (materia.estadoMateria == "Pendiente") {
-        this.materiaDisponibles.push(materia);
-      }
-    });
   }
+
+ /* filtrarMaterias() {
+    for (let i = 0; i < this.materias.length; i++) {
+      if (this.materias[i].estadoMateria == "Pendiente") {
+        this.materiaDisponibles.push(this.materias[i]);
+      }
+    }
+  }*/
   /*  obtenerInsumos() {
     this.insumoService.gets().subscribe((result) => {
       this.insumos = result;

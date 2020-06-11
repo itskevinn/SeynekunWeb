@@ -62,6 +62,7 @@ namespace seynekun.Controllers
             var response = materiaService.ConsultarxProductor(codigo).ConvertAll(b => new MateriaPrimaViewModel(b));
             return response;
         }
+        
         [HttpPut("{codigo}")]
         public ActionResult<string> Put(MateriaPrima materiaPrima, decimal codigo)
         {

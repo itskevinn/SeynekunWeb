@@ -14,6 +14,7 @@ export class NavMenuComponent {
   ingreso = false;
   primerIngreso: number;
   tipo: string;
+
   constructor(
     private router: Router,
     private autenticacionServicio: AutenticacionService

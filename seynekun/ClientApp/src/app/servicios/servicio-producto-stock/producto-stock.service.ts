@@ -35,13 +35,13 @@ export class ProductStockService {
       )
     );
   }
- /* getProductosxMateria(codigo: string): Observable<ProductoEnBodega[]> {
-    const url = `${this.baseUrl + "api/ProductoStock"}/${codigo}`;
+  getProductosxMateria(codigo: string): Observable<ProductoEnBodega[]> {
+    const url = `${this.baseUrl + "api/ProductoStockMateria"}/${codigo}`;
     return this.http.get<ProductoEnBodega[]>(url, httpOptions).pipe(
       tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
         this.handleErrorService.handleError<ProductoEnBodega[]>("Consulta por código", null)
       )
     );
-  }*/
+  }
 }

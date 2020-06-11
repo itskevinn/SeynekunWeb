@@ -12,10 +12,12 @@ namespace seynekun.Controllers
     [ApiController]
     public class ProductoStockController : ControllerBase
     {
+        private readonly ServicioAjusteInventario servicioAjuste;
         private readonly ServicioStock servicioStock;
         public ProductoStockController(SeynekunContext context)
         {
             servicioStock = new ServicioStock(context);
+            servicioAjuste = new ServicioAjusteInventario(context);
         }
         [HttpGet("{nombre}")]
         public IEnumerable<ProductoStockViewModel> Get(string nombre)
@@ -23,5 +25,6 @@ namespace seynekun.Controllers
             var productos = servicioStock.ObtenerProductosEnBodega(nombre).Select(p => new ProductoStockViewModel(p));
             return productos;
         }
+       
     }
 }

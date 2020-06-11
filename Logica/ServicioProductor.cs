@@ -48,6 +48,7 @@ namespace Logica
             usuario.Email = productor.Email;
             usuario.Tipo = "Productor";
             usuario.Contrasena = productor.Contrasena;
+            usuario.Id = productor.Identificacion;
             usuario.Apellido = productor.Apellido;
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();

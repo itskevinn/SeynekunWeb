@@ -86,7 +86,7 @@
     </div>
   </li>
   <li class="nav-item" *ngIf="usuario.tipo=='Productor'">
-    <a class="nav-link" aria-expanded="true" aria-controls="collapseOne" [routerLink]="['/ConsultarMateria/{{usuario.id}} ']">
+    <a class="nav-link" aria-expanded="true" aria-controls="collapseOne" routerLink="/ConsultarMateria/{{usuario.id}}">
       <i class="fas fa-fw fa-clipboard-list"></i>
       <span>Materias Prima</span>
     </a>
@@ -112,10 +112,10 @@
     </div>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="usuario.tipo=='Administrador'">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboVentas" aria-expanded="true"
       aria-controls="collapseOne">
-      <i class="fas fa-fw fa-car"></i>
+      <i class="fas fa-fw fa-check"></i>
       <span>Ventas</span>
     </a>
     <div id="comboVentas" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">

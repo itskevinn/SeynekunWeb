@@ -38,7 +38,7 @@ namespace seynekun.Controllers
                 Descipcion = ajusteInventarioInputModel.Descipcion,
                 Cantidad = ajusteInventarioInputModel.Cantidad,
                 CodigoElemento = ajusteInventarioInputModel.CodigoElemento,
-                TipoAjuste = ajusteInventarioInputModel.TipoAjuste,
+                TipoAjuste = "Incremento",
                 CodigoMateriaPrima = ajusteInventarioInputModel.CodigoMateriaPrima,
                 NombreBodega = ajusteInventarioInputModel.NombreBodega,
                 TipoElemento = ajusteInventarioInputModel.TipoElemento

@@ -30,7 +30,7 @@ namespace seynekun.Controllers
             var admin = _context.Usuarios.Find("admin");
             if (admin == null)
             {
-                _context.Usuarios.Add(new Entity.Usuario() { NombreUsuario = "admin", Tipo="Administrador", Contrasena = "admin", Estado = "Activo", Nombre = "Administrador", Apellido = "Administrador", NumeroTelefono = "3180000000", Email = "admin@gmail.com" });
+                _context.Usuarios.Add(new Entity.Usuario() { NombreUsuario = "admin", Tipo="Administrador", Contrasena = "admin", Estado = "Activo", Id="1231231223",Nombre = "Administrador", Apellido = "Administrador", NumeroTelefono = "3180000000", Email = "admin@gmail.com" });
                 var i = _context.SaveChanges();
             }
             _servicioJwt = new ServicioJwt(appSettings);

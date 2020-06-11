@@ -1,4 +1,4 @@
-import { Injectable, Inject} from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { MateriaPrima } from 'src/app/seynekun/models/modelo-materia-prima/materia-prima';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -37,7 +37,19 @@ export class MateriaPrimaService {
         )
       );
   }
-
+  getDisponibles(): Observable<MateriaPrima[]> {
+    return this.http
+      .get<MateriaPrima[]>(this.baseUrl + "api/MateriaPrimaDisponible")
+      .pipe(
+        tap((_) => console.log("Datos traídos")),
+        catchError(
+          this.handleErrorService.handleError<MateriaPrima[]>(
+            "Consulta de MateriaPrimas",
+            null
+          )
+        )
+      );
+  }
   delete(materiaPrima: MateriaPrima | string): Observable<string> {
     const id =
       typeof materiaPrima === "string"
@@ -71,12 +83,12 @@ export class MateriaPrimaService {
         )
       );
   }
-  get(codigo: string): Observable<MateriaPrima> {
+  get(codigo: string): Observable<MateriaPrima[]> {
     const url = `${this.baseUrl + "api/MateriaPrima"}/${codigo}`;
-    return this.http.get<MateriaPrima>(url, httpOptions).pipe(
+    return this.http.get<MateriaPrima[]>(url, httpOptions).pipe(
       tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
-        this.handleErrorService.handleError<MateriaPrima>(
+        this.handleErrorService.handleError<MateriaPrima[]>(
           "Consulta por código",
           null
         )

@@ -48,7 +48,6 @@ namespace Logica
             }
             return new BuscarAjusteInventarioxIdResponse("Ajuste no encontrado");
         }
-
         public string Modificar(AjusteInventario ajusteInventarioNuevo)
         {
             try
@@ -81,18 +80,32 @@ namespace Logica
         {
             return _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento && a.NombreBodega == nombreBodega);
         }
-        /*      public IEnumerable<AjusteInventario> ObtenerProductosDeMateria(decimal codigoMateriaPrima)
-              {
-                  var ajustesSolicitadosxMateria = _context.AjusteInventarios.Where(a => a.CodigoMateriaPrima == codigoMateriaPrima);
-                  IEnumerable<ProductoStock> productos;
-                  ProductoStock producto;
-                  foreach (var ajuste in ajustesSolicitadosxMateria)
-                  {
-                      producto = new ProductoStock();
-                      producto.Producto = _context.Productos.Find(a => a.CodigoMateriaPrima == ajuste.CodigoMateriaPrima);
-                      producto.Cantidad = SumarCantidadTotal(producto.Producto.Codigo);
-                  }
-              }*/
+        public IEnumerable<ProductoStock> ObtenerProductosDeMateria(string codigoMateriaPrima)
+        {
+            var ajustesSolicitadosxMateria = _context.AjusteInventarios.Where(a => a.CodigoMateriaPrima == codigoMateriaPrima);
+            List<ProductoStock> productos = new List<ProductoStock>();
+            decimal cantidad;
+            ProductoStock productoStock = new ProductoStock();
+            foreach (var ajuste in ajustesSolicitadosxMateria)
+            {
+                if (ajuste.TipoAjuste == "Incremento")
+                {
+                    cantidad = +ajuste.Cantidad;
+                }
+                else cantidad = -ajuste.Cantidad;
+                if (ajuste.TipoElemento == "Producto")
+                {
+                    productoStock.Producto = BuscarProductoxId(ajuste.CodigoElemento);
+                    productoStock.Cantidad = cantidad;
+                    productos.Add(productoStock);
+                }
+            }
+            return productos;
+        }
+        private Producto BuscarProductoxId(string id)
+        {
+            return _context.Productos.Find(id);
+        }
         public decimal SumarCantidadTotal(string codigoElemento)
         {
             var ajustes = _context.AjusteInventarios.Where(a => a.CodigoElemento == codigoElemento);
