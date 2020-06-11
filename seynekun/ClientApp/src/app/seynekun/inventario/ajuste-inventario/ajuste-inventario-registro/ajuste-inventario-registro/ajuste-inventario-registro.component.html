@@ -18,7 +18,7 @@
           <div class="form-group">
             <select class="form-dropdown border-verde " (change)="cambiarCodigoMateria($event)">
               <option [ngValue]="null">Materia prima</option>
-              <option [ngValue]="materia" *ngFor="let materia of materias">{{materia.fecha | date}} -
+              <option [ngValue]="materia" *ngFor="let materia of materiaDisponibles">{{materia.fecha | date}} -
                 {{materia.codigo}} - {{materia.nombreProductor}}
               </option>
             </select>

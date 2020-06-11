@@ -42,6 +42,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   tipoAjuste: string;
   tipoProducto: boolean;
   codigoElemento: string;
+  materiaDisponibles: MateriaPrima[];
 
   constructor(
     private ajusteInventarioService: AjusteInventarioService,
@@ -73,7 +74,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.ajusteInventario.codigo = '';
     this.ajusteInventario.descipcion = '';
     this.ajusteInventario.cantidad = null;
-    this.ajusteInventario.tipoAjuste = '';
+    this.ajusteInventario.tipoAjuste = 'Incremento';
     this.ajusteInventario.codigoMateriaPrima = null;
     this.ajusteInventario.nombreBodega = '';
     this.formGroup = this.formBuilder.group({
@@ -110,6 +111,11 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.materiaService.gets().subscribe((result) => {
       this.materias = result;
     })
+    this.materias.forEach(materia => {
+      if (materia.estadoMateria == "Pendiente") {
+        this.materiaDisponibles.push(materia);
+      }
+    });
   }
   /*  obtenerInsumos() {
     this.insumoService.gets().subscribe((result) => {
@@ -133,18 +139,16 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     });
   }
   cambiarTipoAjuste(e) {
-    this.tipoAjuste = this.control.tipoAjuste.value;
     this.control.tipoAjuste.setValue(e.target.value, {
       onlySelf: true,
     });
+    this.tipoAjuste = e.target.vaue;
+    console.log(this.control.tipoAjuste.value);
   }
   cambiarCodigo(e) {
     this.control.codigoElemento.setValue(this.cortarCodigo(e.target.value).replace(/ /g, ""), {
       onlySelf: true,
     });
-  }
-  get tipo() {
-    return this.control.tipoAjuste.value;
   }
   cortarCodigo(codigo: string) {
     var nombre = codigo.split(" - ");
@@ -172,6 +176,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   registrar() {
     console.log(this.control.tipoAjuste.value);
     this.ajusteInventario = this.formGroup.value;
+    this.ajusteInventario.tipoAjuste = this.tipoAjuste;
     console.log(this.ajusteInventario.tipoAjuste);
     this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
       if (e != null) {

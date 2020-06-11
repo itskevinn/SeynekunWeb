@@ -57,12 +57,10 @@ namespace seynekun.Controllers
             return response;
         }
         [HttpGet("{codigo}")]
-        public ActionResult<MateriaPrimaViewModel> Get(decimal codigo)
+        public IEnumerable<MateriaPrimaViewModel> Get(string codigo)
         {
-            var materiaPrima = materiaService.BuscarxId(codigo).MateriaPrima;
-            if (materiaPrima == null) return NotFound();
-            var materiaPrimaViewModel = new MateriaPrimaViewModel(materiaPrima);
-            return materiaPrimaViewModel;
+            var response = materiaService.ConsultarxProductor(codigo).ConvertAll(b => new MateriaPrimaViewModel(b));
+            return response;
         }
         [HttpPut("{codigo}")]
         public ActionResult<string> Put(MateriaPrima materiaPrima, decimal codigo)
