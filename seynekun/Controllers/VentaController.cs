@@ -44,6 +44,7 @@ namespace seynekun.Controllers
             {
                 CodigoVenta = ventaInputModel.CodigoVenta,
                 ClienteId = ventaInputModel.ClienteId,
+                EmpleadoId = ventaInputModel.EmpleadoId,
                 DetallesVentas = ventaInputModel.DetallesVentas,
                 Fecha = ventaInputModel.Fecha,
                 Observacion = ventaInputModel.Observacion,

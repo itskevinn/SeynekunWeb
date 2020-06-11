@@ -15,6 +15,8 @@ import { ClienteService } from 'src/app/servicios/servicio-de-cliente/cliente.se
 import { DetalleVenta } from 'src/app/seynekun/models/modelo-detalle-venta/detalle-venta';
 import { ProductoEnBodega } from 'src/app/seynekun/models/modelo-producto-bodega/producto-en-bodega';
 import { ProductStockService } from 'src/app/servicios/servicio-producto-stock/producto-stock.service';
+import { EmpleadoService } from 'src/app/servicios/servicio-de-empleado/empleado.service';
+import { Empleado } from 'src/app/seynekun/models/modelo-empleado/empleado';
 
 @Component({
   selector: 'app-venta-registro',
@@ -24,6 +26,8 @@ import { ProductStockService } from 'src/app/servicios/servicio-producto-stock/p
 export class VentaRegistroComponent implements OnInit {
   venta: Venta;
   cliente: Cliente;
+  bodegas: Bodega[];
+  empleados: Empleado[];
   productoEnBodegas: ProductoEnBodega[] = [];
   detalles: DetalleVenta[] = [];
   nombreBodegaSeleccionada: string;
@@ -38,7 +42,6 @@ export class VentaRegistroComponent implements OnInit {
   fechaHoy: Date;
   productos: Producto[];
   producto: Producto;
-  bodegas: Bodega[];
   bsValue = new Date();
   fechaMinima: Date;
   fechaMaxima: Date;
@@ -50,8 +53,8 @@ export class VentaRegistroComponent implements OnInit {
     private productoStockService: ProductStockService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private productoService: ProductoService,
     private clienteService: ClienteService,
+    private empleadoService: EmpleadoService,
     private bodegaService: BodegaService,
     private localeService: BsLocaleService) {
     this.fechaMinima = new Date();
@@ -62,39 +65,16 @@ export class VentaRegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.venta = new Venta;
-    this.ajusteInventario = new AjusteDeInventario();
     this.obtenerBodegas();
-    this.crearFormulario();
+    this.obtenerEmpleados();
     this.formularioVenta();
     this.localeService.use("es");
-  }
-
-  crearFormulario() {
-    this.ajusteInventario.codigo = '';
-    //this.ajusteInventario.tipoElemento = '';
-    this.ajusteInventario.codigoElemento = '';
-    this.ajusteInventario.fecha = new Date();
-    this.ajusteInventario.codigo = '';
-    this.ajusteInventario.descipcion = '';
-    this.ajusteInventario.tipoAjuste = '';
-    this.ajusteInventario.cantidad = 0;
-    this.ajusteInventario.nombreBodega = '';
-
-    this.formGroup = this.formBuilder.group({
-      codigo: [this.ajusteInventario.codigo, Validators.required],
-      //tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
-      clienteId: [this.ajusteInventario.codigoElemento, Validators.required],
-      fecha: [this.ajusteInventario.fecha, Validators.required],
-      tipoAjuste: [this.ajusteInventario.tipoAjuste, Validators.required],
-      descipcion: [this.ajusteInventario.descipcion],
-      cantidad: [this.ajusteInventario.cantidad, Validators.required],
-      codigoVenta: [this.ajusteInventario.nombreBodega, Validators.required]
-    });
   }
 
   formularioVenta(){
     this.venta.codigoVenta = ''
     this.venta.clienteId = ''
+    this.venta.empleadoId = ''
     this.venta.fecha = new Date()
     this.venta.observacion = ''
     this.venta.totalVenta = null
@@ -105,10 +85,21 @@ export class VentaRegistroComponent implements OnInit {
       fecha: [this.venta.fecha,Validators.required],
       observacion: [this.venta.observacion,Validators.required],
       totalVenta: [this.venta.totalVenta,Validators.required],
-      detallesVentas: [this.venta.detallesVentas,Validators.required]
+      detallesVentas: [this.venta.detallesVentas,Validators.required],
+      empleadoId: [this.venta.empleadoId,Validators.required]
     });
   }
 
+  obtenerEmpleados(){
+    this.empleadoService.gets().subscribe((result) => {
+      this.empleados = result;
+    });
+  }
+  cambiarEmpleado(e){
+    this.controlVenta.empleadoId.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
   obtenerBodegas(){
     this.bodegaService.gets().subscribe((result) => {
       this.bodegas = result;
@@ -127,11 +118,12 @@ export class VentaRegistroComponent implements OnInit {
   agregarDetalle(productoSeleccionado: ProductoEnBodega){
     if(this.textoCantidad != ""){
       this.detalle = new DetalleVenta;
-      this.detalle.codigoDetalle = String(this.detalles.length);
+      this.detalle.codigoDetalle = String(this.detalles.length) + this.controlVenta.codigoVenta.value;
       this.detalle.codigoVenta = this.controlVenta.codigoVenta.value;
       this.detalle.codigoProducto = productoSeleccionado.producto.codigo;
       this.detalle.cantidadProducto = Number(this.textoCantidad);
       this.detalle.totalDetalle = this.detalle.cantidadProducto * productoSeleccionado.producto.precio;
+      this.detalle.nombreBodega = this.nombreBodegaSeleccionada;
       console.log(this.detalle.totalDetalle);
       this.detalles.push(this.detalle);
       this.controlVenta.detallesVentas.setValue(this.detalles);

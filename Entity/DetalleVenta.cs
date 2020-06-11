@@ -21,5 +21,8 @@ namespace Entity
 
         [Required(ErrorMessage="Se requiere el total de detalle de venta")]
         public decimal TotalDetalle { get; set; }
+
+        [Required(ErrorMessage="Se requiere el nombre de la bodega")]
+        public string NombreBodega { get; set; }
     }
 }

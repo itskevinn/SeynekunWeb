@@ -29,6 +29,7 @@ namespace Logica
                 {
                     _context.DetallesVentas.Add(item);
                 }
+                 GuardarAjustes(venta);
                 _context.SaveChanges();
                 return new GuardarVentaResponse(venta);
             }
@@ -37,19 +38,27 @@ namespace Logica
                 return new GuardarVentaResponse(e.Message);
             }
         }
-        private DetalleVenta GuardarDetalles(Venta venta)
+
+        private void GuardarAjustes(Venta venta)
         {
-            //System.Console.WriteLine("Sin errores");
-            var detalles = venta.DetallesVentas;
-            DetalleVenta detail = new DetalleVenta();
-           
-                //ServicioDetalleVenta servicioDetalle = new ServicioDetalleVenta(_context);
-                foreach (var item in detalles)
-                {
-                    detail = item;
-                    //servicioDetalle.Guardar(item);
-                }
-            return detail;
+            AjusteInventario ajuste;
+            int cont = 0;
+            ServicioAjusteInventario servicio = new ServicioAjusteInventario(_context);
+            foreach (var item in venta.DetallesVentas)
+            {
+                ajuste= new AjusteInventario();
+                cont++;
+                ajuste.Codigo = Convert.ToString(cont) + venta.CodigoVenta;
+                ajuste.CodigoMateriaPrima = item.CodigoProducto;
+                ajuste.Fecha = venta.Fecha;
+                ajuste.Descipcion = venta.Observacion;
+                ajuste.Cantidad = item.CantidadProducto;
+                ajuste.CodigoElemento = item.CodigoProducto;
+                ajuste.TipoAjuste = "Disminucion";
+                ajuste.NombreBodega = item.NombreBodega;
+                ajuste.TipoElemento = "Producto";
+                servicio.Guardar(ajuste);
+            }
         }
 
         public ConsultarVentaResponse Consultar()

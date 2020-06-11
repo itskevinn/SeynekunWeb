@@ -12,6 +12,9 @@ namespace Entity
 
         [Required(ErrorMessage="Se requiere código de detalle de venta 2")]
         public List<DetalleVenta> DetallesVentas { get; set; }
+        
+        [Required(ErrorMessage="Se requiere identificacion del empleado")]
+        public string EmpleadoId { get; set; }
 
         [Required(ErrorMessage="Se requiere identificacion del cliente")]
         public string ClienteId { get; set; }
