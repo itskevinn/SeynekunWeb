@@ -4,22 +4,42 @@
     <div id="dataTable_wrapper">
       <div class="row">
         <div class="col-sm-12 col-md-6">
-          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
-            placeholder="Buscar" ng-change="validarTamañoLista()">
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="text-right separarAbajo">
-            <button [routerLink]="['/RegistrarCliente']" type="button" class="btn btn-labeled btn-success">
-              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Cliente</button>
+          <div class="separarArriba">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="textoABuscar"
+              aria-controls="dataTable"
+              placeholder="Buscar"
+            />
           </div>
         </div>
-        <hr>
+
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo separarArriba">
+            <button
+              [routerLink]="['/RegistrarCliente']"
+              type="button"
+              class="btn btn-labeled btn-success"
+            >
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Nuevo
+            </button>
+          </div>
+        </div>
+        <hr />
       </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
-              aria-describedby="dataTable_info" style="width: 100%;">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+              role="grid"
+              aria-describedby="dataTable_info"
+              style="width: 100%;"
+            >
               <thead>
                 <tr>
                   <th>Tipo Identificación</th>
@@ -32,17 +52,26 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let cliente of clientes|filtroCliente:textoABuscar; index as i ">
-                  <td>{{cliente.tipoIdentificacion}}</td>
-                  <td>{{cliente.identificacion}}</td>
-                  <td>{{cliente.nombre}}</td>
-                  <td>{{cliente.apellido}}</td>
-                  <td>{{cliente.municipio}}</td>
-                  <td>{{cliente.numeroTelefono}}</td>
+                <tr
+                  *ngFor="
+                    let cliente of clientes | filtroCliente: textoABuscar;
+                    index as i
+                  "
+                >
+                  <td>{{ cliente.tipoIdentificacion }}</td>
+                  <td>{{ cliente.identificacion }}</td>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.apellido }}</td>
+                  <td>{{ cliente.municipio }}</td>
+                  <td>{{ cliente.numeroTelefono }}</td>
                   <td>
-                    <a routerLink='/Cliente/{{cliente.identificacion}}'>Ver</a>
+                    <a routerLink="/Cliente/{{ cliente.identificacion }}"
+                      >Ver</a
+                    >
                     <a> / </a>
-                    <a routerLink='/EditarCliente/{{cliente.identificacion}}'>Editar</a>
+                    <a routerLink="/EditarCliente/{{ cliente.identificacion }}"
+                      >Editar</a
+                    >
                   </td>
                 </tr>
               </tbody>

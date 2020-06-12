@@ -22,7 +22,9 @@ export class AppComponent {
     this.autenticacionServicio.currentUser.subscribe(
       (x) => (this.usuarioActual = x)
     );
-    this.ingreso = true;
+    if (this.usuarioActual) {
+      this.ingreso = true;
+    }
     this.isExpanded = JSON.parse(localStorage.getItem("estadoNav"));
   }
   reload() {

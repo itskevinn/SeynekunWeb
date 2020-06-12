@@ -4,37 +4,64 @@
     <div id="dataTable_wrapper">
       <div class="row">
         <div class="col-sm-12 col-md-6">
-          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
-            placeholder="Buscar">
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="text-right separarAbajo">
-            <button [routerLink]="['/RegistrarCategoria']" type="button" class="btn btn-labeled btn-success">
-              <span class="btn-label"><i class="fas fa-plus"></i></span> Registrar Categoria</button>
+          <div class="separarArriba">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="textoABuscar"
+              aria-controls="dataTable"
+              placeholder="Buscar"
+            />
           </div>
         </div>
-        <hr>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo separarArriba">
+            <button
+              [routerLink]="['/RegistrarCategoria']"
+              type="button"
+              class="btn btn-labeled btn-success"
+            >
+              <span class="btn-label"><i class="fas fa-plus"></i></span>
+               Nueva
+            </button>
+          </div>
+        </div>
+        <hr />
       </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
-              aria-describedby="dataTable_info" style="width: 100%;">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+              role="grid"
+              aria-describedby="dataTable_info"
+              style="width: 100%;"
+            >
               <thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>Detalle</th>               
+                  <th>Detalle</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let categoria of categorias|filtroCategoria:textoABuscar; index as i ">
-                  <td>{{categoria.nombre}}</td>
-                  <td>{{categoria.detalle}}</td>
+                <tr
+                  *ngFor="
+                    let categoria of categorias | filtroCategoria: textoABuscar;
+                    index as i
+                  "
+                >
+                  <td>{{ categoria.nombre }}</td>
+                  <td>{{ categoria.detalle }}</td>
                   <td>
-                    <a routerLink='/Categoria/{{categoria.nombre}}'>Ver</a>
+                    <a routerLink="/Categoria/{{ categoria.nombre }}">Ver</a>
                     <a> / </a>
-                    <a routerLink='/EditarCategoria/{{categoria.nombre}}'>Editar</a>
+                    <a routerLink="/EditarCategoria/{{ categoria.nombre }}"
+                      >Editar</a
+                    >
                   </td>
                 </tr>
               </tbody>
