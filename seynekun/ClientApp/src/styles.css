@@ -6133,7 +6133,7 @@ a.close.disabled {
   text-align: center !important;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #e3e6f0; 
+  border-bottom: 1px solid #e3e6f0;
 }
 
 .modal-header .close {
@@ -6804,13 +6804,6 @@ a.close.disabled {
   vertical-align: text-top !important;
 }
 
-.body-modificado {
-  height: 97%;
-  width: 100%;
-  flex-wrap: wrap;
-  display: flex;
-  flex: 1;
-}
 
 .validacion-texto {
   font-size: small;

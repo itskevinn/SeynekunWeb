@@ -2388,7 +2388,8 @@
           "Entity": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.1.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0",
-          "System.Collections": "4.3.0"
+          "System.Collections": "4.3.0",
+          "System.ComponentModel.Annotations": "4.7.0"
         },
         "runtime": {
           "datos.dll": {}
@@ -2412,6 +2413,7 @@
         "dependencies": {
           "Entity": "1.0.0",
           "System.Collections": "4.3.0",
+          "System.ComponentModel.Annotations": "4.7.0",
           "datos": "1.0.0"
         },
         "runtime": {
