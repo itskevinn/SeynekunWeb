@@ -10,7 +10,7 @@ import { EventoService } from "../servicios/servicio-evento/evento.service";
   styleUrls: ["./nav-menu.component.css"],
 })
 export class NavMenuComponent {
-  isExpanded = JSON.parse(localStorage.getItem("estadoNav"));
+  isExpanded : boolean;
   usuario: Usuario;
   ingreso = false;
   primerIngreso: number;
@@ -27,17 +27,12 @@ export class NavMenuComponent {
       this.ingreso = true;
       this.primerIngreso = this.primerIngreso + 1;
     }
-    localStorage.setItem("estadoNav", JSON.stringify(this.isExpanded));
-    this.isExpanded = JSON.parse(localStorage.getItem("estadoNav"));
   }
   ngOnInit(){
     this.eventoServicio.mensajePersonalizado.subscribe(estado=>this.isExpanded=estado)
   }
   cambiarEstado(){
     this.eventoServicio.cambiarMensaje(this.isExpanded);
-  }
-  obtenerEstado() {
-    this.isExpanded = JSON.parse(localStorage.getItem("estadoNav"));
   }
   collapse() {
     this.isExpanded = false;

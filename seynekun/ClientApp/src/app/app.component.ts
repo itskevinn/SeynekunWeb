@@ -13,7 +13,7 @@ export class AppComponent {
   usuarioActual: Usuario;
   ingreso = false;
   primerIngreso: number;
-  isExpanded: boolean;
+  isExpanded: boolean = false;
   constructor(
     private router: Router,
     private autenticacionServicio: AutenticacionService,
@@ -25,7 +25,6 @@ export class AppComponent {
     if (this.usuarioActual) {
       this.ingreso = true;
     }
-    this.isExpanded = JSON.parse(localStorage.getItem("estadoNav"));
   }
   reload() {
     window.location.reload();

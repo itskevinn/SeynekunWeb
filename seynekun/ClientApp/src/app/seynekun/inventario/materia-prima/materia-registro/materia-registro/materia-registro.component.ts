@@ -10,6 +10,8 @@ import {
   BsLocaleService,
 } from "ngx-bootstrap/datepicker";
 import { defineLocale, esLocale } from "ngx-bootstrap/chronos";
+import { ConsultaProductorComponent } from "src/app/modal/consulta-productor-modal/consulta-productor/consulta-productor.component";
+import { EventoService } from "src/app/servicios/servicio-evento/evento.service";
 defineLocale("es", esLocale);
 
 @Component({
@@ -20,6 +22,7 @@ defineLocale("es", esLocale);
 export class MateriaRegistroComponent implements OnInit {
   materia: MateriaPrima;
   formGroup: FormGroup;
+  codigoProductor: string;
   unidadMedidas: string[] = ["Gramo", "Kg", "Tonelada"];
   productores: Productor[];
   bsValue = new Date();
@@ -30,7 +33,8 @@ export class MateriaRegistroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private productorService: ProductorService,
-    private localeService: BsLocaleService) {
+    private localeService: BsLocaleService,
+    private eventoService: EventoService) {
     this.fechaMinima = new Date();
     this.fechaMaxima = new Date();
     this.fechaMinima.setDate(this.fechaMinima.getDate() - 7);
@@ -41,6 +45,13 @@ export class MateriaRegistroComponent implements OnInit {
     this.obtenerProductores();
     this.materia = new MateriaPrima();
     this.crearFormulario();
+    this.recibirId();
+  }
+  cambiarId(){
+    if(!this.modalService.hasOpenModals()){
+      this.recibirId();
+      this.control.codigoProductor.setValue(this.codigoProductor);
+    }
   }
   obtenerProductores() {
     this.productorService.gets().subscribe((result) => {
@@ -53,6 +64,24 @@ export class MateriaRegistroComponent implements OnInit {
       console.log(nombre[0]);
       return nombre[0];
     }
+  }
+  recibirId() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoProductor = estado)
+    );
+    this.control.codigoProductor.setValue(this.codigoProductor);
+    this.colocarValor();
+  }
+  colocarValor() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoProductor = estado)
+    );
+    this.control.codigoProductor.setValue(this.codigoProductor);
+  }
+
+
+  mostrarProductores() {
+    this.modalService.open(ConsultaProductorComponent, { size: 'lg' });
   }
   crearFormulario() {
     this.materia.fecha = new Date();
@@ -67,23 +96,6 @@ export class MateriaRegistroComponent implements OnInit {
       cantidad: [this.materia.cantidad, Validators.required],
       nombreProductor: [this.materia.nombreProductor, Validators.required]
     });
-  }
-  cambiarCodigo(e) {
-    {
-      this.control.codigoProductor.setValue(this.cortarCodigo(e.target.value), {
-        onlySelf: true,
-      });
-      this.control.nombreProductor.setValue(this.cortarNombre(e.target.value), {
-        onlySelf: true,
-      });
-    }
-  }
-  cortarNombre(texto: string) {
-    var nombre = texto.split(" - ");
-    for (let i = 0; i < nombre.length; i++) {
-      console.log(nombre[1]);
-      return nombre[1];
-    }
   }
   onSubmit() {
     this.registrar();
