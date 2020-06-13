@@ -82,6 +82,19 @@ export class VentaService {
     );
   }
 
+  getCodigo(): Observable<string>{
+    const url = `${this.baseUrl + "api/VentaCodigo"}`;
+    return this.http.get<string>(url, httpOptions).pipe(
+      //tap((_) => console.log("Codigo de venta generado")),
+      catchError(
+        this.handleErrorService.handleError<string>(
+          "Codigo de venta",
+          null
+        )
+      )
+    );
+  }
+
   put(venta: Venta): Observable<Venta> {
     const url = `${this.baseUrl + 'api/Venta'}/${venta.codigoVenta}`;
     return this.http.put<Venta>(url, venta, httpOptions)

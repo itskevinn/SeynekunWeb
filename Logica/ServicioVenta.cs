@@ -63,6 +63,17 @@ namespace Logica
                 servicio.Guardar(ajuste);
             }
         }
+        
+        public string GenerarCodigoVenta()
+        {
+            string codigo = string.Empty;
+            DateTime fecha = DateTime.Now;
+            var masUno = 1 + Convert.ToDecimal(fecha.Second);
+            string codigoTemp = Convert.ToString(fecha.Minute)+Convert.ToString(fecha.Month)+Convert.ToString(fecha.Year);
+            string hora = Convert.ToString(masUno)+Convert.ToString(fecha.Hour)+Convert.ToString(fecha.Day);
+            codigo = hora + codigoTemp;
+            return codigo;
+        }
 
         public ConsultarVentaResponse Consultar()
         {

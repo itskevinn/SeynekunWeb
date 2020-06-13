@@ -1,88 +1,138 @@
 <button [routerLink]="['/Ventas']" type="button" class="btn btn-labeled btn-light">
-    <span class="btn-label"><i class="fas fa-arrow-left"></i></span>Regresar</button>
-  <div class="page-top">
-    <div class="content">
-      <section id="datosGenerales">
-        <div class="card o-hidden border-0 shadow-lg my-1">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-5 d-none d-lg-block bg-registrar-bodega-imagen"></div>
-              <div class="col-lg-7">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Registrar venta</h1>
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span>Regresar
+</button>
+<div class="page-top">
+  <div class="content">
+    <section id="datosGenerales">
+      <div class="card o-hidden border-0 shadow-lg my-1">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-7">
+              <!-- Tabla de detalles  d-none d-lg-block bg-registrar-bodega-imagen -->
+              <div class="p-5">
+                <div class="col-sm-14" id="dataTable_wrapper">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6  separarArriba separarAbajo">
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar"
+                        aria-controls="dataTable" placeholder="Buscar">
+                    </div>
+                    <hr>
+                  </div>
+                    <div class="col-sm-18 col-md-18">
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+                          aria-describedby="dataTable_info" style="width: 100%;">
+                          <thead>
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Valor unitario</th>
+                              <th>Cantidad</th>
+                              <th>Total</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let detalle of detalles">
+                              <td>{{detalle.nombreProducto}}</td>
+                              <td>{{detalle.valorProducto}}</td>
+                              <td>{{detalle.cantidadProducto}}</td>
+                              <td>{{detalle.totalDetalle}}</td>
+                              <td>
+                                <button type="button" class="btn btn-link"
+                                  (click)="eliminarDetalle(detalle)">Retirar</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                 </div>
-                    <form class="user" [formGroup]="formGroupVenta">
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-user required"
-                            placeholder="Codigo de venta" formControlName="codigoVenta"
-                            [ngClass]="{'is-invalid':controlVenta.codigoVenta.errors && controlVenta.codigoVenta.touched}">
-                          <div *ngIf="controlVenta.codigoVenta.errors && controlVenta.codigoVenta.touched" class="invalid-feedback">
-                            <div class="validacion-texto" *ngIf="controlVenta.codigoVenta.errors.required">Proporcione un
-                                codigo de venta
-                            </div>
-                          </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-user required"
-                                placeholder="Identificacion del cliente" aria-label="Recipient's username" aria-describedby="button-addon2"
-                                formControlName="clienteId" [ngClass]="{'is-invalid':controlVenta.clienteId.errors && controlVenta.clienteId.touched}">
-                            <div class="input-group-append">
-                              <button (click)="buscarCliente()" class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
-                            </div>
-                            <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched" class="invalid-feedback">
-                                <div class="validacion-texto" *ngIf="controlVenta.clienteId.errors.required">Proporcione la identificacion
-                                    del cliente
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group separarArriba">
-                              <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
-                                [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
-                                [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-user required"
-                            placeholder="Observacion" formControlName="observacion" name="observacion"
-                            [ngClass]="{'is-invalid':controlVenta.observacion.errors && controlVenta.observacion.touched}">
-                          <div *ngIf="controlVenta.observacion.errors && controlVenta.observacion.touched" class="invalid-feedback">
-                            <div class="validacion-texto" *ngIf="controlVenta.observacion.errors.required">Proporcione una observacion</div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" disabled class="form-control form-control-user required"
-                            placeholder="Total venta" formControlName="totalVenta" name="totalVenta">
-                        </div>
-                        <div class="form-group">
-                          <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
-                            <option selected>Seleccionar bodega</option>
-                            <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <select class="form-dropdown border-verde" (change)="cambiarEmpleado($event)">
-                            <option selected>Seleccionar empleado</option>
-                            <option [ngValue]="empleado" *ngFor="let empleado of empleados">{{empleado.identificacion}}</option>
-                          </select>
-                        </div>
-                        <hr>
-                        <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
-                          Registrar venta
-                        </a>
-                        <hr>
-                    </form>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registrar venta</h1>
                 </div>
+                <form class="user" [formGroup]="formGroupVenta">
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" disabled class="form-control form-control-user required"
+                        placeholder="Codigo de venta" formControlName="codigoVenta"
+                        [ngClass]="{'is-invalid':controlVenta.codigoVenta.errors && controlVenta.codigoVenta.touched}">
+                      <div *ngIf="controlVenta.codigoVenta.errors && controlVenta.codigoVenta.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="controlVenta.codigoVenta.errors.required">Proporcione un
+                          codigo de venta
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                      <input type="text" class="form-control form-control-user" bsDatepicker
+                        [bsConfig]="{ isAnimated: true }" [bsValue]="bsValue"
+                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima" [maxDate]="fechaMaxima"
+                        formControlName="fecha" placeholder="Fecha">
+                    </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control form-control-user required"
+                      placeholder="Identificacion del cliente" aria-label="Recipient's username"
+                      aria-describedby="button-addon2" formControlName="clienteId"
+                      [ngClass]="{'is-invalid':controlVenta.clienteId.errors && controlVenta.clienteId.touched}">
+                    <div class="input-group-append">
+                      <button (click)="buscarCliente()" class="btn btn-outline-secondary" type="button"
+                        id="button-addon2">Buscar</button>
+                    </div>
+                    <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="controlVenta.clienteId.errors.required">Proporcione la
+                        identificacion
+                        del cliente
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user required" placeholder="Observacion"
+                      formControlName="observacion" name="observacion"
+                      [ngClass]="{'is-invalid':controlVenta.observacion.errors && controlVenta.observacion.touched}">
+                    <div *ngIf="controlVenta.observacion.errors && controlVenta.observacion.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="controlVenta.observacion.errors.required">Proporcione una
+                        observacion</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
+                      <option selected>Seleccionar bodega</option>
+                      <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <select class="form-dropdown border-verde" (change)="cambiarEmpleado($event)">
+                      <option selected>Seleccionar empleado</option>
+                      <option [ngValue]="empleado" *ngFor="let empleado of empleados">{{empleado.identificacion}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" disabled class="form-control form-control-user required"
+                      placeholder="Total venta" formControlName="totalVenta" name="totalVenta">
+                  </div>
+                  <hr>
+                  <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                    Registrar venta
+                  </a>
+                  <hr>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
+</div>
 <br>
 <div class="serpararArriba">
   <h1 class="h3 mb-2 text-gray-800">Productos agregados {{detalles.length}}</h1>
@@ -96,7 +146,7 @@
             placeholder="Buscar">
         </div>
         <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
-          <input type="text" class="form-control form-control-sm" [(ngModel)]="textoCantidad" aria-controls="dataTable"
+          <input type="number" class="form-control form-control-sm" [(ngModel)]="numberCantidad" aria-controls="dataTable"
             placeholder="Cantidad">
         </div>
         <hr>
@@ -133,4 +183,3 @@
     </div>
   </div>
 </div>
-

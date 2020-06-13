@@ -33,23 +33,20 @@ export class VentaRegistroComponent implements OnInit {
   detalles: DetalleVenta[] = [];
   nombreBodegaSeleccionada: string;
   textoABuscar: string;
-  textoCantidad: string;
-  totalTemp: Number = 0;
+  numberCantidad: number = 1;
+  producto: Producto;
 
-  detalle: DetalleVenta;
   ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
   formGroupVenta: FormGroup;
   fechaHoy: Date;
   productos: Producto[];
-  producto: Producto;
   bsValue = new Date();
   fechaMinima: Date;
   fechaMaxima: Date;
   codigoElemento: string;
 
   constructor(
-    private ajusteInventarioService: AjusteInventarioService,
     private ventaService: VentaService,
     private productoStockService: ProductStockService,
     private formBuilder: FormBuilder,
@@ -69,6 +66,7 @@ export class VentaRegistroComponent implements OnInit {
     this.obtenerBodegas();
     this.obtenerEmpleados();
     this.formularioVenta();
+    this.getCodigo();
     this.localeService.use("es");
   }
 
@@ -91,6 +89,16 @@ export class VentaRegistroComponent implements OnInit {
     });
   }
 
+  buscarCliente() {
+    const id = this.controlVenta.clienteId.value;
+    this.clienteService.get(id).subscribe((result) => {
+      if (result != null) {
+        this.cliente = result;
+        const fullName = result.nombre + " " + result.apellido;
+        this.controlVenta.clienteId.setValue(fullName);
+      }
+    });
+  }
   obtenerEmpleados() {
     this.empleadoService.gets().subscribe((result) => {
       this.empleados = result;
@@ -116,52 +124,73 @@ export class VentaRegistroComponent implements OnInit {
     });
   }
 
-  agregarDetalle(productoSeleccionado: ProductoEnBodega) {
-    if (this.textoCantidad != "") {
-      this.detalle = new DetalleVenta;
-      this.detalle.codigoDetalle = String(this.detalles.length) + this.controlVenta.codigoVenta.value;
-      this.detalle.codigoVenta = this.controlVenta.codigoVenta.value;
-      this.detalle.codigoProducto = productoSeleccionado.producto.codigo;
-      this.detalle.cantidadProducto = Number(this.textoCantidad);
-      this.detalle.totalDetalle = this.detalle.cantidadProducto * productoSeleccionado.producto.precio;
-      this.detalle.nombreBodega = this.nombreBodegaSeleccionada;
-      console.log(this.detalle.totalDetalle);
-      this.detalles.push(this.detalle);
-      this.controlVenta.detallesVentas.setValue(this.detalles);
-      this.calcularTotal();
-    }
-    else {
-      const modalRef = this.modalService.open(AlertaModalErrorComponent);
-      modalRef.componentInstance.titulo = 'Por favor, digite una cantidad';
+  agregarDetalle(productoSelect: ProductoEnBodega){
+    if (this.validarCantidad(this.numberCantidad, productoSelect.cantidad)){
+      var detalle = new DetalleVenta;
+      detalle.codigoDetalle = String(this.detalles.length) + this.controlVenta.codigoVenta.value;
+      detalle.codigoVenta = this.controlVenta.codigoVenta.value;
+      detalle.codigoProducto = productoSelect.producto.codigo;
+      detalle.nombreProducto = productoSelect.producto.nombre;
+      detalle.valorProducto = productoSelect.producto.precio;
+      detalle.cantidadProducto = this.numberCantidad;
+      detalle.totalDetalle = detalle.cantidadProducto * productoSelect.producto.precio;
+      detalle.nombreBodega = this.nombreBodegaSeleccionada;
+      productoSelect.cantidad -= this.numberCantidad;
+      this.updateDetails(this.detalles,detalle);
     }
   }
+  validarCantidad(cantidad, limite){
+    if(cantidad <1){
+      const modalRef = this.modalService.open(AlertaModalErrorComponent);
+      modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
+      modalRef.componentInstance.mensaje = 'Digite una cantidad mayor 1';
+      return false;
+    }else if(cantidad > limite){
+      const modalRef = this.modalService.open(AlertaModalErrorComponent);
+      modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
+      modalRef.componentInstance.mensaje = 'La cantidad digita no puede superar a la del producto';
+      return false;
+    }
+    return true;
+  }
+  updateDetails(details, detail){
+    var encontrado = true;
+    const codigo = detail.codigoProducto;
+    let pos = 0;
+    
+    for(let dett of details){
+      if(dett.codigoProducto === codigo){
+        encontrado = false;
+        pos = details.indexOf(dett);
+      }
+    }
 
-  get control() {
-    return this.formGroup.controls;
+    if(encontrado){
+      details.push(detail);
+    }else{
+      details[pos].cantidadProducto += detail.cantidadProducto;
+      details[pos].totalDetalle = details[pos].cantidadProducto * detail.valorProducto;
+    }
+    this.calcularTotal();
+    this.controlVenta.detallesVentas.setValue(details);
+  }
+  calcularTotal(){
+    let total = 0;
+    for (let dett of this.detalles){
+      total += dett.totalDetalle;
+    }
+    this.controlVenta.totalVenta.setValue(total);
+  }
+  eliminarDetalle(detalleEliminar: DetalleVenta){
+    var posicion = this.detalles.indexOf(detalleEliminar);
+    this.detalles.splice(posicion,1);
+    this.calcularTotal();
   }
 
   get controlVenta() {
     return this.formGroupVenta.controls;
   }
 
-  buscarCliente() {
-    const id = this.controlVenta.clienteId.value;
-    this.clienteService.get(id).subscribe((result) => {
-      if (result != null) {
-        this.cliente = result;
-        const fullName = result.nombre + " " + result.apellido;
-        this.controlVenta.clienteId.setValue(fullName);
-      }
-    });
-  }
-
-  calcularTotal() {
-    this.venta.totalVenta = 0;
-    for (let dett of this.detalles) {
-      this.venta.totalVenta += dett.totalDetalle;
-    }
-    this.controlVenta.totalVenta.setValue(this.venta.totalVenta);
-  }
   onSubmit() {
     if (this.formGroupVenta.invalid) {
     } else {
@@ -176,6 +205,14 @@ export class VentaRegistroComponent implements OnInit {
         this.venta = v;
         this.formGroupVenta.reset();
       }
+    });
+  }
+
+  getCodigo()
+  {
+    this.ventaService.getCodigo().subscribe( c => {
+      if(c != "")
+      this.controlVenta.codigoVenta.setValue(c);
     });
   }
 }
