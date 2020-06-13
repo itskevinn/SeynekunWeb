@@ -66,7 +66,6 @@ export class ClienteRegistroComponent implements OnInit {
       numeroTelefono: [
         this.cliente.numeroTelefono,
         [
-          Validators.required,
           Validators.minLength(10),
           Validators.maxLength(12),
           this.validarNumeroTelefono,
@@ -81,15 +80,14 @@ export class ClienteRegistroComponent implements OnInit {
         ]
       ],
       email: [this.cliente.email,
-        [ 
-          Validators.email,
-          Validators.required
-        ]
+      [
+        Validators.email
+      ]
       ],
-      direccion: [this.cliente.direccion, Validators.required],
+      direccion: [this.cliente.direccion],
       municipio: [this.cliente.municipio],
       departamento: [this.cliente.departamento],
-      barrio: [this.cliente.barrio,Validators.required],
+      barrio: [this.cliente.barrio],
     })
   }
 

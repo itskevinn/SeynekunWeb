@@ -1,27 +1,18 @@
-<h1 class="h3 mb-2 text-gray-800">Ajustes de Inventario</h1>
+<h1 class="h3 mb-2 text-gray-800">Producciones</h1>
 <div class="card shadow mb-4">
   <div class="card-body">
     <div id="dataTable_wrapper">
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <div class="separarArriba">
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              [(ngModel)]="textoABuscar"
-              aria-controls="dataTable"
-              placeholder="Buscar"
-            />
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+              placeholder="Buscar" />
           </div>
         </div>
         <div class="col-sm-12 col-md-6">
           <div class="text-right separarAbajo separarArriba">
-            <button
-              [routerLink]="['/RegistrarAjusteInventario']"
-              type="button"
-              class="btn btn-labeled btn-success"
-            >
-              <span class="btn-label"><i class="fas fa-plus"></i></span> Nuevo
+            <button [routerLink]="['/RegistrarAjusteInventario']" type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fas fa-plus"></i></span> Nueva
             </button>
           </div>
         </div>
@@ -30,45 +21,31 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="table-responsive">
-            <table
-              class="table table-bordered"
-              id="dataTable"
-              width="100%"
-              cellspacing="0"
-              role="grid"
-              aria-describedby="dataTable_info"
-              style="width: 100%;"
-            >
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr>
                   <th>Fecha</th>
+                  <th>Referencia producto producido</th>
+                  <th>Cantidad producida</th>
                   <th>Bodega</th>
-                  <th>Tipo de elemento</th>
-                  <th>Cantidad ajustada</th>
-                  <th>Tipo de ajuste</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="
+                <tr *ngFor="
                     let ajusteInvetario of ajusteInventarios
                       | filtroAjusteInventario: textoABuscar;
                     index as i
-                  "
-                >
-                  <td>{{ ajusteInvetario.fecha | date }}</td>
-                  <td>{{ ajusteInvetario.nombreBodega }}</td>
-                  <td>{{ ajusteInvetario.tipoElemento }}</td>
+                  ">
+                  <td>{{ ajusteInvetario.fecha |date: 'dd/MM/yyyy, h:mm a'}}</td>
+                  <td>{{ ajusteInvetario.codigoElemento }}</td>
                   <td>{{ ajusteInvetario.cantidad }}</td>
-                  <td>{{ ajusteInvetario.tipoAjuste }}</td>
+                  <td>{{ ajusteInvetario.nombreBodega }}</td>
                   <td>
-                    <a
-                      routerLink="/AjusteDeInventario/{{
+                    <a routerLink="/AjusteDeInventario/{{
                         ajusteInvetario.codigoAjuste
-                      }}"
-                      >Ver</a
-                    >
+                      }}">Ver</a>
                   </td>
                 </tr>
               </tbody>

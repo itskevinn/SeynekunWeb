@@ -11,6 +11,8 @@ namespace Entity
         [Required(ErrorMessage = "Se requiere la fecha de ingreso")]
         public DateTime Fecha { get; set; }
         public string UnidadMedida { get; set; }
+        [Required(ErrorMessage="Se requiere el tipo de materia prima que ingresó")]
+        public string Tipo { get; set; }
         public string NombreProductor { get; set; }
         [Required(ErrorMessage = "Se requiere el código del productor")]
         public string CodigoProductor { get; set; }

@@ -13,40 +13,41 @@
               <div class="p-5">
                 <div class="col-sm-14" id="dataTable_wrapper">
                   <div class="row">
+                    <h3> Productos comprados</h3>
                     <div class="col-sm-12 col-md-6  separarArriba separarAbajo">
                       <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar"
                         aria-controls="dataTable" placeholder="Buscar">
                     </div>
                     <hr>
                   </div>
-                    <div class="col-sm-18 col-md-18">
-                      <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
-                          aria-describedby="dataTable_info" style="width: 100%;">
-                          <thead>
-                            <tr>
-                              <th>Nombre</th>
-                              <th>Valor unitario</th>
-                              <th>Cantidad</th>
-                              <th>Total</th>
-                              <th>Acción</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let detalle of detalles">
-                              <td>{{detalle.nombreProducto}}</td>
-                              <td>{{detalle.valorProducto}}</td>
-                              <td>{{detalle.cantidadProducto}}</td>
-                              <td>{{detalle.totalDetalle}}</td>
-                              <td>
-                                <button type="button" class="btn btn-link"
-                                  (click)="eliminarDetalle(detalle)">Retirar</button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                  <div class="col-sm-18 col-md-18">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+                        aria-describedby="dataTable_info" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Valor unitario</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th>Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let detalle of detalles | filtroProducto">
+                            <td>{{detalle.nombreProducto}}</td>
+                            <td>{{detalle.valorProducto}}</td>
+                            <td>{{detalle.cantidadProducto}}</td>
+                            <td>{{detalle.totalDetalle}}</td>
+                            <td>
+                              <button type="button" class="btn btn-link"
+                                (click)="eliminarDetalle(detalle)">Retirar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,19 +77,19 @@
                     </div>
                   </div>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-user required"
-                      placeholder="Identificacion del cliente" aria-label="Recipient's username"
-                      aria-describedby="button-addon2" formControlName="clienteId"
-                      [ngClass]="{'is-invalid':controlVenta.clienteId.errors && controlVenta.clienteId.touched}">
-                    <div class="input-group-append">
-                      <button (click)="buscarCliente()" class="btn btn-outline-secondary" type="button"
-                        id="button-addon2">Buscar</button>
-                    </div>
-                    <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="controlVenta.clienteId.errors.required">Proporcione la
-                        identificacion
-                        del cliente
+                    <div class="input-group">
+                      <input type="text" class="form-control form-control-user" name="clienteId"
+                        placeholder="Seleccione el cliente o digite su identificación" formControlName="clienteId"
+                        [ngClass]="{'is-invalid':controlVenta.clienteId.errors &&
+                        controlVenta.clienteId.touched}" (click)="mostarClientes()" (click)="cambiarId()">
+                      <div class="input-group-icon">
+                        <i class="far fa-check-circle" (click)="recibirId()"></i>
+                        <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched"
+                          class="invalid-feedback">
+                          <div class="validacion-texto" *ngIf="controlVenta.clienteId.required">Seleccione el
+                            cliente
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -101,12 +102,6 @@
                       <div class="validacion-texto" *ngIf="controlVenta.observacion.errors.required">Proporcione una
                         observacion</div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
-                      <option selected>Seleccionar bodega</option>
-                      <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
-                    </select>
                   </div>
                   <div class="form-group">
                     <select class="form-dropdown border-verde" (change)="cambiarEmpleado($event)">
@@ -135,19 +130,32 @@
 </div>
 <br>
 <div class="serpararArriba">
-  <h1 class="h3 mb-2 text-gray-800">Productos agregados {{detalles.length}}</h1>
+  <div *ngIf="nombreBodegaSeleccionada!=null;else noSeleccionada">
+    <h1 class="h3 mb-2 text-gray-800">Productos disponibles en {{nombreBodegaSeleccionada}}</h1>
+  </div>
+  <ng-template #noSeleccionada>
+    <h1 class="h3 mb-2 text-gray-800">Seleccione una bodega para ver los productos disponibles</h1>
+  </ng-template>
 </div>
 <div class="card shadow mb-4">
   <div class="card-body">
     <div id="dataTable_wrapper">
       <div class="row">
-        <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
+        <div class="col-sm-12 col-md-4 separarArriba separarAbajo">
           <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
             placeholder="Buscar">
         </div>
-        <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
-          <input type="number" class="form-control form-control-sm" [(ngModel)]="numberCantidad" aria-controls="dataTable"
-            placeholder="Cantidad">
+        <div class="col-sm-12 col-md-4 separarArriba separarAbajo">
+          <div class="form-group">
+            <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
+              <option selected>Seleccionar bodega</option>
+              <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4 separarArriba separarAbajo">
+          <input type="number" class="form-control form-control-sm" [(ngModel)]="numberCantidad"
+            aria-controls="dataTable" placeholder="Cantidad">
         </div>
         <hr>
       </div>

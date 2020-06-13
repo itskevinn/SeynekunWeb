@@ -31,7 +31,7 @@
                   placeholder="Seleccione un Productor" formControlName="codigoProductor" [ngClass]="{'is-invalid':control.codigoProductor.errors &&
               control.codigoProductor.touched}" (click)="mostrarProductores()" (click)="cambiarId()">
                 <div class="input-group-icon">
-                  <i  class="far fa-check-circle" (click)="recibirId()"></i>
+                  <i class="far fa-check-circle" (click)="recibirId()"></i>
                   <div *ngIf="control.codigoProductor.errors && control.codigoProductor.touched"
                     class="invalid-feedback">
                     <div class="validacion-texto" *ngIf="control.codigoProductor.errors.required">Seleccione el
@@ -43,8 +43,15 @@
               </div>
             </div>
             <div class="form-group">
-              <input type="number" class="form-control form-control-user" name="cantidad" placeholder="Cantidad de materia prima ingresada en Kg"
-                formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
+              <select class="form-dropdown border-verde " (change)="cambiarTipo($event)">
+                <option [ngValue]="null">Seleccione el tipo de materia prima ingresada</option>
+                <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control form-control-user" name="cantidad"
+                placeholder="Cantidad de materia prima ingresada en Kg" formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
                   control.cantidad.touched}">
               <div *ngIf="control.cantidad.errors && control.cantidad.touched" class="invalid-feedback">
                 <div class="validacion-texto" *ngIf="control.cantidad.errors.required">Proporcione una cantidad

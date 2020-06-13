@@ -11,6 +11,7 @@ namespace seynekun.Models
             public DateTime Fecha { get; set; }
             public decimal Cantidad { get; set; }
             public string NombreProductor { get; set; }
+            public string Tipo { get; set; }
             public string CodigoProductor { get; set; }
             public string EstadoMateria { get; set; }
         }
@@ -25,6 +26,7 @@ namespace seynekun.Models
                 CodigoProductor = materiaPrima.CodigoProductor;
                 NombreProductor = materiaPrima.NombreProductor;
                 EstadoMateria = materiaPrima.EstadoMateria;
+                Tipo = materiaPrima.Tipo;
             }
         }
     }

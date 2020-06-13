@@ -1,15 +1,9 @@
-<div class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
-ng-class="{ toggled: isExpanded == true }" *ngIf="isExpanded; else ocultar">
-  <ul
-    class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
-    ng-class="{ toggled: isExpanded == true }"
-    id="accordionSidebar"
-  >
+<div class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" ng-class="{ toggled: isExpanded == true }"
+  *ngIf="isExpanded; else ocultar">
+  <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" ng-class="{ toggled: isExpanded == true }"
+    id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a
-      class="sidebar-brand d-flex align-items-center justify-content-center"
-      href="index.html"
-    >
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
       <div class="sidebar-brand-text mx-3">Seynekun <sup>inventario</sup></div>
     </a>
 
@@ -17,15 +11,10 @@ ng-class="{ toggled: isExpanded == true }" *ngIf="isExpanded; else ocultar">
     <hr class="sidebar-divider my-0" />
 
     <!-- Nav Item - Dashboard -->
-    <li
-      class="nav-item"
-      [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
+    <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
       <a class="nav-link" [routerLink]="['/']">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Balance</span></a
-      >
+        <span>Balance</span></a>
     </li>
 
     <!-- Divider -->
@@ -38,197 +27,109 @@ ng-class="{ toggled: isExpanded == true }" *ngIf="isExpanded; else ocultar">
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboPersonas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-user-friends"></i>
         <span>Personas</span>
       </a>
-      <div
-        id="comboPersonas"
-        class="collapse"
-        aria-labelledby="headingOne"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Productores</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
           <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
           <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
-          <a class="collapse-item" [routerLink]="['/Fabricantes']"
-            >Fabricantes</a
-          >
+          <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Coordinador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboPersonas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-user-friends"></i>
         <span>Personas</span>
       </a>
-      <div
-        id="comboPersonas"
-        class="collapse"
-        aria-labelledby="headingOne"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Productores</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
           <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
           <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
-          <a class="collapse-item" [routerLink]="['/Fabricantes']"
-            >Fabricantes</a
-          >
+          <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboInventario"
-        aria-expanded="true"
-        aria-controls="collapseTwo"
-      >
-        <i class="fas fa-fw fa-industry"></i>
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboInventario" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-dolly"></i>
         <span>Inventario</span>
       </a>
-      <div
-        id="comboInventario"
-        class="collapse"
-        aria-labelledby="headingTwo"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/MateriasPrima']"
-            >Materias Prima</a
-          >
-          <a class="collapse-item" [routerLink]="['/Productos']"
-            >Productos a la venta</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productos']">Productos a la venta</a>
           <a class="collapse-item" [routerLink]="['/Bodegas']">Bodegas</a>
           <a class="collapse-item" [routerLink]="['/Categorias']">Categorias</a>
-          <a class="collapse-item" [routerLink]="['/AjustesDeInventario']"
-            >Ajuste de inventario</a
-          >
-          <a class="collapse-item" [routerLink]="['/Insumos']">Insumos</a>
-          <a class="collapse-item" [routerLink]="['/Reporte-De-Inventario']"
-            >Valor de inventario</a
-          >
+          <a class="collapse-item" [routerLink]="['/Reporte-De-Inventario']">Valor de inventario</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboTransportes"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboAjustes" aria-expanded="true"
+        aria-controls="collapseOne">
+        <i class="fas fa-fw fa-industry"></i>
+        <span>Producción</span>
+      </a>
+      <div id="comboAjustes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" [routerLink]="['/MateriasPrima']">Materia Prima</a>
+          <a class="collapse-item" [routerLink]="['/AjustesDeInventario']">Producciones</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboTransportes" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-truck"></i>
         <span>Transportes</span>
       </a>
-      <div
-        id="comboTransportes"
-        class="collapse"
-        aria-labelledby="headingThree"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboTransportes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item" [routerLink]="['/Traslados']">Traslados</a>
-          <a class="collapse-item" [routerLink]="['/Transportadores']"
-            >Transportadores</a
-          >
+          <a class="collapse-item" [routerLink]="['/Transportadores']">Transportadores</a>
           <a class="collapse-item" [routerLink]="['/Vehiculos']">Vehiculos</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Productor'">
-      <a
-        class="nav-link"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-        routerLink="/ConsultarMateria/{{ usuario.id }}"
-      >
+      <a class="nav-link" aria-expanded="true" aria-controls="collapseOne"
+        routerLink="/ConsultarMateria/{{ usuario.id }}">
         <i class="fas fa-fw fa-clipboard-list"></i>
         <span>Materias Prima</span>
       </a>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Coordinador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboPersonas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-user-friends"></i>
         <span>Personas</span>
       </a>
-      <div
-        id="comboPersonas"
-        class="collapse"
-        aria-labelledby="headingOne"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Productores</a
-          >
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Solicitudes de Registro</a
-          >
-          <a class="collapse-item" [routerLink]="['/Fabricantes']"
-            >Fabricantes</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
+          <a class="collapse-item" [routerLink]="['/Productores']">Solicitudes de Registro</a>
+          <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
         </div>
       </div>
     </li>
 
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboVentas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboVentas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-check"></i>
         <span>Ventas</span>
       </a>
-      <div
-        id="comboVentas"
-        class="collapse"
-        aria-labelledby="headingThree"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboVentas" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Ventas']"
-            >Consultar ventas</a
-          >
-          <a class="collapse-item" [routerLink]="['/RegistrarVenta']"
-            >Registrar venta</a
-          >
+          <a class="collapse-item" [routerLink]="['/Ventas']">Consultar ventas</a>
+          <a class="collapse-item" [routerLink]="['/RegistrarVenta']">Registrar venta</a>
         </div>
       </div>
     </li>
@@ -290,26 +191,16 @@ ng-class="{ toggled: isExpanded == true }" *ngIf="isExpanded; else ocultar">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-      <button
-        class="rounded-circle border-0"
-        id="sidebarToggle"
-        (click)="toggle()"
-      ></button>
+      <button class="rounded-circle border-0" id="sidebarToggle" (click)="toggle()"></button>
     </div>
   </ul>
 </div>
 <ng-template #ocultar class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
-ng-class="{ toggled: isExpanded == true }">
-  <ul
-    class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion toggled"
-    ng-class="{ toggled: isExpanded == true }"
-    id="accordionSidebar"
-  >
+  ng-class="{ toggled: isExpanded == true }">
+  <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion toggled"
+    ng-class="{ toggled: isExpanded == true }" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a
-      class="sidebar-brand d-flex align-items-center justify-content-center"
-      href="index.html"
-    >
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
       <div class="sidebar-brand-text mx-3">Seynekun <sup>inventario</sup></div>
     </a>
 
@@ -317,15 +208,10 @@ ng-class="{ toggled: isExpanded == true }">
     <hr class="sidebar-divider my-0" />
 
     <!-- Nav Item - Dashboard -->
-    <li
-      class="nav-item"
-      [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
+    <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
       <a class="nav-link" [routerLink]="['/']">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Balance</span></a
-      >
+        <span>Balance</span></a>
     </li>
 
     <!-- Divider -->
@@ -338,197 +224,109 @@ ng-class="{ toggled: isExpanded == true }">
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboPersonas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-user-friends"></i>
         <span>Personas</span>
       </a>
-      <div
-        id="comboPersonas"
-        class="collapse"
-        aria-labelledby="headingOne"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Productores</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
           <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
           <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
-          <a class="collapse-item" [routerLink]="['/Fabricantes']"
-            >Fabricantes</a
-          >
+          <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Coordinador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboPersonas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-user-friends"></i>
         <span>Personas</span>
       </a>
-      <div
-        id="comboPersonas"
-        class="collapse"
-        aria-labelledby="headingOne"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Productores</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
           <a class="collapse-item" [routerLink]="['/Clientes']">Clientes</a>
           <a class="collapse-item" [routerLink]="['/Empleados']">Empleados</a>
-          <a class="collapse-item" [routerLink]="['/Fabricantes']"
-            >Fabricantes</a
-          >
+          <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboInventario"
-        aria-expanded="true"
-        aria-controls="collapseTwo"
-      >
-        <i class="fas fa-fw fa-industry"></i>
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboInventario" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-dolly"></i>
         <span>Inventario</span>
       </a>
-      <div
-        id="comboInventario"
-        class="collapse"
-        aria-labelledby="headingTwo"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/MateriasPrima']"
-            >Materias Prima</a
-          >
-          <a class="collapse-item" [routerLink]="['/Productos']"
-            >Productos a la venta</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productos']">Productos a la venta</a>
           <a class="collapse-item" [routerLink]="['/Bodegas']">Bodegas</a>
           <a class="collapse-item" [routerLink]="['/Categorias']">Categorias</a>
-          <a class="collapse-item" [routerLink]="['/AjustesDeInventario']"
-            >Ajuste de inventario</a
-          >
-          <a class="collapse-item" [routerLink]="['/Insumos']">Insumos</a>
-          <a class="collapse-item" [routerLink]="['/Reporte-De-Inventario']"
-            >Valor de inventario</a
-          >
+          <a class="collapse-item" [routerLink]="['/Reporte-De-Inventario']">Valor de inventario</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboTransportes"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboAjustes" aria-expanded="true"
+        aria-controls="collapseOne">
+        <i class="fas fa-fw fa-industry"></i>
+        <span>Producción</span>
+      </a>
+      <div id="comboAjustes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" [routerLink]="['/MateriaPrima']">Materia Prima</a>
+          <a class="collapse-item" [routerLink]="['/AjustesDeInventario']">Producciones</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboTransportes" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-truck"></i>
         <span>Transportes</span>
       </a>
-      <div
-        id="comboTransportes"
-        class="collapse"
-        aria-labelledby="headingThree"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboTransportes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item" [routerLink]="['/Traslados']">Traslados</a>
-          <a class="collapse-item" [routerLink]="['/Transportadores']"
-            >Transportadores</a
-          >
+          <a class="collapse-item" [routerLink]="['/Transportadores']">Transportadores</a>
           <a class="collapse-item" [routerLink]="['/Vehiculos']">Vehiculos</a>
         </div>
       </div>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Productor'">
-      <a
-        class="nav-link"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-        routerLink="/ConsultarMateria/{{ usuario.id }}"
-      >
+      <a class="nav-link" aria-expanded="true" aria-controls="collapseOne"
+        routerLink="/ConsultarMateria/{{ usuario.id }}">
         <i class="fas fa-fw fa-clipboard-list"></i>
         <span>Materias Prima</span>
       </a>
     </li>
     <li class="nav-item" *ngIf="usuario.tipo == 'Coordinador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboPersonas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboPersonas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-user-friends"></i>
         <span>Personas</span>
       </a>
-      <div
-        id="comboPersonas"
-        class="collapse"
-        aria-labelledby="headingOne"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboPersonas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Productores</a
-          >
-          <a class="collapse-item" [routerLink]="['/Productores']"
-            >Solicitudes de Registro</a
-          >
-          <a class="collapse-item" [routerLink]="['/Fabricantes']"
-            >Fabricantes</a
-          >
+          <a class="collapse-item" [routerLink]="['/Productores']">Productores</a>
+          <a class="collapse-item" [routerLink]="['/Productores']">Solicitudes de Registro</a>
+          <a class="collapse-item" [routerLink]="['/Fabricantes']">Fabricantes</a>
         </div>
       </div>
     </li>
 
     <li class="nav-item" *ngIf="usuario.tipo == 'Administrador'">
-      <a
-        class="nav-link collapsed"
-        href="#"
-        data-toggle="collapse"
-        data-target="#comboVentas"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#comboVentas" aria-expanded="true"
+        aria-controls="collapseOne">
         <i class="fas fa-fw fa-check"></i>
         <span>Ventas</span>
       </a>
-      <div
-        id="comboVentas"
-        class="collapse"
-        aria-labelledby="headingThree"
-        data-parent="#accordionSidebar"
-      >
+      <div id="comboVentas" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" [routerLink]="['/Ventas']"
-            >Consultar ventas</a
-          >
-          <a class="collapse-item" [routerLink]="['/RegistrarVenta']"
-            >Registrar venta</a
-          >
+          <a class="collapse-item" [routerLink]="['/Ventas']">Consultar ventas</a>
+          <a class="collapse-item" [routerLink]="['/RegistrarVenta']">Registrar venta</a>
         </div>
       </div>
     </li>
@@ -590,11 +388,7 @@ ng-class="{ toggled: isExpanded == true }">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-      <button
-        class="rounded-circle border-0"
-        id="sidebarToggle"
-        (click)="toggle()"
-      ></button>
+      <button class="rounded-circle border-0" id="sidebarToggle" (click)="toggle()"></button>
     </div>
   </ul>
 </ng-template>

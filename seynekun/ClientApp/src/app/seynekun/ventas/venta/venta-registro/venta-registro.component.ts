@@ -18,6 +18,8 @@ import { ProductStockService } from 'src/app/servicios/servicio-producto-stock/p
 import { EmpleadoService } from 'src/app/servicios/servicio-de-empleado/empleado.service';
 import { Empleado } from 'src/app/seynekun/models/modelo-empleado/empleado';
 import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component';
+import { ConsultaClienteComponent } from 'src/app/modal/consulta-cliente-modal/consulta-cliente/consulta-cliente.component';
+import { EventoService } from 'src/app/servicios/servicio-evento/evento.service';
 
 @Component({
   selector: 'app-venta-registro',
@@ -33,9 +35,9 @@ export class VentaRegistroComponent implements OnInit {
   detalles: DetalleVenta[] = [];
   nombreBodegaSeleccionada: string;
   textoABuscar: string;
-  numberCantidad: number = 1;
+  numberCantidad: number;
   producto: Producto;
-
+  clienteId: string;
   ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
   formGroupVenta: FormGroup;
@@ -54,6 +56,7 @@ export class VentaRegistroComponent implements OnInit {
     private clienteService: ClienteService,
     private empleadoService: EmpleadoService,
     private bodegaService: BodegaService,
+    private eventoService: EventoService,
     private localeService: BsLocaleService) {
     this.fechaMinima = new Date();
     this.fechaMaxima = new Date();
@@ -88,7 +91,22 @@ export class VentaRegistroComponent implements OnInit {
       empleadoId: [this.venta.empleadoId, Validators.required]
     });
   }
-
+  mostarClientes() {
+    this.modalService.open(ConsultaClienteComponent, { size: 'lg' });
+  }
+  recibirId() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.clienteId = estado)
+    );
+    this.controlVenta.clienteId.setValue(this.clienteId);
+    this.colocarValor();
+  }
+  colocarValor() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.clienteId = estado)
+    );
+    this.controlVenta.clienteId.setValue(this.clienteId);
+  }
   buscarCliente() {
     const id = this.controlVenta.clienteId.value;
     this.clienteService.get(id).subscribe((result) => {
@@ -103,6 +121,12 @@ export class VentaRegistroComponent implements OnInit {
     this.empleadoService.gets().subscribe((result) => {
       this.empleados = result;
     });
+  }
+  cambiarId() {
+    if (!this.modalService.hasOpenModals()) {
+      this.recibirId();
+      this.controlVenta.clienteId.setValue(this.clienteId);
+    }
   }
   cambiarEmpleado(e) {
     this.controlVenta.empleadoId.setValue(e.target.value, {
@@ -124,8 +148,8 @@ export class VentaRegistroComponent implements OnInit {
     });
   }
 
-  agregarDetalle(productoSelect: ProductoEnBodega){
-    if (this.validarCantidad(this.numberCantidad, productoSelect.cantidad)){
+  agregarDetalle(productoSelect: ProductoEnBodega) {
+    if (this.validarCantidad(this.numberCantidad, productoSelect.cantidad)) {
       var detalle = new DetalleVenta;
       detalle.codigoDetalle = String(this.detalles.length) + this.controlVenta.codigoVenta.value;
       detalle.codigoVenta = this.controlVenta.codigoVenta.value;
@@ -136,16 +160,16 @@ export class VentaRegistroComponent implements OnInit {
       detalle.totalDetalle = detalle.cantidadProducto * productoSelect.producto.precio;
       detalle.nombreBodega = this.nombreBodegaSeleccionada;
       productoSelect.cantidad -= this.numberCantidad;
-      this.updateDetails(this.detalles,detalle);
+      this.updateDetails(this.detalles, detalle);
     }
   }
-  validarCantidad(cantidad, limite){
-    if(cantidad <1){
+  validarCantidad(cantidad, limite) {
+    if (cantidad < 1) {
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
       modalRef.componentInstance.mensaje = 'Digite una cantidad mayor 1';
       return false;
-    }else if(cantidad > limite){
+    } else if (cantidad > limite) {
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
       modalRef.componentInstance.mensaje = 'La cantidad digita no puede superar a la del producto';
@@ -153,37 +177,37 @@ export class VentaRegistroComponent implements OnInit {
     }
     return true;
   }
-  updateDetails(details, detail){
+  updateDetails(details, detail) {
     var encontrado = true;
     const codigo = detail.codigoProducto;
     let pos = 0;
-    
-    for(let dett of details){
-      if(dett.codigoProducto === codigo){
+
+    for (let dett of details) {
+      if (dett.codigoProducto === codigo) {
         encontrado = false;
         pos = details.indexOf(dett);
       }
     }
 
-    if(encontrado){
+    if (encontrado) {
       details.push(detail);
-    }else{
+    } else {
       details[pos].cantidadProducto += detail.cantidadProducto;
       details[pos].totalDetalle = details[pos].cantidadProducto * detail.valorProducto;
     }
     this.calcularTotal();
     this.controlVenta.detallesVentas.setValue(details);
   }
-  calcularTotal(){
+  calcularTotal() {
     let total = 0;
-    for (let dett of this.detalles){
+    for (let dett of this.detalles) {
       total += dett.totalDetalle;
     }
     this.controlVenta.totalVenta.setValue(total);
   }
-  eliminarDetalle(detalleEliminar: DetalleVenta){
+  eliminarDetalle(detalleEliminar: DetalleVenta) {
     var posicion = this.detalles.indexOf(detalleEliminar);
-    this.detalles.splice(posicion,1);
+    this.detalles.splice(posicion, 1);
     this.calcularTotal();
   }
 
@@ -199,7 +223,7 @@ export class VentaRegistroComponent implements OnInit {
   }
   registrar() {
     this.venta = this.formGroupVenta.value;
-    this.venta.clienteId = this.cliente.identificacion;
+    this.venta.clienteId = this.clienteId;
     this.ventaService.post(this.venta).subscribe((v) => {
       if (v != null) {
         this.venta = v;
@@ -208,11 +232,10 @@ export class VentaRegistroComponent implements OnInit {
     });
   }
 
-  getCodigo()
-  {
-    this.ventaService.getCodigo().subscribe( c => {
-      if(c != "")
-      this.controlVenta.codigoVenta.setValue(c);
+  getCodigo() {
+    this.ventaService.getCodigo().subscribe(c => {
+      if (c != "")
+        this.controlVenta.codigoVenta.setValue(c);
     });
   }
 }

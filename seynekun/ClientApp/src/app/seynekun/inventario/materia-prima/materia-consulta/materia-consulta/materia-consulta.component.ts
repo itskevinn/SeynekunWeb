@@ -20,4 +20,5 @@ export class MateriaConsultaComponent implements OnInit {
       this.materiaPrimas = result;
     });
   }
+
 }

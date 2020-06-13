@@ -4,24 +4,23 @@
   <div class="card o-hidden border-0 shadow-lg my-1">
     <div class="p-5">
       <div class="text-center">
-        <h1 class="h4 text-gray-900 mb-4">Registrar Ajuste de Inventario</h1>
+        <h1 class="h4 text-gray-900 mb-4">Registrar Producción</h1>
       </div>
       <form class="user" [formGroup]="formGroup">
         <div class="form-group">
-          <select class="form-dropdown border-verde " (change)="cambiarTipoElemento($event)">
-            <option [ngValue]="null">¿Qué va a inventariar?</option>
-            <option [ngValue]="tipoElemento" *ngFor="let tipoElemento of tipoElementos">{{tipoElemento}}
-            </option>
-          </select>
-        </div>
-        <div *ngIf="tipoProducto">
-          <div class="form-group">
-            <select class="form-dropdown border-verde " (change)="cambiarCodigoMateria($event)">
-              <option [ngValue]="null">Materia prima</option>
-              <option [ngValue]="materia" *ngFor="let materia of materias">{{materia.fecha | date}} -
-                {{materia.codigo}} - {{materia.nombreProductor}}
-              </option>
-            </select>
+          <div class="input-group">
+            <input type="text" class="form-control form-control-user" name="codigoMateriaPrima"
+              placeholder="Seleccione la materia prima procesada" formControlName="codigoMateriaPrima" [ngClass]="{'is-invalid':control.codigoMateriaPrima.errors &&
+            control.codigoMateriaPrima.touched}" (click)="mostrarMaterias()" (click)="cambiarId()">
+            <div class="input-group-icon">
+              <i class="far fa-check-circle" (click)="recibirId()"></i>
+              <div *ngIf="control.codigoMateriaPrima.errors && control.codigoMateriaPrima.touched"
+                class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.codigoMateriaPrima.errors.required">Seleccione la materia
+                  prima procesada
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -32,21 +31,11 @@
             </div>
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-sm-6 mb-3 mb-sm-0 separarArriba">
-            <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
-              <option [ngValue]="null">Bodega</option>
-              <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
-            </select>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <div class="input-group separarArriba">
-                <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
-                  [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
-                  [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
-              </div>
-            </div>
+        <div class="form-group">
+          <div class="input-group separarArriba">
+            <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }" [bsValue]="bsValue"
+              [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima" [maxDate]="fechaMaxima"
+              formControlName="fecha" placeholder="Fecha">
           </div>
         </div>
         <div class="form-group">
@@ -55,17 +44,19 @@
         </div>
         <hr>
         <div class="form-group">
-          <select class="form-dropdown border-verde " (change)="cambiarCodigo($event)">
-            <option [ngValue]="null">Referencia</option>
-            <optgroup label="Productos">
-              <option [ngValue]="producto.codigo" *ngFor="let producto of productos">{{producto.codigo}} -
-                {{producto.nombre}}
-              </option>
-            </optgroup>
-            <optgroup label="Insumos">
-              <!-- <option [ngValue]="insumo" *ngFor="let insumo of insumos">{{insumo.codigo}}</option>-->
-            </optgroup>
-          </select>
+          <div class="input-group">
+            <input type="text" class="form-control form-control-user" name="codigoElemento"
+              placeholder="Seleccione el producto producido" formControlName="codigoElemento" [ngClass]="{'is-invalid':control.codigoMateriaPrima.errors &&
+            control.codigoElemento.touched}" (click)="mostrarProductos()" (click)="cambiarId()">
+            <div class="input-group-icon">
+              <i class="far fa-check-circle" (click)="recibirId()"></i>
+              <div *ngIf="control.codigoElemento.errors && control.codigoElemento.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.codigoElemento.errors.required">Seleccione la materia
+                  prima procesada
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group ">
           <input type="number" class="form-control form-control-user" name="cantidad" placeholder="Cantidad"

@@ -51,7 +51,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MateriaPrima of materiaPrimas; index as i">
+                <tr *ngFor="let MateriaPrima of materiaPrimas |filtroMateria; index as i">
                   <td>{{ MateriaPrima.fecha | date }}</td>
                   <td>{{ MateriaPrima.cantidad }}</td>
                   <td>{{ MateriaPrima.nombreProductor }}</td>

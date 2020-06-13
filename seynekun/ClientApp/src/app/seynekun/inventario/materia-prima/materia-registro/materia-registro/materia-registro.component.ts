@@ -22,6 +22,7 @@ defineLocale("es", esLocale);
 export class MateriaRegistroComponent implements OnInit {
   materia: MateriaPrima;
   formGroup: FormGroup;
+  tipos: string[] = ["Panela", "Café", "Cacao"]
   codigoProductor: string;
   unidadMedidas: string[] = ["Gramo", "Kg", "Tonelada"];
   productores: Productor[];
@@ -47,8 +48,8 @@ export class MateriaRegistroComponent implements OnInit {
     this.crearFormulario();
     this.recibirId();
   }
-  cambiarId(){
-    if(!this.modalService.hasOpenModals()){
+  cambiarId() {
+    if (!this.modalService.hasOpenModals()) {
       this.recibirId();
       this.control.codigoProductor.setValue(this.codigoProductor);
     }
@@ -79,7 +80,12 @@ export class MateriaRegistroComponent implements OnInit {
     this.control.codigoProductor.setValue(this.codigoProductor);
   }
 
-
+  cambiarTipo(e) {
+    this.control.tipo.setValue(e.target.value, {
+      onlySelf: true,
+    });
+    console.log(this.control.tipo.value);
+  }
   mostrarProductores() {
     this.modalService.open(ConsultaProductorComponent, { size: 'lg' });
   }
@@ -89,12 +95,14 @@ export class MateriaRegistroComponent implements OnInit {
     this.materia.codigoProductor = "";
     this.materia.cantidad = null;
     this.materia.nombreProductor = "";
+    this.materia.tipo = "";
     this.formGroup = this.formBuilder.group({
       fecha: [this.materia.fecha, Validators.required],
       codigo: [this.materia.codigo, Validators.required],
       codigoProductor: [this.materia.codigoProductor, Validators.required],
       cantidad: [this.materia.cantidad, Validators.required],
-      nombreProductor: [this.materia.nombreProductor, Validators.required]
+      nombreProductor: [this.materia.nombreProductor, Validators.required],
+      tipo: [this.materia.tipo, Validators.required]
     });
   }
   onSubmit() {
@@ -105,6 +113,7 @@ export class MateriaRegistroComponent implements OnInit {
   }
   registrar() {
     this.materia = this.formGroup.value;
+    console.log(this.materia.tipo);
     this.materiaService.post(this.materia).subscribe((e) => {
       if (e != null) {
         this.materia = e;

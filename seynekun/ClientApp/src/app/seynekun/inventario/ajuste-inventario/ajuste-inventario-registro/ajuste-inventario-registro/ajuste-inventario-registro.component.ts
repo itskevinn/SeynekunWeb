@@ -18,6 +18,9 @@ import { defineLocale, esLocale } from "ngx-bootstrap/chronos";
 import { MateriaPrima } from "src/app/seynekun/models/modelo-materia-prima/materia-prima";
 import { MateriaPrimaService } from "src/app/servicios/servicio-materia/materia-prima.service";
 import { ThrowStmt } from "@angular/compiler";
+import { EventoService } from "src/app/servicios/servicio-evento/evento.service";
+import { ConsultaMateriaComponent } from "src/app/modal/consulta-materia-modal/consulta-materia/consulta-materia.component";
+import { ConsultaProductoComponent } from "src/app/modal/consulta-producto-modal/consulta-producto/consulta-producto.component";
 defineLocale("es", esLocale);
 
 @Component({
@@ -42,6 +45,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   tipoAjuste: string;
   tipoProducto: boolean;
   codigoElemento: string;
+  codigoMateriaPrima: string;
   materiaDisponibles: MateriaPrima[];
 
   constructor(
@@ -51,6 +55,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     private productoService: ProductoService,
     private bodegaService: BodegaService,
     private materiaService: MateriaPrimaService,
+    private eventoService: EventoService,
     private localeService: BsLocaleService) {
     this.fechaMinima = new Date();
     this.fechaMaxima = new Date();
@@ -64,7 +69,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.obtenerProductos();
     this.obtenerBodegas();
     this.obtenerMaterias();
-  //  this.filtrarMaterias();
+    //  this.filtrarMaterias();
     this.localeService.use("es");
   }
 
@@ -80,7 +85,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.ajusteInventario.nombreBodega = '';
     this.formGroup = this.formBuilder.group({
       codigo: [this.ajusteInventario.codigo, Validators.required],
-      tipoElemento: [this.ajusteInventario.tipoElemento, Validators.required],
+      tipoElemento: ['Producto'],
       codigoElemento: [this.ajusteInventario.codigoElemento, Validators.required],
       fecha: [this.ajusteInventario.fecha, Validators.required],
       descipcion: [this.ajusteInventario.descipcion],
@@ -97,7 +102,31 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   onScrollEvent() {
     this.datepicker.hide();
   }*/
-
+  cambiarId() {
+    if (!this.modalService.hasOpenModals()) {
+      this.recibirId();
+      this.control.codigoProductor.setValue(this.codigoMateriaPrima);
+    }
+  }
+  recibirId() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoMateriaPrima = estado)
+    );
+    this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
+    this.colocarValor();
+  }
+  colocarValor() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoMateriaPrima = estado)
+    );
+    this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
+  }
+  mostrarMaterias() {
+    this.modalService.open(ConsultaMateriaComponent, { size: 'lg' });
+  }
+  mostrarProductos() {
+    this.modalService.open(ConsultaProductoComponent, { size: 'lg' });
+  }
   obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
       this.bodegas = result;
@@ -114,13 +143,13 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     })
   }
 
- /* filtrarMaterias() {
-    for (let i = 0; i < this.materias.length; i++) {
-      if (this.materias[i].estadoMateria == "Pendiente") {
-        this.materiaDisponibles.push(this.materias[i]);
-      }
-    }
-  }*/
+  /* filtrarMaterias() {
+     for (let i = 0; i < this.materias.length; i++) {
+       if (this.materias[i].estadoMateria == "Pendiente") {
+         this.materiaDisponibles.push(this.materias[i]);
+       }
+     }
+   }*/
   /*  obtenerInsumos() {
     this.insumoService.gets().subscribe((result) => {
       this.insumos = result;

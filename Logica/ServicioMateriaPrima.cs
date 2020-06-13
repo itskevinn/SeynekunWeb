@@ -27,6 +27,7 @@ namespace Logica
                     }
                     return new GuardarMateriaPrimaResponse("Imposible añadir este registro, código duplicado");
                 }
+                materiaPrima.NombreProductor = ObtenerNombreProductor(materiaPrima.CodigoProductor);
                 _context.MateriasPrimas.Add(materiaPrima);
                 _context.SaveChanges();
                 return new GuardarMateriaPrimaResponse(materiaPrima);
@@ -35,6 +36,10 @@ namespace Logica
             {
                 return new GuardarMateriaPrimaResponse(e.Message);
             }
+        }
+        public string ObtenerNombreProductor(string id)
+        {
+            return _context.Productores.Find(id).Nombre;
         }
         public List<MateriaPrima> Consultar()
         {
@@ -87,13 +92,15 @@ namespace Logica
                     materiaPrimaViejo.Cantidad = materiaPrimaNuevo.Cantidad;
                     materiaPrimaViejo.CodigoProductor = materiaPrimaNuevo.CodigoProductor;
                     materiaPrimaViejo.UnidadMedida = materiaPrimaNuevo.UnidadMedida;
+                    materiaPrimaViejo.Tipo = materiaPrimaNuevo.Tipo;
+                    materiaPrimaViejo.NombreProductor = materiaPrimaNuevo.NombreProductor;
                     _context.MateriasPrimas.Update(materiaPrimaViejo);
                     _context.SaveChanges();
-                    return ($"El Ajuste se ha modificado satisfactoriamente.");
+                    return ($"La materia se ha modificado satisfactoriamente.");
                 }
                 else
                 {
-                    return "No se encontró registro del ajuste solicitado";
+                    return "No se encontró registro la materia solicitada";
                 }
             }
             catch (Exception e)

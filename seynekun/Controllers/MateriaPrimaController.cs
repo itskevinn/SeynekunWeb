@@ -44,6 +44,7 @@ namespace seynekun.Controllers
                 Cantidad = materiaPrimaInputModel.Cantidad,
                 CodigoProductor = materiaPrimaInputModel.CodigoProductor,
                 EstadoMateria = "Pendiente",
+                Tipo = materiaPrimaInputModel.Tipo,
                 NombreProductor = materiaPrimaInputModel.NombreProductor
             };
             return materiaPrima;

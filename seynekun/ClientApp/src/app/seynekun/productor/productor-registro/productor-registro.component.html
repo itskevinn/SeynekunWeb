@@ -14,33 +14,34 @@
                   <h1 class="h4 text-gray-900 mb-4">Registrar Productor</h1>
                 </div>
                 <form class="user" [formGroup]="formGroup">
-                  <div class="form-group">
-                    <select class="form-dropdown border-verde " name="tipoId"
-                      (change)="cambiarTipoIdentificaciones($event)">
-                      <option [ngValue]="null"> Tipo de identificacion </option>
-                      <option [ngValue]="tipoIdentificaciones" *ngFor="let tipoId of tipoIdentificaciones">{{tipoId}}
-                      </option>
-                    </select>
-                    <div *ngIf=" control.tipoIdentificacion.errors && control.tipoIdentificacion.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.tipoIdentificacion.errors.required">El tipo de
-                        identificación no ha sido seleccionado
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <select class="form-dropdown border-verde " name="tipoId"
+                        (change)="cambiarTipoIdentificaciones($event)">
+                        <option [ngValue]="null"> Tipo de identificacion </option>
+                        <option [ngValue]="tipoIdentificaciones" *ngFor="let tipoId of tipoIdentificaciones">{{tipoId}}
+                        </option>
+                      </select>
+                      <div *ngIf=" control.tipoIdentificacion.errors && control.tipoIdentificacion.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.tipoIdentificacion.errors.required">El tipo de
+                          identificación no ha sido seleccionado
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-user" name="identificacion"
-                      placeholder="Identificación" formControlName="identificacion"
-                      [ngClass]="{'is-invalid':control.identificacion.errors && control.identificacion.touched}">
-                    <div *ngIf="control.identificacion.errors && control.identificacion.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.identificacion.errors.required">Proporcione su
-                        número de cédula
-                      </div>
-                      <div class="validacion-texto"
-                        *ngIf="control.identificacion.errors.minlength  || control.identificacion.errors.maxlength">
-                        Proporcione un
-                        número de cédula válido
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="identificacion"
+                        placeholder="Identificación" formControlName="identificacion"
+                        [ngClass]="{'is-invalid':control.identificacion.errors && control.identificacion.touched}">
+                      <div *ngIf="control.identificacion.errors && control.identificacion.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.identificacion.errors.required">Proporcione su
+                          número de identificacion
+                        </div>
+                        <div class="validacion-texto" *ngIf="control.identificacion.errors.maxlength">
+                          Proporcione un
+                          número de identificación válido
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -84,28 +85,34 @@
                       <div *ngIf="control.contrasena.errors && control.contrasena.touched" class="invalid-feedback">
                         <div class="validacion-texto" *ngIf="control.contrasena.errors.required">Cree una contraseña
                         </div>
+                        <div class="validacion-texto" *ngIf="control.contrasena.errors.minlength">La contraseña debe
+                          tener al menos 4 dígitos
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-user" name="cedulaCafetera"
-                      placeholder="Cédula Cafetera" formControlName="cedulaCafetera"
-                      [ngClass]="{'is-invalid':control.cedulaCafetera.errors && control.cedulaCafetera.touched}">
-                    <div *ngIf="control.cedulaCafetera.errors && control.cedulaCafetera.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.cedulaCafetera.errors.required">Proporcione su cédula
-                        cafetra
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="cedulaCafetera"
+                        placeholder="Cédula Cafetera" formControlName="cedulaCafetera"
+                        [ngClass]="{'is-invalid':control.cedulaCafetera.errors && control.cedulaCafetera.touched}">
+                      <div *ngIf="control.cedulaCafetera.errors && control.cedulaCafetera.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.cedulaCafetera.errors.required">Proporcione su
+                          cédula
+                          cafetera
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-user" name="nombrePredio"
-                      placeholder="Nombre del predio" formControlName="nombrePredio"
-                      [ngClass]="{'is-invalid':control.nombrePredio.errors && control.nombrePredio.touched}">
-                    <div *ngIf="control.nombrePredio.errors && control.nombrePredio.touched" class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.nombrePredio.errors.required">Proporcione el
-                        nombre
-                        del predio
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="nombrePredio"
+                        placeholder="Nombre del predio" formControlName="nombrePredio"
+                        [ngClass]="{'is-invalid':control.nombrePredio.errors && control.nombrePredio.touched}">
+                      <div *ngIf="control.nombrePredio.errors && control.nombrePredio.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.nombrePredio.errors.required">Proporcione el
+                          nombre
+                          del predio
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -157,7 +164,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-user" name="email" placeholder="Email"
+                    <input type="email" class="form-control form-control-user" name="email" placeholder="Email (opcional)"
                       formControlName="email" [ngClass]="{'is-invalid':control.email.errors && control.email.touched}">
                     <div *ngIf="control.email.errors && control.email.touched" class="invalid-feedback">
                       <div class="validacion-texto" *ngIf="control.email.errors.required">Proporcione su
@@ -170,7 +177,7 @@
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" name="numeroTelefono"
-                      placeholder="Número de teléfono" formControlName="numeroTelefono"
+                      placeholder="Número de teléfono (opcional)" formControlName="numeroTelefono"
                       [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
                     <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
                       class="invalid-feedback">
@@ -186,7 +193,7 @@
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" name="afiliacionSalud"
-                      placeholder="Alifiación de Salud" formControlName="afiliacionSalud"
+                      placeholder="Alifiación de Salud (opcional)" formControlName="afiliacionSalud"
                       [ngClass]="{'is-invalid':control.afiliacionSalud.errors && control.afiliacionSalud.touched}">
                     <div *ngIf="control.afiliacionSalud.errors && control.afiliacionSalud.touched"
                       class="invalid-feedback">

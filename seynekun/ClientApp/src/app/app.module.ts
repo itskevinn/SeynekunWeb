@@ -108,6 +108,8 @@ import { ConsultaClienteComponent } from './modal/consulta-cliente-modal/consult
 import { ConsultaEmpleadoComponent } from './modal/consulta-empleado-modal/consulta-empleado/consulta-empleado.component';
 import { ConsultaProductorComponent } from './modal/consulta-productor-modal/consulta-productor/consulta-productor.component';
 import { ConsultaProductoComponent } from './modal/consulta-producto-modal/consulta-producto/consulta-producto.component';
+import { ConsultaMateriaComponent } from './modal/consulta-materia-modal/consulta-materia/consulta-materia.component';
+import { FiltroMateriaPipe } from './filtro/filtro-materia-prima/filtro-materia.pipe';
 
 @NgModule({
   declarations: [
@@ -198,6 +200,8 @@ import { ConsultaProductoComponent } from './modal/consulta-producto-modal/consu
     ConsultaEmpleadoComponent,
     ConsultaProductorComponent,
     ConsultaProductoComponent,
+    ConsultaMateriaComponent,
+    FiltroMateriaPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
