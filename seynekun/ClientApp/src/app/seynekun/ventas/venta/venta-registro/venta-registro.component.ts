@@ -26,6 +26,7 @@ import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/aler
 })
 export class VentaRegistroComponent implements OnInit {
   venta: Venta;
+  codigo: string
   cliente: Cliente;
   bodegas: Bodega[];
   empleados: Empleado[];
@@ -127,8 +128,8 @@ export class VentaRegistroComponent implements OnInit {
   agregarDetalle(productoSelect: ProductoEnBodega){
     if (this.validarCantidad(this.numberCantidad, productoSelect.cantidad)){
       var detalle = new DetalleVenta;
-      detalle.codigoDetalle = String(this.detalles.length) + this.controlVenta.codigoVenta.value;
-      detalle.codigoVenta = this.controlVenta.codigoVenta.value;
+      detalle.codigoDetalle = String(this.detalles.length + 1) + this.controlVenta.codigoVenta.value;
+      detalle.codigoVenta = String(this.codigo);
       detalle.codigoProducto = productoSelect.producto.codigo;
       detalle.nombreProducto = productoSelect.producto.nombre;
       detalle.valorProducto = productoSelect.producto.precio;
@@ -139,7 +140,7 @@ export class VentaRegistroComponent implements OnInit {
       this.updateDetails(this.detalles,detalle);
     }
   }
-  validarCantidad(cantidad, limite){
+  private validarCantidad(cantidad, limite){
     if(cantidad <1){
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
@@ -153,7 +154,7 @@ export class VentaRegistroComponent implements OnInit {
     }
     return true;
   }
-  updateDetails(details, detail){
+  private updateDetails(details, detail){
     var encontrado = true;
     const codigo = detail.codigoProducto;
     let pos = 0;
@@ -174,7 +175,7 @@ export class VentaRegistroComponent implements OnInit {
     this.calcularTotal();
     this.controlVenta.detallesVentas.setValue(details);
   }
-  calcularTotal(){
+  private calcularTotal(){
     let total = 0;
     for (let dett of this.detalles){
       total += dett.totalDetalle;
@@ -197,8 +198,9 @@ export class VentaRegistroComponent implements OnInit {
       this.registrar();
     }
   }
-  registrar() {
+  private registrar() {
     this.venta = this.formGroupVenta.value;
+    this.venta.codigoVenta = String(this.codigo);
     this.venta.clienteId = this.cliente.identificacion;
     this.ventaService.post(this.venta).subscribe((v) => {
       if (v != null) {
@@ -210,9 +212,9 @@ export class VentaRegistroComponent implements OnInit {
 
   getCodigo()
   {
-    this.ventaService.getCodigo().subscribe( c => {
-      if(c != "")
-      this.controlVenta.codigoVenta.setValue(c);
+    this.ventaService.getCodigo().subscribe((c) => {
+      c != ""? (this.codigo = c, this.controlVenta.codigoVenta.setValue(this.codigo))
+      : this.controlVenta.codigoVenta.setValue("Error");
     });
   }
 }
