@@ -22,19 +22,28 @@
               <div class="input-group separarArriba">
                 <input type="text" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }"
                   [bsValue]="bsValue" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
-                  [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Fecha">
+                  [maxDate]="fechaMaxima" formControlName="fecha" placeholder="Seleccione una Fecha">
               </div>
             </div>
             <div class="form-group">
-              <select class="form-dropdown border-verde" (change)="cambiarCodigo($event)">
-                <option [ngValue]="null">Productor</option>
-                <option [ngValue]="productor" *ngFor="let productor of productores">
-                  {{productor.identificacion}} - {{productor.nombre}} {{productor.apellido}}
-                </option>
-              </select>
+              <div class="input-group">
+                <input type="text" class="form-control form-control-user" name="codigoProductor"
+                  placeholder="Seleccione un Productor" formControlName="codigoProductor" [ngClass]="{'is-invalid':control.codigoProductor.errors &&
+              control.codigoProductor.touched}" (click)="mostrarProductores()" (click)="cambiarId()">
+                <div class="input-group-icon">
+                  <i  class="far fa-check-circle" (click)="recibirId()"></i>
+                  <div *ngIf="control.codigoProductor.errors && control.codigoProductor.touched"
+                    class="invalid-feedback">
+                    <div class="validacion-texto" *ngIf="control.codigoProductor.errors.required">Seleccione el
+                      productor
+                      responsable
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <input type="number" class="form-control form-control-user" name="cantidad" placeholder="Cantidad"
+              <input type="number" class="form-control form-control-user" name="cantidad" placeholder="Cantidad de materia prima ingresada en Kg"
                 formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
                   control.cantidad.touched}">
               <div *ngIf="control.cantidad.errors && control.cantidad.touched" class="invalid-feedback">

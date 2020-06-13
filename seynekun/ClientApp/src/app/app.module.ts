@@ -104,6 +104,10 @@ import { MateriaPrimaProductorComponent } from './seynekun/inventario/materia-pr
 import { ProductosMateriaProductorComponent } from './seynekun/inventario/materia-prima/productos-materia-productor/productos-materia-productor.component';
 import { MateriaPrimaProductorVistaComponent } from './seynekun/inventario/materia-prima/materia-prima-productor/materia-prima-productor-vista/materia-prima-productor-vista.component';
 import { AvisoModalComponent } from './@base/alerta-aviso-modal/aviso-modal/aviso-modal.component';
+import { ConsultaClienteComponent } from './modal/consulta-cliente-modal/consulta-cliente/consulta-cliente.component';
+import { ConsultaEmpleadoComponent } from './modal/consulta-empleado-modal/consulta-empleado/consulta-empleado.component';
+import { ConsultaProductorComponent } from './modal/consulta-productor-modal/consulta-productor/consulta-productor.component';
+import { ConsultaProductoComponent } from './modal/consulta-producto-modal/consulta-producto/consulta-producto.component';
 
 @NgModule({
   declarations: [
@@ -190,6 +194,10 @@ import { AvisoModalComponent } from './@base/alerta-aviso-modal/aviso-modal/avis
     ProductosMateriaProductorComponent,
     MateriaPrimaProductorVistaComponent,
     AvisoModalComponent,
+    ConsultaClienteComponent,
+    ConsultaEmpleadoComponent,
+    ConsultaProductorComponent,
+    ConsultaProductoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
