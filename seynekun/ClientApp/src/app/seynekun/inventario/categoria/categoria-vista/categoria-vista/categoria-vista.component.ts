@@ -17,11 +17,12 @@ export class CategoriaVistaComponent implements OnInit {
   constructor(
     private categoriaService: CategoriaService,
     private rutaActiva: ActivatedRoute,
-  ) {}
+  ) { }
   ngOnInit(): void {
     const nombre = this.rutaActiva.snapshot.params.id;
     this.categoriaService.get(nombre).subscribe((result) => {
       this.categoria = result;
+      this.productos = result.productos;
       this.categoria != null
         ? (this.seEncontro = true)
         : (this.seEncontro = false);

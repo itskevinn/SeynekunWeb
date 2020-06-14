@@ -1,42 +1,58 @@
 <button [routerLink]="['/Categorias']" type="button" class="btn btn-labeled btn-light">
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div *ngIf="seEncontro; else noEncontrado">
-  <div class="row">
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
-              <div class="h2 mb-0 font-weight-bold text-gray-800">{{categoria.nombre}}</div>
-              <div class="h4 mb-0 font-weight-normal text-gray-800">{{categoria.detalle}}</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
+  <div class="serpararArriba">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
+        <h1 class="h3 mb-2 text-gray-800">Productos de categoría {{categoria.nombre}} </h1>
       </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Productos en Categoria</div>
-              <a routerLink='/ProductosEnCategoria/{{categoria.nombre}}'>Ver</a>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-boxes fa-2x text-gray-300"></i>
-            </div>
-          </div>
+      <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
+        <div class="text-center separarAbajo">
+          <button routerLink='/EditarCategoria/{{categoria.nombre}}' type="button" class="btn btn-labeled btn-info">
+            <span class="btn-label"><i class="fas fa-pencil-alt"></i></span> Editar</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="text-center separarAbajo">
-    <button routerLink='/EditarCategoria/{{categoria.nombre}}' type="button" class="btn btn-labeled btn-info">
-      <span class="btn-label"><i class="fas fa-pencil-alt"></i></span> Editar</button>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div id="dataTable_wrapper">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+              placeholder="Buscar">
+          </div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of productos|filtroProducto:textoABuscar; index as i ">
+                    <td>{{producto.codigo}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>
+                      <a routerLink='/Producto/{{producto.codigo}}'>Ver</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <ng-template #noEncontrado>

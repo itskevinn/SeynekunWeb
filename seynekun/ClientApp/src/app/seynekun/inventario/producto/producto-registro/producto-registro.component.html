@@ -41,11 +41,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">                    
+                  <div class="form-group">
                       <select class="form-dropdown border-verde " name="categoria" (change)="cambiarCategoria($event)">
                         <option [ngValue]="null"> Categoria </option>
                         <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
-                      </select>                                        
+                      </select>
                   </div>
                    <div class="form-group row">
                      <div class="col-sm-6 mb-3 mb-sm-0">
@@ -54,7 +54,7 @@
                      </div>
                      <div class="col-sm-6">
                       <select class="form-dropdown border-verde separarArriba" name="unidadMedida" (change)="cambiarUnidadMedida($event)">
-                        <option [ngValue]="null"> Unidad de Medida </option>
+                        <option [ngValue]="null"> Seleccione la unidad de la presentación del producto </option>
                         <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}</option>
                       </select>
                      </div>

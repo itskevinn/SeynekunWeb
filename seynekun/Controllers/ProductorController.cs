@@ -62,7 +62,7 @@ namespace seynekun.Controllers
                 NombreUsuario = productorInputModel.NombreUsuario,
                 Contrasena = productorInputModel.Contrasena,
                 Email = productorInputModel.Email,
-                Estado = "Activo"
+                Estado = productorInputModel.Estado
             };
             return productor;
         }
@@ -85,7 +85,7 @@ namespace seynekun.Controllers
         }
 
         [HttpPut("{identificacion}")]
-        public ActionResult<string> Put(Productor productor, string identificacion)
+        public ActionResult<string> Put(string identificacion, Productor productor)
         {
             var id = servicioProductor.BuscarxId(identificacion).Productor;
             if (id == null) return NotFound();

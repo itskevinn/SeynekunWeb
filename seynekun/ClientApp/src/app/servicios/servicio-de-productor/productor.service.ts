@@ -37,14 +37,15 @@ export class ProductorService {
       ),
     )
   }
-  delete(productor: Productor| string): Observable<string> {
+
+  delete(productor: Productor | string): Observable<string> {
     const id =
       typeof productor === "string" ? productor : productor.identificacion;
-    return this.http.delete<string>(this.baseUrl + 'api/productor/'+ id)
-    .pipe(
-      tap(_ => this.handleErrorService.logOk('datos enviados')),
-      catchError(this.handleErrorService.handleError<string>('Elimiar Persona', null))
-    );
+    return this.http.delete<string>(this.baseUrl + 'api/productor/' + id)
+      .pipe(
+        tap(_ => this.handleErrorService.logOk('datos enviados')),
+        catchError(this.handleErrorService.handleError<string>('Elimiar Persona', null))
+      );
   }
   post(productor: Productor): Observable<Productor> {
     return this.http
@@ -68,11 +69,19 @@ export class ProductorService {
       ),
     )
   }
-
+  putEstado(identificacion: string, productor: Productor): Observable<Productor> {
+    const url = `${this.baseUrl}api/Solicitud/${identificacion}`
+    return this.http.put<Productor>(url, productor, httpOptions).pipe(
+      tap((_) => this.handleErrorService.logOk('Productor actualizado')),
+      catchError(
+        this.handleErrorService.handleError<Productor>('Actualizar', null),
+      ),
+    )
+  }
   put(identificacion: string, productor: Productor): Observable<Productor> {
     const url = `${this.baseUrl}api/Productor/${identificacion}`
     return this.http.put<Productor>(url, productor, httpOptions).pipe(
-      tap((_) => this.handleErrorService.logOk('Datos enviados')),
+      tap((_) => this.handleErrorService.logOk('Productor actualizado')),
       catchError(
         this.handleErrorService.handleError<Productor>('Actualizar', null),
       ),

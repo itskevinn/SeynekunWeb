@@ -14,4 +14,5 @@ export class Productor {
     nombreUsuario: string;
     contrasena: string;
     email : string;
+    estado: string;
 }

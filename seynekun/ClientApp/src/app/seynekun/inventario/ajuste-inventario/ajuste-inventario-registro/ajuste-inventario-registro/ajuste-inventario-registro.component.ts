@@ -175,7 +175,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.control.tipoAjuste.setValue(e.target.value, {
       onlySelf: true,
     });
-    this.tipoAjuste = e.target.vaue;
+    this.tipoAjuste = e.target.value;
     console.log(this.control.tipoAjuste.value);
   }
   cambiarCodigo(e) {
@@ -210,6 +210,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     console.log(this.control.tipoAjuste.value);
     this.ajusteInventario = this.formGroup.value;
     this.ajusteInventario.tipoAjuste = this.tipoAjuste;
+    this.ajusteInventario.nombreBodega=this.control.nombreBodega.value;
     console.log(this.ajusteInventario.tipoAjuste);
     this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
       if (e != null) {

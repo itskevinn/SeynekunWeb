@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core'
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  AbstractControl,
-} from '@angular/forms'
-import { ProductorService } from 'src/app/servicios/servicio-de-productor/productor.service'
-import { Productor } from '../../models/modelo-productor/productor'
-import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.component'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component'
-import { Usuario } from '../../models/modelo-usuario/usuario'
+import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { Categoria } from 'src/app/seynekun/models/modelo-categoria/categoria';
+import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component';
+import { AlertaModalOkComponent } from 'src/app/@base/alerta-modal/alerta-modal.component';
+import { Productor } from 'src/app/seynekun/models/modelo-productor/productor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductorService } from 'src/app/servicios/servicio-de-productor/productor.service';
+import { Usuario } from 'src/app/seynekun/models/modelo-usuario/usuario';
+import { SolicitudService } from 'src/app/servicios/servicio-solicitud/solicitud.service';
 
 @Component({
-  selector: 'app-productor-registro',
-  templateUrl: './productor-registro.component.html',
-  styleUrls: ['./productor-registro.component.css'],
+  selector: 'app-solicitud-registro',
+  templateUrl: './solicitud-registro.component.html',
+  styleUrls: ['./solicitud-registro.component.css']
 })
-export class ProductorRegistroComponent implements OnInit {
+export class SolicitudRegistroComponent implements OnInit {
   productor: Productor
   usuario: Usuario
   tipoIdentificaciones: string[] = ['CC', 'TI', 'RC']
@@ -55,7 +52,7 @@ export class ProductorRegistroComponent implements OnInit {
   ]
   formGroup: FormGroup
   constructor(
-    private productorService: ProductorService,
+    private solicitudService: SolicitudService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
   ) { }
@@ -64,6 +61,7 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor = new Productor()
     this.crearFormulario()
   }
+
   crearFormulario() {
     this.productor.tipoIdentificacion = ''
     this.productor.identificacion = ''
@@ -80,7 +78,7 @@ export class ProductorRegistroComponent implements OnInit {
     this.productor.cedulaCafetera = ''
     this.productor.contrasena = ''
     this.productor.nombreUsuario = ''
-    this.productor.estado = 'Activo'
+    this.productor.estado = 'Pendiente';
     this.formGroup = this.formBuilder.group({
       tipoIdentificacion: [this.productor.tipoIdentificacion, Validators.required],
       nombre: [this.productor.nombre, Validators.required],
@@ -114,6 +112,7 @@ export class ProductorRegistroComponent implements OnInit {
       estado:[this.productor.estado]
     })
   }
+
   private validarNumeroTelefono(control: AbstractControl) {
     const numero = control.value
     var numeroString
@@ -176,6 +175,7 @@ export class ProductorRegistroComponent implements OnInit {
   onSubmit() {
     if (this.formGroup.invalid) {
     } else {
+      sessionStorage.clear()
       this.registrar()
     }
   }
@@ -186,7 +186,7 @@ export class ProductorRegistroComponent implements OnInit {
 
   registrar() {
     this.productor = this.formGroup.value
-    this.productorService.post(this.productor).subscribe((p) => {
+    this.solicitudService.post(this.productor).subscribe((p) => {
       if (p != null) {
         this.productor = p
         this.formGroup.reset()

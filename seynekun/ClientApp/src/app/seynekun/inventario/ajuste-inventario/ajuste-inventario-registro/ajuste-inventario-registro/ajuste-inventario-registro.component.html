@@ -68,6 +68,12 @@
           </div>
         </div>
         <div class="form-group ">
+          <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
+            <option [ngValue]=" null">Seleccione una bodega</option>
+            <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group ">
           <select class="form-dropdown border-verde" (change)="cambiarTipoAjuste($event)">
             <option [ngValue]=" null">Tipo</option>
             <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>

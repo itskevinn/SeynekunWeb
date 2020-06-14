@@ -48,6 +48,7 @@ export class BodegaRegistroComponent implements OnInit {
   }
   registrar() {
     this.bodega = this.formGroup.value;
+    this.bodega.estado = "Activo"
     this.bodegaService.post(this.bodega).subscribe((e) => {
       if (e != null) {
         this.bodega = e;

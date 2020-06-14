@@ -28,7 +28,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button href="/" [disabled]="loading" class="btn btn-primary btn-user btn-block" (click)="onSubmit()">
+                  <button href="/" [disabled]="loading" class="btn btn-success btn-user btn-block" (click)="onSubmit()">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Iniciar sesión
                   </button>
@@ -36,7 +36,7 @@
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="SolicitudRegistro.html">¿Eres un productor? ¡Haz clic aquí para enviar una
+                <a class="small" href="/SolicitarRegistro" (click)="crearInvitado()">¿Eres un productor? ¡Haz clic aquí para enviar una
                   solicitud de registro!</a>
               </div>
             </div>

@@ -19,7 +19,7 @@ export class AutenticacionService {
     @Inject('BASE_URL') baseUrl: string,
     private handleErrorService: HandleHttpErrorService
   ) {
-    this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
     this.baseUrl = baseUrl;
   }
@@ -33,7 +33,7 @@ export class AutenticacionService {
       .pipe(map(user => {
         if (user && user.token) {
           // store user and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
         return user;
@@ -47,7 +47,7 @@ export class AutenticacionService {
 
   logout() {
     // remove user from local storage and set current user to null
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 

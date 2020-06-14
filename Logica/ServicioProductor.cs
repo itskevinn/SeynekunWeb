@@ -14,6 +14,10 @@ namespace Logica
         {
             _context = context;
         }
+        public List<Productor> ConsultarPendientes()
+        {
+            return _context.Productores.Where(p => p.Estado.ToLower() == "pendiente").ToList();
+        }
         public GuardarProductorResponse Guardar(Productor producto)
         {
             try
@@ -44,7 +48,7 @@ namespace Logica
             usuario.NombreUsuario = productor.NombreUsuario;
             usuario.NumeroTelefono = productor.NumeroTelefono;
             usuario.Nombre = productor.Nombre;
-            usuario.Estado = "Activo";
+            usuario.Estado = productor.Estado;
             usuario.Email = productor.Email;
             usuario.Tipo = "Productor";
             usuario.Contrasena = productor.Contrasena;
@@ -55,18 +59,19 @@ namespace Logica
         }
         public List<Productor> Consultar()
         {
-            List<Productor> productos = _context.Productores.Where(p => p.Estado != "Eliminado").ToList();
+            List<Productor> productos = _context.Productores.Where(p => p.Estado.ToLower() == "activo" || p.Estado.ToLower() == "modificado").ToList();
             return productos;
         }
         public BuscarProductorxIdResponse BuscarxId(string identificacion)
         {
             var producto = _context.Productores.Find(identificacion);
-            if (producto != null && producto.Estado != "Eliminado")
+            if (producto != null && producto.Estado.ToLower() == "activo" || producto.Estado.ToLower() == "modificado")
             {
                 return new BuscarProductorxIdResponse(producto);
             }
             return new BuscarProductorxIdResponse("Productor no encontrado");
         }
+
         public string Modificar(Productor productoNueva)
         {
             try
@@ -74,6 +79,10 @@ namespace Logica
                 var productoVieja = _context.Productores.Find(productoNueva.Identificacion);
                 if (productoVieja != null && productoVieja.Estado != "Eliminado")
                 {
+                    productoVieja.TipoIdentificacion = productoNueva.TipoIdentificacion;
+                    productoVieja.Contrasena = productoNueva.Contrasena;
+                    productoVieja.NombreUsuario = productoNueva.NombreUsuario;
+                    productoVieja.Estado = productoNueva.Estado;
                     productoVieja.Nombre = productoNueva.Nombre;
                     productoVieja.Apellido = productoNueva.Apellido;
                     productoVieja.Estado = productoNueva.Estado;
@@ -114,6 +123,25 @@ namespace Logica
                     _context.Productores.Update(productor);
                     _context.SaveChanges();
                     return $"El productor se ha eliminado.";
+                }
+                return "El productor no fue encontrado";
+            }
+            catch (Exception e)
+            {
+                return $"Error de la aplicación: {e.Message} ";
+            }
+        }
+        public string ModificarEstado(Productor productorNuevo)
+        {
+            try
+            {
+                Productor productor = _context.Productores.Find(productorNuevo);
+                if (productor != null && productor.Estado != "Eliminado")
+                {
+                    productor.Estado = productorNuevo.Estado;
+                    _context.Productores.Update(productor);
+                    _context.SaveChanges();
+                    return $"El productor se ha aceptado.";
                 }
                 return "El productor no fue encontrado";
             }

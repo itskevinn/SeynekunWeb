@@ -5,6 +5,7 @@ namespace seynekun.Models
 {
     public class ProductorInputModel
     {
+        public string Estado { get; set; }
         public string TipoIdentificacion { get; set; }
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
@@ -24,8 +25,6 @@ namespace seynekun.Models
 
     public class ProductorViewModel : ProductorInputModel
     {
-        public string Estado { get; set; }
-
         public ProductorViewModel(Productor productor)
         {
             TipoIdentificacion = productor.TipoIdentificacion;

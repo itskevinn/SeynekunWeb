@@ -110,6 +110,9 @@ import { ConsultaProductorComponent } from './modal/consulta-productor-modal/con
 import { ConsultaProductoComponent } from './modal/consulta-producto-modal/consulta-producto/consulta-producto.component';
 import { ConsultaMateriaComponent } from './modal/consulta-materia-modal/consulta-materia/consulta-materia.component';
 import { FiltroMateriaPipe } from './filtro/filtro-materia-prima/filtro-materia.pipe';
+import { SolicitudRegistroComponent } from "./seynekun/solicitud/solicitud-registro/solicitud-registro/solicitud-registro.component";
+import { SolicitudConsultaComponent } from "./seynekun/solicitud/solicitud-consulta/solicitud-consulta.component";
+import { EventoService } from "./servicios/servicio-evento/evento.service";
 
 @NgModule({
   declarations: [
@@ -202,6 +205,8 @@ import { FiltroMateriaPipe } from './filtro/filtro-materia-prima/filtro-materia.
     ConsultaProductoComponent,
     ConsultaMateriaComponent,
     FiltroMateriaPipe,
+    SolicitudRegistroComponent,
+    SolicitudConsultaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -229,6 +234,7 @@ import { FiltroMateriaPipe } from './filtro/filtro-materia-prima/filtro-materia.
     ProductorService,
     ProductoService,
     ControlesService,
+    EventoService,
     ReporteInventarioService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
