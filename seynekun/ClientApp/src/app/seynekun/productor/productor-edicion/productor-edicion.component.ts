@@ -224,7 +224,6 @@ export class ProductorEdicionComponent implements OnInit {
 
   eliminar() {
     this.productor = this.formGroup.value
-    const estado = 'Eliminado'
     const messageBox = this.modalService.open(AlertaModalPreguntaComponent)
     messageBox.componentInstance.titulo =
       '¿Desea eliminar este productor?'
@@ -235,17 +234,8 @@ export class ProductorEdicionComponent implements OnInit {
           .delete(this.identificacion)
           .subscribe((p) => {
             if (p != null) {
-              const messageBox = this.modalService.open(AlertaModalOkComponent)
-              messageBox.componentInstance.titulo = 'Productor eliminado'
               this.productor = null
               this.formGroup.reset()
-            } else {
-              const messageBox = this.modalService.open(
-                AlertaModalErrorComponent,
-              )
-              messageBox.componentInstance.titulo = 'Ha ocurrido un error'
-              messageBox.componentInstance.mensaje =
-                'No se ha podido eliminar al productor'
             }
           })
       }

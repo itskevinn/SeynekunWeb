@@ -2,11 +2,11 @@
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div class="content">
   <div class="card o-hidden border-0 shadow-lg my-1">
-    <div class="row">
-      <div class="col-lg-5">
+    <div>
+      <div>
         <div class="p-5">
           <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Registrar Producción</h1>
+            <h1 class="h4 text-gray-900 mb-4">Producción</h1>
           </div>
           <form class="user" [formGroup]="formGroupProduccion">
             <div class="form-group row">
@@ -28,68 +28,17 @@
             </div>
             <div class="form-group">
               <input type="text" class="form-control form-control-user required" name="descripcion"
-                placeholder="Descripción" formControlName="descripcion">
+                placeholder="Observaciones" formControlName="descripcion">
             </div>
           </form>
-          <hr>
-          <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
-            Registrar Ajuste de Inventario
-          </a>
-          <hr>
         </div>
       </div>
-      <div class="col-lg-7" [formGroup]="formGroup">
+      <div [formGroup]="formGroup">
         <div class="p-5">
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Registrar productos producidos</h1>
           </div>
           <div class="col-sm-14" id="dataTable_wrapper">
-            <div class="form-group row">
-              <div>
-                <div class="input-group col-sm-14 col-md-12 separarAbajo">
-                  <input type="text" class="form-control input-sm" name="codigoMateriaPrima"
-                    placeholder="Seleccionar materia prima" formControlName="codigoMateriaPrima" [ngClass]="{'is-invalid':control.codigoMateriaPrima.errors &&
-                    control.codigoMateriaPrima.touched}" (click)="mostrarMaterias()" (click)="cambiarId()">
-                  <div class="input-group-icon">
-                    <i id="materia" class="far fa-check-circle" (click)="recibirIdMateria()"></i>
-                    <div *ngIf="control.codigoMateriaPrima.errors && control.codigoMateriaPrima.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.codigoMateriaPrima.errors.required">Seleccionar
-                        materia prima</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="input-group col-sm-14 col-md-12 separarAbajo">
-                  <input type="text" class="form-control form-control-user" name="codigoElemento"
-                    placeholder="Seleccione el producto producido" formControlName="codigoElemento" [ngClass]="{'is-invalid':control.codigoElemento.errors &&
-                  control.codigoElemento.touched}" (click)="mostrarProductos()" (click)="cambiarId()">
-                  <div class="input-group-icon">
-                    <i id="producto" class="far fa-check-circle" (click)="recibirIdProducto()"></i>
-                    <div *ngIf="control.codigoElemento.errors && control.codigoElemento.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="control.codigoElemento.errors.required">Seleccione el
-                        producto producido
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <input type="number" class="form-control form-control-user separarArriba" name="cantidad"
-                  placeholder="Cantidad" formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
-                      control.cantidad.touched}">
-                <div *ngIf="control.cantidad.errors && control.cantidad.touched" class="invalid-feedback">
-                  <div class="validacion-texto" *ngIf="control.cantidad.errors.required">Proporcione una cantidad</div>
-                </div>
-              </div>
-            </div>
-            <hr>
-            <div class="col-sm-18 col-md-18 separarAbajo">
-              <input type="text" class="form-control" [(ngModel)]="textoABuscar" aria-controls="dataTable"
-                placeholder="Buscar">
-            </div>
             <div class="col-sm-18 col-md-18">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
@@ -117,12 +66,58 @@
                 </table>
               </div>
             </div>
-            <div>
-              <hr>
-              <a (click)="agregarAjuste()" class="btn btn-success btn-block">Agregar</a>
-              <hr>
+            <div class="form-group">
+              <div class="input-group separarAbajo">
+                <input type="text" class="form-control input-sm" name="codigoMateriaPrima"
+                  placeholder="Seleccionar materia prima" formControlName="codigoMateriaPrima" [ngClass]="{'is-invalid':control.codigoMateriaPrima.errors &&
+                    control.codigoMateriaPrima.touched}" (click)="mostrarMaterias()" (click)="cambiarId()">
+                <div class="input-group-icon">
+                  <i id="materia" class="far fa-check-circle" (click)="recibirIdMateria()"></i>
+                  <div *ngIf="control.codigoMateriaPrima.errors && control.codigoMateriaPrima.touched"
+                    class="invalid-feedback">
+                    <div class="validacion-texto" *ngIf="control.codigoMateriaPrima.errors.required">Seleccionar
+                      materia prima procesada</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-user" name="codigoElemento"
+                    placeholder="Seleccione el producto producido" formControlName="codigoElemento" [ngClass]="{'is-invalid':control.codigoElemento.errors &&
+                  control.codigoElemento.touched}" (click)="mostrarProductos()" (click)="cambiarId()">
+                  <div class="input-group-icon">
+                    <i id="producto" class="far fa-check-circle" (click)="recibirIdProducto()"></i>
+                    <div *ngIf="control.codigoElemento.errors && control.codigoElemento.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.codigoElemento.errors.required">Seleccione el
+                        producto producido
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="separarAbajo row">
+              <div class="col-sm-14 col-md-9 separarArriba">
+                <input type="number" class="form-control form-control-user separarArriba" name="cantidad"
+                  placeholder="Cantidad" formControlName="cantidad" [ngClass]="{'is-invalid':control.cantidad.errors &&
+                      control.cantidad.touched}">
+                <div *ngIf="control.cantidad.errors && control.cantidad.touched" class="invalid-feedback">
+                  <div class="validacion-texto" *ngIf="control.cantidad.errors.required">Proporcione una cantidad</div>
+                </div>
+              </div>
+              <div class="col-sm-14 col-md-3 separarArriba">
+                <div class="align-items-center">
+                  <button (click)="agregarAjuste()" class="btn btn-secondary">Agregar producto</button>
+                </div>
+              </div>
             </div>
           </div>
+          <hr>
+          <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+            Registrar Producción
+          </button>
+          <hr>
         </div>
       </div>
     </div>
