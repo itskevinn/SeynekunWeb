@@ -48,6 +48,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   bsValue = new Date();
   fechaMinima: Date;
   fechaMaxima: Date;
+  estadoMateriaPrima: string;
   tipoAjuste: string;
   tipoProducto: boolean;
   codigoElemento: string;

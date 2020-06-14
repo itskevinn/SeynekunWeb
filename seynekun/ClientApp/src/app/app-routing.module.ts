@@ -46,10 +46,6 @@ import { ProductosBodegaComponent } from './seynekun/inventario/bodega/bodega-pr
 import { ProductosCategoriaComponent } from './seynekun/inventario/categoria/categoria-productos-vista/productos-categoria/productos-categoria.component'
 import { AjusteInventarioRegistroComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-registro/ajuste-inventario-registro/ajuste-inventario-registro.component'
 import { LoginComponent } from './login/login/login.component'
-import { VehiculoConsultaComponent } from './seynekun/transportes/vehiculo/vehiculo-consulta/vehiculo-consulta.component'
-import { VehiculoVistaComponent } from './seynekun/transportes/vehiculo/vehiculo-vista/vehiculo-vista.component'
-import { VehiculoEdicionComponent } from './seynekun/transportes/vehiculo/vehiculo-edicion/vehiculo-edicion.component'
-import { VehiculoRegistroComponent } from './seynekun/transportes/vehiculo/vehiculo-registro/vehiculo-registro.component'
 import { TransportadorRegistroComponent } from './seynekun/transportes/transportador/transportador-registro/transportador-registro.component'
 import { TransportadorConsultaComponent } from './seynekun/transportes/transportador/transportador-consulta/transportador-consulta.component'
 import { TransportadorVistaComponent } from './seynekun/transportes/transportador/transportador-vista/transportador-vista.component'
@@ -116,10 +112,6 @@ const routes: Routes = [
   { path: 'ProductosEnBodega/:id', component: ProductosBodegaComponent, canActivate: [AuthGuard] },
   { path: 'ProductosEnCategoria/:id', component: ProductosCategoriaComponent, canActivate: [AuthGuard] },
   { path: 'Login', component: LoginComponent },
-  { path: 'RegistrarVehiculo', component: VehiculoRegistroComponent, canActivate: [AuthGuard] },
-  { path: 'Vehiculos', component: VehiculoConsultaComponent, canActivate: [AuthGuard] },
-  { path: 'Vehiculo/:id', component: VehiculoVistaComponent, canActivate: [AuthGuard] },
-  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent, canActivate: [AuthGuard] },
   { path: 'RegistrarTransportador', component: TransportadorRegistroComponent, canActivate: [AuthGuard] },
   { path: 'Transportadores', component: TransportadorConsultaComponent, canActivate: [AuthGuard] },
   { path: 'Transportador/:id', component: TransportadorVistaComponent, canActivate: [AuthGuard] },
@@ -132,8 +124,6 @@ const routes: Routes = [
   { path: 'Ventas', component: VentaConsultaComponent, canActivate: [AuthGuard] },
   { path: 'Venta/:id', component: VentaVistaComponent, canActivate: [AuthGuard] },
   { path: 'EditarVenta/:id', component: VentaEdicionComponent, canActivate: [AuthGuard] },
-  { path: 'Vehiculo/:id', component: VehiculoVistaComponent, canActivate: [AuthGuard] },
-  { path: 'EditarVehiculo/:id', component: VehiculoEdicionComponent, canActivate: [AuthGuard] },
   { path: 'RegistrarTransportador', component: TransportadorRegistroComponent, canActivate: [AuthGuard] },
   { path: 'Transportadores', component: TransportadorConsultaComponent, canActivate: [AuthGuard] },
   { path: 'Transportador/:id', component: TransportadorVistaComponent, canActivate: [AuthGuard] },
