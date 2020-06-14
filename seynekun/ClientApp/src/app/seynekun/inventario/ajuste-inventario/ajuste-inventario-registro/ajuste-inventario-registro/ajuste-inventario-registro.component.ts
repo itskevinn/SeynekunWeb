@@ -328,4 +328,8 @@ export class AjusteInventarioRegistroComponent implements OnInit {
         : this.controlProduccion.codigoProduccion.setValue("Error");
     });
   }
+
+  cambiarId(){
+    return
+  }
 }

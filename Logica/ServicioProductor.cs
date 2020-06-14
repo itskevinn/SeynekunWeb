@@ -146,10 +146,13 @@ namespace Logica
             try
             {
                 Productor productor = _context.Productores.Find(productorNuevo.Identificacion);
-                if (productor != null && productor.Estado != "Eliminado")
+                Usuario usuario = _context.Usuarios.Find(productorNuevo.NombreUsuario);
+                if ((productor != null && usuario != null) && (productor.Estado != "Eliminado"))
                 {
                     productor.Estado = productorNuevo.Estado;
+                    usuario.Estado = productorNuevo.Estado;
                     _context.Productores.Update(productor);
+                    _context.Usuarios.Update(usuario);
                     _context.SaveChanges();
                     return $"El productor se ha aceptado.";
                 }
