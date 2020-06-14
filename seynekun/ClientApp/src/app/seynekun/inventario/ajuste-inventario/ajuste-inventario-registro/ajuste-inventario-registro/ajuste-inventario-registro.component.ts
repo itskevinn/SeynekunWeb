@@ -21,6 +21,8 @@ import { ThrowStmt } from "@angular/compiler";
 import { EventoService } from "src/app/servicios/servicio-evento/evento.service";
 import { ConsultaMateriaComponent } from "src/app/modal/consulta-materia-modal/consulta-materia/consulta-materia.component";
 import { ConsultaProductoComponent } from "src/app/modal/consulta-producto-modal/consulta-producto/consulta-producto.component";
+import { Produccion } from "src/app/seynekun/models/modelo-produccion/produccion";
+import { ProduccionService } from "src/app/servicios/servicio-produccion/produccion.service";
 defineLocale("es", esLocale);
 
 @Component({
@@ -30,7 +32,11 @@ defineLocale("es", esLocale);
 })
 export class AjusteInventarioRegistroComponent implements OnInit {
 
+  textoABuscar: string;
+  produccion: Produccion;
+  ajustes: AjusteDeInventario[] = [];
   ajusteInventario: AjusteDeInventario;
+  formGroupProduccion: FormGroup;
   formGroup: FormGroup;
   fechaHoy: Date;
   productos: Producto[];
@@ -49,7 +55,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   materiaDisponibles: MateriaPrima[];
 
   constructor(
-    private ajusteInventarioService: AjusteInventarioService,
+    private produccionService: ProduccionService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private productoService: ProductoService,
@@ -64,7 +70,8 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ajusteInventario = new AjusteDeInventario();
+    this.getCodigo();
+    this.formProduccion();
     this.crearFormulario();
     this.obtenerProductos();
     this.obtenerBodegas();
@@ -73,13 +80,29 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.localeService.use("es");
   }
 
+  formProduccion(){
+    this.produccion = new Produccion;
+    this.produccion.codigoProduccion = '';
+    this.produccion.fecha = new Date();
+    this.produccion.descripcion = '';
+    this.produccion.ajustes = [];
+
+    this.formGroupProduccion = this.formBuilder.group({
+      codigoProduccion: [this.produccion.codigoProduccion, Validators.required],
+      fecha: [this.produccion.fecha, Validators.required],
+      descripcion: [this.produccion.descripcion, Validators.required],
+      ajustes: [this.produccion.ajustes, Validators.required],
+    });
+  }
+
   crearFormulario() {
+    this.ajusteInventario = new AjusteDeInventario();
     this.ajusteInventario.codigo = '';
     this.ajusteInventario.codigoElemento = '';
     this.ajusteInventario.fecha = new Date();
     this.ajusteInventario.codigo = '';
     this.ajusteInventario.descipcion = '';
-    this.ajusteInventario.cantidad = null;
+    this.ajusteInventario.cantidad = 1;
     this.ajusteInventario.tipoAjuste = 'Incremento';
     this.ajusteInventario.codigoMateriaPrima = null;
     this.ajusteInventario.nombreBodega = '';
@@ -143,6 +166,66 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     })
   }
 
+  //Hecho por moi
+  cambiarTipoAjuste(e) {
+    this.control.tipoAjuste.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+
+  agregarAjuste(){
+    if(this.validarCantidad(this.control.cantidad.value)){
+      const ajuste = new AjusteDeInventario;
+      ajuste.codigo = String(this.ajustes.length + 1) + this.controlProduccion.codigoProduccion.value;
+      ajuste.tipoElemento = "Producto";
+      ajuste.codigoElemento = "111111";
+      ajuste.nombreElemento = "yuca";
+      ajuste.fecha = this.control.fecha.value;
+      ajuste.tipoAjuste = this.control.tipoAjuste.value;
+      ajuste.descipcion = this.control.descipcion.value;
+      ajuste.cantidad = this.control.cantidad.value;
+      ajuste.nombreBodega = "Bodega sis";
+      ajuste.codigoMateriaPrima = "129";
+      this.updateAjustes(this.ajustes,ajuste);
+    }
+  }
+  private validarCantidad(cantidad: number){
+    if(cantidad < 1){
+      const modalRef = this.modalService.open(AlertaModalErrorComponent);
+      modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
+      modalRef.componentInstance.mensaje = 'Digite una cantidad mayor 1';
+      return false;
+    }
+    return true;
+  }
+  private updateAjustes(ajustes, ajuste){
+    var encontrado = true;
+    const codigo = ajuste.codigoElemento;
+    const bodega = ajuste.nombreBodega;
+    let pos = 0;
+
+    for (let item of ajustes) {
+      if (item.codigoElemento === codigo && item.nombreBodega === bodega) {
+        encontrado = false;
+        pos = ajustes.indexOf(item);
+      }
+    }
+
+    if (encontrado) {
+      ajustes.push(ajuste);
+    } else {
+      ajustes[pos].cantidad += ajuste.cantidad;
+    }
+    this.controlProduccion.ajustes.setValue(this.ajustes);
+  }
+  eliminarAjuste(ajuste: AjusteDeInventario) {
+    const posicion = this.ajustes.indexOf(ajuste);
+    this.ajustes.splice(posicion, 1);
+    this.controlProduccion.ajustes.setValue(this.ajustes);
+  }
+  //Aca finaliza lo que hizo moi
+
+
   /* filtrarMaterias() {
      for (let i = 0; i < this.materias.length; i++) {
        if (this.materias[i].estadoMateria == "Pendiente") {
@@ -171,13 +254,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
       onlySelf: true,
     });
   }
-  cambiarTipoAjuste(e) {
-    this.control.tipoAjuste.setValue(e.target.value, {
-      onlySelf: true,
-    });
-    this.tipoAjuste = e.target.vaue;
-    console.log(this.control.tipoAjuste.value);
-  }
+  
   cambiarCodigo(e) {
     this.control.codigoElemento.setValue(this.cortarCodigo(e.target.value).replace(/ /g, ""), {
       onlySelf: true,
@@ -202,23 +279,34 @@ export class AjusteInventarioRegistroComponent implements OnInit {
       return nombre[1];
     }
   }
+
   get control() {
     return this.formGroup.controls;
   }
+  get controlProduccion() {
+    return this.formGroupProduccion.controls;
+  }
 
+  onSubmit() {
+    if (this.formGroupProduccion.invalid) {
+    } else {
+      this.registrar();
+    }
+  }
   registrar() {
-    console.log(this.control.tipoAjuste.value);
-    this.ajusteInventario = this.formGroup.value;
-    this.ajusteInventario.tipoAjuste = this.tipoAjuste;
-    console.log(this.ajusteInventario.tipoAjuste);
-    this.ajusteInventarioService.post(this.ajusteInventario).subscribe((e) => {
+    const produccion = this.formGroupProduccion.value;
+    this.produccionService.post(produccion).subscribe((e) => {
       if (e != null) {
-        this.ajusteInventario = e;
-        this.formGroup.reset();
+        this.produccion = e;
+        this.formGroupProduccion.reset();
       }
     });
   }
-  onSubmit() {
-    this.registrar();
+
+  getCodigo(){
+    this.produccionService.getCodigoProduccion().subscribe((c) => {
+      c != ""? this.controlProduccion.codigoProduccion.setValue(String(c))
+      : this.controlProduccion.codigoProduccion.setValue("Error");
+    });
   }
 }
