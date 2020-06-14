@@ -80,7 +80,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.localeService.use("es");
   }
 
-  formProduccion(){
+  formProduccion() {
     this.produccion = new Produccion;
     this.produccion.codigoProduccion = '';
     this.produccion.fecha = new Date();
@@ -102,7 +102,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.ajusteInventario.fecha = new Date();
     this.ajusteInventario.codigo = '';
     this.ajusteInventario.descipcion = '';
-    this.ajusteInventario.cantidad = 1;
+    this.ajusteInventario.cantidad = null;
     this.ajusteInventario.tipoAjuste = 'Incremento';
     this.ajusteInventario.codigoMateriaPrima = null;
     this.ajusteInventario.nombreBodega = '';
@@ -125,24 +125,43 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   onScrollEvent() {
     this.datepicker.hide();
   }*/
-  cambiarId() {
+  cambiarIdMateria() {
     if (!this.modalService.hasOpenModals()) {
-      this.recibirId();
-      this.control.codigoProductor.setValue(this.codigoMateriaPrima);
+      this.recibirIdMateria();
+      this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
     }
   }
-  recibirId() {
-    this.eventoService.codigo.subscribe(
-      (estado) => (this.codigoMateriaPrima = estado)
-    );
-    this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
-    this.colocarValor();
+  cambiarIdProducto() {
+    if (!this.modalService.hasOpenModals()) {
+      this.recibirIdProducto();
+      this.control.codigoElemento.setValue(this.codigoElemento);
+    }
   }
-  colocarValor() {
+  recibirIdMateria() {
     this.eventoService.codigo.subscribe(
       (estado) => (this.codigoMateriaPrima = estado)
     );
     this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
+    this.colocarValorMateria();
+  }
+  recibirIdProducto() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoElemento = estado)
+    );
+    this.control.codigoElemento.setValue(this.codigoElemento);
+    this.colocarValorProducrto();
+  }
+  colocarValorMateria() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoMateriaPrima = estado)
+    );
+    this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
+  }
+  colocarValorProducrto() {
+    this.eventoService.codigo.subscribe(
+      (estado) => (this.codigoElemento = estado)
+    );
+    this.control.codigoElemento.setValue(this.codigoElemento);
   }
   mostrarMaterias() {
     this.modalService.open(ConsultaMateriaComponent, { size: 'lg' });
@@ -173,8 +192,8 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     });
   }
 
-  agregarAjuste(){
-    if(this.validarCantidad(this.control.cantidad.value)){
+  agregarAjuste() {
+    if (this.validarCantidad(this.control.cantidad.value)) {
       const ajuste = new AjusteDeInventario;
       ajuste.codigo = String(this.ajustes.length + 1) + this.controlProduccion.codigoProduccion.value;
       ajuste.tipoElemento = "Producto";
@@ -186,11 +205,11 @@ export class AjusteInventarioRegistroComponent implements OnInit {
       ajuste.cantidad = this.control.cantidad.value;
       ajuste.nombreBodega = "Bodega sis";
       ajuste.codigoMateriaPrima = "129";
-      this.updateAjustes(this.ajustes,ajuste);
+      this.updateAjustes(this.ajustes, ajuste);
     }
   }
-  private validarCantidad(cantidad: number){
-    if(cantidad < 1){
+  private validarCantidad(cantidad: number) {
+    if (cantidad < 1) {
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
       modalRef.componentInstance.mensaje = 'Digite una cantidad mayor 1';
@@ -198,7 +217,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     }
     return true;
   }
-  private updateAjustes(ajustes, ajuste){
+  private updateAjustes(ajustes, ajuste) {
     var encontrado = true;
     const codigo = ajuste.codigoElemento;
     const bodega = ajuste.nombreBodega;
@@ -303,10 +322,10 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     });
   }
 
-  getCodigo(){
+  getCodigo() {
     this.produccionService.getCodigoProduccion().subscribe((c) => {
-      c != ""? this.controlProduccion.codigoProduccion.setValue(String(c))
-      : this.controlProduccion.codigoProduccion.setValue("Error");
+      c != "" ? this.controlProduccion.codigoProduccion.setValue(String(c))
+        : this.controlProduccion.codigoProduccion.setValue("Error");
     });
   }
 }

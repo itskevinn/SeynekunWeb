@@ -1,1 +1,70 @@
-<p>consulta-producto works!</p>
+<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <span aria-hidden="true">&times;</span>
+</button>
+<div class="card shadow mb-4">
+  <div class="card-body">
+    <div id="dataTable_wrapper">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="separarArriba">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="textoABuscar"
+              aria-controls="dataTable"
+              placeholder="Buscar"
+            />
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="text-right separarAbajo separarArriba">
+            <hr>
+          </div>
+        </div>
+        <hr />
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+              role="grid"
+              aria-describedby="dataTable_info"
+              style="width: 100%;"
+            >
+              <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Categoría</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let producto of productos | filtroProducto: textoABuscar;
+                    index as i
+                  "
+                >
+                  <td>{{ producto.codigo }}</td>
+                  <td>{{ producto.nombre }}</td>
+                  <td>{{ producto.precio | currency}}</td>
+                  <td>{{ producto.nombreCategoria }}</td>
+                  <td>
+                    <a class="text-success" (click)="enviarId(producto.codigo)"
+                      (click)="activeModal.dismiss('Cross click')"> Seleccionar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
