@@ -19,11 +19,12 @@ export class SolicitudConsultaComponent implements OnInit {
       this.productores = result;
     });
   }
-  aceptarSolicitud(id: string, productor: Productor) {
-    console.log(id);
-    this.productorService.putEstado(id, productor).subscribe(result => this.productor = result);
+  aceptarSolicitud(productor: Productor) {
+    const estado = "Activo";
+    this.productorService.putEstado(productor.identificacion, estado).subscribe(result => this.productor = result);
   }
   rechazarSolicitud(id: string, productor: Productor) {
-    this.productorService.putEstado(id, productor).subscribe(result => this.productor = result);
+    const estado = "Rechazado";
+    this.productorService.putEstado(productor.identificacion, estado).subscribe(result => this.productor = result);
   }
 }

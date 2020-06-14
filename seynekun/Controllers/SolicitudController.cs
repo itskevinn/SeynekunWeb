@@ -27,12 +27,15 @@ namespace seynekun.Controllers
             var response = servicioProductor.ConsultarPendientes().Select(p => new ProductorViewModel(p));
             return response;
         }
-        [HttpPut("{identificacion}")]
-        public ActionResult<string> PutEstado(string identificacion, Productor productor)
+
+        [HttpPut("{identificacion},{estado}")]
+        public ActionResult<string> PutEstado(string identificacion, string estado)
         {
-            var id = servicioProductor.BuscarxId(identificacion).Productor;
-            if (id == null) return NotFound();
-            var mensaje = servicioProductor.ModificarEstado(productor);
+            var productorBuscado = servicioProductor.BuscarxIdModEstado(identificacion).Productor;
+            if (productorBuscado == null) return NotFound();
+
+            productorBuscado.Estado = estado;
+            var mensaje = servicioProductor.ModificarEstado(productorBuscado);
             return Ok(mensaje);
         }
     }

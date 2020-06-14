@@ -72,6 +72,16 @@ namespace Logica
             return new BuscarProductorxIdResponse("Productor no encontrado");
         }
 
+        public BuscarProductorxIdResponse BuscarxIdModEstado(string identificacion)
+        {
+            Productor productor = _context.Productores.Find(identificacion);
+            if(productor != null && productor.Estado.ToLower() == "pendiente")
+            {
+                return new BuscarProductorxIdResponse(productor);
+            }
+            return new BuscarProductorxIdResponse("Productor no encontrado");
+        }
+
         public string Modificar(Productor productoNueva)
         {
             try
@@ -135,7 +145,7 @@ namespace Logica
         {
             try
             {
-                Productor productor = _context.Productores.Find(productorNuevo);
+                Productor productor = _context.Productores.Find(productorNuevo.Identificacion);
                 if (productor != null && productor.Estado != "Eliminado")
                 {
                     productor.Estado = productorNuevo.Estado;

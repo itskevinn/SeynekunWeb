@@ -107,7 +107,7 @@ export class SolicitudRegistroComponent implements OnInit {
         ],
       ],
       contrasena: [this.productor.contrasena, [Validators.required, Validators.minLength(4)]],
-      nombreUsuario: [this.productor.nombreUsuario, [Validators.required, Validators.maxLength(10)]],
+      nombreUsuario: [this.productor.nombreUsuario, [Validators.required, Validators.maxLength(35)]],
       afiliacionSalud: [this.productor.afiliacionSalud],
       estado:[this.productor.estado]
     })

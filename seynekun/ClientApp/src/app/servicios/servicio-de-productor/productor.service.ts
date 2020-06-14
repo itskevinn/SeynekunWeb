@@ -69,10 +69,10 @@ export class ProductorService {
       ),
     )
   }
-  putEstado(identificacion: string, productor: Productor): Observable<Productor> {
-    const url = `${this.baseUrl}api/Solicitud/${identificacion}`
-    return this.http.put<Productor>(url, productor, httpOptions).pipe(
-      tap((_) => this.handleErrorService.logOk('Productor actualizado')),
+  putEstado(id: string, estado: string): Observable<Productor> {
+    const url = `${this.baseUrl}api/Solicitud/${id},${estado}`
+    return this.http.put<Productor>(url, httpOptions).pipe(
+      //tap((_) => this.handleErrorService.logOk('Productor actualizado')),
       catchError(
         this.handleErrorService.handleError<Productor>('Actualizar', null),
       ),

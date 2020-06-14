@@ -30,10 +30,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="
-                    let productor of productores
-                      | filtroProductor: textoABuscar;
-                    index as i
-                  ">
+                  let productor of productores | filtroProductor: textoABuscar; index as i">
                   <td>{{ productor.identificacion }}</td>
                   <td>{{ productor.nombre }}</td>
                   <td>{{ productor.apellido }}</td>
@@ -42,9 +39,15 @@
                   <td>{{ productor.codigoSica }}</td>
                   <td>{{ productor.vereda }}</td>
                   <td>
-                    <a class="text-success" (click)="aceptarSolicitud(productor.identificacion, productor)">Aceptar</a>
-                    <a> / </a>
-                    <a class="text-success" (click)="rechazarSolicitud(productor.identificacion, productor)">Rechazar</a>
+                      <button type="button" class="btn btn-link text-success"
+                        (click)="aceptarSolicitud(productor)">
+                        Aceptar
+                      </button>
+                      <a>/</a>
+                      <button type="button" class="btn btn-link text-danger"
+                        (click)="rechazarSolicitud(productor.identificacion, productor)">
+                        Rechazar
+                      </button>
                   </td>
                 </tr>
               </tbody>
