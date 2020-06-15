@@ -1,0 +1,35 @@
+<button [routerLink]="['/']" type="button" class="btn btn-labeled btn-light">
+    <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="page-top">
+    <div class="content">
+        <section id="datosGenerales">
+            <div class="card o-hidden border-0 shadow-lg my-1">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-registrar-empleado-imagen"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Generar reporte</h1>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-dropdown border-verde " name="tipoReporte"
+                                        (change)="cambiarTipo($event)">
+                                        <option selected> Seleccionar tipo de reporte </option>
+                                        <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <button (click)="generarReporte()" class="btn btn-success btn-user btn-block">
+                                    Generar
+                                </button>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

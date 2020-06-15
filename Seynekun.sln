@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datos", "datos\datos.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{6FD2C516-CC23-4219-9AAC-C504B868A34F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructura", "Infraestructura\Infraestructura.csproj", "{AD5EF202-9009-4328-BFA5-D7D2108F6F89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{6FD2C516-CC23-4219-9AAC-C504B868A34F}.Release|x64.Build.0 = Release|Any CPU
 		{6FD2C516-CC23-4219-9AAC-C504B868A34F}.Release|x86.ActiveCfg = Release|Any CPU
 		{6FD2C516-CC23-4219-9AAC-C504B868A34F}.Release|x86.Build.0 = Release|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Debug|x64.Build.0 = Debug|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Release|x64.Build.0 = Release|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD5EF202-9009-4328-BFA5-D7D2108F6F89}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

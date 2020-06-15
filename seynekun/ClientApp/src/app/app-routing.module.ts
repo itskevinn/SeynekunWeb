@@ -24,7 +24,7 @@ import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-
 import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
 
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
-import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
+import { ReporteInventarioComponent } from './seynekun/reporte/reporte-inventario/reporte-inventario.component'
 import { FabricanteRegistroComponent } from './seynekun/fabricante/fabricante-registro/fabricante-registro/fabricante-registro.component'
 import { FabricanteEdicionComponent } from './seynekun/fabricante/fabricante-edicion/fabricante-edicion/fabricante-edicion.component'
 import { FabricanteConsultaComponent } from './seynekun/fabricante/fabricante-consulta/fabricante-consulta/fabricante-consulta.component'
@@ -68,6 +68,10 @@ import { ProductosMateriaProductorComponent } from './seynekun/inventario/materi
 import { AuthGuard } from './servicios/guard/auth.guard'
 import { SolicitudRegistroComponent } from './seynekun/solicitud/solicitud-registro/solicitud-registro/solicitud-registro.component'
 import { SolicitudConsultaComponent } from './seynekun/solicitud/solicitud-consulta/solicitud-consulta.component'
+import { ControlRegistroComponent } from './seynekun/controles/control/control-registro/control-registro.component'
+import { ControlConsultaComponent } from './seynekun/controles/control/control-consulta/control-consulta.component'
+import { ControlVistaComponent } from './seynekun/controles/control/control-vista/control-vista.component'
+import { ControlEdicionComponent } from './seynekun/controles/control/control-edicion/control-edicion.component'
 
 const routes: Routes = [
   { path: 'RegistrarProductor', component: ProductorRegistroComponent, canActivate: [AuthGuard] },
@@ -140,7 +144,11 @@ const routes: Routes = [
   { path: 'ProductorMateriaPrima/:id', component: MateriaPrimaProductorVistaComponent, canActivate: [AuthGuard] },
   { path: 'ProductosMateriaPrima/:id', component: ProductosMateriaProductorComponent, canActivate: [AuthGuard] },
   { path: 'SolicitarRegistro', component: SolicitudRegistroComponent },
-  { path: 'SolicitudesPendientes', component: SolicitudConsultaComponent }
+  { path: 'SolicitudesPendientes', component: SolicitudConsultaComponent, canActivate: [AuthGuard] },
+  { path: 'RegistrarControl', component: ControlRegistroComponent, canActivate: [AuthGuard] },
+  { path: 'Controles', component: ControlConsultaComponent, canActivate: [AuthGuard] },
+  { path: 'Control/:id', component: ControlVistaComponent, canActivate: [AuthGuard] },
+  { path: 'EditarControl/:id', component: ControlEdicionComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({
