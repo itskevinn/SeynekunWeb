@@ -1,0 +1,81 @@
+<button [routerLink]="['/Controles']" type="button" class="btn btn-labeled btn-light">
+    <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="page-top">
+    <div class="content">
+        <section id="datosGenerales">
+            <div class="card o-hidden border-0 shadow-lg my-1">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-registrar-empleado-imagen"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Registrar control</h1>
+                                </div>
+                                <form class="user" [formGroup]="formGroup">
+                                    <div class=" form-group">
+                                        <select class="form-dropdown border-verde " name="tipoControl"
+                                            (change)="cambiarTipo($event)">
+                                            <option selected> Tipo de control </option>
+                                            <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+                                        </select>
+                                        <div *ngIf="controlForm.tipoControl.errors && controlForm.tipoControl.touched"
+                                            class="invalid-feedback">
+                                            <div class="validacion-texto" *ngIf="controlForm.tipoControl.errors.required">
+                                                Seleccione un tipo de control
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user required"
+                                            placeholder="Descripcion del control a registrar"
+                                            formControlName="descripcion" name="descripcion"
+                                            [ngClass]="{'is-invalid':controlForm.descripcion.errors && controlForm.descripcion.touched}">
+                                        <div *ngIf="controlForm.descripcion.errors && controlForm.descripcion.touched" class="invalid-feedback">
+                                            <div class="validacion-texto"
+                                                *ngIf="controlForm.descripcion.errors.required">Proporcione
+                                                una descripcion
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" bsDatepicker
+                                                [bsConfig]="{ isAnimated: true }" [bsValue]="bsValue"
+                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
+                                                [maxDate]="fechaMaxima" formControlName="fechaInicio" placeholder="Fecha">
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <input type="text" class="form-control form-control-user" bsDatepicker
+                                                [bsConfig]="{ isAnimated: true }" [bsValue]="bsValue"
+                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
+                                                [maxDate]="fechaMaxima" formControlName="fechaFinal" placeholder="Fecha">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user required"
+                                            placeholder="Observacion a tener en cuenta para el proximo registro de control"
+                                            formControlName="observacion" name="observacion"
+                                            [ngClass]="{'is-invalid':controlForm.observacion.errors && controlForm.observacion.touched}">
+                                        <div *ngIf="controlForm.observacion.errors && controlForm.observacion.touched"
+                                            class="invalid-feedback">
+                                            <div class="validacion-texto"
+                                                *ngIf="controlForm.observacion.errors.required">Proporcione
+                                                una observacion</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                                        Registrar control
+                                    </button>
+                                    <hr>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

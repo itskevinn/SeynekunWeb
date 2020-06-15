@@ -1,0 +1,89 @@
+<button [routerLink]="['/Controles']" type="button" class="btn btn-labeled btn-light">
+    <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div *ngIf="seEncontro; else noEncontrado">
+    <div class="row">
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div *ngIf="seEncontro">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Información General</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{control.codigoControl}}</div>
+                                <div class="h3 mb-0 font-weight-bold text-gray-800">{{control.tipoControl}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div *ngIf="seEncontro">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Descripcion del control</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{control.descripcion}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div *ngIf="seEncontro">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Fechas</div>
+                                <a class="h2 mb-0 font-weight-bold text-gray-800"> {{control.fechaInicio}}</a>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{control.fechaFinal}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div *ngIf="seEncontro">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Observaciones</div>
+                                <a class="h2 mb-0 font-weight-bold text-gray-800"> {{control.observacion}}</a>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-id-card fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="text-center separarAbajo">
+        <button routerLink='/EditarProductor/{{productor.identificacion}}' type="button"
+            class="btn btn-labeled btn-info">
+            <span class="btn-label"><i class="fas fa-pencil-alt"></i></span> Editar</button>
+    </div>
+    -->
+</div>
+<ng-template #noEncontrado>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+            aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    </div>
+</ng-template>

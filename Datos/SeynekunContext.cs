@@ -24,5 +24,6 @@ namespace Datos
         public DbSet<DetalleVenta> DetallesVentas { get; set; }
         public DbSet<Produccion> Producciones { get; set; }
         public DbSet<Transportador> Transportadores { get; set; }
+        public DbSet<Control> Controles { get; set; }
     }
 }

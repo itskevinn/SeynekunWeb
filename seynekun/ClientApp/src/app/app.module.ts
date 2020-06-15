@@ -34,7 +34,6 @@ import { AlertaModalErrorComponent } from "./@base/alerta-modal-error/alerta-mod
 import { EmpleadoService } from "./servicios/servicio-de-empleado/empleado.service";
 import { ClienteService } from "./servicios/servicio-de-cliente/cliente.service";
 import { ProductorService } from "./servicios/servicio-de-productor/productor.service";
-import { ControlesComponent } from "./seynekun/controles/controles/controles.component";
 import { ProductoEdicionComponent } from "./seynekun/inventario/producto/producto-edicion/producto-edicion.component";
 import { ProductoRegistroComponent } from "./seynekun/inventario/producto/producto-registro/producto-registro.component";
 import { ProductoConsultaComponent } from "./seynekun/inventario/producto/producto-consulta/producto-consulta.component";
@@ -109,6 +108,10 @@ import { FiltroMateriaPipe } from './filtro/filtro-materia-prima/filtro-materia.
 import { SolicitudRegistroComponent } from "./seynekun/solicitud/solicitud-registro/solicitud-registro/solicitud-registro.component";
 import { SolicitudConsultaComponent } from "./seynekun/solicitud/solicitud-consulta/solicitud-consulta.component";
 import { EventoService } from "./servicios/servicio-evento/evento.service";
+import { ControlRegistroComponent } from './seynekun/controles/control/control-registro/control-registro.component';
+import { ControlConsultaComponent } from './seynekun/controles/control/control-consulta/control-consulta.component';
+import { ControlEdicionComponent } from './seynekun/controles/control/control-edicion/control-edicion.component';
+import { ControlVistaComponent } from './seynekun/controles/control/control-vista/control-vista.component';
 
 @NgModule({
   declarations: [
@@ -134,7 +137,6 @@ import { EventoService } from "./servicios/servicio-evento/evento.service";
     ProductorVistaComponent,
     AlertaModalOkComponent,
     AlertaModalErrorComponent,
-    ControlesComponent,
     ProductoEdicionComponent,
     ProductoRegistroComponent,
     ProductoVistaComponent,
@@ -199,6 +201,10 @@ import { EventoService } from "./servicios/servicio-evento/evento.service";
     FiltroMateriaPipe,
     SolicitudRegistroComponent,
     SolicitudConsultaComponent,
+    ControlRegistroComponent,
+    ControlConsultaComponent,
+    ControlEdicionComponent,
+    ControlVistaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
