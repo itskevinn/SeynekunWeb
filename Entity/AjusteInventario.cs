@@ -17,6 +17,7 @@ namespace Entity
         [Required(ErrorMessage = "Se requiere la cantidad a ajustar")]
         public decimal Cantidad { get; set; }
         public string CodigoElemento { get; set; }
+        public decimal CantidadMateriaPrima { get; set; }
         public string TipoAjuste { get; set; }
         [Required(ErrorMessage = "Se requiere una bodega")]
         public string NombreBodega { get; set; }

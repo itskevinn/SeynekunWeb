@@ -81,6 +81,55 @@ namespace Logica
             }
             return new BuscarMateriaPrimaxIdResponse("Materia no encontrado");
         }
+        public ModificarCantidadResponse ModificarCantidad(string codigo, decimal cantidad)
+        {
+            try
+            {
+                var materiaPrimaViejo = _context.MateriasPrimas.Find(codigo);
+                var cantidadARestar = cantidad;
+                if (materiaPrimaViejo != null)
+                {
+                    if (materiaPrimaViejo.Cantidad - cantidadARestar > -1)
+                    {
+                        materiaPrimaViejo.Cantidad -= cantidadARestar;
+                        if (materiaPrimaViejo.Cantidad == 0)
+                        {
+                            materiaPrimaViejo.EstadoMateria = "Procesada";
+                        }
+                        _context.MateriasPrimas.Update(materiaPrimaViejo);
+                        _context.SaveChanges();
+                        return new ModificarCantidadResponse(true);
+                    }
+                    else
+                    {
+                        return new ModificarCantidadResponse("La cantidad usada de la materia prima supera la cantidad disponible");
+                    }
+                }
+                else
+                {
+                    return new ModificarCantidadResponse("No se encontró registro de la materia prima solicitada");
+                }
+            }
+            catch (Exception e)
+            {
+                return new ModificarCantidadResponse($"Ha ocurrido un error en la aplicación {e.Message}");
+            }
+        }
+        public class ModificarCantidadResponse
+        {
+            public bool Modificada { get; set; }
+            public string Mensaje { get; set; }
+            public ModificarCantidadResponse(bool modificada)
+            {
+                Modificada = modificada;
+                Mensaje = "Cantidad modificada con éxito";
+            }
+            public ModificarCantidadResponse(string mensaje)
+            {
+                Modificada = false;
+                Mensaje = mensaje;
+            }
+        }
         public string Modificar(MateriaPrima materiaPrimaNuevo)
         {
             try

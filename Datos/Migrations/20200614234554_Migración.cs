@@ -38,16 +38,16 @@ namespace Datos.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Identificacion = table.Column<string>(maxLength: 20, nullable: false),
+                    Identificacion = table.Column<string>(maxLength: 30, nullable: false),
                     TipoIdentificacion = table.Column<string>(maxLength: 3, nullable: false),
-                    Nombre = table.Column<string>(maxLength: 25, nullable: false),
-                    Apellido = table.Column<string>(maxLength: 25, nullable: false),
-                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: false),
-                    Email = table.Column<string>(maxLength: 30, nullable: false),
+                    Nombre = table.Column<string>(maxLength: 30, nullable: false),
+                    Apellido = table.Column<string>(maxLength: 30, nullable: false),
+                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: true),
+                    Email = table.Column<string>(maxLength: 50, nullable: true),
                     Estado = table.Column<string>(maxLength: 13, nullable: false),
                     NumeroTelefono2 = table.Column<string>(maxLength: 13, nullable: true),
                     Direccion = table.Column<string>(maxLength: 40, nullable: true),
-                    Departamento = table.Column<string>(maxLength: 14, nullable: true),
+                    Departamento = table.Column<string>(nullable: true),
                     Municipio = table.Column<string>(nullable: true),
                     Barrio = table.Column<string>(maxLength: 30, nullable: true)
                 },
@@ -60,12 +60,12 @@ namespace Datos.Migrations
                 name: "Empleados",
                 columns: table => new
                 {
-                    Identificacion = table.Column<string>(maxLength: 20, nullable: false),
+                    Identificacion = table.Column<string>(maxLength: 30, nullable: false),
                     TipoIdentificacion = table.Column<string>(maxLength: 3, nullable: false),
-                    Nombre = table.Column<string>(maxLength: 25, nullable: false),
-                    Apellido = table.Column<string>(maxLength: 25, nullable: false),
-                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: false),
-                    Email = table.Column<string>(maxLength: 30, nullable: false),
+                    Nombre = table.Column<string>(maxLength: 30, nullable: false),
+                    Apellido = table.Column<string>(maxLength: 30, nullable: false),
+                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: true),
+                    Email = table.Column<string>(maxLength: 50, nullable: true),
                     Estado = table.Column<string>(maxLength: 13, nullable: false),
                     Cargo = table.Column<string>(maxLength: 30, nullable: false)
                 },
@@ -134,29 +134,58 @@ namespace Datos.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Producciones",
+                columns: table => new
+                {
+                    CodigoProduccion = table.Column<string>(maxLength: 20, nullable: false),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    Descripcion = table.Column<string>(maxLength: 256, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Producciones", x => x.CodigoProduccion);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Productores",
                 columns: table => new
                 {
-                    Identificacion = table.Column<string>(maxLength: 20, nullable: false),
+                    Identificacion = table.Column<string>(maxLength: 30, nullable: false),
                     TipoIdentificacion = table.Column<string>(maxLength: 3, nullable: false),
-                    Nombre = table.Column<string>(maxLength: 25, nullable: false),
-                    Apellido = table.Column<string>(maxLength: 25, nullable: false),
-                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: false),
-                    Email = table.Column<string>(maxLength: 30, nullable: false),
+                    Nombre = table.Column<string>(maxLength: 30, nullable: false),
+                    Apellido = table.Column<string>(maxLength: 30, nullable: false),
+                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: true),
+                    Email = table.Column<string>(maxLength: 50, nullable: true),
                     Estado = table.Column<string>(maxLength: 13, nullable: false),
-                    CedulaCafetera = table.Column<string>(maxLength: 20, nullable: false),
+                    CedulaCafetera = table.Column<string>(maxLength: 30, nullable: false),
                     NombrePredio = table.Column<string>(maxLength: 30, nullable: false),
-                    CodigoFinca = table.Column<string>(maxLength: 15, nullable: false),
-                    CodigoSica = table.Column<string>(maxLength: 15, nullable: false),
-                    Municipio = table.Column<string>(maxLength: 20, nullable: false),
-                    Vereda = table.Column<string>(maxLength: 20, nullable: false),
-                    AfiliacionSalud = table.Column<string>(maxLength: 30, nullable: false),
+                    CodigoFinca = table.Column<string>(maxLength: 30, nullable: false),
+                    CodigoSica = table.Column<string>(maxLength: 30, nullable: false),
+                    Municipio = table.Column<string>(maxLength: 20, nullable: true),
+                    Vereda = table.Column<string>(maxLength: 30, nullable: false),
+                    AfiliacionSalud = table.Column<string>(maxLength: 40, nullable: true),
                     NombreUsuario = table.Column<string>(nullable: false),
                     Contrasena = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Productores", x => x.Identificacion);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transportadores",
+                columns: table => new
+                {
+                    Identificacion = table.Column<string>(maxLength: 20, nullable: false),
+                    Nombre = table.Column<string>(maxLength: 30, nullable: false),
+                    Apellido = table.Column<string>(maxLength: 30, nullable: false),
+                    NumeroTelefono = table.Column<string>(maxLength: 13, nullable: false),
+                    NumeroLicencia = table.Column<string>(maxLength: 20, nullable: false),
+                    Email = table.Column<string>(maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transportadores", x => x.Identificacion);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,32 +222,6 @@ namespace Datos.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ventas", x => x.CodigoVenta);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AjusteInventarios",
-                columns: table => new
-                {
-                    Codigo = table.Column<string>(nullable: false),
-                    CodigoMateriaPrima = table.Column<string>(nullable: true),
-                    Fecha = table.Column<DateTime>(nullable: false),
-                    Descipcion = table.Column<string>(nullable: true),
-                    Cantidad = table.Column<decimal>(nullable: false),
-                    CodigoElemento = table.Column<string>(nullable: true),
-                    TipoAjuste = table.Column<string>(nullable: true),
-                    NombreBodega = table.Column<string>(nullable: false),
-                    TipoElemento = table.Column<string>(nullable: false),
-                    BodegaNombre = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AjusteInventarios", x => x.Codigo);
-                    table.ForeignKey(
-                        name: "FK_AjusteInventarios_Bodegas_BodegaNombre",
-                        column: x => x.BodegaNombre,
-                        principalTable: "Bodegas",
-                        principalColumn: "Nombre",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -279,6 +282,40 @@ namespace Datos.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AjusteInventarios",
+                columns: table => new
+                {
+                    Codigo = table.Column<string>(nullable: false),
+                    CodigoMateriaPrima = table.Column<string>(nullable: true),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    Descipcion = table.Column<string>(nullable: true),
+                    Cantidad = table.Column<decimal>(nullable: false),
+                    CodigoElemento = table.Column<string>(nullable: true),
+                    CantidadMateriaPrima = table.Column<decimal>(nullable: false),
+                    TipoAjuste = table.Column<string>(nullable: true),
+                    NombreBodega = table.Column<string>(nullable: false),
+                    TipoElemento = table.Column<string>(nullable: false),
+                    BodegaNombre = table.Column<string>(nullable: true),
+                    ProduccionCodigoProduccion = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AjusteInventarios", x => x.Codigo);
+                    table.ForeignKey(
+                        name: "FK_AjusteInventarios_Bodegas_BodegaNombre",
+                        column: x => x.BodegaNombre,
+                        principalTable: "Bodegas",
+                        principalColumn: "Nombre",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AjusteInventarios_Producciones_ProduccionCodigoProduccion",
+                        column: x => x.ProduccionCodigoProduccion,
+                        principalTable: "Producciones",
+                        principalColumn: "CodigoProduccion",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DetallesVentas",
                 columns: table => new
                 {
@@ -328,6 +365,11 @@ namespace Datos.Migrations
                 name: "IX_AjusteInventarios_BodegaNombre",
                 table: "AjusteInventarios",
                 column: "BodegaNombre");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AjusteInventarios_ProduccionCodigoProduccion",
+                table: "AjusteInventarios",
+                column: "ProduccionCodigoProduccion");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DetallesVentas_VentaCodigoVenta",
@@ -382,10 +424,16 @@ namespace Datos.Migrations
                 name: "Productos");
 
             migrationBuilder.DropTable(
+                name: "Transportadores");
+
+            migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Bodegas");
+
+            migrationBuilder.DropTable(
+                name: "Producciones");
 
             migrationBuilder.DropTable(
                 name: "Ventas");

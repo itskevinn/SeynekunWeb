@@ -1,7 +1,7 @@
 
 import { Injectable, Inject } from '@angular/core';
 import { tap, catchError } from "rxjs/operators";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HandleHttpErrorService } from "src/app/@base/handle-http-error.service";
 import { BodegaProducto } from 'src/app/seynekun/models/modelo-bodega-producto/bodega-producto';
@@ -26,6 +26,7 @@ export class BodegaStockService {
   ) {
     this.baseUrl = baseUrl;
   }
+
   get(codigoProducto: string): Observable<BodegaProducto[]> {
     const url = `${this.baseUrl + "api/BodegaProducto"}/${codigoProducto}`;
     return this.http.get<BodegaProducto[]>(url, httpOptions).pipe(
@@ -35,4 +36,5 @@ export class BodegaStockService {
       )
     );
   }
+
 }

@@ -9,4 +9,5 @@ export class AjusteDeInventario {
     cantidad: number
     nombreBodega: string
     codigoMateriaPrima: string
+    cantidadMateriaPrima: number
 }

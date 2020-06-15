@@ -112,6 +112,7 @@ import { ControlRegistroComponent } from './seynekun/controles/control/control-r
 import { ControlConsultaComponent } from './seynekun/controles/control/control-consulta/control-consulta.component';
 import { ControlEdicionComponent } from './seynekun/controles/control/control-edicion/control-edicion.component';
 import { ControlVistaComponent } from './seynekun/controles/control/control-vista/control-vista.component';
+import { ConsultaBodegaComponent } from "./modal/consulta-bodega/consulta-bodega/consulta-bodega.component";
 
 @NgModule({
   declarations: [
@@ -202,6 +203,7 @@ import { ControlVistaComponent } from './seynekun/controles/control/control-vist
     SolicitudRegistroComponent,
     SolicitudConsultaComponent,
     ControlRegistroComponent,
+    ConsultaBodegaComponent,
     ControlConsultaComponent,
     ControlEdicionComponent,
     ControlVistaComponent

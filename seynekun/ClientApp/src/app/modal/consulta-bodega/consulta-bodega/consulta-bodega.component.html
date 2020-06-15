@@ -12,11 +12,8 @@
           </div>
         </div>
         <div class="col-sm-12 col-md-6">
-          <div class="text-right separarAbajo separarArriba">
-            <hr>
-          </div>
+          <hr>
         </div>
-        <hr />
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -25,27 +22,20 @@
               aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Fecha</th>
-                  <th>Código Productor</th>
-                  <th>Nombre Productor</th>
-                  <th>Tipo materia prima</th>
-                  <th>Cantidad (Kg)</th>
+                  <th>Nombre</th>
+                  <th>Dirección</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="
-                    let materia of materiaDisponibles
-                      |filtroMateria: textoABuscar;
+                    let bodega of bodegas | filtroBodega: textoABuscar;
                     index as i
                   ">
-                  <td>{{ materia.fecha | date: 'dd/MM/yyyy, h:mm a' }}</td>
-                  <td>{{ materia.codigoProductor }}</td>
-                  <td>{{ materia.nombreProductor }}</td>
-                  <td>{{ materia.tipo }}</td>
-                  <td>{{ materia.cantidad }}</td>
+                  <td>{{ bodega.nombre }}</td>
+                  <td>{{ bodega.direccion }}</td>
                   <td>
-                    <a class="text-success" (click)="enviarId(materia.codigo+'-'+materia.cantidad)"
+                    <a class="text-success" (click)="enviarId(bodega.nombre)"
                       (click)="activeModal.dismiss('Cross click')"> Seleccionar</a>
                   </td>
                 </tr>

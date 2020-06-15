@@ -32,7 +32,7 @@ export class ConsultaClienteComponent implements OnInit {
     this.cantidadclientes = this.clientes.length;
   }
   enviarId(id: string) {
-    this.eventoServicio.cambiarId(id);
+    this.eventoServicio.cambiarCodigoCliente(id);
     console.log(id)
   }
 }

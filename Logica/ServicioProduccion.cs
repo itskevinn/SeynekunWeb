@@ -18,14 +18,14 @@ namespace Logica
             try
             {
                 Produccion produccionBuscada = _context.Producciones.Find(produccion.CodigoProduccion);
-                
+
                 if (produccionBuscada == null)
                 {
                     _context.Producciones.Add(produccion);
-                   GuardarAjustes(produccion.Ajustes);
+                    GuardarAjustes(produccion.Ajustes);
                     _context.SaveChanges();
                     return new GuardarProduccionResponse(produccion);
-                    
+
                 }
                 return new GuardarProduccionResponse("Codigo de produccion ya registrado");
             }
@@ -37,9 +37,11 @@ namespace Logica
         private void GuardarAjustes(List<AjusteInventario> ajustes)
         {
             ServicioAjusteInventario servico = new ServicioAjusteInventario(_context);
+            ServicioMateriaPrima servicioMateria = new ServicioMateriaPrima(_context);
             foreach (var item in ajustes)
             {
                 servico.Guardar(item);
+                servicioMateria.ModificarCantidad(item.CodigoMateriaPrima, item.CantidadMateriaPrima);
             }
         }
 
@@ -80,12 +82,13 @@ namespace Logica
                 string codigo = string.Empty;
                 DateTime fecha = DateTime.Now;
                 var masUno = 6 + Convert.ToDecimal(fecha.Second);
-                string codigoTemp = Convert.ToString(fecha.Minute)+Convert.ToString(fecha.Month)+Convert.ToString(fecha.Year);
-                string hora = Convert.ToString(masUno)+Convert.ToString(fecha.Hour)+Convert.ToString(fecha.Day);
+                string codigoTemp = Convert.ToString(fecha.Minute) + Convert.ToString(fecha.Month) + Convert.ToString(fecha.Year);
+                string hora = Convert.ToString(masUno) + Convert.ToString(fecha.Hour) + Convert.ToString(fecha.Day);
                 codigo = hora + codigoTemp;
                 return codigo.ToString();
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
                 return e.Message;
             }
         }
@@ -127,7 +130,7 @@ namespace Logica
             Mensaje = mensaje;
         }
     }
-    
+
     public class BuscarProduccionResponse
     {
         public bool Error { get; set; }

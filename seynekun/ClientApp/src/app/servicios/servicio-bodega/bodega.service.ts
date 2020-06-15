@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Bodega } from 'src/app/seynekun/models/modelo-bodega/bodega';
 import { tap, catchError } from 'rxjs/operators';
 import { HandleHttpErrorService } from 'src/app/@base/handle-http-error.service';
@@ -18,12 +18,16 @@ const httpOptions = {
 })
 export class BodegaService {
   baseUrl: string;
+  private nombreBodegaBehavior: BehaviorSubject<string>;
+  public nombreBodega: Observable<string>;
   constructor(
     private http: HttpClient,
     @Inject("BASE_URL") baseUrl: string,
     private handleErrorService: HandleHttpErrorService
   ) {
     this.baseUrl = baseUrl;
+    this.nombreBodegaBehavior = new BehaviorSubject<string>("");
+    this.nombreBodega = this.nombreBodegaBehavior.asObservable();
   }
   gets(): Observable<Bodega[]> {
     return this.http.get<Bodega[]>(this.baseUrl + "api/Bodega").pipe(
@@ -35,6 +39,10 @@ export class BodegaService {
         )
       )
     );
+  }
+  public cambiarNombreBodega(nombre: string) {
+    this.nombreBodegaBehavior.next(nombre);
+    this.nombreBodega = this.nombreBodegaBehavior.asObservable();
   }
   delete(bodega: Bodega | string): Observable<string> {
     const id = typeof bodega === "string" ? bodega : bodega.nombre;

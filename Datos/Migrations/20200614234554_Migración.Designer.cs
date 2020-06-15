@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datos.Migrations
 {
     [DbContext(typeof(SeynekunContext))]
-    [Migration("20200613054331_Migración")]
+    [Migration("20200614234554_Migración")]
     partial class Migración
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Datos.Migrations
                     b.Property<decimal>("Cantidad")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("CantidadMateriaPrima")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("CodigoElemento")
                         .HasColumnType("nvarchar(max)");
 
@@ -48,6 +51,9 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProduccionCodigoProduccion")
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("TipoAjuste")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,6 +64,8 @@ namespace Datos.Migrations
                     b.HasKey("Codigo");
 
                     b.HasIndex("BodegaNombre");
+
+                    b.HasIndex("ProduccionCodigoProduccion");
 
                     b.ToTable("AjusteInventarios");
                 });
@@ -109,30 +117,28 @@ namespace Datos.Migrations
             modelBuilder.Entity("Entity.Cliente", b =>
                 {
                     b.Property<string>("Identificacion")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Apellido")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Barrio")
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
                     b.Property<string>("Departamento")
-                        .HasColumnType("nvarchar(14)")
-                        .HasMaxLength(14);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40);
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -144,11 +150,10 @@ namespace Datos.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("NumeroTelefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(13)")
                         .HasMaxLength(13);
 
@@ -243,13 +248,13 @@ namespace Datos.Migrations
             modelBuilder.Entity("Entity.Empleado", b =>
                 {
                     b.Property<string>("Identificacion")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Apellido")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Cargo")
                         .IsRequired()
@@ -257,9 +262,8 @@ namespace Datos.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -268,11 +272,10 @@ namespace Datos.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("NumeroTelefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(13)")
                         .HasMaxLength(13);
 
@@ -490,6 +493,24 @@ namespace Datos.Migrations
                     b.ToTable("MateriasPrimas");
                 });
 
+            modelBuilder.Entity("Entity.Produccion", b =>
+                {
+                    b.Property<string>("CodigoProduccion")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CodigoProduccion");
+
+                    b.ToTable("Producciones");
+                });
+
             modelBuilder.Entity("Entity.Producto", b =>
                 {
                     b.Property<string>("Codigo")
@@ -538,42 +559,40 @@ namespace Datos.Migrations
             modelBuilder.Entity("Entity.Productor", b =>
                 {
                     b.Property<string>("Identificacion")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("AfiliacionSalud")
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
                     b.Property<string>("CedulaCafetera")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("CodigoFinca")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("CodigoSica")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Contrasena")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -581,14 +600,13 @@ namespace Datos.Migrations
                         .HasMaxLength(13);
 
                     b.Property<string>("Municipio")
-                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("NombrePredio")
                         .IsRequired()
@@ -600,7 +618,6 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroTelefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(13)")
                         .HasMaxLength(13);
 
@@ -611,12 +628,48 @@ namespace Datos.Migrations
 
                     b.Property<string>("Vereda")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.HasKey("Identificacion");
 
                     b.ToTable("Productores");
+                });
+
+            modelBuilder.Entity("Entity.Transportador", b =>
+                {
+                    b.Property<string>("Identificacion")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("NumeroLicencia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("NumeroTelefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
+
+                    b.HasKey("Identificacion");
+
+                    b.ToTable("Transportadores");
                 });
 
             modelBuilder.Entity("Entity.Usuario", b =>
@@ -699,6 +752,10 @@ namespace Datos.Migrations
                     b.HasOne("Entity.Bodega", null)
                         .WithMany("Ajustes")
                         .HasForeignKey("BodegaNombre");
+
+                    b.HasOne("Entity.Produccion", null)
+                        .WithMany("Ajustes")
+                        .HasForeignKey("ProduccionCodigoProduccion");
                 });
 
             modelBuilder.Entity("Entity.DetalleVenta", b =>

@@ -108,7 +108,18 @@ export class MateriaPrimaService {
       )
     );
   }
-
+  getMateria(codigo: string): Observable<MateriaPrima> {
+    const url = `${this.baseUrl + "api/MateriaPrimaDisponible"}/${codigo}`;
+    return this.http.get<MateriaPrima>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<MateriaPrima>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
   getProductos(codigo: string): Observable<ProductoEnBodega[]> {
     const url = `${this.baseUrl + "api/ProductoMateriaPrima"}/${codigo}`;
     return this.http.get<ProductoEnBodega[]>(url, httpOptions).pipe(
@@ -133,6 +144,7 @@ export class MateriaPrimaService {
       )
     );
   }
+
   getCantidadDiaria(): Observable<number> {
     const url = `${this.baseUrl + "api/MateriaPrimaCantidadDiaria"}`;
     return this.http.get<number>(url, httpOptions).pipe(
@@ -186,4 +198,21 @@ export class MateriaPrimaService {
         )
       );
   }
+  /*putEstado(
+    codigo: string,
+    materiaPrima: MateriaPrima
+  ): Observable<MateriaPrima> {
+    const url = `${this.baseUrl}api/MateriaPrimaDisponible/${codigo}`;
+    return this.http
+      .put<MateriaPrima>(url, materiaPrima, httpOptions)
+      .pipe(
+        tap((_) => console.log("Cantidad actualizada")),
+        catchError(
+          this.handleErrorService.handleError<MateriaPrima>(
+            "Actualizar",
+            null
+          )
+        )
+      );
+  }*/
 }

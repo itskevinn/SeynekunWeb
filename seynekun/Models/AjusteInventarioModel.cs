@@ -15,6 +15,7 @@ namespace seynekun.Models
          public string TipoAjuste { get; set; }
          public string CodigoMateriaPrima { get; set; }
          public string NombreBodega { get; set; }
+         public decimal CantidadMateriaPrima { get; set; }
         }
 
         public class AjusteInventarioViewModel : AjusteInventarioInputModel
@@ -30,6 +31,7 @@ namespace seynekun.Models
                 TipoAjuste = ajusteInventario.TipoAjuste;
                 TipoElemento = ajusteInventario.TipoElemento;
                 NombreBodega = ajusteInventario.NombreBodega;
+                CantidadMateriaPrima = ajusteInventario.CantidadMateriaPrima;
             }
         }   
     }
