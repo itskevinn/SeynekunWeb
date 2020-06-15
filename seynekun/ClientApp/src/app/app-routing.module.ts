@@ -24,7 +24,7 @@ import { AjusteInventarioConsultaComponent } from './seynekun/inventario/ajuste-
 import { AjusteInventarioVistaComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-vista/ajuste-inventario-vista/ajuste-inventario-vista.component'
 
 import { AjusteInventarioEdicionComponent } from './seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component'
-import { ReporteInventarioComponent } from './seynekun/inventario/reporte-inventario/reporte-inventario.component'
+import { ReporteInventarioComponent } from './seynekun/reporte/reporte-inventario/reporte-inventario.component'
 import { FabricanteRegistroComponent } from './seynekun/fabricante/fabricante-registro/fabricante-registro/fabricante-registro.component'
 import { FabricanteEdicionComponent } from './seynekun/fabricante/fabricante-edicion/fabricante-edicion/fabricante-edicion.component'
 import { FabricanteConsultaComponent } from './seynekun/fabricante/fabricante-consulta/fabricante-consulta/fabricante-consulta.component'

@@ -37,7 +37,7 @@ import { ProductorService } from "./servicios/servicio-de-productor/productor.se
 import { ProductoEdicionComponent } from "./seynekun/inventario/producto/producto-edicion/producto-edicion.component";
 import { ProductoRegistroComponent } from "./seynekun/inventario/producto/producto-registro/producto-registro.component";
 import { ProductoConsultaComponent } from "./seynekun/inventario/producto/producto-consulta/producto-consulta.component";
-import { ReporteInventarioComponent } from "./seynekun/inventario/reporte-inventario/reporte-inventario.component";
+import { ReporteInventarioComponent } from "./seynekun/reporte/reporte-inventario/reporte-inventario.component";
 import { ProductoVistaComponent } from "./seynekun/inventario/producto/producto-vista/producto-vista.component";
 import { ReporteInventarioService } from "./servicios/servicio-de-reporte-inventario/reporte-inventario.service";
 import { ControlesService } from "./servicios/servicio-de-controles/controles.service";
