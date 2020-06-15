@@ -9,7 +9,6 @@ namespace Logica
     public class ServicioAjusteInventario
     {
         private readonly SeynekunContext _context;
-        private ServicioProducto servicioProducto;
         public ServicioAjusteInventario(SeynekunContext context)
         {
             _context = context;

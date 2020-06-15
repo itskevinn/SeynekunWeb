@@ -22,7 +22,7 @@ export class ConsultaProductorComponent implements OnInit {
     });
   }
   enviarId(id: string) {
-    this.eventoServicio.cambiarId(id);
+    this.eventoServicio.cambiarCodigoProductor(id);
     console.log(id)
   }
 }

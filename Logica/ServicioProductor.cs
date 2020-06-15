@@ -14,6 +14,10 @@ namespace Logica
         {
             _context = context;
         }
+        public decimal SumarCantidadSolicitud()
+        {
+             return _context.Productores.Where(p => p.Estado.ToLower() == "pendiente").Count();
+        }
         public List<Productor> ConsultarPendientes()
         {
             return _context.Productores.Where(p => p.Estado.ToLower() == "pendiente").ToList();
@@ -75,7 +79,7 @@ namespace Logica
         public BuscarProductorxIdResponse BuscarxIdModEstado(string identificacion)
         {
             Productor productor = _context.Productores.Find(identificacion);
-            if(productor != null && productor.Estado.ToLower() == "pendiente")
+            if (productor != null && productor.Estado.ToLower() == "pendiente")
             {
                 return new BuscarProductorxIdResponse(productor);
             }

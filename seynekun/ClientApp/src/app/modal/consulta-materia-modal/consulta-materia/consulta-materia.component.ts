@@ -20,7 +20,7 @@ export class ConsultaMateriaComponent implements OnInit {
     });
   }
   enviarId(id: string) {
-    this.eventoServicio.cambiarId(id);
+    this.eventoServicio.cambiarCodigoMateria(id);
     console.log(id)
   }
 }

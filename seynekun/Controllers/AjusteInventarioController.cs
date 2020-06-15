@@ -41,7 +41,8 @@ namespace seynekun.Controllers
                 TipoAjuste = "Incremento",
                 CodigoMateriaPrima = ajusteInventarioInputModel.CodigoMateriaPrima,
                 NombreBodega = ajusteInventarioInputModel.NombreBodega,
-                TipoElemento = ajusteInventarioInputModel.TipoElemento
+                TipoElemento = ajusteInventarioInputModel.TipoElemento,
+                CantidadMateriaPrima = ajusteInventarioInputModel.CantidadMateriaPrima,
             };
             return ajusteInventario;
         }

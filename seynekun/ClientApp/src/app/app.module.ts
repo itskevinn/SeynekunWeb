@@ -109,6 +109,7 @@ import { FiltroMateriaPipe } from './filtro/filtro-materia-prima/filtro-materia.
 import { SolicitudRegistroComponent } from "./seynekun/solicitud/solicitud-registro/solicitud-registro/solicitud-registro.component";
 import { SolicitudConsultaComponent } from "./seynekun/solicitud/solicitud-consulta/solicitud-consulta.component";
 import { EventoService } from "./servicios/servicio-evento/evento.service";
+import { ConsultaBodegaComponent } from './modal/consulta-bodega/consulta-bodega/consulta-bodega.component';
 
 @NgModule({
   declarations: [
@@ -199,6 +200,7 @@ import { EventoService } from "./servicios/servicio-evento/evento.service";
     FiltroMateriaPipe,
     SolicitudRegistroComponent,
     SolicitudConsultaComponent,
+    ConsultaBodegaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

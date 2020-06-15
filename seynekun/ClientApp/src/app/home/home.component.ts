@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 import { MateriaPrima } from "../seynekun/models/modelo-materia-prima/materia-prima";
 import { MateriaPrimaService } from "../servicios/servicio-materia/materia-prima.service";
 import { VentaService } from "../servicios/servicio-venta/venta.service";
+import { SolicitudService } from "../servicios/servicio-solicitud/solicitud.service";
 
 @Component({
   selector: "app-home",
@@ -22,6 +23,7 @@ export class HomeComponent {
   sumaMateriaMensualGeneral: number;
   sumaMateriaDiariaGeneral: number;
   sumaMateriaDiariaProductor: number;
+  sumaCantidadSolicitud: number;
   sumaMateriaMensualProductor: number;
   sumaVentaDiaria: number;
   sumaVentaDiariaConsultada: boolean;
@@ -30,13 +32,15 @@ export class HomeComponent {
   usuario: Usuario;
   bodegasTraidas: boolean;
   productosTraidos: boolean;
+  sumaSolicitudConsultada: boolean
   constructor(
     private productoService: ProductoService,
     private bodegaService: BodegaService,
     private materiaPrimaService: MateriaPrimaService,
     private ventaService: VentaService,
     private router: Router,
-    private autenticacionServicio: AutenticacionService
+    private autenticacionServicio: AutenticacionService,
+    private solicitudService: SolicitudService
   ) {
     this.autenticacionServicio.currentUser.subscribe((x) => (this.usuario = x));
   }
@@ -46,8 +50,14 @@ export class HomeComponent {
     this.obtenerMateriaPrima();
     this.obtenerSumaMateriaPrimaProductorMensual();
     this.obtenerSumaMateriaPrimaGeneralDiaria();
-    this.obtenerSumaMateriaPrimaGeneralMensual();
     this.obtenerSumaVentaDiaria();
+    this.obtenerSumaSolicitud();
+  }
+  obtenerSumaSolicitud() {
+    this.solicitudService.getCantidadSolicitud().subscribe((suma) => {
+      this.sumaCantidadSolicitud = suma
+      this.sumaSolicitudConsultada = true
+    })
   }
   obtenerBodegas() {
     this.bodegaService.gets().subscribe((result) => {
