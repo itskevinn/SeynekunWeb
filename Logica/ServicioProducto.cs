@@ -110,7 +110,25 @@ namespace Logica
                 return $"Error de la aplicación: {e.Message} ";
             }
         }
+
+        public string GenerarCodigoProducto()
+        {
+            try
+            {
+                string codigo = string.Empty;
+                DateTime fecha = DateTime.Now;
+                var masUno = 21 + Convert.ToDecimal(fecha.Second);
+                string codigoTemp = Convert.ToString(fecha.Minute)+Convert.ToString(fecha.Day)+Convert.ToString(fecha.Year);
+                string hora = Convert.ToString(masUno)+Convert.ToString(fecha.Hour)+Convert.ToString(fecha.Month);
+                codigo = hora + codigoTemp;
+                return codigo.ToString();
+            }
+            catch(Exception e){
+                return e.Message;
+            }
+        }
     }
+    
     public class ConsultarProductoResponse
     {
         public bool Error { get; set; }

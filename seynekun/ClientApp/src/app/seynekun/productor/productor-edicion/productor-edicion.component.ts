@@ -96,7 +96,7 @@ export class ProductorEdicionComponent implements OnInit {
     this.control.nombrePredio.setValue(this.productor.nombrePredio);
   }
   crearFormulario() {
-    var productor = new Productor()
+    var productor = new Productor();
     productor.nombre = this.productor.nombre
     productor.apellido = this.productor.apellido
     productor.identificacion = this.productor.identificacion
@@ -112,7 +112,7 @@ export class ProductorEdicionComponent implements OnInit {
       nombre: [productor.nombre, Validators.required],
       apellido: [productor.apellido, Validators.required],
       identificacion: [
-        productor.identificacion,
+        this.productor.identificacion,
         [
           Validators.required,
           Validators.minLength(6),
@@ -184,7 +184,6 @@ export class ProductorEdicionComponent implements OnInit {
     this.control.municipio.setValue(e.target.value, {
       onlySelf: true,
     })
-    console.log(this.control.municipio.value)
   }
   cambiarVereda(e) {
     this.control.vereda.setValue(e.target.value, {
@@ -204,15 +203,19 @@ export class ProductorEdicionComponent implements OnInit {
     return this.formGroup.controls
   }
   actualizar() {
-    this.productor = this.formGroup.value
+    var productor = this.formGroup.value;
+    productor.tipoIdentificacion = this.productor.tipoIdentificacion;
+    productor.nombreUsuario = this.productor.nombreUsuario;
+    productor.contrasena = this.productor.contrasena;
+    productor.estado = this.productor.estado;
     this.productorService
-      .put(this.identificacion, this.productor)
+      .put(this.identificacion, productor)
       .subscribe((p) => {
         if (p != null) {
           const messageBox = this.modalService.open(AlertaModalOkComponent)
           messageBox.componentInstance.titulo = 'Productor editado'
-          this.productor = p
-          this.formGroup.reset()
+          this.productor = p;
+          this.formGroup.reset();
         } else {
           const messageBox = this.modalService.open(AlertaModalErrorComponent)
           messageBox.componentInstance.titulo = 'Ha ocurrido un error'

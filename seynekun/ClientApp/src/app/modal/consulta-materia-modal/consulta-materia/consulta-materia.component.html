@@ -45,8 +45,10 @@
                   <td>{{ materia.tipo }}</td>
                   <td>{{ materia.cantidad }}</td>
                   <td>
-                    <a class="text-success" (click)="enviarId(materia.codigo+'-'+materia.cantidad)"
-                      (click)="activeModal.dismiss('Cross click')"> Seleccionar</a>
+                    <button class="btn btn-link text-success" (click)="enviarId(materia.codigo+'-'+materia.cantidad)"
+                      (click)="activeModal.dismiss('Cross click')">
+                      Seleccionar
+                    </button>
                   </td>
                 </tr>
               </tbody>

@@ -77,4 +77,14 @@ export class ProductoService {
       )
     );
   }
+
+  getCodigo(): Observable<string>{
+    const url = `${this.baseUrl + "api/ProductoCodigo"}`;
+    return this.http.get<string>(url, httpOptions).pipe(
+      //tap((_) => console.log("Codigo de venta generado")),
+      catchError(
+        this.handleErrorService.handleError<string>("Codigo de venta", null)
+      )
+    );
+  }
 }

@@ -21,6 +21,9 @@ defineLocale("es", esLocale);
   styleUrls: ["./materia-registro.component.css"],
 })
 export class MateriaRegistroComponent implements OnInit {
+
+  suscripcion: Subscription;
+  codigo: string;
   materia: MateriaPrima;
   formGroup: FormGroup;
   tipos: string[] = ["Panela", "Café", "Cacao"]
@@ -29,7 +32,6 @@ export class MateriaRegistroComponent implements OnInit {
   productores: Productor[];
   bsValue = new Date();
   fechaMinima: Date;
-  suscripcion: Subscription
   fechaMaxima: Date;
   constructor(
     private materiaService: MateriaPrimaService,
@@ -45,16 +47,8 @@ export class MateriaRegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerProductores();
-    this.materia = new MateriaPrima();
     this.crearFormulario();
     this.recibirId();
-  }
-  cambiarId() {
-    if (!this.modalService.hasOpenModals()) {
-      this.recibirId();
-      this.control.codigoProductor.setValue(this.codigoProductor);
-    }
   }
   obtenerProductores() {
     this.productorService.gets().subscribe((result) => {
@@ -91,12 +85,21 @@ export class MateriaRegistroComponent implements OnInit {
     this.control.tipo.setValue(e.target.value, {
       onlySelf: true,
     });
-    console.log(this.control.tipo.value);
   }
+
   mostrarProductores() {
     this.modalService.open(ConsultaProductorComponent, { size: 'lg' });
+    this.cambiarId();
   }
+  private cambiarId() {
+    this.suscripcion = this.eventoService.codigoProductor.subscribe(codProductor => {
+      this.control.codigoProductor.setValue(codProductor.split("-")[0]);
+      this.control.nombreProductor.setValue(codProductor.split("-")[1]);
+    });
+  }
+
   crearFormulario() {
+    this.materia = new MateriaPrima();
     this.materia.fecha = new Date();
     this.materia.codigo = "";
     this.materia.codigoProductor = "";
@@ -113,6 +116,9 @@ export class MateriaRegistroComponent implements OnInit {
     });
   }
   onSubmit() {
+    if(this.formGroup.invalid){
+      return;
+    }
     this.registrar();
   }
   get control() {
@@ -125,7 +131,15 @@ export class MateriaRegistroComponent implements OnInit {
       if (e != null) {
         this.materia = e;
         this.formGroup.reset();
+        this.getCodigo();
       }
+    });
+  }
+
+  private getCodigo(){
+    this.materiaService.getCodigo().subscribe((c) => {
+      c != ""? (this.codigo = String(c), this.control.codigo.setValue(this.codigo))
+      : this.control.codigo.setValue("Error");
     });
   }
 }
