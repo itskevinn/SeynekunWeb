@@ -1,4 +1,4 @@
-import { Documento } from "../modelo-documento/documento"
+import { FichaTecnica } from "../modelo-ficha-tecnica/ficha-tecnica"
 
 export class Insumo {
   id: string
@@ -9,5 +9,5 @@ export class Insumo {
   descripcion: string
   resultado: string
   estado: string
-  documento: Documento[];
+  fichaTecnica: FichaTecnica
 }

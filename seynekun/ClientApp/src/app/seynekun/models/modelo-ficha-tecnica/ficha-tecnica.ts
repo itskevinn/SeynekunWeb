@@ -5,9 +5,9 @@ export class FichaTecnica {
   tipoIngrediente: string
   numeroCas: string
   observacion: string
-  ce: string
-  nop: string
-  jas: string
-  efapa: string
-  col: string
+  ce: number
+  nop: number
+  jas: number
+  efapa: number
+  col: number
 }

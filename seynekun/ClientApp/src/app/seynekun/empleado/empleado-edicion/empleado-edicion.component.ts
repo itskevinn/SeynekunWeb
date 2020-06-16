@@ -43,11 +43,11 @@ export class EmpleadoEdicionComponent implements OnInit {
     this.buscar();
     this.crearFormulario();
     this.formGroup.setValue(this.empleado);
+    this.actualizarForm();
   }
   actualizarForm() {
     this.control.nombre.setValue(this.empleado.nombre);
     this.control.apellido.setValue(this.empleado.apellido);
-    this.control.tipoIdentificacion.setValue(this.empleado.tipoIdentificacion);
     this.control.identificacion.setValue(this.empleado.identificacion);
     this.control.numeroTelefono.setValue(this.empleado.numeroTelefono);
     this.control.email.setValue(this.empleado.email);

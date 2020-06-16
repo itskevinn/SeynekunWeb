@@ -7,6 +7,7 @@ namespace Entity
     public class DetalleVenta
     {
         [Key]
+        [Required(ErrorMessage="Ingrese un código para el detalle de venta")]
         [StringLength(20, ErrorMessage = "Ingrese un codigo de detalle de venta válido")]
         public string codigoDetalle { get; set; }
 

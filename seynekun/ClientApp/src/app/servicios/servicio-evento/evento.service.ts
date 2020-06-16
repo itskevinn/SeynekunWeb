@@ -10,6 +10,9 @@ export class EventoService {
   private id: BehaviorSubject<string>;
   public codigo: Observable<string>;
 
+  private idFabricanteBehavior: BehaviorSubject<string>;
+  public idFabricante: Observable<string>;
+
   public codigoMateria: Observable<string>;
   private codigoMateriaBehavior: BehaviorSubject<string>;
 
@@ -21,6 +24,9 @@ export class EventoService {
 
   public codigoCliente: Observable<string>;
   private codigoClienteBehavior: BehaviorSubject<string>;
+
+  public codigoEmpleado: Observable<string>;
+  private codigoEmpleadoBehavior: BehaviorSubject<string>;
   constructor() {
     this.id = new BehaviorSubject<string>("");
     this.codigo = this.id.asObservable();
@@ -36,6 +42,12 @@ export class EventoService {
 
     this.nombreBodegaBehavior = new BehaviorSubject<string>("");
     this.nombreBodega = this.nombreBodegaBehavior.asObservable();
+
+    this.codigoEmpleadoBehavior = new BehaviorSubject<string>("");
+    this.codigoEmpleado = this.codigoEmpleadoBehavior.asObservable();
+
+    this.idFabricanteBehavior = new BehaviorSubject<string>("");
+    this.idFabricante = this.idFabricanteBehavior.asObservable();
   }
   public cambiarMensaje(msg: boolean) {
     this.mensaje.next(msg);
@@ -48,7 +60,10 @@ export class EventoService {
     this.codigoMateriaBehavior.next(id);
     this.codigoMateria = this.codigoMateriaBehavior.asObservable();
   }
-
+public cambiarIdFabricante(id:string){
+  this.idFabricanteBehavior.next(id);
+  this.idFabricante = this.idFabricanteBehavior.asObservable();
+}
   public cambiarCodigoProductor(nombre: string) {
     this.codigoProductorBehavior.next(nombre);
     this.codigoProductor = this.codigoProductorBehavior.asObservable();
@@ -56,5 +71,9 @@ export class EventoService {
   public cambiarCodigoCliente(nombre: string) {
     this.codigoClienteBehavior.next(nombre);
     this.codigoCliente = this.codigoClienteBehavior.asObservable();
+  }
+  public cambiarCodigoEmpleado(id: string) {
+    this.codigoEmpleadoBehavior.next(id);
+    this.codigoEmpleado = this.codigoEmpleadoBehavior.asObservable();
   }
 }

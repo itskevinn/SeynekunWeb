@@ -6,6 +6,7 @@ namespace Entity
     public class Transportador
     {
         [Key]
+        [Required(ErrorMessage="Digite el número de identificación del transportador")]
         [StringLength(20, ErrorMessage = "Ingrese un numero de identificacion valido")]
         public string Identificacion { get; set; }
 

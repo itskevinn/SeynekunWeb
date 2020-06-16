@@ -1,9 +1,12 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { HandleHttpErrorService } from '../../@base/handle-http-error.service'
 import { Observable, from } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 import { Empleado } from 'src/app/seynekun/models/modelo-empleado/empleado'
 import { Injectable, Inject } from '@angular/core'
+const httpOptions = {
+  headers: new HttpHeaders({ "Content-Type": "application/json" }),
+};
 
 @Injectable({
   providedIn: 'root',
@@ -42,19 +45,15 @@ export class EmpleadoService {
       )
   }
   get(identificacion: string): Observable<Empleado> {
-    return this.http
-      .get<Empleado>(this.urlBase + 'api/Empleado/' + identificacion)
-      .pipe(
-        tap((_) =>
-        console.log(
-            'Identifiación enviada y empleado recibido',
-          ),
-        ),
-        catchError(
-          this.handleErrorService.handleError<Empleado>('Consulta x id', null),
-        ),
+    const url = `${this.urlBase + "api/Empleado"}/${identificacion}`;
+    return this.http.get<Empleado>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<Empleado>("Consulta por código", null)
       )
+    );
   }
+
   put(identificacion: string, empleado: Empleado): Observable<Empleado> {
     return this.http
       .put<Empleado>(this.urlBase + 'api/Empleado/' + identificacion, empleado)

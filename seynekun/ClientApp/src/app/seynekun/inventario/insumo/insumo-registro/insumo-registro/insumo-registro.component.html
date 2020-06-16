@@ -1,1 +1,175 @@
-<p>insumo-registro works!</p>
+<button [routerLink]="['/Insumos']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="content">
+  <section id="datosGenerales">
+    <div class="card o-hidden border-0 shadow-lg my-1">
+      <div class="card-body p-0">
+        <div class="p-5">
+          <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Registrar insumo</h1>
+          </div>
+          <form class="user" [formGroup]="formGroup">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" name="id" placeholder="Código"
+                formControlName="id" [ngClass]="{'is-invalid':control.id.errors &&
+                  control.id.touched}" (change)="colocarIdEnFichaTecnica()">
+              <div *ngIf="control.id.errors && control.id.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.id.errors.required">Proporcione un código de referencia
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" name="idFabricante"
+                placeholder="Seleccione el fabricante de este insumo" formControlName="idFabricante"
+                (click)="mostrarFabricantes()" (click)="recibirIdFabricante()">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" name="nombre" placeholder="Nombre del insumo"
+                formControlName="nombre" [ngClass]="{'is-invalid':control.nombre.errors &&
+                control.nombre.touched}">
+              <div *ngIf="control.nombre.errors && control.nombre.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.nombre.errors.required">Proporcione el nombre del insumo
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" name="uso" placeholder="Uso del Insumo"
+                formControlName="uso">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" name="registroIca" placeholder="Registro ICA"
+                formControlName="registroIca" [ngClass]="{'is-invalid':control.registroIca.errors &&
+                  control.registroIca.touched}">
+              <div *ngIf="control.registroIca.errors && control.registroIca.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="control.registroIca.errors.required">Proporcione el registro ICA
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Descripción </label>
+              <textarea name="descripcion" formControlName="descripcion" cols="85" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="resultado">Resultado </label>
+              <textarea name="resultado" formControlName="resultado" cols="85" rows="3"></textarea>
+            </div>
+          </form>
+          <hr>
+          <h1 class="h4 text-gray-900 mb-4">Registro ficha técnica</h1>
+          <form class="user" [formGroup]="formGroupFichaTecnica">
+            <div class="form-group">
+              <input type="text" class="form-control" name="id" placeholder="Código" formControlName="id" [ngClass]="{'is-invalid':controlFichaTecnica.id.errors &&
+              controlFichaTecnica.id.touched}">
+              <div *ngIf="controlFichaTecnica.id.errors && controlFichaTecnica.id.touched" class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="controlFichaTecnica.id.errors.required">Proporcione un código de
+                  referencia
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="id" placeholder="Código del insumo"
+                formControlName="idInsumo" [ngClass]="{'is-invalid':controlFichaTecnica.idInsumo.errors &&
+                controlFichaTecnica.idInsumo.touched}" disabled>
+              <div *ngIf="controlFichaTecnica.idInsumo.errors && controlFichaTecnica.idInsumo.touched"
+                class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="controlFichaTecnica.idInsumo.errors.required">Proporcione el código
+                  de referencia del
+                  insumo
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group separarAbajo">
+                <input type="text" class="form-control input-sm" name="ingrediente"
+                  placeholder="Digite el ingrediente de este insumo" formControlName="ingrediente">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group separarAbajo">
+                <input type="text" class="form-control input-sm" name="tipoIngrediente"
+                  placeholder="Digite el tipo de ingrediente de este insumo" formControlName="tipoIngrediente">
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="numeroCas" placeholder="Número CAS del insumo"
+                formControlName="numeroCas" [ngClass]="{'is-invalid':controlFichaTecnica.numeroCas.errors &&
+                controlFichaTecnica.numeroCas.touched}">
+              <div *ngIf="controlFichaTecnica.numeroCas.errors && controlFichaTecnica.numeroCas.touched"
+                class="invalid-feedback">
+                <div class="validacion-texto" *ngIf="controlFichaTecnica.numeroCas.errors.required">Proporcione el
+                  número CAS del insumo
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label class="bmd-label-floating">CE </label>
+                <div class="host">
+                  <input type="checkbox" id="toggle-button-checkbox1" (click)="cambiarCe()">
+                  <label class="toggle-button-switch" for="toggle-button-checkbox1"></label>
+                  <div class="toggle-button-text">
+                    <div class="toggle-button-text-on"><i class="fas fa-check"> </i></div>
+                    <div class="toggle-button-text-off"><i class="fas fa-times"> </i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="bmd-label-floating">NOP </label>
+                <div class="host">
+                  <input type="checkbox" id="toggle-button-checkbox2" (click)="cambiarNop()">
+                  <label class="toggle-button-switch" for="toggle-button-checkbox2"></label>
+                  <div class="toggle-button-text">
+                    <div class="toggle-button-text-on"><i class="fas fa-check"> </i></div>
+                    <div class="toggle-button-text-off"><i class="fas fa-times"> </i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="bmd-label-floating">JAS </label>
+                <div class="host">
+                  <input type="checkbox" id="toggle-button-checkbox3" (click)="cambiarJas()">
+                  <label class="toggle-button-switch" for="toggle-button-checkbox3"></label>
+                  <div class="toggle-button-text">
+                    <div class="toggle-button-text-on"><i class="fas fa-check"> </i></div>
+                    <div class="toggle-button-text-off"><i class="fas fa-times"> </i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="bmd-label-floating">EFAPA </label>
+                <div class="host">
+                  <input type="checkbox" id="toggle-button-checkbox4" (click)="cambiarEfapa()">
+                  <label class="toggle-button-switch" for="toggle-button-checkbox4"></label>
+                  <div class="toggle-button-text">
+                    <div class="toggle-button-text-on"><i class="fas fa-check"> </i></div>
+                    <div class="toggle-button-text-off"><i class="fas fa-times"> </i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="bmd-label-floating">COL </label>
+                <div class="host">
+                  <input type="checkbox" id="toggle-button-checkbox5" (click)="cambiarCol()">
+                  <label class="toggle-button-switch" for="toggle-button-checkbox5"></label>
+                  <div class="toggle-button-text">
+                    <div class="toggle-button-text-on"><i class="fas fa-check"> </i></div>
+                    <div class="toggle-button-text-off"><i class="fas fa-times"> </i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="observacion">Observacion </label>
+              <textarea name="observacion" formControlName="observacion" cols="85" rows="3"></textarea>
+            </div>
+            <hr>
+            <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+              Registrar Insumo
+            </button>
+            <hr>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

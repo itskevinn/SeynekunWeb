@@ -7,6 +7,7 @@ namespace Entity
     public class Control
     {
         [Key]
+        [Required(ErrorMessage="Ingrese un código para el control")]
         [StringLength(20, ErrorMessage = "Ingrese un codigo de control válido")]
         public string CodigoControl { get; set; }
 

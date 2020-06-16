@@ -19,11 +19,10 @@ namespace Logica
             try
             {
                 var fichaTecnicaBuscado = _context.FichasTecnicas.Find(fichaTecnica.Id);
-                if(fichaTecnicaBuscado != null)
+                if (fichaTecnicaBuscado != null)
                 {
                     return new GuardarFichaTecnicaResponse("Id de ficha Tecnica ya registrada");
                 }
-                fichaTecnica.Estado = "Activo";
                 _context.FichasTecnicas.Add(fichaTecnica);
                 _context.SaveChanges();
                 return new GuardarFichaTecnicaResponse(fichaTecnica);
@@ -52,7 +51,7 @@ namespace Logica
             try
             {
                 FichaTecnica fichaTecnica = _context.FichasTecnicas.Find(id);
-                if(fichaTecnica != null)
+                if (fichaTecnica != null)
                 {
                     return new BuscarFichaTecnicaResponse("Ficha Tecnica no registrada");
                 }
@@ -78,9 +77,8 @@ namespace Logica
                     fichaTecnicaVieja.Ce = fichaTecnica.Ce;
                     fichaTecnicaVieja.Nop = fichaTecnica.Nop;
                     fichaTecnicaVieja.Jas = fichaTecnica.Jas;
-                    fichaTecnicaVieja.Etapa = fichaTecnica.Etapa;
+                    fichaTecnicaVieja.Efapa = fichaTecnica.Efapa;
                     fichaTecnicaVieja.Col = fichaTecnica.Col;
-                    fichaTecnicaVieja.Estado = "Modificado";
                     _context.FichasTecnicas.Update(fichaTecnicaVieja);
                     _context.SaveChanges();
                     return ($"La Ficha Tecnica con id: {fichaTecnicaVieja.Id} se ha modificado satisfactoriamente.");
@@ -100,7 +98,6 @@ namespace Logica
                 FichaTecnica fichaTecnica = _context.FichasTecnicas.Find(id);
                 if (fichaTecnica != null)
                 {
-                    fichaTecnica.Estado = "Eliminado";
                     _context.FichasTecnicas.Update(fichaTecnica);
                     _context.SaveChanges();
                     return $"El Ficha Tecnica con id: {fichaTecnica.Id} se ha eliminado.";

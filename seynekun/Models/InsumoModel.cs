@@ -6,9 +6,12 @@ namespace seynekun.Models
 {
     public class InsumoInputModel
     {
-        [Required(ErrorMessage = "La id es requerida")]
+        [Required(ErrorMessage = "El código de referencia del insumo es requerido")]
         [StringLength(20)]
         public string Id { get; set; }
+        [Required(ErrorMessage = "La id del fabricante es requerida")]
+        [StringLength(20)]
+        public string IdFabricante { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido")]
         [StringLength(20)]

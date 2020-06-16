@@ -47,11 +47,10 @@ import { AjusteInventarioVistaComponent } from "./seynekun/inventario/ajuste-inv
 import { AjusteInventarioEdicionComponent } from "./seynekun/inventario/ajuste-inventario/ajuste-inventario-Edicion/ajuste-inventario-edicion/ajuste-inventario-edicion.component";
 import { AjusteInventarioConsultaComponent } from "./seynekun/inventario/ajuste-inventario/ajuste-inventario-consulta/ajuste-inventario-consulta/ajuste-inventario-consulta.component";
 import { AlertaModalPreguntaComponent } from "./@base/alerta-modal-pregunta/alerta-modal-pregunta/alerta-modal-pregunta.component";
-
+import { RegistroInsumoComponent } from "./seynekun/inventario/insumo/insumo-registro/insumo-registro/insumo-registro.component"
 import { BodegaConsultaComponent } from "./seynekun/inventario/bodega/bodega-consulta/bodega-consulta/bodega-consulta.component";
 import { BodegaVistaComponent } from "./seynekun/inventario/bodega/bodega-vista/bodega-vista/bodega-vista.component";
 import { BodegaEdicionComponent } from "./seynekun/inventario/bodega/bodega-edicion/bodega-edicion/bodega-edicion.component";
-import { InsumoRegistroComponent } from "./seynekun/inventario/insumo/insumo-registro/insumo-registro/insumo-registro.component";
 import { InsumoConsultaComponent } from "./seynekun/inventario/insumo/insumo-consulta/insumo-consulta/insumo-consulta.component";
 import { InsumoVistaComponent } from "./seynekun/inventario/insumo/insumo-vista/insumo-vista/insumo-vista.component";
 import { FichaTecnicaVistaComponent } from "./seynekun/inventario/insumo/ficha-tecnica/fecha-tecnica-vista/ficha-tecnica-vista/ficha-tecnica-vista.component";
@@ -113,6 +112,8 @@ import { ControlConsultaComponent } from './seynekun/controles/control/control-c
 import { ControlEdicionComponent } from './seynekun/controles/control/control-edicion/control-edicion.component';
 import { ControlVistaComponent } from './seynekun/controles/control/control-vista/control-vista.component';
 import { ConsultaBodegaComponent } from "./modal/consulta-bodega/consulta-bodega/consulta-bodega.component";
+import { ConsultaFabricanteComponent } from './modal/consulta-fabricante/consulta-fabricante/consulta-fabricante.component';
+import { from } from "rxjs";
 
 @NgModule({
   declarations: [
@@ -152,7 +153,7 @@ import { ConsultaBodegaComponent } from "./modal/consulta-bodega/consulta-bodega
     BodegaVistaComponent,
     BodegaRegistroComponent,
     BodegaEdicionComponent,
-    InsumoRegistroComponent,
+    RegistroInsumoComponent,
     InsumoConsultaComponent,
     InsumoVistaComponent,
     FichaTecnicaVistaComponent,
@@ -206,7 +207,8 @@ import { ConsultaBodegaComponent } from "./modal/consulta-bodega/consulta-bodega
     ConsultaBodegaComponent,
     ControlConsultaComponent,
     ControlEdicionComponent,
-    ControlVistaComponent
+    ControlVistaComponent,
+    ConsultaFabricanteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

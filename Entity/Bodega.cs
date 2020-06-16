@@ -6,7 +6,7 @@ namespace Entity
     public class Bodega
     {
         [Key]
-        [Required(ErrorMessage = "Proporcione un nombre")]
+        [Required(ErrorMessage = "Proporcione un nombre para la bodega")]
         [StringLength(20, ErrorMessage = "Nombre demasiado largo")]
         public string Nombre { get; set; }
         [StringLength(200, ErrorMessage = "Detalle demasiado largo")]

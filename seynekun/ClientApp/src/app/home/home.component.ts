@@ -26,6 +26,8 @@ export class HomeComponent {
   sumaCantidadSolicitud: number;
   sumaMateriaMensualProductor: number;
   sumaVentaDiaria: number;
+  sumaMateriaDiariaCafe: number;
+  sumaMateriaDiariaCanaAzucar: number
   sumaVentaDiariaConsultada: boolean;
   sumaMateriaDiariaConsultada: boolean;
   productosAdmin: Producto[];
@@ -49,7 +51,8 @@ export class HomeComponent {
     this.obtenerProductos();
     this.obtenerMateriaPrima();
     this.obtenerSumaMateriaPrimaProductorMensual();
-    this.obtenerSumaMateriaPrimaGeneralDiaria();
+    this.obtenerSumaMateriaCafe();
+    this.obtenerSumaMateriaCana();
     this.obtenerSumaVentaDiaria();
     this.obtenerSumaSolicitud();
   }
@@ -95,6 +98,12 @@ export class HomeComponent {
         this.sumaMateriaMensualProductor = result;
         this.sumaMateriaDiariaConsultada = true;
       });
+  }
+  obtenerSumaMateriaCafe() {
+    this.materiaPrimaService.getCantidadDiariaCafe().subscribe((result) => (this.sumaMateriaDiariaCafe = result));
+  }
+  obtenerSumaMateriaCana() {
+    this.materiaPrimaService.getCantidadDiariaCana().subscribe((result) => (this.sumaMateriaDiariaCanaAzucar = result));
   }
   obtenerSumaMateriaPrimaProductorDiaria() {
     this.materiaPrimaService

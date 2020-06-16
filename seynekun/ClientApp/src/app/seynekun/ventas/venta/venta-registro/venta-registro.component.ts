@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Venta } from 'src/app/seynekun/models/modelo-venta/venta';
 import { Producto } from 'src/app/seynekun/models/modelo-producto/producto';
 import { Bodega } from 'src/app/seynekun/models/modelo-bodega/bodega';
@@ -20,6 +20,8 @@ import { Empleado } from 'src/app/seynekun/models/modelo-empleado/empleado';
 import { AlertaModalErrorComponent } from 'src/app/@base/alerta-modal-error/alerta-modal-error.component';
 import { ConsultaClienteComponent } from 'src/app/modal/consulta-cliente-modal/consulta-cliente/consulta-cliente.component';
 import { EventoService } from 'src/app/servicios/servicio-evento/evento.service';
+import { Subscription } from 'rxjs';
+import { ConsultaEmpleadoComponent } from 'src/app/modal/consulta-empleado-modal/consulta-empleado/consulta-empleado.component';
 
 @Component({
   selector: 'app-venta-registro',
@@ -35,12 +37,14 @@ export class VentaRegistroComponent implements OnInit {
   productoEnBodegas: ProductoEnBodega[] = [];
   detalles: DetalleVenta[] = [];
   nombreBodegaSeleccionada: string;
+  suscripcion: Subscription;
   textoABuscar: string;
   numberCantidad: number;
   producto: Producto;
   clienteId: string;
   ajusteInventario: AjusteDeInventario;
   formGroup: FormGroup;
+  empleadoId: string
   formGroupVenta: FormGroup;
   fechaHoy: Date;
   productos: Producto[];
@@ -86,7 +90,7 @@ export class VentaRegistroComponent implements OnInit {
       codigoVenta: [this.venta.codigoVenta, Validators.required],
       clienteId: [this.venta.clienteId, Validators.required],
       fecha: [this.venta.fecha, Validators.required],
-      observacion: [this.venta.observacion, Validators.required],
+      observacion: [this.venta.observacion],
       totalVenta: [this.venta.totalVenta, Validators.required],
       detallesVentas: [this.venta.detallesVentas, Validators.required],
       empleadoId: [this.venta.empleadoId, Validators.required]
@@ -95,12 +99,39 @@ export class VentaRegistroComponent implements OnInit {
   mostarClientes() {
     this.modalService.open(ConsultaClienteComponent, { size: 'lg' });
   }
-  recibirId() {
-    this.eventoService.codigo.subscribe(
+  mostrarEmpleados() {
+    this.modalService.open(ConsultaEmpleadoComponent, { size: 'lg' })
+  }
+  recibirIdEmpleado() {
+    this.suscripcion = this.eventoService.codigoEmpleado.subscribe(
+      (estado) => (this.controlVenta.empleadoId.setValue(estado))
+    );
+     this.controlVenta.empleadoId.setValue(this.empleadoId);
+    this.colocarValorEmpleado();
+  }
+  colocarValorEmpleado() {
+    this.eventoService.codigoEmpleado.subscribe(
+      (estado) => (this.empleadoId = estado)
+    );
+    this.controlVenta.empleadoId.setValue(this.empleadoId);
+  }
+  recibirIdCliente() {
+    this.suscripcion = this.eventoService.codigoCliente.subscribe(
+      (estado) => (this.controlVenta.clienteId.setValue(estado))
+    );
+    this.controlVenta.clienteId.setValue(this.clienteId);
+    this.colocarValorCliente();
+  }
+  colocarValorCliente() {
+    this.eventoService.codigoCliente.subscribe(
       (estado) => (this.clienteId = estado)
     );
     this.controlVenta.clienteId.setValue(this.clienteId);
-    this.colocarValor();
+  }
+  ngOnDestroy() {
+    if (this.suscripcion != null) {
+      this.suscripcion.unsubscribe();
+    }
   }
   colocarValor() {
     this.eventoService.codigo.subscribe(
@@ -121,17 +152,6 @@ export class VentaRegistroComponent implements OnInit {
   obtenerEmpleados() {
     this.empleadoService.gets().subscribe((result) => {
       this.empleados = result;
-    });
-  }
-  cambiarId() {
-    if (!this.modalService.hasOpenModals()) {
-      this.recibirId();
-      this.controlVenta.clienteId.setValue(this.clienteId);
-    }
-  }
-  cambiarEmpleado(e) {
-    this.controlVenta.empleadoId.setValue(e.target.value, {
-      onlySelf: true,
     });
   }
   obtenerBodegas() {
@@ -164,8 +184,8 @@ export class VentaRegistroComponent implements OnInit {
       this.updateDetails(this.detalles, detalle);
     }
   }
-  private validarCantidad(cantidad, limite){
-    if(cantidad <1){
+  private validarCantidad(cantidad, limite) {
+    if (cantidad < 1 || this.numberCantidad==null) {
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
       modalRef.componentInstance.mensaje = 'Digite una cantidad mayor 1';
@@ -178,7 +198,7 @@ export class VentaRegistroComponent implements OnInit {
     }
     return true;
   }
-  private updateDetails(details, detail){
+  private updateDetails(details, detail) {
     var encontrado = true;
     const codigo = detail.codigoProducto;
     let pos = 0;
@@ -199,7 +219,7 @@ export class VentaRegistroComponent implements OnInit {
     this.calcularTotal();
     this.controlVenta.detallesVentas.setValue(details);
   }
-  private calcularTotal(){
+  private calcularTotal() {
     let total = 0;
     for (let dett of this.detalles) {
       total += dett.totalDetalle;
@@ -234,11 +254,10 @@ export class VentaRegistroComponent implements OnInit {
     });
   }
 
-  getCodigo()
-  {
+  getCodigo() {
     this.ventaService.getCodigo().subscribe((c) => {
-      c != ""? (this.codigo = c, this.controlVenta.codigoVenta.setValue(this.codigo))
-      : this.controlVenta.codigoVenta.setValue("Error");
+      c != "" ? (this.codigo = c, this.controlVenta.codigoVenta.setValue(this.codigo))
+        : this.controlVenta.codigoVenta.setValue("Error");
     });
   }
 }

@@ -152,7 +152,10 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   recibirIdMateria() {
     var cantidadString: string;
     this.suscripcion = this.eventoService.codigoMateria.subscribe(
-      (estado) => (this.control.codigoMateriaPrima.setValue(estado.split("-")[0]))
+      (estado) => {
+        (this.control.codigoMateriaPrima.setValue(estado.split("-")[0]));
+        (this.control.cantidadDisponible.setValue(estado.split("-")[1]));
+      }
     );
     this.suscripcion = this.eventoService.codigoMateria.subscribe((cantidad) => (cantidadString = cantidad.split("-")[1]))
     this.control.cantidadDisponible.setValue(Number(cantidadString));

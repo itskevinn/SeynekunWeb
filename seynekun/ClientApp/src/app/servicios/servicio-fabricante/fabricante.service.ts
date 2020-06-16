@@ -15,7 +15,7 @@ export class FabricanteService {
     @Inject('BASE_URL') urlBase: string,
     private handleErrorService: HandleHttpErrorService
   ) { this.urlBase = urlBase }
-  
+
   post(fabricante: Fabricante): Observable<Fabricante> {
     return this.http.post<Fabricante>(this.urlBase + 'api/Fabricante', fabricante).pipe(
       tap((_) => this.handleErrorService.logOk('Fabricante registrado con éxito')),
@@ -41,7 +41,7 @@ export class FabricanteService {
   }
 
   get(identificacion: string): Observable<Fabricante> {
-    return this.http.get<Fabricante>(this.urlBase + 'api/Fabricante').pipe(
+    return this.http.get<Fabricante>(this.urlBase + 'api/Fabricante/'+ identificacion).pipe(
       tap((_) =>
         console.log('Datos enviados y traídos del backend'),
       ),
@@ -53,11 +53,10 @@ export class FabricanteService {
       ),
     )
   }
-  
+
   put(identificacion: string, fabricante: Fabricante): Observable<Fabricante> {
     const url = `${this.urlBase}api/Fabricante/${identificacion}`
     return this.http.put<Fabricante>(url, fabricante).pipe(
-      tap((_) => this.handleErrorService.logOk('Datos enviados y recibidos')),
       catchError(
         this.handleErrorService.handleError<Fabricante>('Actualizar', null),
       ),

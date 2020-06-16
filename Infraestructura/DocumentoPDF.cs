@@ -24,7 +24,7 @@ namespace Infraestructura
 
         }
 
-        public void CrearDocumentoPDF(List<Empleado> lista, string tipo)
+        public object CrearDocumentoPDF(List<Empleado> lista, string tipo)
         {
             string nombreDocumento = RUTA+"dim"+tipo+".PDF";
             fileStream = new FileStream(nombreDocumento, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -44,6 +44,7 @@ namespace Infraestructura
 
             document.Close();
             fileStream.Close();
+            return document;
         }
 
         private void AgregarLogo()

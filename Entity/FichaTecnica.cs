@@ -5,50 +5,34 @@ namespace Entity
     public class FichaTecnica
     {
         [Key]
-        [StringLength(20)]
+        [Required(ErrorMessage = "Proporcione el código de la ficha técnica")]
+        [StringLength(20, ErrorMessage = "Código ficha técnica demasido largo")]
         public string Id { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [Required(ErrorMessage = "Proporcione el código de referencia del insumo")]
+        [StringLength(30, ErrorMessage = "Código referencia insumo inválido")]
         public string IdInsumo { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [StringLength(40, ErrorMessage = "Nombre del ingrediente demasiado largo, trate de simplificarlo")]
         public string Ingrediente { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [StringLength(40, ErrorMessage = "Tipo de ingrediente demasiado largo, trate de simplificarlo")]
         public string TipoIngrediente { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [StringLength(30, ErrorMessage = "Número CAS demasiado largo")]
         public string NumeroCas { get; set; }
 
-        [StringLength(20)]
+        [StringLength(200, ErrorMessage = "Observación demasiado larga, trate de simplificarla")]
         public string Observacion { get; set; }
 
-        [Required]
-        [StringLength(20)]
-        public string Ce { get; set; }
+        public decimal Ce { get; set; }
 
-        [Required]
-        [StringLength(20)]
-        public string Nop { get; set; }
+        public decimal Nop { get; set; }
 
-        [Required]
-        [StringLength(20)]
-        public string Jas { get; set; }
+        public decimal Jas { get; set; }
 
-        [Required]
-        [StringLength(20)]
-        public string Etapa { get; set; }
+        public decimal Efapa { get; set; }
+        public decimal Col { get; set; }
 
-        [Required]
-        [StringLength(20)]
-        public string Col { get; set; }
-
-        [Required]
-        [StringLength(13)]
-        public string Estado { get; set; }
     }
 }

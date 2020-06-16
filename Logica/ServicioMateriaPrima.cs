@@ -37,6 +37,7 @@ namespace Logica
                 return new GuardarMateriaPrimaResponse(e.Message);
             }
         }
+       
         public string ObtenerNombreProductor(string id)
         {
             return _context.Productores.Find(id).Nombre;
@@ -49,6 +50,14 @@ namespace Logica
         public decimal SumarCantidadTotalMensual()
         {
             return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.Cantidad);
+        }
+          public decimal SumarCantidadDiariaCafe()
+        {
+            return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year && p.Tipo == "Café").Sum(p => p.Cantidad);
+        }
+          public decimal SumarCantidadDiariaCana()
+        {
+            return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year && p.Tipo == "Panela").Sum(p => p.Cantidad);
         }
         public decimal SumarCantidadxProductorMensual(string codigo)
         {

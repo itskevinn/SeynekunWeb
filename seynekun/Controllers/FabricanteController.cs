@@ -47,7 +47,8 @@ namespace seynekun.Controllers
                 Email = fabricanteInputModel.Email,
                 Direccion = fabricanteInputModel.Direccion,
                 Fax = fabricanteInputModel.Fax,
-                SitioWeb = fabricanteInputModel.SitioWeb
+                SitioWeb = fabricanteInputModel.SitioWeb,
+                Estado = fabricanteInputModel.Estado
             };
             return fabricante;
         }

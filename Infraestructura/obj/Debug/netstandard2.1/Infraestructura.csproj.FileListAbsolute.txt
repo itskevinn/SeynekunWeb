@@ -12,3 +12,17 @@ C:\Users\User\Documents\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard
 C:\Users\User\Documents\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.dll
 C:\Users\User\Documents\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Infraestructura.deps.json
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Infraestructura.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Infraestructura.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Datos.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Entity.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Datos.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Entity.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csprojAssemblyReference.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.AssemblyInfoInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.AssemblyInfo.cs
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CoreCompileInputs.cache
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CopyComplete

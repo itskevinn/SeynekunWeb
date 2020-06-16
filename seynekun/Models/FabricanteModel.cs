@@ -4,16 +4,17 @@ using Entity;
 
 namespace seynekun.Models
 {
-    public class FabricanteInputModel 
+    public class FabricanteInputModel
     {
         public string TipoIdentificacion { get; set; }
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
-        public string Apellido { get; set; }    
+        public string Apellido { get; set; }
         public string NumeroTelefono { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
         public string Fax { get; set; }
+        public string Estado { get; set; }
         public string SitioWeb { get; set; }
     }
 
@@ -31,6 +32,7 @@ namespace seynekun.Models
             Fax = fabricante.Fax;
             SitioWeb = fabricante.SitioWeb;
             Insumos = fabricante.Insumos;
+            Estado  = fabricante.Estado;
         }
     }
 }

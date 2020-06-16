@@ -67,8 +67,8 @@ export class MateriaRegistroComponent implements OnInit {
     }
   }
   recibirId() {
-    this.eventoService.codigo.subscribe(
-      (estado) => (this.codigoProductor = estado)
+    this.eventoService.codigoProductor.subscribe(
+      (estado) => (this.control.codigoProductor.setValue(estado))
     );
     this.control.codigoProductor.setValue(this.codigoProductor);
     this.colocarValor();

@@ -51,7 +51,7 @@ namespace Logica
             try
             {
                 Empleado empleado = _context.Empleados.Find(identificacion);
-                if(empleado != null)
+                if(empleado == null)
                 {
                     return new BuscarxIdResponse("Empleado no registrado");
                 }

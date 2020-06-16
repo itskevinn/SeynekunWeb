@@ -1,1 +1,113 @@
-<p>fabricante-registro works!</p>
+<button [routerLink]="['/Fabricantes']" type="button" class="btn btn-labeled btn-light">
+  <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
+<div class="page-top">
+  <div class="content">
+    <section id="datosGenerales">
+      <div class="card o-hidden border-0 shadow-lg my-1">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-registrar-empleado-imagen"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registrar Fabricante</h1>
+                </div>
+                <form class="user" [formGroup]="formGroup">
+                  <div class="form-group ">
+                    <select class="form-dropdown border-verde" (change)="cambiarTipoId($event)">
+                      <option selected>Seleccione el tipo de identificación</option>
+                      <option [ngValue]="tipo" *ngFor="let tipo of idTipos">{{tipo}}</option>
+                    </select>
+                    <div *ngIf="control.tipoIdentificacion.errors && control.tipoIdentificacion.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.tipoIdentificacion.errors.required">Seleccione un
+                        tipo de
+                        identificación
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user required" name="identificacion"
+                      placeholder="Número de identificación" formControlName="identificacion"
+                      [ngClass]="{'is-invalid':control.identificacion.errors && control.identificacion.touched}">
+                    <div *ngIf="control.identificacion.errors && control.identificacion.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.identificacion.errors.required">Proporcione su número
+                        de identificación
+                      </div>
+                    </div>
+                  </div>
+                  <div class=" form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user required" name="nombre"
+                        placeholder="Nombre del Fabricante" formControlName="nombre"
+                        [ngClass]="{'is-invalid':control.nombre.errors && control.nombre.touched}">
+                      <div *ngIf=" control.nombre.errors && control.nombre.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.nombre.errors.required">Ingrese su
+                          nombre
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control form-control-user" name="direccion" placeholder="Dirección"
+                        formControlName="direccion"
+                        [ngClass]="{'is-invalid':control.direccion.errors && control.direccion.touched}">
+                      <div *ngIf="control.direccion.errors && control.direccion.touched" class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.direccion.errors.required">Proporcione una
+                          Dirección
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input type="text" class="form-control form-control-user" name="numeroTelefono"
+                        placeholder="Número de teléfono" formControlName="numeroTelefono"
+                        [ngClass]="{'is-invalid':control.numeroTelefono.errors && control.numeroTelefono.touched}">
+                      <div *ngIf="control.numeroTelefono.errors && control.numeroTelefono.touched"
+                        class="invalid-feedback">
+                        <div class="validacion-texto" *ngIf="control.numeroTelefono.errors.required">Proporcione un
+                          número de teléfono
+                        </div>
+                        <div class="validacion-texto"
+                          *ngIf="control.numeroTelefono.errors.minlength || control.numeroTelefono.errors.maxlength || control.numeroTelefono.errors.validarNumeroTelefono">
+                          Ingrese un número de
+                          teléfono válido
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <div class="col-sm-12">
+                        <input type="text" class="form-control form-control-user" name="fax" formControlName="fax"
+                          placeholder="Fax">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control form-control-user" name="email"
+                      placeholder="Email del Empleado" formControlName="email"
+                      [ngClass]="{'is-invalid':control.email.errors && control.email.touched}">
+                    <div *ngIf="control.email.errors && control.direccion.touched" class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="control.email.errors.email">Ingrese un correo válido
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" name="sitioWeb" formControlName="sitioWeb"
+                      placeholder="Sitio Web">
+                  </div>
+                  <hr>
+                  <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                    Registrar Fabricante
+                  </button>
+                  <hr>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

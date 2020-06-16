@@ -81,34 +81,30 @@
                       <input type="text" class="form-control form-control-user" name="clienteId"
                         placeholder="Seleccione el cliente o digite su identificación" formControlName="clienteId"
                         [ngClass]="{'is-invalid':controlVenta.clienteId.errors &&
-                        controlVenta.clienteId.touched}" (click)="mostarClientes()" (click)="cambiarId()">
-                      <div class="input-group-icon">
-                        <i class="far fa-check-circle" (click)="recibirId()"></i>
-                        <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched"
-                          class="invalid-feedback">
-                          <div class="validacion-texto" *ngIf="controlVenta.clienteId.required">Seleccione el
-                            cliente
-                          </div>
-                        </div>
+                        controlVenta.clienteId.touched}" (click)="mostarClientes()" (click)="recibirIdCliente()">
+                    </div>
+                    <div *ngIf="controlVenta.clienteId.errors && controlVenta.clienteId.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="controlVenta.clienteId.errors.required">Proporcione la
+                        identificación del cliente
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user required" placeholder="Observacion"
-                      formControlName="observacion" name="observacion"
-                      [ngClass]="{'is-invalid':controlVenta.observacion.errors && controlVenta.observacion.touched}">
-                    <div *ngIf="controlVenta.observacion.errors && controlVenta.observacion.touched"
-                      class="invalid-feedback">
-                      <div class="validacion-texto" *ngIf="controlVenta.observacion.errors.required">Proporcione una
-                        observacion</div>
-                    </div>
+                      formControlName="observacion" name="observacion">
                   </div>
                   <div class="form-group">
-                    <select class="form-dropdown border-verde" (change)="cambiarEmpleado($event)">
-                      <option selected>Seleccionar empleado</option>
-                      <option [ngValue]="empleado" *ngFor="let empleado of empleados">{{empleado.identificacion}}
-                      </option>
-                    </select>
+                    <input type="text" class="form-control form-control-user" name="empleadoId"
+                      placeholder="Seleccione el empleado o digite su identificación" formControlName="empleadoId"
+                      [ngClass]="{'is-invalid':controlVenta.empleadoId.errors &&
+                    controlVenta.empleadoId.touched}" (click)="mostrarEmpleados()" (click)="recibirIdEmpleado()">
+                    <div *ngIf="controlVenta.empleadoId.errors && controlVenta.empleadoId.touched"
+                      class="invalid-feedback">
+                      <div class="validacion-texto" *ngIf="controlVenta.empleadoId.errors.required">Proporcione la
+                        identificación del empleado responsable
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <input type="text" disabled class="form-control form-control-user required"

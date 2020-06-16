@@ -169,6 +169,30 @@ export class MateriaPrimaService {
       )
     );
   }
+  getCantidadDiariaCafe(): Observable<number> {
+    const url = `${this.baseUrl + "api/CafeIngresadoDiario"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadDiariaCana() {
+    const url = `${this.baseUrl + "api/CanaIngresadaDiario"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
   getCantidadMensual(): Observable<number> {
     const url = `${this.baseUrl + "api/MateriaPrimaCantidadMensual"}`;
     return this.http.get<number>(url, httpOptions).pipe(

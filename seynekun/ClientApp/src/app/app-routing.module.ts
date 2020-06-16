@@ -72,6 +72,7 @@ import { ControlRegistroComponent } from './seynekun/controles/control/control-r
 import { ControlConsultaComponent } from './seynekun/controles/control/control-consulta/control-consulta.component'
 import { ControlVistaComponent } from './seynekun/controles/control/control-vista/control-vista.component'
 import { ControlEdicionComponent } from './seynekun/controles/control/control-edicion/control-edicion.component'
+import { RegistroInsumoComponent } from './seynekun/inventario/insumo/insumo-registro/insumo-registro/insumo-registro.component'
 
 const routes: Routes = [
   { path: 'RegistrarProductor', component: ProductorRegistroComponent, canActivate: [AuthGuard] },
@@ -101,7 +102,7 @@ const routes: Routes = [
   { path: 'Insumos', component: InsumoConsultaComponent, canActivate: [AuthGuard] },
   { path: 'Insumo/:id', component: InsumoVistaComponent, canActivate: [AuthGuard] },
   { path: 'EditarInsumo/:id', component: InsumoEdicionComponent, canActivate: [AuthGuard] },
-  { path: 'RegistrarInsumo/:id', component: FabricanteVistaComponent, canActivate: [AuthGuard] },
+  { path: 'RegistrarInsumo', component: RegistroInsumoComponent, canActivate: [AuthGuard] },
   { path: 'FichaTecnica', component: FichaTecnicaVistaComponent, canActivate: [AuthGuard] },
   { path: 'EditarFichaTecnica', component: FichaTecnicaVistaComponent, canActivate: [AuthGuard] },
   { path: 'RegistrarFichaTecnica', component: FichaTecnicaRegistroComponent, canActivate: [AuthGuard] },
