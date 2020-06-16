@@ -33,6 +33,7 @@ export class HomeComponent {
   productosAdmin: Producto[];
   usuario: Usuario;
   bodegasTraidas: boolean;
+  sumaCantidadCacao: number
   productosTraidos: boolean;
   sumaSolicitudConsultada: boolean
   constructor(
@@ -55,6 +56,7 @@ export class HomeComponent {
     this.obtenerSumaMateriaCana();
     this.obtenerSumaVentaDiaria();
     this.obtenerSumaSolicitud();
+    this.obtenerCantidadCacao();
   }
   obtenerSumaSolicitud() {
     this.solicitudService.getCantidadSolicitud().subscribe((suma) => {
@@ -89,6 +91,11 @@ export class HomeComponent {
     this.materiaPrimaService.getCantidadDiaria().subscribe((result) => {
       this.sumaMateriaDiariaGeneral = result;
       this.sumaMateriaDiariaConsultada = true;
+    });
+  }
+  obtenerCantidadCacao(){
+    this.materiaPrimaService.getCantidadCacao().subscribe((result) => {
+      this.sumaCantidadCacao = result;
     });
   }
   obtenerSumaMateriaPrimaProductorMensual() {

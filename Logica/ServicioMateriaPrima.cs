@@ -37,7 +37,7 @@ namespace Logica
                 return new GuardarMateriaPrimaResponse(e.Message);
             }
         }
-       
+
         public string ObtenerNombreProductor(string id)
         {
             return _context.Productores.Find(id).Nombre;
@@ -51,13 +51,17 @@ namespace Logica
         {
             return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year).Sum(p => p.Cantidad);
         }
-          public decimal SumarCantidadDiariaCafe()
+        public decimal SumarCantidadDiariaCafe()
         {
-            return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year && p.Tipo == "Café").Sum(p => p.Cantidad);
+            return _context.MateriasPrimas.Where(p => p.Tipo == "Café").Sum(p => p.Cantidad);
         }
-          public decimal SumarCantidadDiariaCana()
+        public decimal SumarCantidadDiariaCana()
         {
-            return _context.MateriasPrimas.Where(p => p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year && p.Tipo == "Panela").Sum(p => p.Cantidad);
+            return _context.MateriasPrimas.Where(p => p.Tipo == "Panela").Sum(p => p.Cantidad);
+        }
+           public decimal SumarCantidadCacao()
+        {
+            return _context.MateriasPrimas.Where(p => p.Tipo == "Cacao").Sum(p => p.Cantidad);
         }
         public decimal SumarCantidadxProductorMensual(string codigo)
         {
@@ -192,17 +196,18 @@ namespace Logica
                 string codigo = string.Empty;
                 DateTime fecha = DateTime.Now;
                 var masUno = 31 + Convert.ToDecimal(fecha.Second);
-                string codigoTemp = Convert.ToString(fecha.Minute)+Convert.ToString(fecha.Day)+Convert.ToString(fecha.Year);
-                string hora = Convert.ToString(masUno)+Convert.ToString(fecha.Hour)+Convert.ToString(fecha.Month);
+                string codigoTemp = Convert.ToString(fecha.Minute) + Convert.ToString(fecha.Day) + Convert.ToString(fecha.Year);
+                string hora = Convert.ToString(masUno) + Convert.ToString(fecha.Hour) + Convert.ToString(fecha.Month);
                 codigo = hora + codigoTemp;
                 return codigo.ToString();
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
                 return e.Message;
             }
         }
     }
-    
+
     public class ConsultarMateriaPrimaResponse
     {
         public bool Error { get; set; }

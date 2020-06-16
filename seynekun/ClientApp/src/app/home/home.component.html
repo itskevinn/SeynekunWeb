@@ -11,7 +11,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                  Cantidad de café disponible (Diaria)
+                  Cantidad de café disponible
                 </div>
                 <div *ngIf="productosTraidos; else consultando">
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -35,13 +35,42 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                  Cantidad caña de azúcar disponible (Diaria)
+                  Cantidad caña de azúcar disponible
                 </div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
                     <div *ngIf="sumaMateriaDiariaConsultada; else consultando">
                       <a class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{
                         sumaMateriaDiariaCanaAzucar
+                      }}</a>
+                      <a class="h6 mb-0 mr-3 font-weight-bold text-gray-800">KG</a>
+                    </div>
+                    <ng-template #consultando>
+                      <p class="text-danger bold">Un momento...</p>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                  Cantidad cacao disponible
+                </div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div *ngIf="productosTraidos; else consultando">
+                      <a class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{
+                        sumaCantidadCacao
                       }}</a>
                       <a class="h6 mb-0 mr-3 font-weight-bold text-gray-800">KG</a>
                     </div>
@@ -85,14 +114,37 @@
       </div>
 
       <!-- Earnings (Monthly) Card Example -->
-
-      <!-- Pending Requests Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card border-left-success shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                  Cantidad de productos a la venta
+                </div>
+                <div *ngIf="productosTraidos; else consultando">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{ productosAdmin.length }}
+                  </div>
+                </div>
+                <ng-template #consultando>
+                  <p class="text-danger"><b>Un momento...</b></p>
+                </ng-template>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-boxes fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Pending Requests Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                   Solicitudes pendientes
                 </div>
                 <div class="row no-gutters align-items-center">

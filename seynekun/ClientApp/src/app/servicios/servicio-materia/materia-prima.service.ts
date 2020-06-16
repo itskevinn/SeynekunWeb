@@ -205,6 +205,18 @@ export class MateriaPrimaService {
       )
     );
   }
+  getCantidadCacao(): Observable<number> {
+    const url = `${this.baseUrl + "api/CacaoDisponible"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
   put(
     codigo: string,
     materiaPrima: MateriaPrima
@@ -249,4 +261,5 @@ export class MateriaPrimaService {
       )
     );
   }
+
 }
