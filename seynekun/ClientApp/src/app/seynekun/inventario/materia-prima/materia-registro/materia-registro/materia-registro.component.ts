@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { MateriaPrima } from "src/app/seynekun/models/modelo-materia-prima/materia-prima";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -12,6 +12,7 @@ import {
 import { defineLocale, esLocale } from "ngx-bootstrap/chronos";
 import { ConsultaProductorComponent } from "src/app/modal/consulta-productor-modal/consulta-productor/consulta-productor.component";
 import { EventoService } from "src/app/servicios/servicio-evento/evento.service";
+import { Subscription } from "rxjs";
 defineLocale("es", esLocale);
 
 @Component({
@@ -28,6 +29,7 @@ export class MateriaRegistroComponent implements OnInit {
   productores: Productor[];
   bsValue = new Date();
   fechaMinima: Date;
+  suscripcion: Subscription
   fechaMaxima: Date;
   constructor(
     private materiaService: MateriaPrimaService,
@@ -67,11 +69,16 @@ export class MateriaRegistroComponent implements OnInit {
     }
   }
   recibirId() {
-    this.eventoService.codigoProductor.subscribe(
+    this.suscripcion = this.eventoService.codigoProductor.subscribe(
       (estado) => (this.control.codigoProductor.setValue(estado))
     );
     this.control.codigoProductor.setValue(this.codigoProductor);
     this.colocarValor();
+  }
+  ngOnDestroy() {
+    if (this.suscripcion != null) {
+      this.suscripcion.unsubscribe();
+    }
   }
   colocarValor() {
     this.eventoService.codigo.subscribe(
