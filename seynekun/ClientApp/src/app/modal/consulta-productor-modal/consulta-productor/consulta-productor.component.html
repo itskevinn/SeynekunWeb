@@ -43,7 +43,10 @@
                   <td>{{ productor.apellido }}</td>
                   <td>{{ productor.cedulaCafetera }}</td>
                   <td>
-                    <a class="text-success" (click)="enviarId(productor.identificacion)" (click)="activeModal.dismiss('Cross click')"> Seleccionar</a>
+                    <button class="btn btn-link text-success" (click)="enviarId(productor.identificacion+'-'+productor.nombre)" 
+                      (click)="activeModal.dismiss('Cross click')">
+                      Seleccionar
+                    </button>
                   </td>
                 </tr>
               </tbody>

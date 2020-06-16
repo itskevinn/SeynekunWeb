@@ -10,11 +10,11 @@
           </div>
           <form class="user" [formGroup]="formGroup">
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" name="codigo" placeholder="Código"
+              <input type="text" disabled class="form-control form-control-user" name="codigo" placeholder="Código"
                 formControlName="codigo" [ngClass]="{'is-invalid':control.codigo.errors &&
                   control.codigo.touched}">
               <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
-                <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione una cantidad
+                <div class="validacion-texto" *ngIf="control.codigo.errors.required">Proporcione un codigo
                 </div>
               </div>
             </div>
@@ -29,9 +29,9 @@
               <div class="input-group">
                 <input type="text" class="form-control form-control-user" name="codigoProductor"
                   placeholder="Seleccione un Productor" formControlName="codigoProductor" [ngClass]="{'is-invalid':control.codigoProductor.errors &&
-              control.codigoProductor.touched}" (click)="mostrarProductores()" (click)="cambiarId()">
+              control.codigoProductor.touched}" (click)="mostrarProductores()">
                 <div class="input-group-icon">
-                  <i class="far fa-check-circle" (click)="recibirId()"></i>
+                  <i class="far fa-check-circle"></i>
                   <div *ngIf="control.codigoProductor.errors && control.codigoProductor.touched"
                     class="invalid-feedback">
                     <div class="validacion-texto" *ngIf="control.codigoProductor.errors.required">Seleccione el
@@ -59,9 +59,9 @@
               </div>
             </div>
             <hr>
-            <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+            <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
               Registrar Materia Prima
-            </a>
+            </button>
             <hr>
           </form>
         </div>

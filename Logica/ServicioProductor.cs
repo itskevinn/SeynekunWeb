@@ -94,25 +94,18 @@ namespace Logica
                 if (productoVieja != null && productoVieja.Estado != "Eliminado")
                 {
                     productoVieja.TipoIdentificacion = productoNueva.TipoIdentificacion;
-                    productoVieja.Contrasena = productoNueva.Contrasena;
-                    productoVieja.NombreUsuario = productoNueva.NombreUsuario;
-                    productoVieja.Estado = productoNueva.Estado;
+                    productoVieja.Estado = "Modificado";
                     productoVieja.Nombre = productoNueva.Nombre;
                     productoVieja.Apellido = productoNueva.Apellido;
-                    productoVieja.Estado = productoNueva.Estado;
                     productoVieja.AfiliacionSalud = productoNueva.AfiliacionSalud;
                     productoVieja.NombrePredio = productoNueva.NombrePredio;
-                    productoVieja.NombreUsuario = productoNueva.NombreUsuario;
                     productoVieja.NumeroTelefono = productoNueva.NumeroTelefono;
                     productoVieja.Municipio = productoNueva.Municipio;
                     productoVieja.Vereda = productoNueva.Vereda;
-                    productoVieja.TipoIdentificacion = productoNueva.TipoIdentificacion;
                     productoVieja.CedulaCafetera = productoNueva.CedulaCafetera;
                     productoVieja.CodigoFinca = productoNueva.CodigoFinca;
                     productoVieja.CodigoSica = productoNueva.CodigoSica;
-                    productoVieja.Contrasena = productoNueva.Contrasena;
-                    productoVieja.Email = productoNueva.Email;
-                    _context.Productores.Update(productoNueva);
+                    _context.Productores.Update(productoVieja);
                     _context.SaveChanges();
                     return ($"El productor se ha modificado satisfactoriamente.");
                 }
