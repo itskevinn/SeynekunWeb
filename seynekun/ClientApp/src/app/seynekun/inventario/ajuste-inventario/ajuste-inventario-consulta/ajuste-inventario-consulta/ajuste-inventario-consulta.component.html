@@ -26,10 +26,10 @@
               <thead>
                 <tr>
                   <th>Fecha</th>
-                  <th>Referencia producto producido</th>
+                  <th>Código de Materia</th>
+                  <th>Referencia producto</th>
                   <th>Cantidad producida</th>
                   <th>Bodega</th>
-                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -39,14 +39,10 @@
                     index as i
                   ">
                   <td>{{ ajusteInvetario.fecha|date}}</td>
+                  <td>{{ajusteInvetario.codigoMateriaPrima}} </td>
                   <td>{{ ajusteInvetario.codigoElemento }}</td>
                   <td>{{ ajusteInvetario.cantidad }}</td>
                   <td>{{ ajusteInvetario.nombreBodega }}</td>
-                  <td>
-                    <a routerLink="/AjusteDeInventario/{{
-                        ajusteInvetario.codigoAjuste
-                      }}">Ver</a>
-                  </td>
                 </tr>
               </tbody>
             </table>

@@ -168,17 +168,16 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     );
     this.control.codigoElemento.setValue(this.codigoElemento);
     this.colocarValorProducrto();
-    this.colocarNombreProducto();
   }
-  colocarNombreProducto() {
-    this.productoService.get(this.codigoElemento).subscribe(
+  colocarNombreProducto(id: string) {
+    this.productoService.get(id).subscribe(
       (estado) => (this.nombreElemento = estado.nombre)
     );
     this.control.nombreElemento.setValue(this.nombreElemento);
   }
   colocarValorProducrto() {
     this.eventoService.codigo.subscribe(
-      (estado) => (this.codigoElemento = estado)
+      (estado) => { this.codigoElemento = estado, this.colocarNombreProducto(estado)}
     );
     this.control.codigoElemento.setValue(this.codigoElemento);
   }
@@ -196,8 +195,8 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     this.modalService.open(ConsultaMateriaComponent, { size: 'lg' });
     this.cambiarCodigoMatereriaPrima();
   }
-  private cambiarCodigoMatereriaPrima(){
-    this.suscripcion = this.eventoService.codigoMateria.subscribe( codigo => {
+  private cambiarCodigoMatereriaPrima() {
+    this.suscripcion = this.eventoService.codigoMateria.subscribe(codigo => {
       this.codCantida = codigo;
       this.control.codigoMateriaPrima.setValue(this.codCantida.split("-")[0]);
       this.cambiarCantidad(Number(this.codCantida.split("-")[1]));
@@ -268,8 +267,8 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     return this.materia;
   }
   private validarCantidadMateria(cantidad: number) {
-    var _materia = this.obtenerMateria();
-    if (cantidad > _materia.cantidad) {
+    var _materia = this.control.cantidadDisponible.value;
+    if (cantidad > _materia) {
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad de la materia prima';
       modalRef.componentInstance.mensaje = 'La cantidad a procesar es mayor a la disponible';

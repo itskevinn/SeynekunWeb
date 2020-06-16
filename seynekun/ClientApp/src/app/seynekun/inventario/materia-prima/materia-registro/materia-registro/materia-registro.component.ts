@@ -48,7 +48,7 @@ export class MateriaRegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.crearFormulario();
-    this.recibirId();
+    this.getCodigo();
   }
   obtenerProductores() {
     this.productorService.gets().subscribe((result) => {
@@ -64,9 +64,9 @@ export class MateriaRegistroComponent implements OnInit {
   }
   recibirId() {
     this.suscripcion = this.eventoService.codigoProductor.subscribe(
-      (estado) => (this.control.codigoProductor.setValue(estado))
+      (estado) => (this.control.codigoProductor.setValue(this.cortarCodigo(estado)))
     );
-    this.control.codigoProductor.setValue(this.codigoProductor);
+    this.control.codigoProductor.setValue(this.cortarCodigo(this.codigoProductor));
     this.colocarValor();
   }
   ngOnDestroy() {
@@ -78,7 +78,7 @@ export class MateriaRegistroComponent implements OnInit {
     this.eventoService.codigo.subscribe(
       (estado) => (this.codigoProductor = estado)
     );
-    this.control.codigoProductor.setValue(this.codigoProductor);
+    this.control.codigoProductor.setValue(this.cortarCodigo(this.codigoProductor));
   }
 
   cambiarTipo(e) {

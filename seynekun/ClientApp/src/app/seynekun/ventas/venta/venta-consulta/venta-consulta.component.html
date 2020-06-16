@@ -5,22 +5,13 @@
       <div class="row">
         <div class="col-sm-12 col-md-6 separarArriba">
           <div>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              [(ngModel)]="textoABuscar"
-              aria-controls="dataTable"
-              placeholder="Buscar"
-            />
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+              placeholder="Buscar" />
           </div>
         </div>
         <div class="col-sm-12 col-md-6">
           <div class="text-right separarAbajo separarArriba">
-            <button
-              [routerLink]="['/RegistrarVenta']"
-              type="button"
-              class="btn btn-labeled btn-success"
-            >
+            <button [routerLink]="['/RegistrarVenta']" type="button" class="btn btn-labeled btn-success">
               <span class="btn-label"><i class="fas fa-plus"></i></span> Nueva
             </button>
           </div>
@@ -30,15 +21,8 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="table-responsive">
-            <table
-              class="table table-bordered"
-              id="dataTable"
-              width="100%"
-              cellspacing="0"
-              role="grid"
-              aria-describedby="dataTable_info"
-              style="width: 100%;"
-            >
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr>
                   <th>Fecha</th>
@@ -46,24 +30,18 @@
                   <th>Observacion</th>
                   <th>Total venta</th>
                   <th>Empleado Responsable ID</th>
-                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="
+                <tr *ngFor="
                     let venta of ventas | filtroBodega: textoABuscar;
                     index as i
-                  "
-                >
+                  ">
                   <td>{{ venta.fecha | date }}</td>
                   <td>{{ venta.clienteId }}</td>
                   <td>{{ venta.observacion }}</td>
                   <td>{{ venta.totalVenta }}</td>
                   <td>{{ venta.empleadoId }}</td>
-                  <td>
-                    <a routerLink="#">Ver</a>
-                  </td>
                 </tr>
               </tbody>
             </table>
