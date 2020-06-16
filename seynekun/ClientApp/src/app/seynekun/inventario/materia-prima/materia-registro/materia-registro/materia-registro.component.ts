@@ -46,6 +46,7 @@ export class MateriaRegistroComponent implements OnInit {
     this.obtenerProductores();
     this.materia = new MateriaPrima();
     this.crearFormulario();
+    this.control.codigoProductor.setValue("124232");
     this.recibirId();
   }
   cambiarId() {
@@ -72,6 +73,7 @@ export class MateriaRegistroComponent implements OnInit {
     );
     this.control.codigoProductor.setValue(this.codigoProductor);
     this.colocarValor();
+    this.control.codigoProductor.setValue("1007610");
   }
   colocarValor() {
     this.eventoService.codigo.subscribe(

@@ -72,7 +72,7 @@
               <div class="input-group separarAbajo">
                 <input type="text" class="form-control input-sm" name="codigoMateriaPrima"
                   placeholder="Seleccionar materia prima procesada" formControlName="codigoMateriaPrima" [ngClass]="{'is-invalid':control.codigoMateriaPrima.errors &&
-                    control.codigoMateriaPrima.touched}" (click)="mostrarMaterias()" (click)="recibirIdMateria()" (change)="cambiarCantidad()">
+                    control.codigoMateriaPrima.touched}" (click)="mostrarMaterias()">
                 <div *ngIf="control.codigoMateriaPrima.errors && control.codigoMateriaPrima.touched"
                   class="invalid-feedback">
                   <div class="validacion-texto" *ngIf="control.codigoMateriaPrima.errors.required">Seleccionar

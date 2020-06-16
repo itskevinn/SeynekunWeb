@@ -23,6 +23,8 @@ export class ProductoRegistroComponent implements OnInit {
   formGroup: FormGroup;
   unidadMedidas: string[] = ["Gramo", "Kg", "Tonelada"];
   categorias: Categoria[];
+  codigo: string;
+
   constructor(
     private productoService: ProductoService,
     private formBuilder: FormBuilder,
@@ -32,8 +34,8 @@ export class ProductoRegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCategorias();
-    this.producto = new Producto();
     this.crearFormulario();
+    this.getCodigo();
   }
   obtenerCategorias() {
     this.categoriaService.gets().subscribe((result) => {
@@ -42,6 +44,7 @@ export class ProductoRegistroComponent implements OnInit {
   }
 
   crearFormulario() {
+    this.producto = new Producto();
     this.producto.nombre = "";
     this.producto.codigo = "";
     this.producto.descripcion = "";
@@ -81,19 +84,31 @@ export class ProductoRegistroComponent implements OnInit {
       });
     }
   }
-  onSubmit() {
-    this.registrar();
-  }
   get control() {
     return this.formGroup.controls;
   }
-  registrar() {
+  onSubmit() {
+    if(this.formGroup.invalid){
+      return;
+    }else{
+      this.registrar();
+    }
+  }
+  private registrar() {
     this.producto = this.formGroup.value;
     this.productoService.post(this.producto).subscribe((e) => {
       if (e != null) {
         this.producto = e;
         this.formGroup.reset();
+        this.getCodigo();
       }
+    });
+  }
+
+  private getCodigo(){
+    this.productoService.getCodigo().subscribe((c) => {
+      c != ""? (this.codigo = String(c), this.control.codigo.setValue(this.codigo))
+      : this.control.codigo.setValue("Error");
     });
   }
 }

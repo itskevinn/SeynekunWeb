@@ -56,8 +56,10 @@
                   <td>{{ producto.precio | currency}}</td>
                   <td>{{ producto.nombreCategoria }}</td>
                   <td>
-                    <a class="text-success" (click)="enviarId(producto.codigo)"
-                      (click)="activeModal.dismiss('Cross click')"> Seleccionar</a>
+                    <button class="btn btn-link text-success" (click)="enviarId(producto.codigo)"
+                      (click)="activeModal.dismiss('Cross click')">
+                      Seleccionar
+                    </button>
                   </td>
                 </tr>
               </tbody>

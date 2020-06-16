@@ -62,7 +62,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
   codigoMateriaPrima: string;
   materiaDisponibles: MateriaPrima[];
   nombreBodega: string
-
+  codCantida: string;
   constructor(
     private produccionService: ProduccionService,
     private formBuilder: FormBuilder,
@@ -149,23 +149,7 @@ export class AjusteInventarioRegistroComponent implements OnInit {
       this.control.nombreBodega.setValue(this.nombreBodega);
     }
   }
-  recibirIdMateria() {
-    var cantidadString: string;
-    this.suscripcion = this.eventoService.codigoMateria.subscribe(
-      (estado) => (this.control.codigoMateriaPrima.setValue(estado.split("-")[0]))
-    );
-    this.suscripcion = this.eventoService.codigoMateria.subscribe((cantidad) => (cantidadString = cantidad.split("-")[1]))
-    this.control.cantidadDisponible.setValue(Number(cantidadString));
-    this.cantidadConsultada = true;
-    this.colocarValorMateria();
-  }
-  cambiarCantidad() {
-    var cantidadString: string;
-    if (this.cantidadConsultada) {
-      this.suscripcion = this.eventoService.codigoMateria.subscribe((cantidad) => (cantidadString = cantidad.split("-")[1]))
-      this.control.cantidadDisponible.setValue(Number(cantidadString));
-    }
-  }
+  
   recibirIdProducto() {
     this.suscripcion = this.eventoService.codigo.subscribe(
       (estado) => (this.control.codigoElemento.setValue(estado))
@@ -195,9 +179,22 @@ export class AjusteInventarioRegistroComponent implements OnInit {
     );
     this.control.codigoMateriaPrima.setValue(this.codigoMateriaPrima);
   }
+
   mostrarMaterias() {
     this.modalService.open(ConsultaMateriaComponent, { size: 'lg' });
+    this.cambiarCodigoMatereriaPrima();
   }
+  private cambiarCodigoMatereriaPrima(){
+    this.suscripcion = this.eventoService.codigoMateria.subscribe( codigo => {
+      this.codCantida = codigo;
+      this.control.codigoMateriaPrima.setValue(this.codCantida.split("-")[0]);
+      this.cambiarCantidad(Number(this.codCantida.split("-")[1]));
+    });
+  }
+  private cambiarCantidad(cantidad) {
+    this.control.cantidadDisponible.setValue(cantidad);
+  }
+
   recibirIdBodega() {
     this.suscripcion = this.bodegaService.nombreBodega.subscribe(
       (estado) => (this.control.nombreBodega.setValue(estado))

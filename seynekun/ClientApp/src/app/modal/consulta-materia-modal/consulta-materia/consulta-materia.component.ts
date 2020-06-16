@@ -21,6 +21,5 @@ export class ConsultaMateriaComponent implements OnInit {
   }
   enviarId(id: string) {
     this.eventoServicio.cambiarCodigoMateria(id);
-    console.log(id)
   }
 }

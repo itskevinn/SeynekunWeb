@@ -15,7 +15,7 @@
                 </div>
                 <form class="user" [formGroup]="formGroup">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-user required" name="codigo"
+                    <input type="text" disabled class="form-control form-control-user required" name="codigo"
                       placeholder="Código del Producto" formControlName="codigo"
                       [ngClass]="{'is-invalid':control.codigo.errors && control.codigo.touched}">
                     <div *ngIf="control.codigo.errors && control.codigo.touched" class="invalid-feedback">
@@ -52,9 +52,9 @@
                        <input type="number" class="form-control form-control-user required"
                          placeholder="Cantidad de Presentación del Producto" formControlName="ContenidoNeto">
                      </div>
-                     <div class="col-sm-6">
+                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <select class="form-dropdown border-verde separarArriba" name="unidadMedida" (change)="cambiarUnidadMedida($event)">
-                        <option [ngValue]="null"> Seleccione la unidad de la presentación del producto </option>
+                        <option selected> Seleccione la unidad de la presentación del producto </option>
                         <option [ngValue]="unidadMedida" *ngFor="let unidadMedida of unidadMedidas">{{unidadMedida}}</option>
                       </select>
                      </div>
@@ -64,7 +64,7 @@
                       placeholder="Descripción" formControlName="descripcion">
                   </div>
                   <hr>
-                  <button (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                  <button (click)="onSubmit()" class="btn btn-success btn-user btn-block" [disabled]="formGroup.invalid">
                     Registrar Producto
                   </button>
                   <hr>
