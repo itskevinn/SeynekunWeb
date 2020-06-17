@@ -12,20 +12,35 @@ import { ObservadorSolicitudService } from 'src/app/servicios/observador-solicit
   styleUrls: ['./solicitud-consulta.component.css']
 })
 export class SolicitudConsultaComponent implements OnInit {
-  productores: Productor[];
+  
+  productores: Productor[] = [];
   textoABuscar: String;
   estado: boolean
   productor: Productor;
-  constructor(private solicitudService: SolicitudService, private productorService: ProductorService, private modalService: NgbModal, private observadorSolicitud: ObservadorSolicitudService) { }
+
+  constructor(
+    private solicitudService: SolicitudService,
+    private productorService: ProductorService, 
+    private modalService: NgbModal, 
+    private observadorSolicitud: ObservadorSolicitudService
+  ) { }
 
   ngOnInit(): void {
-    this.actualizarLista();
+    this.actualizarListaSignal();
+    //this.actualizarLista();
   }
   actualizarLista() {
     this.solicitudService.gets().subscribe(result => {
       this.productores = result;
     });
   }
+  
+  private actualizarListaSignal(){
+    this.solicitudService.signalRecived.subscribe((productor: Productor) => {
+      this.productores.push(productor);
+    });
+  }
+
   aceptarSolicitud(productor: Productor) {
     const estado = "Activo";
     const messageBox = this.modalService.open(AlertaModalPreguntaComponent)

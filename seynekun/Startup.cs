@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using seynekun.Config;
 using System.Text;
+using seynekun.Hubs;
 
 namespace seynekun
 {
@@ -32,6 +33,8 @@ namespace seynekun
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SeynekunContext>(a => a.UseSqlServer(connectionString));
 
+            services.AddSignalR();
+            
             services.AddControllersWithViews();
 
             // configure strongly typed settings objects
@@ -127,6 +130,7 @@ namespace seynekun
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<SignalHub>("/signalHub");
             });
             app.UseSwagger();
 

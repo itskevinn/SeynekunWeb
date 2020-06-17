@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.invitado = new Usuario();
     this.loginForm = this.formBuilder.group({
       usuario: ['', Validators.required],
       contrasena: ['', Validators.required]
