@@ -7,16 +7,14 @@
   "targets": {
     ".NETStandard,Version=v2.1": {},
     ".NETStandard,Version=v2.1/": {
-      "Logica/1.0.0": {
+      "Infraestructura/1.0.0": {
         "dependencies": {
           "Entity": "1.0.0",
-          "Infraestructura": "1.0.0",
-          "System.Collections": "4.3.0",
-          "System.ComponentModel.Annotations": "4.7.0",
-          "datos": "1.0.0"
+          "datos": "1.0.0",
+          "iTextSharp": "5.5.13.1"
         },
         "runtime": {
-          "Logica.dll": {}
+          "Infraestructura.dll": {}
         }
       },
       "iTextSharp/5.5.13.1": {
@@ -1435,21 +1433,11 @@
         "runtime": {
           "Entity.dll": {}
         }
-      },
-      "Infraestructura/1.0.0": {
-        "dependencies": {
-          "Entity": "1.0.0",
-          "datos": "1.0.0",
-          "iTextSharp": "5.5.13.1"
-        },
-        "runtime": {
-          "Infraestructura.dll": {}
-        }
       }
     }
   },
   "libraries": {
-    "Logica/1.0.0": {
+    "Infraestructura/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2314,11 +2302,6 @@
       "sha512": ""
     },
     "Entity/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Infraestructura/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
