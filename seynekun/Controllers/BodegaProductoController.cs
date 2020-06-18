@@ -5,11 +5,13 @@ using Entity;
 using Logica;
 using Microsoft.AspNetCore.Mvc;
 using static seynekun.Models.BodegaProductoModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BodegaProductoController : ControllerBase
     {
         private readonly ServicioAjusteInventario servicioAjuste;

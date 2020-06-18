@@ -11,12 +11,14 @@ using Logica;
 using Datos;
 using Microsoft.AspNetCore.SignalR;
 using seynekun.Hubs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductorController : ControllerBase
     {
 
@@ -75,9 +77,10 @@ namespace seynekun.Controllers
 
         // GET: api/Productor
         [HttpGet]
-        public IEnumerable<ProductorViewModel> Gets()
+        public async Task<IEnumerable<ProductorViewModel>> Gets()
         {
             var response = servicioProductor.Consultar().Select(p => new ProductorViewModel(p));
+            await _hubContext.Clients.All.SendAsync("productorLista", response);
             return response;
         }
 

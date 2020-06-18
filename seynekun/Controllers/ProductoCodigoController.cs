@@ -1,11 +1,13 @@
 using Datos;
 using Microsoft.AspNetCore.Mvc;
 using Logica;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductoCodigoController : ControllerBase
     {
         private readonly ServicioProducto servicioProducto;

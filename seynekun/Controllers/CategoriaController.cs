@@ -10,11 +10,13 @@ using seynekun.Models;
 using Logica;
 using static seynekun.Models.CategoriaModel;
 using Datos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriaController : ControllerBase
     {
         private readonly ServicioCategoria servicioCategoria;

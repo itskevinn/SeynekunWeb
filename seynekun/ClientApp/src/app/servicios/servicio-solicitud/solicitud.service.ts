@@ -49,6 +49,9 @@ export class SolicitudService {
     this.hubConnection.on("productorRegistrado", (data: Productor) => {
       this.signalRecived.emit(data);
     });
+    this.hubConnection.on("productorLista", (productores) => {
+      this.signalRecived.emit(productores);
+    });
   }
 
   gets(): Observable<Productor[]> {

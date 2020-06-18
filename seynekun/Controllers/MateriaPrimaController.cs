@@ -5,11 +5,13 @@ using Logica;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static seynekun.Models.MateriaPrimaModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MateriaPrimaController : ControllerBase
     {
         private readonly ServicioMateriaPrima materiaService;

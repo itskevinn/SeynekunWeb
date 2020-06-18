@@ -83,6 +83,31 @@ namespace seynekun
                         Url = new Uri("https://www.byasystems.co/license"),
                     }
                 });
+                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme."
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference 
+                            { 
+                                Type = ReferenceType.SecurityScheme, 
+                                Id = "Bearer" 
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+
+                c.OperationFilter<AuthOperationFilter>();
             });
 
             // In production, the Angular files will be served from this directory
@@ -132,8 +157,8 @@ namespace seynekun
                     pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapHub<SignalHub>("/signalHub");
             });
-            app.UseSwagger();
 
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
