@@ -12,8 +12,8 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 })
 export class ControlRegistroComponent implements OnInit {
 
-  tipos: string[] = [
-    'Equipos', 'Agua', 'Empaques'
+  tipos: string[] =[
+    'Equipo','Tanque de agua','Insumos'
   ];
   control: Control;
   formGroup: FormGroup;

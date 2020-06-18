@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 using Datos;
+using Microsoft.AspNetCore.SignalR;
+using seynekun.Hubs;
 
 namespace seynekun.Controllers
 {
@@ -19,15 +21,17 @@ namespace seynekun.Controllers
     {
 
         private readonly ServicioProductor servicioProductor;
+        private readonly IHubContext<SignalHub> _hubContext;
 
-        public ProductorController(SeynekunContext context)
+        public ProductorController(SeynekunContext context , IHubContext<SignalHub> hubContext)
         {
             servicioProductor = new ServicioProductor(context);
+            _hubContext = hubContext;
         }
 
         // POST: api/Productor
         [HttpPost]
-        public ActionResult<ProductorViewModel> Post(ProductorInputModel productorInputModel)
+        public async Task<ActionResult<ProductorViewModel>> Post(ProductorInputModel productorInputModel)
         {
             Productor productor = MapToProductor(productorInputModel);
             var response = servicioProductor.Guardar(productor);
@@ -40,7 +44,9 @@ namespace seynekun.Controllers
                 };
                 return BadRequest(detallesProblema);
             }
-            return Ok(response.Productor);
+            var productorView =  new ProductorViewModel(response.Productor);
+            await _hubContext.Clients.All.SendAsync("productorRegistrado",productorView);
+            return Ok(productorView);
         }
 
         private Productor MapToProductor(ProductorInputModel productorInputModel)
