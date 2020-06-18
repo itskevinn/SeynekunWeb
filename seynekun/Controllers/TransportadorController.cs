@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Logica;
 using static seynekun.Models.TransportadorModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TransportadorController : ControllerBase
     {
         private readonly ServicioTransportador servicioTransportador;

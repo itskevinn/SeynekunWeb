@@ -9,11 +9,13 @@ using Microsoft.Extensions.Configuration;
 using seynekun.Models;
 using Logica;
 using Datos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FabricanteController : ControllerBase
     {
         private readonly ServicioFabricante servicioFabricante;

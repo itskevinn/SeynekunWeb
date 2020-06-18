@@ -7,11 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Logica;
 using Datos;
 using seynekun.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DocumentoController : ControllerBase
     {
         private readonly ServicioDocumento servicioDocumento;

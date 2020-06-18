@@ -8,11 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Logica;
 using static seynekun.Models.BodegaModel;
 using Datos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BodegaController : ControllerBase
     {
         private readonly ServicioBodega servicioBodega;

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using static seynekun.Models.ControlModel;
+using Microsoft.AspNetCore.Authorization;
 using Logica;
 using Datos;
 
@@ -15,6 +16,7 @@ namespace seynekun.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ControlController : ControllerBase
     {
         private readonly ServicioControl servicioControl;

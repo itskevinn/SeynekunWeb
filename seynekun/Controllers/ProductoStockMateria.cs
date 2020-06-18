@@ -4,11 +4,13 @@ using Datos;
 using Logica;
 using Microsoft.AspNetCore.Mvc;
 using static seynekun.Models.ProductoStockModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductoStockMateriaController : ControllerBase
     {
         private readonly ServicioAjusteInventario servicioAjuste;

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj": {}
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
               }
             }
           }
@@ -70,21 +70,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -128,21 +128,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj",
         "projectName": "Infraestructura",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -155,11 +155,11 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
-                "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
               },
-              "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+              "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
               }
             }
           }
@@ -193,7 +193,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

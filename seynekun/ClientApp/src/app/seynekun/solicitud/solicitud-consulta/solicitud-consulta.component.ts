@@ -26,8 +26,8 @@ export class SolicitudConsultaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.actualizarLista();
     this.actualizarListaSignal();
-    //this.actualizarLista();
   }
   actualizarLista() {
     this.solicitudService.gets().subscribe(result => {

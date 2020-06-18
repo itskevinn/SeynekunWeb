@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using seynekun.Models;
+using Microsoft.AspNetCore.Authorization;
 using Logica;
 using Datos;
 
 namespace seynekun.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
-
         private readonly ServicioCliente servicioCliente;
 
         public ClienteController(SeynekunContext context)

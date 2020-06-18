@@ -15,6 +15,7 @@ namespace seynekun.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EmpleadoController : ControllerBase
     {
         private readonly ServicioEmpleado servicioEmpleado;
