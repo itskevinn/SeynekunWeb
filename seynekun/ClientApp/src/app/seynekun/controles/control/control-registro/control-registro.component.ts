@@ -12,27 +12,32 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 })
 export class ControlRegistroComponent implements OnInit {
 
-  tipos: string[] =[
-    'ARROZ','YUCA'
+  tipos: string[] = [
+    'Equipos', 'Agua', 'Empaques'
   ];
   control: Control;
   formGroup: FormGroup;
   fechaInicial: Date;
   fechaFinal: Date;
   bsValue = new Date();
-  fechaMinima: Date;
-  fechaMaxima: Date;
-
+  fechaMinimaA: Date;
+  fechaMaximaA: Date;
+  fechaMinimaD: Date;
+  fechaMaximaD: Date;
   constructor(
     private controlService: ControlService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private localeService: BsLocaleService
-  ) { 
-    this.fechaMinima = new Date();
-    this.fechaMaxima = new Date();
-    this.fechaMinima.setDate(this.fechaMinima.getDate() - 7);
-    this.fechaMaxima.setDate(this.fechaMaxima.getDate());
+  ) {
+    this.fechaMinimaA= new Date();
+    this.fechaMaximaA = new Date();
+    this.fechaMinimaA.setDate(this.fechaMinimaA.getDate() - 7);
+    this.fechaMaximaA.setDate(this.fechaMaximaA.getDate());
+    this.fechaMinimaD= new Date();
+    this.fechaMaximaD = new Date();
+    this.fechaMinimaD.setDate(this.fechaMaximaA.getDate());
+    this.fechaMaximaD.setDate(this.fechaMaximaA.getDate()+60);
   }
 
   ngOnInit(): void {
@@ -40,7 +45,7 @@ export class ControlRegistroComponent implements OnInit {
     this.localeService.use("es");
   }
 
-  private crearFormulario(){
+  private crearFormulario() {
     this.control = new Control();
     this.control.tipoControl = '';
     this.control.descripcion = '';
@@ -77,7 +82,7 @@ export class ControlRegistroComponent implements OnInit {
     });
   }
 
-  cambiarTipo(e){
+  cambiarTipo(e) {
     this.controlForm.tipoControl.setValue(e.target.value);
   }
 }

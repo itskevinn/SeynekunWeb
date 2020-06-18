@@ -18,5 +18,10 @@ namespace seynekun.Controllers
         {
             return materiaService.SumarCantidadCacao();
         }
+        [HttpGet("{id}")]
+        public decimal GetCantidadCacaoxProductor(string id)
+        {
+            return materiaService.SumarCantidadCacaoxProductor(id);
+        }
     }
 }

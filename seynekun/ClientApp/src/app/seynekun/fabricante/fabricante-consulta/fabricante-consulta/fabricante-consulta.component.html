@@ -45,13 +45,11 @@
                   <th>Tipo Identificación</th>
                   <th>Número de Identificación</th>
                   <th>Nombre</th>
-                  <th>Apellido</th>
                   <th>Número Telefónico</th>
                   <th>Email</th>
                   <th>Direccion</th>
                   <th>Fax</th>
                   <th>Sitio web</th>
-                  <th>Accion</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,24 +62,11 @@
                   <td>{{ fabricante.tipoIdentificacion }}</td>
                   <td>{{ fabricante.identificacion }}</td>
                   <td>{{ fabricante.nombre }}</td>
-                  <td>{{ fabricante.apellido }}</td>
                   <td>{{ fabricante.numeroTelefono }}</td>
                   <td>{{ fabricante.email }}</td>
                   <td>{{ fabricante.direccion }}</td>
                   <td>{{ fabricante.fax }}</td>
                   <td>{{ fabricante.sitioWeb }}</td>
-                  <td>
-                    <a routerLink="/Fabricante/{{ fabricante.identificacion }}"
-                      >Ver</a
-                    >
-                    <a> / </a>
-                    <a
-                      routerLink="/EditarFabricante/{{
-                        fabricante.identificacion
-                      }}"
-                      >Editar</a
-                    >
-                  </td>
                 </tr>
               </tbody>
             </table>

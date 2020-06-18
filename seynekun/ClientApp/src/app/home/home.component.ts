@@ -26,6 +26,9 @@ export class HomeComponent {
   sumaCantidadSolicitud: number;
   sumaMateriaMensualProductor: number;
   sumaVentaDiaria: number;
+  sumaCafeProductor: number;
+  sumaCanaProductor: number;
+  sumaCacaoProductor: number
   sumaMateriaDiariaCafe: number;
   sumaMateriaDiariaCanaAzucar: number
   sumaVentaDiariaConsultada: boolean;
@@ -57,6 +60,7 @@ export class HomeComponent {
     this.obtenerSumaVentaDiaria();
     this.obtenerSumaSolicitud();
     this.obtenerCantidadCacao();
+
   }
   obtenerSumaSolicitud() {
     this.solicitudService.getCantidadSolicitud().subscribe((suma) => {
@@ -93,10 +97,11 @@ export class HomeComponent {
       this.sumaMateriaDiariaConsultada = true;
     });
   }
-  obtenerCantidadCacao(){
+  obtenerCantidadCacao() {
     this.materiaPrimaService.getCantidadCacao().subscribe((result) => {
       this.sumaCantidadCacao = result;
     });
+    this.materiaPrimaService.getCantidadCacaoxProductor(this.usuario.id).subscribe((result)=>(this.sumaCacaoProductor = result))
   }
   obtenerSumaMateriaPrimaProductorMensual() {
     this.materiaPrimaService
@@ -108,16 +113,13 @@ export class HomeComponent {
   }
   obtenerSumaMateriaCafe() {
     this.materiaPrimaService.getCantidadDiariaCafe().subscribe((result) => (this.sumaMateriaDiariaCafe = result));
+    this.materiaPrimaService.getCantidadDiariaCafexProductor(this.usuario.id).subscribe((result) => (this.sumaCafeProductor = result
+    ))
   }
+
   obtenerSumaMateriaCana() {
     this.materiaPrimaService.getCantidadDiariaCana().subscribe((result) => (this.sumaMateriaDiariaCanaAzucar = result));
-  }
-  obtenerSumaMateriaPrimaProductorDiaria() {
-    this.materiaPrimaService
-      .getCantidadDiariaProductor(this.usuario.id)
-      .subscribe((result) => {
-        this.sumaMateriaDiariaProductor = result;
-      });
+    this.materiaPrimaService.getCantidadDiariaCanaxProductor(this.usuario.id).subscribe((result) => (this.sumaCanaProductor = result));
   }
   obtenerProductos() {
     this.productoService.gets().subscribe((result) => {

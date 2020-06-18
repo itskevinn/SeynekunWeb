@@ -33,7 +33,10 @@ namespace Logica
                 productoStock.Cantidad = SumarCantidadEnBodega(_producto.Codigo, nombreBodega);
                 if (!EsRepetido(productosStock, productoStock.Producto.Codigo))
                 {
-                    productosStock.Add(productoStock);
+                    if (productoStock.Cantidad > 0)
+                    {
+                        productosStock.Add(productoStock);
+                    }
                 }
             }
             return productosStock;

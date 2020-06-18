@@ -12,3 +12,5 @@ C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstan
 C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.csproj.CopyComplete
 C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.dll
 C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\obj\Release\netstandard2.1\Logica.pdb
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Infraestructura.dll
+C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\logica\bin\Release\netstandard2.1\Infraestructura.pdb
