@@ -55,13 +55,25 @@ namespace Logica
         {
             return _context.MateriasPrimas.Where(p => p.Tipo == "Café").Sum(p => p.Cantidad);
         }
+        public decimal SumarCantidadDiariaCafexProductor(string codigo)
+        {
+            return _context.MateriasPrimas.Where(p => p.Tipo == "Café" && p.CodigoProductor == codigo).Sum(p => p.Cantidad);
+        }
         public decimal SumarCantidadDiariaCana()
         {
             return _context.MateriasPrimas.Where(p => p.Tipo == "Panela").Sum(p => p.Cantidad);
         }
+        public decimal SumarCantidadDiariaCanaxProductor(string codigo)
+        {
+            return _context.MateriasPrimas.Where(p => p.Tipo == "Panela" && p.CodigoProductor==codigo).Sum(p => p.Cantidad);
+        }
            public decimal SumarCantidadCacao()
         {
             return _context.MateriasPrimas.Where(p => p.Tipo == "Cacao").Sum(p => p.Cantidad);
+        }
+           public decimal SumarCantidadCacaoxProductor(string codigo)
+        {
+            return _context.MateriasPrimas.Where(p => p.Tipo == "Cacao" && p.CodigoProductor == codigo).Sum(p => p.Cantidad);
         }
         public decimal SumarCantidadxProductorMensual(string codigo)
         {

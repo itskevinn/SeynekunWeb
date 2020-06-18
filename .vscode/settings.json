@@ -1,3 +1,5 @@
 {
-    "god.tsconfig": "./seynekun\\ClientApp\\tsconfig.json"
+    "god.tsconfig": "./seynekun\\ClientApp\\tsconfig.json",
+    "appService.defaultWebAppToDeploy": "",
+    "appService.deploySubpath": "publicacion"
 }

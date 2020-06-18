@@ -20,5 +20,10 @@ namespace seynekun.Controllers
         {
             return materiaService.SumarCantidadDiariaCafe();
         }
+        [HttpGet("{id}")]
+        public decimal GetCantidadDiariaCafexProductor(string id)
+        {
+            return materiaService.SumarCantidadDiariaCafexProductor(id);
+        }
     }
 }

@@ -181,8 +181,32 @@ export class MateriaPrimaService {
       )
     );
   }
+  getCantidadDiariaCafexProductor(id: string): Observable<number> {
+    const url = `${this.baseUrl + "api/CafeIngresadoDiario"}/${id}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
   getCantidadDiariaCana() {
     const url = `${this.baseUrl + "api/CanaIngresadaDiario"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadDiariaCanaxProductor(id: string) {
+    const url = `${this.baseUrl + "api/CanaIngresadaDiario"}/${id}`;
     return this.http.get<number>(url, httpOptions).pipe(
       tap((_) => console.log("Datos enviados y recibidos")),
       catchError(
@@ -207,6 +231,18 @@ export class MateriaPrimaService {
   }
   getCantidadCacao(): Observable<number> {
     const url = `${this.baseUrl + "api/CacaoDisponible"}`;
+    return this.http.get<number>(url, httpOptions).pipe(
+      tap((_) => console.log("Datos enviados y recibidos")),
+      catchError(
+        this.handleErrorService.handleError<number>(
+          "Consulta por código",
+          null
+        )
+      )
+    );
+  }
+  getCantidadCacaoxProductor(id: string): Observable<number> {
+    const url = `${this.baseUrl + "api/CacaoDisponible"}/${id}`;
     return this.http.get<number>(url, httpOptions).pipe(
       tap((_) => console.log("Datos enviados y recibidos")),
       catchError(

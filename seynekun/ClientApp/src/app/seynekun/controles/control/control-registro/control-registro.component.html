@@ -43,14 +43,14 @@
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="text" class="form-control form-control-user" bsDatepicker
                                                 [bsConfig]="{ isAnimated: true }" [bsValue]="bsValue"
-                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
-                                                [maxDate]="fechaMaxima" formControlName="fechaInicio" placeholder="Fecha">
+                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinimaA"
+                                                [maxDate]="fechaMaximaA" formControlName="fechaInicio" placeholder="Fecha del control realizado">
                                         </div>
                                         <div class="col-sm-6 mb-3">
                                             <input type="text" class="form-control form-control-user" bsDatepicker
                                                 [bsConfig]="{ isAnimated: true }" [bsValue]="bsValue"
-                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinima"
-                                                [maxDate]="fechaMaxima" formControlName="fechaFinal" placeholder="Fecha">
+                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaMinimaD"
+                                                [maxDate]="fechaMaximaD" formControlName="fechaFinal" placeholder="Fecha del próximo control">
                                         </div>
                                     </div>
                                     <div class="form-group">
