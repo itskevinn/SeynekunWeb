@@ -84,7 +84,10 @@ namespace Logica
                 bodegaStock.Cantidad = SumarCantidadEnBodega(codigoProducto, _bodega.Nombre);
                 if (!EsRepetida(bodegasStock, bodegaStock.Bodega.Nombre))
                 {
-                    bodegasStock.Add(bodegaStock);
+                    if (bodegaStock.Cantidad > 0)
+                    {
+                        bodegasStock.Add(bodegaStock);
+                    }
                 }
             }
             return bodegasStock;
