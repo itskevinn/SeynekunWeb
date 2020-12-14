@@ -21,7 +21,6 @@ namespace Logica
                 if(tipoReporte == "Reporte de empleados")
                 {
                     List<Empleado> lista = _context.Empleados.ToList();
-                    GenetrarDocumento(lista, tipoReporte);
                 }
                 return tipoReporte;
             }
@@ -31,9 +30,6 @@ namespace Logica
             }
         }
 
-        private void GenetrarDocumento(List<Empleado> lista, string tipo){
-            ServicioDocumentoPDF  servicioDocumentoPDF = new ServicioDocumentoPDF();
-            servicioDocumentoPDF.CrearDocumentoPDF(lista, tipo);
-        }
+       
     }
 }

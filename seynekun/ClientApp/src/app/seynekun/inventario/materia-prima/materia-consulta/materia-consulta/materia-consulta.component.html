@@ -1,28 +1,34 @@
-<h1 class="h3 mb-2 text-gray-800">Materias primas</h1>
 <div class="card shadow mb-4">
   <div class="card-body">
     <div id="dataTable_wrapper">
       <div class="row">
-        <div class="col-sm-12 col-md-6 separarArriba">
+        <div class="col-sm-12 col-md-4 separarArriba">
           <div>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              [(ngModel)]="textoABuscar"
-              aria-controls="dataTable"
-              placeholder="Buscar"
-            />
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
+              placeholder="Buscar" />
           </div>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-4 separarArriba">
+          <div class="form-group">
+            <select class="form-dropdown border-verde" (change)="cambiarTipo($event)">
+              <option selected>Seleccionar tipo</option>
+              <option [ngValue]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
           <div class="text-right separarAbajo separarArriba">
-            <button
-              [routerLink]="['/RegistroMateriaPrima']"
-              type="button"
-              class="btn btn-labeled btn-success"
-            >
+            <button [routerLink]="['/RegistroMateriaPrima']" type="button" class="btn btn-labeled btn-success">
               <span class="btn-label"><i class="fas fa-plus"></i></span>
-               Nueva
+              Nueva
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+          <div class="text-right separarAbajo separarArriba">
+            <button type="button" class="btn btn-labeled btn-info" (click)="downloadPDF()">
+              <span class="btn-label"><i class="fas fa-download"></i></span>
+              Descargar
             </button>
           </div>
         </div>
@@ -31,34 +37,32 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="table-responsive">
-            <table
-              class="table table-bordered"
-              id="dataTable"
-              width="100%"
-              cellspacing="0"
-              role="grid"
-              aria-describedby="dataTable_info"
-              style="width: 100%;"
-            >
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Cantidad</th>
-                  <th>Nombre Productor</th>
-                  <th>Unidad de Peso</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let MateriaPrima of materiaPrimas |filtroMateria; index as i">
-                  <td>{{ MateriaPrima.fecha | date }}</td>
-                  <td>{{ MateriaPrima.cantidad }}</td>
-                  <td>{{ MateriaPrima.nombreProductor }}</td>
-                  <td>Kg</td>
-                  <td>{{ MateriaPrima.estadoMateria }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div id="htmlData">
+              <h1 class="h3 mb-2 text-gray-800">Materias primas</h1>
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Nombre Productor</th>
+                    <th>Tipo</th>
+                    <th>Unidad de Peso</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let MateriaPrima of materiaPrimas | filtroMateria : textoABuscar; index as i">
+                    <td>{{ MateriaPrima.fecha | date }}</td>
+                    <td>{{ MateriaPrima.cantidad }}</td>
+                    <td>{{ MateriaPrima.nombreProductor }}</td>
+                    <td>{{MateriaPrima.tipo}}</td>
+                    <td>Kg</td>
+                    <td>{{ MateriaPrima.estadoMateria }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

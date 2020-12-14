@@ -10,19 +10,10 @@
       "Infraestructura/1.0.0": {
         "dependencies": {
           "Datos": "1.0.0",
-          "Entity": "1.0.0",
-          "iTextSharp": "5.5.13.1"
+          "Entity": "1.0.0"
         },
         "runtime": {
           "Infraestructura.dll": {}
-        }
-      },
-      "iTextSharp/5.5.13.1": {
-        "runtime": {
-          "lib/itextsharp.dll": {
-            "assemblyVersion": "5.5.13.1",
-            "fileVersion": "5.5.13.1"
-          }
         }
       },
       "Microsoft.CSharp/4.5.0": {
@@ -1440,13 +1431,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "iTextSharp/5.5.13.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-xqzsYEYW/nMDjCtAXM5cl9fWil/Ju3HEGbsmoTKtltJc3M/9HNJzg++bCIOHm5uZITvRmZJWMO+S2u1yNG0gQg==",
-      "path": "itextsharp/5.5.13.1",
-      "hashPath": "itextsharp.5.5.13.1.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

@@ -28,9 +28,11 @@ namespace Logica
             }
             foreach (var _producto in productos)
             {
-                productoStock = new ProductoStock();
-                productoStock.Producto = _producto;
-                productoStock.Cantidad = SumarCantidadEnBodega(_producto.Codigo, nombreBodega);
+                productoStock = new ProductoStock
+                {
+                    Producto = _producto,
+                    Cantidad = SumarCantidadEnBodega(_producto.Codigo, nombreBodega)
+                };
                 if (!EsRepetido(productosStock, productoStock.Producto.Codigo))
                 {
                     if (productoStock.Cantidad > 0)

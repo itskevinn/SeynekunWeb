@@ -4,10 +4,7 @@
   <div class="serpararArriba">
     <div class="row">
       <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
-        <h1 class="h3 mb-2 text-gray-800">Productos en {{bodega.nombre}} </h1>
-      </div>
-      <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
-        <div class="text-center separarAbajo">
+        <div class=" separarAbajo">
           <button routerLink='/EditarBodega/{{bodega.nombre}}' type="button" class="btn btn-labeled btn-info">
             <span class="btn-label"><i class="fas fa-pencil-alt"></i></span> Editar</button>
         </div>
@@ -21,13 +18,17 @@
               <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar"
                 aria-controls="dataTable" placeholder="Buscar">
             </div>
-            <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
-              <hr>
+            <div class="col-sm-6 col-md-6 separarArriba separarAbajo">
+              <button type="button" class="btn btn-labeled btn-info" (click)="downloadPDF()">
+                <span class="btn-label"><i class="fas fa-download"></i></span>
+                Descargar
+              </button>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <div class="table-responsive">
+              <div class="table-responsive" id="htmlData">
+                <h1 class="h3 mb-2 text-gray-800">Productos en {{bodega.nombre}} </h1>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
                   aria-describedby="dataTable_info" style="width: 100%;">
                   <thead>
@@ -35,7 +36,6 @@
                       <th>Referencia</th>
                       <th>Nombre</th>
                       <th>Cantidad</th>
-                      <th>Acción</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -43,9 +43,6 @@
                       <td>{{productoBodega.producto.codigo}}</td>
                       <td>{{productoBodega.producto.nombre}}</td>
                       <td>{{productoBodega.cantidad}}</td>
-                      <td>
-                        <a routerLink='/Producto/{{productoBodega.producto.codigo}}'>Ver</a>
-                      </td>
                     </tr>
                   </tbody>
                 </table>

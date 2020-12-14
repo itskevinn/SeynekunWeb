@@ -2,7 +2,6 @@
   <span class="btn-label"><i class="fas fa-arrow-left"></i></span> Regresar</button>
 <div *ngIf="seEncontro; else noEncontrado">
   <div class="serpararArriba">
-    <h1 class="h3 mb-2 text-gray-800">Productos en {{bodega.nombre}} </h1>
   </div>
   <div class="card shadow mb-4">
     <div class="card-body">
@@ -12,18 +11,25 @@
             <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar" aria-controls="dataTable"
               placeholder="Buscar">
           </div>
+          <div class="col-sm-12 col-md-6 separarArriba separarAbajo">
+            <button type="button" class="btn btn-labeled btn-info" (click)="downloadPDF()">
+              <span class="btn-label"><i class="fas fa-download"></i></span>
+              Descargar
+            </button>
+          </div>
           <hr>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <div class="table-responsive">
+            <div class="table-responsive" id="htmlData">
+              <h1 class="h3 mb-2 text-gray-800">Productos en {{bodega.nombre}} </h1>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
                 aria-describedby="dataTable_info" style="width: 100%;">
                 <thead>
-                  <tr>                    
+                  <tr>
                     <th>Referencia</th>
                     <th>Nombre</th>
-                    <th>Cantidad</th>                    
+                    <th>Cantidad</th>
                     <th>Acción</th>
                   </tr>
                 </thead>

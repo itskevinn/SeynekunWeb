@@ -2203,6 +2203,10 @@ a.btn.disabled, fieldset:disabled a.btn {
   padding-bottom: 1em;
 }
 
+.separarDerecha {
+  padding-right: 1em;
+}
+
 .btn-verde.btn-verde.dropdown-toggle {
   background-attachment: fixed;
   color: #ffffff;

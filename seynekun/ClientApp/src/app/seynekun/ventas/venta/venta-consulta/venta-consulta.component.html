@@ -1,4 +1,3 @@
-<h1 class="h3 mb-2 text-gray-800">Ventas</h1>
 <div class="card shadow mb-4">
   <div class="card-body">
     <div id="dataTable_wrapper">
@@ -9,11 +8,18 @@
               placeholder="Buscar" />
           </div>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-6 col-md-3">
           <div class="text-right separarAbajo separarArriba">
             <button [routerLink]="['/RegistrarVenta']" type="button" class="btn btn-labeled btn-success">
               <span class="btn-label"><i class="fas fa-plus"></i></span> Nueva
             </button>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="text-right separarAbajo separarArriba">
+          <button type="button" (click)="downloadPDF()" class="btn btn-labeled btn-info">
+            <span class="btn-label"><i class="fas fa-download"></i></span> Descargar
+          </button>
           </div>
         </div>
         <hr />
@@ -21,30 +27,33 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
-              aria-describedby="dataTable_info" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Cliente ID</th>
-                  <th>Observacion</th>
-                  <th>Total venta</th>
-                  <th>Empleado Responsable ID</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="
+            <div id="htmlData">
+              <h2>Ventas</h2>
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Cliente ID</th>
+                    <th>Observacion</th>
+                    <th>Total venta</th>
+                    <th>Empleado Responsable ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
                     let venta of ventas | filtroBodega: textoABuscar;
                     index as i
                   ">
-                  <td>{{ venta.fecha | date }}</td>
-                  <td>{{ venta.clienteId }}</td>
-                  <td>{{ venta.observacion }}</td>
-                  <td>{{ venta.totalVenta }}</td>
-                  <td>{{ venta.empleadoId }}</td>
-                </tr>
-              </tbody>
-            </table>
+                    <td>{{ venta.fecha | date }}</td>
+                    <td>{{ venta.clienteId }}</td>
+                    <td>{{ venta.observacion }}</td>
+                    <td>{{ venta.totalVenta }}</td>
+                    <td>{{ venta.empleadoId }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

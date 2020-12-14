@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.1": {
-      "iTextSharp/5.5.13.1": {
-        "type": "package",
-        "compile": {
-          "lib/itextsharp.dll": {}
-        },
-        "runtime": {
-          "lib/itextsharp.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -1951,8 +1942,7 @@
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
           "Datos": "1.0.0",
-          "Entity": "1.0.0",
-          "iTextSharp": "5.5.13.1"
+          "Entity": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Infraestructura.dll": {}
@@ -1964,22 +1954,6 @@
     }
   },
   "libraries": {
-    "iTextSharp/5.5.13.1": {
-      "sha512": "xqzsYEYW/nMDjCtAXM5cl9fWil/Ju3HEGbsmoTKtltJc3M/9HNJzg++bCIOHm5uZITvRmZJWMO+S2u1yNG0gQg==",
-      "type": "package",
-      "path": "itextsharp/5.5.13.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "gnu-agpl-v3.0.md",
-        "itextsharp.5.5.13.1.nupkg.sha512",
-        "itextsharp.nuspec",
-        "lib/iTextSharp.xml",
-        "lib/itextsharp.dll",
-        "notice.txt"
-      ]
-    },
     "Microsoft.CSharp/4.5.0": {
       "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "type": "package",
@@ -6833,39 +6807,38 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\kevin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
+      "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
       "projectName": "Logica",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Logica\\obj\\",
+      "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Logica\\Logica.csproj",
+      "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Logica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
+            "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj": {
+              "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Datos\\Datos.csproj"
             },
-            "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
+            "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Entity\\Entity.csproj"
             },
-            "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj"
+            "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj": {
+              "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\GitHub\\SeynekunWeb\\Infraestructura\\Infraestructura.csproj"
             }
           }
         }
@@ -6878,6 +6851,7 @@
     },
     "frameworks": {
       "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
         "dependencies": {
           "System.Collections": {
             "target": "Package",
@@ -6903,20 +6877,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "El paquete \"iTextSharp 5.5.13.1\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETStandard,Version=v2.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
-      "libraryId": "iTextSharp",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

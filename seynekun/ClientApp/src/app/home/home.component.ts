@@ -60,7 +60,7 @@ export class HomeComponent {
     this.obtenerSumaVentaDiaria();
     this.obtenerSumaSolicitud();
     this.obtenerCantidadCacao();
-
+    
   }
   obtenerSumaSolicitud() {
     this.solicitudService.getCantidadSolicitud().subscribe((suma) => {

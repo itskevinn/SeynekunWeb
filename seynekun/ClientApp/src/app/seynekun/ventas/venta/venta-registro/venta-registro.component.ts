@@ -106,7 +106,7 @@ export class VentaRegistroComponent implements OnInit {
     this.suscripcion = this.eventoService.codigoEmpleado.subscribe(
       (estado) => (this.controlVenta.empleadoId.setValue(estado))
     );
-     this.controlVenta.empleadoId.setValue(this.empleadoId);
+    this.controlVenta.empleadoId.setValue(this.empleadoId);
     this.colocarValorEmpleado();
   }
   colocarValorEmpleado() {
@@ -185,7 +185,7 @@ export class VentaRegistroComponent implements OnInit {
     }
   }
   private validarCantidad(cantidad, limite) {
-    if (cantidad < 1 || this.numberCantidad==null) {
+    if (cantidad < 1 || this.numberCantidad == null) {
       const modalRef = this.modalService.open(AlertaModalErrorComponent);
       modalRef.componentInstance.titulo = 'Error en la cantidad del producto agregado';
       modalRef.componentInstance.mensaje = 'Digite una cantidad mayor 1';
