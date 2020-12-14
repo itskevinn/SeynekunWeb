@@ -37,3 +37,15 @@ C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\Entity
 C:\Users\User\Documents\GitHub\SeynekunWeb\datos\bin\Debug\netstandard2.1\Entity.pdb
 C:\Users\User\Documents\GitHub\SeynekunWeb\datos\obj\Debug\netstandard2.1\datos.csproj.CopyComplete
 >>>>>>> b92bebace39a54e5f49aaec22645dcec96d8e3a9
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Datos.deps.json
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Datos.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Datos.pdb
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Entity.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\bin\Debug\netstandard2.1\Entity.pdb
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.csproj.CopyComplete
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Datos\obj\Debug\netstandard2.1\Datos.pdb
