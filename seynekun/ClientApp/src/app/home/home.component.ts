@@ -12,6 +12,8 @@ import { VentaService } from "../servicios/servicio-venta/venta.service";
 import { SolicitudService } from "../servicios/servicio-solicitud/solicitud.service";
 
 import * as Chart from 'chart.js';
+import { ProductStockService } from "../servicios/servicio-producto-stock/producto-stock.service";
+import { ProductoEnBodega } from "../seynekun/models/modelo-producto-bodega/producto-en-bodega";
 
 @Component({
   selector: "app-home",
@@ -30,6 +32,8 @@ export class HomeComponent {
   sumaCantidadSolicitud: number;
   sumaMateriaMensualProductor: number;
   sumaVentaDiaria: number;
+  productosEnBodega: ProductoEnBodega[];
+  nombreBodegaSeleccionada: string
   sumaCafeProductor: number;
   sumaCanaProductor: number;
   sumaCacaoProductor: number
@@ -44,7 +48,7 @@ export class HomeComponent {
   productosTraidos: boolean;
   sumaSolicitudConsultada: boolean
   constructor(
-    private productoService: ProductoService,
+    private productoStockService: ProductStockService,
     private bodegaService: BodegaService,
     private materiaPrimaService: MateriaPrimaService,
     private ventaService: VentaService,
@@ -56,7 +60,7 @@ export class HomeComponent {
   }
   ngOnInit(): void {
     this.obtenerBodegas();
-    this.obtenerProductos();
+    this.obtenerProductosEnBodega();
     this.obtenerMateriaPrima();
     this.obtenerSumaMateriaPrimaProductorMensual();
     this.obtenerSumaMateriaCafe();
@@ -125,45 +129,70 @@ export class HomeComponent {
     this.materiaPrimaService.getCantidadDiariaCana().subscribe((result) => (this.sumaMateriaDiariaCanaAzucar = result));
     this.materiaPrimaService.getCantidadDiariaCanaxProductor(this.usuario.id).subscribe((result) => (this.sumaCanaProductor = result));
   }
-  obtenerProductos() {
-    this.productoService.gets().subscribe((result) => {
-      this.grafica(result);
-      this.productosAdmin = result;
-      this.productosTraidos = true;
+  cambiarBodega(e) {
+    this.nombreBodegaSeleccionada = e.target.value;
+    this.obtenerProductosEnBodega();
+  }
+  private obtenerProductosEnBodega() {
+    this.productoStockService.get(this.nombreBodegaSeleccionada).subscribe((result) => {
+      this.productosEnBodega = result;
+      this.graficar(result);
     });
   }
-
-  grafica(productos: Producto[]) {
+  randomColor(lista: String[]) {
+    return lista[Math.floor(Math.random() * lista.length)]
+  }
+  graficar(productos: ProductoEnBodega[]) {
+    var colorProductos = [];
     var nameProduct = []
-    
+    var cantidad = []
+    var colores = [];
+    var r = new Array("2C", "44", "33");
+    var g = new Array("CF", "FF", "DF");
+    var b = new Array("87", "55", "50");
+    for (var i = 0; i < r.length; i++) {
+      for (var j = 0; j < g.length; j++) {
+        for (var k = 0; k < b.length; k++) {
+          var nuevoc = "#" + r[i] + g[j] + b[k];
+          colores.push(nuevoc);
+        }
+      }
+    }
     productos.forEach(element => {
-      nameProduct.push(element.nombre)
+      colorProductos.push(this.randomColor(colores));
+      nameProduct.push(element.producto.nombre)
+      cantidad.push(element.cantidad)
     });
-    
+    console.log(colores)
+    console.log("-----------")
+    console.log(colorProductos)
+    nameProduct.push('');
+    cantidad.push(0);
     var ctx = document.getElementById("myChart");
     var myPieChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: 'bar',
       data: {
         labels: nameProduct,
         datasets: [{
-          data: [55, 30, 15],
-          backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-          hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+          data: cantidad,
+          backgroundColor: colorProductos,
+          hoverBackgroundColor: ['#169e6e', '#1dc789', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f', '#1cb87f'],
           hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
       },
       options: {
         maintainAspectRatio: false,
         tooltips: {
-          backgroundColor: "rgb(255,255,255)",
+          backgroundColor: "#000",
           bodyFontColor: "#858796",
           borderColor: '#dddfeb',
-          borderWidth: 1,
+          borderWidth: 0,
           xPadding: 15,
           yPadding: 15,
           displayColors: false,
           caretPadding: 10,
         },
+        barThickness: "flex",
         legend: {
           display: false
         },

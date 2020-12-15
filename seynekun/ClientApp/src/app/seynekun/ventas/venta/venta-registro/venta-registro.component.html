@@ -12,40 +12,38 @@
               <!-- Tabla de detalles  d-none d-lg-block bg-registrar-bodega-imagen -->
               <div class="p-5">
                 <div class="col-sm-14" id="dataTable_wrapper">
-                  <div class="row">
-                    <h3> Productos comprados</h3>
-                    <div class="col-sm-12 col-md-6  separarArriba separarAbajo">
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="textoABuscar"
-                        aria-controls="dataTable" placeholder="Buscar">
+                  <div id="htmlData">
+                    <div class="row">
+                      <h3> Productos comprados</h3>
+                      <hr>
                     </div>
-                    <hr>
-                  </div>
-                  <div class="col-sm-18 col-md-18">
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
-                        aria-describedby="dataTable_info" style="width: 100%;">
-                        <thead>
-                          <tr>
-                            <th>Nombre</th>
-                            <th>Valor unitario</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Acción</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let detalle of detalles | filtroProducto">
-                            <td>{{detalle.nombreProducto}}</td>
-                            <td>{{detalle.valorProducto}}</td>
-                            <td>{{detalle.cantidadProducto}}</td>
-                            <td>{{detalle.totalDetalle}}</td>
-                            <td>
-                              <button type="button" class="btn btn-link"
-                                (click)="eliminarDetalle(detalle)">Retirar</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div class="col-sm-18 col-md-18">
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" role="grid"
+                          aria-describedby="dataTable_info" style="width: 100%;">
+                          <thead>
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Valor unitario</th>
+                              <th>Cantidad</th>
+                              <th>Total</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let detalle of detalles | filtroProducto">
+                              <td>{{detalle.nombreProducto}}</td>
+                              <td>{{detalle.valorProducto}}</td>
+                              <td>{{detalle.cantidadProducto}}</td>
+                              <td>{{detalle.totalDetalle}}</td>
+                              <td>
+                                <button type="button" class="btn btn-link"
+                                  (click)="eliminarDetalle(detalle)">Retirar</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -111,7 +109,7 @@
                       placeholder="Total venta" formControlName="totalVenta" name="totalVenta">
                   </div>
                   <hr>
-                  <a (click)="onSubmit()" class="btn btn-success btn-user btn-block">
+                  <a (click)="onSubmit()" (click)="downloadPDF()" class="btn btn-success btn-user btn-block">
                     Registrar venta
                   </a>
                   <hr>

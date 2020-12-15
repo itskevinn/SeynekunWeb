@@ -120,7 +120,14 @@
       </div>
     </div>
   </div>
-
+  <div class="col-sm-12 col-md-4 separarArriba separarAbajo">
+    <div class="form-group">
+      <select class="form-dropdown border-verde" (change)="cambiarBodega($event)">
+        <option selected>Seleccionar bodega</option>
+        <option [ngValue]="bodega" *ngFor="let bodega of bodegas">{{bodega.nombre}}</option>
+      </select>
+    </div>
+  </div>
   <div>
     <canvas id="myChart" width="450" height="250"></canvas>
   </div>
