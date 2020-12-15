@@ -20,7 +20,6 @@ import * as Chart from 'chart.js';
 export class HomeComponent {
   canvas: any
   ctx: any
-  
   bodegas: Bodega[];
   materiaPrimaProductor: MateriaPrima[];
   cantidadProcesada: number = 20;
@@ -65,7 +64,6 @@ export class HomeComponent {
     this.obtenerSumaVentaDiaria();
     this.obtenerSumaSolicitud();
     this.obtenerCantidadCacao();
-    this.grafica();
   }
 
   obtenerSumaSolicitud() {
@@ -107,7 +105,7 @@ export class HomeComponent {
     this.materiaPrimaService.getCantidadCacao().subscribe((result) => {
       this.sumaCantidadCacao = result;
     });
-    this.materiaPrimaService.getCantidadCacaoxProductor(this.usuario.id).subscribe((result)=>(this.sumaCacaoProductor = result))
+    this.materiaPrimaService.getCantidadCacaoxProductor(this.usuario.id).subscribe((result) => (this.sumaCacaoProductor = result))
   }
   obtenerSumaMateriaPrimaProductorMensual() {
     this.materiaPrimaService
@@ -129,32 +127,46 @@ export class HomeComponent {
   }
   obtenerProductos() {
     this.productoService.gets().subscribe((result) => {
+      this.grafica(result);
       this.productosAdmin = result;
       this.productosTraidos = true;
     });
   }
 
-  grafica(){
-    this.canvas = document.getElementById('myChart');
-    this.ctx = this.canvas.getContext('2d');
-    
-    const myChart = new Chart(this.ctx, {
-      type: 'polarArea',
+  grafica(productos: Producto[]) {
+    let productosNombres: String[];
+    productos.forEach(element => {
+      productosNombres.push(element.nombre);
+    });
+    var ctx = document.getElementById("myChart");
+    var myPieChart = new Chart(ctx, {
+      type: 'doughnut',
       data: {
-        labels: ["f","a","no","si","this.labelasignaturas"],
+        labels: productosNombres,
         datasets: [{
-          label: 'Total cases.',
-          data: [90,60,83,45,12],
-          backgroundColor: ["green","pink","purple"],
-          borderWidth: 1
-        }]
+          data: [55, 30, 15],
+          backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+          hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
       },
       options: {
-        legend: {
-          display: true
+        maintainAspectRatio: false,
+        tooltips: {
+          backgroundColor: "rgb(255,255,255)",
+          bodyFontColor: "#858796",
+          borderColor: '#dddfeb',
+          borderWidth: 1,
+          xPadding: 15,
+          yPadding: 15,
+          displayColors: false,
+          caretPadding: 10,
         },
-        responsive: true
-      }
+        legend: {
+          display: false
+        },
+        cutoutPercentage: 80,
+      },
     });
   }
 }

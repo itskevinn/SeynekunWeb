@@ -9,11 +9,11 @@
     ".NETStandard,Version=v2.1/": {
       "Logica/1.0.0": {
         "dependencies": {
-          "Datos": "1.0.0",
           "Entity": "1.0.0",
           "Infraestructura": "1.0.0",
           "System.Collections": "4.3.0",
-          "System.ComponentModel.Annotations": "4.7.0"
+          "System.ComponentModel.Annotations": "4.7.0",
+          "datos": "1.0.0"
         },
         "runtime": {
           "Logica.dll": {}
@@ -1408,7 +1408,7 @@
           }
         }
       },
-      "Datos/1.0.0": {
+      "datos/1.0.0": {
         "dependencies": {
           "Entity": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.0.0",
@@ -1416,7 +1416,7 @@
           "System.Collections": "4.3.0"
         },
         "runtime": {
-          "Datos.dll": {}
+          "datos.dll": {}
         }
       },
       "Entity/1.0.0": {
@@ -1429,7 +1429,6 @@
       },
       "Infraestructura/1.0.0": {
         "dependencies": {
-          "Datos": "1.0.0",
           "Entity": "1.0.0"
         },
         "runtime": {
@@ -2291,7 +2290,7 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "Datos/1.0.0": {
+    "datos/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
