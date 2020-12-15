@@ -134,15 +134,17 @@ export class HomeComponent {
   }
 
   grafica(productos: Producto[]) {
-    let productosNombres: String[];
+    var nameProduct = []
+    
     productos.forEach(element => {
-      productosNombres.push(element.nombre);
+      nameProduct.push(element.nombre)
     });
+    
     var ctx = document.getElementById("myChart");
     var myPieChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: productosNombres,
+        labels: nameProduct,
         datasets: [{
           data: [55, 30, 15],
           backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
