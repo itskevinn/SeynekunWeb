@@ -11,11 +11,16 @@ import { MateriaPrimaService } from "../servicios/servicio-materia/materia-prima
 import { VentaService } from "../servicios/servicio-venta/venta.service";
 import { SolicitudService } from "../servicios/servicio-solicitud/solicitud.service";
 
+import * as Chart from 'chart.js';
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
 })
 export class HomeComponent {
+  canvas: any
+  ctx: any
+  
   bodegas: Bodega[];
   materiaPrimaProductor: MateriaPrima[];
   cantidadProcesada: number = 20;
@@ -60,8 +65,9 @@ export class HomeComponent {
     this.obtenerSumaVentaDiaria();
     this.obtenerSumaSolicitud();
     this.obtenerCantidadCacao();
-    
+    this.grafica();
   }
+
   obtenerSumaSolicitud() {
     this.solicitudService.getCantidadSolicitud().subscribe((suma) => {
       this.sumaCantidadSolicitud = suma
@@ -125,6 +131,30 @@ export class HomeComponent {
     this.productoService.gets().subscribe((result) => {
       this.productosAdmin = result;
       this.productosTraidos = true;
+    });
+  }
+
+  grafica(){
+    this.canvas = document.getElementById('myChart');
+    this.ctx = this.canvas.getContext('2d');
+    
+    const myChart = new Chart(this.ctx, {
+      type: 'polarArea',
+      data: {
+        labels: ["f","a","no","si","this.labelasignaturas"],
+        datasets: [{
+          label: 'Total cases.',
+          data: [90,60,83,45,12],
+          backgroundColor: ["green","pink","purple"],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          display: true
+        },
+        responsive: true
+      }
     });
   }
 }

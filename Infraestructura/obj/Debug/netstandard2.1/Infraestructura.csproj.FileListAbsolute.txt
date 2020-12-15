@@ -26,3 +26,17 @@ C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\
 C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.AssemblyInfo.cs
 C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CoreCompileInputs.cache
 C:\Users\kevin\OneDrive\Documentos\GitHub\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CopyComplete
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Infraestructura.deps.json
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Infraestructura.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Infraestructura.pdb
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Datos.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Entity.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Datos.pdb
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\bin\Debug\netstandard2.1\Entity.pdb
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.csproj.CopyComplete
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.dll
+C:\Users\User\Documents\GitHub\Chart\SeynekunWeb\Infraestructura\obj\Debug\netstandard2.1\Infraestructura.pdb
