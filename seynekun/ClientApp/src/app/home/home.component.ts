@@ -122,6 +122,7 @@ export class HomeComponent {
   obtenerSumaMateriaCafe() {
     this.materiaPrimaService.getCantidadDiariaCafe().subscribe((result) => (this.sumaMateriaDiariaCafe = result));
     this.materiaPrimaService.getCantidadDiariaCafexProductor(this.usuario.id).subscribe((result) => (this.sumaCafeProductor = result
+
     ))
   }
 
@@ -138,6 +139,7 @@ export class HomeComponent {
       this.productosEnBodega = result;
       this.graficar(result);
     });
+    this.productosTraidos = true;
   }
   randomColor(lista: String[]) {
     return lista[Math.floor(Math.random() * lista.length)]
